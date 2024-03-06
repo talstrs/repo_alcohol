@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="codeUpdt" >
+    	<div>
+	    <input type="hidden" name="codeSeq" th:value="${item.codeSeq}">
+	    </div>
+	    <div>
+    	<input type="text" name="codeName" th:value="${item.codeName}">
+    	</div>
+    	<div>
+    	<input type="text" name="codeMemo" th:value="${item.codeMemo}">
+    	</div>
+    	<div>
+    	<input type="hidden" name="codeDelNy" th:value="${item.codeDelNy}">
+    	</div>
+    	<button type="submit">수정</button>
+    </form>
+</body>
+</html>

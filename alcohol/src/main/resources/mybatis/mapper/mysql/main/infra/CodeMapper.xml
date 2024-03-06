@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 모름 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Dao 경로 -->
+<mapper namespace="com.babify.infra.code.CodeDao">
+
+	<!-- 아이디 설정하여 셀렉문에 부과 / Dto 경로 -->
+	<resultMap id="resultMapObj" type="com.babify.infra.code.CodeDto"></resultMap>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		select
+			a.seq as codeSeq
+		    ,a.name as codeName
+		    ,a.memo as codeMemo
+		    ,a.delNy as codeDelNy
+		    ,a.regDatetime as codeRegDatetime
+		    ,a.modDatetime as codeModDatetime
+		    ,a.codeGroup_seq as codeGroupSeqF
+		    ,b.seq as codeGroupSeq
+		    ,b.name as codeGroupName
+		from
+			code a
+		left join codeGroup b on a.codeGroup_seq = b.seq and a.delNy = 0
+		
+	</select>
+	
+	<!-- 셀렉원 만들기 -->
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			a.seq as codeSeq
+			,a.name as codeName
+			,a.memo as codeMemo
+			,a.delNy as codeDelNy
+			,a.regDatetime as codeRegDatetime
+			,a.modDatetime as codeModDatetime
+			,a.codeGroup_seq as codeGroupSeqF
+		from
+			code a
+		where 1=1
+			and a.delNy = 0
+		    and a.seq = #{codeSeq}
+			
+			
+	</select>
+	
+	<insert id="insert">
+		insert into code(
+			name
+			,memo
+			,delNy
+			,codeGroup_seq
+		) value (
+			#{codeName}
+			,#{codeMemo}
+			,0
+			,1
+		)
+	</insert>
+	
+
+	
+	<update id="update">
+		update code
+		set
+			name = #{codeName}
+			,memo = #{codeMemo}
+			,modDateTime = now()
+		where 1=1
+			and seq = #{codeSeq}
+	</update>
+	
+	<update id="updateDelete">
+   	update code
+   	set
+   		delNy = 1
+   	WHERE 1=1
+   		and seq = #{codeSeq}
+  	
+  	</update>
+  	
+  	<delete id="delete">
+  	delete from code
+  	
+  	where 1=1
+  		and seq = #{codeSeq}
+  	
+  	</delete>
+</mapper>

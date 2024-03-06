@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<form method="post" action="codeGroupUpdt">
+	    <div class="single-form">
+		    <label for="seq" class="form-label">Seq *</label>
+		    <input class="single-form__input" name="seq" type="text" id="seq" th:value="${item.seq}" />
+		</div>
+		<div class="single-form">
+		<!-- 타임리프 구문을 여러개 일렬로 놓고 싶을 경우 ${변수명.칼럼명} + ${변수명.칼럼명} + ... -->
+		    <label for="nameSeq" class="form-label">NameSeq *</label>
+		    <input class="single-form__input" name="name" type="text" id="nameSeq" th:value="${item.name}" />
+		</div>
+		<button type="submit">수정</button>
+	</form>
+	
+</body>
+</html>

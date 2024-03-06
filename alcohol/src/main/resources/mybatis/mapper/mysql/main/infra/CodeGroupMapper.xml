@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babify.infra.codegroup.CodeGroupDao">
+
+	<resultMap id="resultMapObj" type="com.babify.infra.codegroup.CodeGroupDto"></resultMap>
+
+    <select id="selectList" resultMap="resultMapObj">
+		select
+			a.seq
+		    ,a.memo
+		    ,(select
+				count(*)
+				from code aa
+				where aa.codeGroup_seq = a.seq) as xCodeGourpCount
+			<!-- 강사님 카운트 코드: select count(aa.ifcdSeq) from infrCode aa where 1=1 and aa.ifcdDelNy = 0 and aa.ifcgSeq = a.ifcgSeq) as xifcdSeqCount -->
+			,a.name
+			,a.modDateTime
+			,a.delNy
+			<!-- 디폴트값으로 가져오는 내용이 있어 안 넣어도 불러오기 가능 -->
+			,a.regDatetime
+		
+		from
+			codeGroup a
+
+    </select>
+    
+    <!-- 목록에서 있는 리스트를 눌렀을 때 값을 가져올 수 있어야 함
+    웨얼 구문에 해당 조건을 넣어주어야 함 -->
+    <!-- 조회의 경우 가져올 데이터가 필요하기 떄문에 리졸트맵오브젝트가 있음 -->
+    <select id="selectOne" resultMap="resultMapObj">
+		select
+			seq
+		    ,memo
+   			,name
+			,modDateTime
+			,delNy
+			,regDatetime
+		
+		from
+			codeGroup 
+			
+		where 1=1
+			and seq = #{seq}
+			<!-- #{변수명}으로 변수를 가져오는 것 -->
+
+    </select>
+    
+    <!-- 삽입의 경우 가져올 필요가 없기 떄문에 리졸트맵오브젝트가 없음 -->
+    <insert id="insert">
+    	insert into codeGroup (
+    		name
+    		,memo
+    		,delNy
+   		) value (
+   			#{name}
+   			,#{memo}
+   			,0
+   		)
+   		<!-- 값이 들어가는 순간 해당 시퀀스 값을 반환하기, 이후에 다시
+   		예를 들어 데이터를 추가한 후 해당 데이터를 추가한 페이지를 보여주기 위함 -->
+<!--     	<selectKey resultType="String" keyProperty="seq" order="AFTER">
+    		select last_insert_id()
+    	</selectKey> -->
+    </insert>
+    
+    <!-- 수정하기 -->
+    <update id="update">
+   	update codeGroup
+   	set
+   		name = #{name}
+   		,modDateTime = now()
+   		<!-- 수정일 방법.. -->
+<!--    		modDateTime = SYSDATE -->
+   	WHERE 1=1
+   		and seq = #{seq}
+  	
+  	</update>
+  	
+  	<!-- 삭제하기, 케이스 1 deyNY 바꾸기 -->
+  	<!-- 실질적인 시스템에서는 업데이트 -->
+    <update id="updateDelete">
+   	update codeGroup
+   	set
+   		delNy = 1
+   		<!-- 수정일 방법.. -->
+<!--    		modDateTime = SYSDATE -->
+   	WHERE 1=1
+   		and seq = #{seq}
+  	
+  	</update>
+  	
+  	<delete id="delete">
+  	delete from codeGroup
+  	
+  	where 1=1
+  		and seq = #{seq}
+  	
+  	</delete>
+    
+    
+	  
+</mapper>

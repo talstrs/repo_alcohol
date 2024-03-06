@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<!-- 폼 태그로 감싸져야 넘어가니 주의 필요, action="컨트롤러주소" -->
+	<form method="post" action="codeGroupInsert">
+	    <div class="single-form">
+		    <label for="addname" class="form-label">Name *</label>
+		    <!-- name이 있어야 해당 내용을 담아 컨트롤러로 보낼 수 있음 -->
+		    <!-- name="dto명" 네임의 내용을 dto의 이름과 동일하게 설정시 자동으로 바인딩됨 -->
+		    <input class="single-form__input" type="text" name="name" id="addname" placeholder="코드그룹 이름을 입력하세요"/>
+		</div>
+		<div class="single-form">
+		<!-- 타임리프 구문을 여러개 일렬로 놓고 싶을 경우 ${변수명.칼럼명} + ${변수명.칼럼명} + ... -->
+		    <label for="addnamememo" class="form-label">Memo *</label>
+		    <input class="single-form__input" type="text" name="memo" id="addnamememo" placeholder="설명을 입력하세요"/>
+		</div>
+		<button type="submit">등록</button>
+	</form>
+	
+</body>
+</html>
