@@ -19,36 +19,36 @@ public class CodeController {
 		System.out.println("--------------");
 		System.out.println(model.toString());
 		
-		return "codeXdmList";
+		return "adm/v1/infra/code/codeXdmList";
 	}
 	
-	@RequestMapping(value = "/codeView")
-	public String codeView(CodeDto dto, Model model) throws Exception{
+	@RequestMapping(value = "/codeXdmView")
+	public String codeXdmView(CodeDto dto, Model model) throws Exception{
 		
 		System.out.println("dto.getCodeSeq(): " + dto.getCodeSeq());
 		System.out.println("dto.getCodeName(): " + dto.getCodeName());
 		
 		model.addAttribute("item", service.selectOne(dto));
 		
-		return "codeView";
+		return "adm/v1/infra/code/codeXdmView";
 	}
 	
-	@RequestMapping(value = "/codeEdit")
-	public String codeEdit(CodeDto dto, Model model) throws Exception{
+	@RequestMapping(value = "/codeXdmEdit")
+	public String codeXdmEdit(CodeDto dto, Model model) throws Exception{
 		
 		System.out.println("dto.getCodeSeq(): " + dto.getCodeSeq());
 		System.out.println("dto.getCodeName(): " + dto.getCodeName());
 		
 		model.addAttribute("item", service.selectOne(dto));
 		
-		return "codeEdit";
+		return "adm/v1/infra/code/codeXdmEdit";
 	}
 	
 	@RequestMapping(value = "/codeXdmListAdd")
 	public String codeXdmListAdd(CodeDto dto) throws Exception{
 		
 		
-		return "codeXdmListAdd";
+		return "adm/v1/infra/code/codeXdmListAdd";
 	}
 	
 	@RequestMapping(value = "/codeInsert")
