@@ -12,12 +12,14 @@ public class CodeController {
 	CodeService service;
 	
 	@RequestMapping(value = "/codeXdmList")
-	public String codeXdmList(Model model) throws Exception{
+	public String codeXdmList(CodeVo vo, Model model) throws Exception{
 		
-		model.addAttribute("list", service.selectList());
+		model.addAttribute("list", service.selectList(vo));
+		
+		model.addAttribute("vo", vo);
 		
 		System.out.println("--------------");
-		System.out.println(model.toString());
+		System.out.println(vo.toString());
 		
 		return "adm/v1/infra/code/codeXdmList";
 	}
@@ -73,8 +75,8 @@ public class CodeController {
 		return "redirect:/codeXdmList";
 	}
 	
-	@RequestMapping(value = "/codeDtOne")
-	public String codeDtOne(CodeDto dto) throws Exception{
+	@RequestMapping(value = "/codeUele")
+	public String codeUele(CodeDto dto) throws Exception{
 		
 		System.out.println("dto.getCodeSeq(): " + dto.getCodeSeq());
 		
@@ -83,7 +85,7 @@ public class CodeController {
 		return "redirect:/codeXdmList";
 	}
 	
-	@RequestMapping(value = "/codeDtTwo")
+	@RequestMapping(value = "/codeDele")
 	public String codeDtTwo(CodeDto dto) throws Exception{
 		
 

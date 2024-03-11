@@ -8,22 +8,33 @@
     <select id="selectList" resultMap="resultMapObj">
 		select
 			a.seq
-		    ,a.memo
-		    ,(select
-				count(*)
-				from code aa
-				where aa.codeGroup_seq = a.seq) as xCodeGourpCount
-			<!-- 강사님 카운트 코드: select count(aa.ifcdSeq) from infrCode aa where 1=1 and aa.ifcdDelNy = 0 and aa.ifcgSeq = a.ifcgSeq) as xifcdSeqCount -->
-			,a.name
-			,a.modDateTime
-			,a.delNy
-			<!-- 디폴트값으로 가져오는 내용이 있어 안 넣어도 불러오기 가능 -->
-			,a.regDatetime
-		
+				,a.name
+				,a.memo
+				,(select 
+					count(*)
+					from code aa
+				where 1=1
+					and	aa.codeGroup_seq = a.seq) as xCodeGourpCount
+				,a.delNy
+				,a.regDatetime
+				,a.modDateTime
 		from
 			codeGroup a
-		where 1=1
-			and delNy = 0
+	    WHERE 1=1
+			<!-- 이후 사용여부 사용시 참고
+			<if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
+        	<if test="shDelNy != null and !shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
+        	
+        	<!-- <choose> 이후 진행 필요 구문
+        		<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+        	</choose> -->
+        	
+        	<choose>
+            	<when test="shOption == 1">AND a.seq = #{shValue}</when>
+            	<when test="shOption == 2">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
+            	<when test="shOption == 3">AND a.memo LIKE CONCAT('%',#{shValue},'%')</when>
+        	</choose>
 
     </select>
     

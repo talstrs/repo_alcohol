@@ -13,8 +13,7 @@ public class CodeGroupController {
 	CodeGroupService service;
 
 	@RequestMapping(value = "/codeGroupXdmList")
-	// 모델 추가
-	public String codeGroupXdmList(Model model) throws Exception{
+	public String codeGroupXdmList(CodeGroupVo vo, Model model) throws Exception{
 		
 		// 받아와서 클래스를 만들고
 //		List<CodeGroupDto> codeGroupDtos = service.selectList();
@@ -32,10 +31,15 @@ public class CodeGroupController {
 		
 		
 		// 받아오자마자 바로 넘기는 방법
-		model.addAttribute("list", service.selectList());
+		model.addAttribute("list", service.selectList(vo));
 //		list = codeGroupDtos;
+		
+		// vo라는 이름으로 객체를 넘겨야 오류가 나지 않음
+		model.addAttribute("vo", vo);
+		
+		System.out.println(vo.toString());
 	
-	return "adm/v1/infra/codegroup/codeGroupXdmList";
+	return  "adm/v1/infra/codegroup/codeGroupXdmList";
 }
 	
 /* 링크 주소의 html 추가/ 데이터 받기 */
@@ -110,8 +114,8 @@ public String codeGroupUpdt(CodeGroupDto dto) throws Exception{
 	return "redirect:/codeGroupXdmList";
 }
 
-@RequestMapping(value = "/codeGroupDtOne")
-public String codeGroupDtOne(CodeGroupDto dto) throws Exception{
+@RequestMapping(value = "/codeGroupUele")
+public String codeGroupUele(CodeGroupDto dto) throws Exception{
 	
 	System.out.println("dto.getSeq(): " + dto.getSeq());
 	System.out.println(dto.toString());
@@ -120,8 +124,8 @@ public String codeGroupDtOne(CodeGroupDto dto) throws Exception{
 	return "redirect:/codeGroupXdmList";
 }
 
-@RequestMapping(value = "/codeGroupDtTwo")
-public String codeGroupDtTwo(CodeGroupDto dto) throws Exception{
+@RequestMapping(value = "/codeGroupDele")
+public String codeGroupDele(CodeGroupDto dto) throws Exception{
 	
 	System.out.println("dto.getSeq(): " + dto.getSeq());
 	System.out.println(dto.toString());
@@ -130,11 +134,5 @@ public String codeGroupDtTwo(CodeGroupDto dto) throws Exception{
 	return "redirect:/codeGroupXdmList";
 }
 		
-	@RequestMapping(value = "/tablesEx")
-	public String tablesEx(Model model) throws Exception{
-		
-		model.addAttribute("list", service.selectList());
-		return "adm/v1/infra/stater/tablesEx";
-	}
 
 }

@@ -10,7 +10,7 @@ public interface CodeGroupDao {
 //  service 파일의 기능등을 명시하는 인터페이스.
 //  쿼리 실행시키는 곳
 	
-	public List<CodeGroupDto> selectList(); //List<dto>: 여러개의 데이터를 가져올때
+	public List<CodeGroupDto> selectList(CodeGroupVo vo); //List<dto>: 여러개의 데이터를 가져올때
 	public CodeGroupDto selectOne(CodeGroupDto dto); //dto: 하나의 데이터를 가져올때
 	
 	// 데이터를 추가할 때(삽입 insert)

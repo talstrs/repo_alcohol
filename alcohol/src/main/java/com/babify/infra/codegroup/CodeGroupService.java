@@ -24,8 +24,8 @@ public class CodeGroupService {
 //	}
 // 	서비스는 논리 로직
 //	패턴 2 리스트 호출
-	public List<CodeGroupDto> selectList() {
-		return dao.selectList();
+	public List<CodeGroupDto> selectList(CodeGroupVo vo) {
+		return dao.selectList(vo);
 	}
 	
 //  패턴 2 객체 하나 호출

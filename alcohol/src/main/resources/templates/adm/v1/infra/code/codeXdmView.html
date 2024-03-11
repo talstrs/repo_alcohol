@@ -530,7 +530,7 @@
 									
 									<div class="card-body">
 									
-										<form class="row g-3 needs-validation " method="post" action="codeDtOne" novalidate>
+										<form class="row g-3 needs-validation " method="post" action="codeUele" novalidate>
 											<div class="col-md-6">
 												<label for="codeXdmViewName" class="form-label">Name</label>
 												<input type="text" class="form-control" name="codeName" id="codeXdmViewName" th:value="${item.codeName}" required readonly/>
@@ -587,7 +587,7 @@
 																</div>
 																<div class="modal-footer">
 																	<a class="btn btn-secondary" data-bs-dismiss="modal">취소</a>
-																	<a class="btn btn-danger" th:href="@{/codeDtOne(codeSeq=${item.codeSeq}, codeDelNy=${item.codeDelNy})}">삭제</a>
+																	<a class="btn btn-danger" th:href="@{/codeUele(codeSeq=${item.codeSeq}, codeDelNy=${item.codeDelNy})}">삭제</a>
 																</div>
 															</div>
 														</div>
@@ -619,7 +619,7 @@
 																</div>
 																<div class="modal-footer">
 																	<a class="btn btn-secondary" data-bs-dismiss="modal">취소</a>
-																	<a class="btn btn-danger" th:href="@{/codeDtTwo(codeSeq=${item.codeSeq})}">삭제</a>
+																	<a class="btn btn-danger" th:href="@{/codeDele(codeSeq=${item.codeSeq})}">삭제</a>
 																</div>
 															</div>
 														</div>

@@ -26,8 +26,23 @@
 			on a.codeGroup_seq = b.seq 
 				and a.delNy = 0
 		where 1=1
-			and a.delNy = 0
-		
+			<!-- 추가, 사용여부 사용시 진행 필요 건 -->
+			<!-- <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
+			
+			<!--   이후 날짜 데이터 진행시 추가 필요      
+				<choose>
+					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+ -->        
+ 			<choose> 
+	            <when test="shOption == 1">AND b.seq = #{shValue}</when>
+	            <when test="shOption == 2">AND b.name LIKE CONCAT('%',#{shValue},'%')</when>
+	            <when test="shOption == 3">AND a.seq = #{shValue}</when>
+	            <when test="shOption == 4">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
+	            <when test="shOption == 5">AND a.memo LIKE CONCAT('%',#{shValue},'%')</when>
+       		</choose>
 	</select>
 	
 	<!-- 셀렉원 만들기 -->
