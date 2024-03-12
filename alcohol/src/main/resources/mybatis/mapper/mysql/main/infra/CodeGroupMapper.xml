@@ -25,10 +25,10 @@
 			<if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
         	<if test="shDelNy != null and !shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
         	
-        	<!-- <choose> 이후 진행 필요 구문
+        	<choose>
         		<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-        	</choose> -->
+				<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+        	</choose>
         	
         	<choose>
             	<when test="shOption == 1">AND a.seq = #{shValue}</when>

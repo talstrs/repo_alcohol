@@ -3,7 +3,10 @@ package com.babify.infra.code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.babify.common.util.UtilSearch;
 
 @Controller
 public class CodeController {
@@ -12,11 +15,15 @@ public class CodeController {
 	CodeService service;
 	
 	@RequestMapping(value = "/codeXdmList")
-	public String codeXdmList(CodeVo vo, Model model) throws Exception{
+	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
+		
+		UtilSearch.setSearch(vo);
 		
 		model.addAttribute("list", service.selectList(vo));
 		
-		model.addAttribute("vo", vo);
+		// modelAttrubute("vo") -> 가져온 vo 내용을 바로 html 페이지로 보내는 방법으로 해당 바업 사용시 모델.addAtrribute는 주석처리
+		
+//		model.addAttribute("vo", vo);
 		
 		System.out.println("--------------");
 		System.out.println(vo.toString());
@@ -93,4 +100,6 @@ public class CodeController {
 		
 		return "redirect:/codeXdmList";
 	}
+	
+
 }

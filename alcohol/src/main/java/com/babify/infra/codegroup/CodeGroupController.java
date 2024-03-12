@@ -3,7 +3,10 @@ package com.babify.infra.codegroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.babify.common.util.UtilSearch;
 
 
 @Controller
@@ -12,8 +15,11 @@ public class CodeGroupController {
 	@Autowired
 	CodeGroupService service;
 
+	
 	@RequestMapping(value = "/codeGroupXdmList")
-	public String codeGroupXdmList(CodeGroupVo vo, Model model) throws Exception{
+	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
+		
+		UtilSearch.setSearch(vo);
 		
 		// 받아와서 클래스를 만들고
 //		List<CodeGroupDto> codeGroupDtos = service.selectList();
@@ -34,8 +40,9 @@ public class CodeGroupController {
 		model.addAttribute("list", service.selectList(vo));
 //		list = codeGroupDtos;
 		
+		// modelAttrubute("vo") -> 가져온 vo 내용을 바로 html 페이지로 보내는 방법으로 해당 바업 사용시 모델.addAtrribute는 주석처리
 		// vo라는 이름으로 객체를 넘겨야 오류가 나지 않음
-		model.addAttribute("vo", vo);
+//		model.addAttribute("vo", vo);
 		
 		System.out.println(vo.toString());
 	
@@ -133,6 +140,10 @@ public String codeGroupDele(CodeGroupDto dto) throws Exception{
 	
 	return "redirect:/codeGroupXdmList";
 }
+
+
+
+
 		
 
 }

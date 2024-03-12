@@ -500,20 +500,24 @@
 					<!-- App hero header starts -->
 					<!-- 수정, 검색 폼 시작-->
 					<form name="formList" id="formList" method="get" autocomplete="off">
-						<div class="app-hero-header d-flex align-items-start">
-
-							<!-- Breadcrumb start -->
-							<ol class="breadcrumb d-none d-lg-flex align-items-center">
-								<li class="breadcrumb-item">
-									<i class="bi bi-house"></i>
-									<a href="index.html">Home</a>
-								</li>
-								<li class="breadcrumb-item">Components</li>
-								<li class="breadcrumb-item" aria-current="page">Invoice List</li>
-							</ol>
-							<!-- Breadcrumb end -->
-
+						<div class="app-hero-header align-items-start">
+							<div class="">
+								<!-- Breadcrumb start -->
+								<ol class="breadcrumb d-none d-lg-flex align-items-center">
+									<li class="breadcrumb-item">
+										<i class="bi bi-house"></i>
+										<a href="index.html">Home</a>
+									</li>
+									<li class="breadcrumb-item">Components</li>
+									<li class="breadcrumb-item" aria-current="page">Invoice List</li>
+								</ol>
+								<!-- Breadcrumb end -->
+							</div>
+						<!-- 시작, 검색조건 첫번째 줄-->
 							<div class="ms-auto d-flex flex-row">
+								<div class="col-4">
+
+								</div>
 								<!-- search s -->
 								<div class="col">
 									<select id="shDelNy" name="shDelNy" class="form-select form-select">
@@ -539,48 +543,48 @@
 								</div>
 								<!--수정 데이터피커 인풋 구문, 시작일-->
 
-								<div class="m-0 col-2">
-									<div class="input-group">
+								<!-- <div class="m-0 col">
+									<div class="input-group"> -->
 										<!-- <input type="text" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" class="form-control form-control datetimepicker" autocomplete="off" readonly> -->
-										<input type="text" id="shDateStart" name="shDateStart" placeholder="시작일" 
+										<!-- <input type="text" id="shDateStart" name="shDateStart" placeholder="시작일" 
 										class="form-control form-control datetimepicker" autocomplete="off">
 										<span class="input-group-text">
 											<i class="bi bi-calendar4"></i>
 										</span>
 									</div>
-								</div>
+								</div> -->
 								<!-- 추가, 이후 날짜 추가시 수정 필요-->
-								<!-- <div class="col">
+								<div class="col">
 									<input type="text" id="shDateStart" name="shDateStart" 
 										th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" 
 										class="form-control form-control datetimepicker" autocomplete="off">
-										<span class="input-group-text">
-											<i class="bi bi-calendar4"></i>
-										</span>
-								</div>   -->
+								</div>  
 
 								<!-- 수정, 종료일-->
-								<div class="m-0 col-2">
-									<div class="input-group">
+								<!-- <div class="m-0 col">
+									<div class="input-group"> -->
 										<!-- <input type="text" id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일" class="form-control form-control datetimepicker" autocomplete="off" readonly> -->
-										<input type="text" id="shDateEnd" name="shDateEnd" placeholder="종료일" 
+										<!-- <input type="text" id="shDateEnd" name="shDateEnd" placeholder="종료일" 
 										class="form-control form-control datetimepicker" autocomplete="off">
 										<span class="input-group-text">
 											<i class="bi bi-calendar4"></i>
 										</span>
 									</div>
-								</div>
+								</div> -->
 								<!-- 추가, 이후 날짜 추가시 수정 필요-->
-								<!-- <div class="col">
+								<div class="col">
 									<input type="text" id="shDateEnd" name="shDateEnd" placeholder="종료일"
 									th:value="${#strings.substring(vo.shDateEnd, 0, 10)}"  
 									class="form-control form-control datetimepicker" autocomplete="off">
-									<span class="input-group-text">
-										<i class="bi bi-calendar4"></i>
-									</span>
-								</div>  -->
+								</div> 
+							</div>
+							<!-- 끝, 검색조건 첫번째 줄-->
+							<!-- 수정, 검색조건 두번째 줄-->
+							<div class="ms-auto d-flex flex-row justify-content-end">
+								<div class="col-6">
 
-								<div class="col">
+								</div>
+								<div class="col-2">
 									<select id="shOption" name="shOption" class="form-select form-select">
 										<option value="" th:selected="${vo.shOption == null}">검색구분</option>
 										<option value="1" th:selected="${vo.shOption == 1}">codeGroup no</option>
@@ -706,7 +710,7 @@
 															
 
 															<td th:text="${#dates.format(lista.codeRegDatetime, 'yyyy/MM/dd HH:mm:ss')}"></td>
-															<td th:text="${#dates.format(lista.codeModDatetime, 'yyyy/MM/dd일 HH:mm:ss')}"></td>
+															<td th:text="${#dates.format(lista.codeModDatetime, 'yyyy/MM/dd HH:mm:ss')}"></td>
 															<td>
 																<a class="btn btn-primary btn-icon btn-sm mb-1" th:href="@{/codeXdmEdit(codeSeq=${lista.codeSeq})}">
 																	<i class="bi bi-pencil"></i>
