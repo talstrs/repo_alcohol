@@ -4,50 +4,55 @@ import java.util.Date;
 
 public class CodeGroupDto {
 	
-	private String seq;
-	private Integer delNy;
-	private String name;
-	private String memo;
-	private Date regDatetime;
-	private Date modDatetime;
+	private String codeGroupSeq;
+	private Integer codeGroupDelNy;
+	private Integer codeGroupUseNy;
+	private String codeGroupName;
+	private String codeGroupMemo;
+	private Date codeGroupRegDate;
+	private Date codeGroupModDate;
 	private Integer xCodeGourpCount;
-	
-	
-	public String getSeq() {
-		return seq;
+	public String getCodeGroupSeq() {
+		return codeGroupSeq;
 	}
-	public void setSeq(String seq) {
-		this.seq = seq;
+	public void setCodeGroupSeq(String codeGroupSeq) {
+		this.codeGroupSeq = codeGroupSeq;
 	}
-	public Integer getDelNy() {
-		return delNy;
+	public Integer getCodeGroupDelNy() {
+		return codeGroupDelNy;
 	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
+	public void setCodeGroupDelNy(Integer codeGroupDelNy) {
+		this.codeGroupDelNy = codeGroupDelNy;
 	}
-	public String getName() {
-		return name;
+	public Integer getCodeGroupUseNy() {
+		return codeGroupUseNy;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setCodeGroupUseNy(Integer codeGroupUseNy) {
+		this.codeGroupUseNy = codeGroupUseNy;
 	}
-	public String getMemo() {
-		return memo;
+	public String getCodeGroupName() {
+		return codeGroupName;
 	}
-	public void setMemo(String memo) {
-		this.memo = memo;
+	public void setCodeGroupName(String codeGroupName) {
+		this.codeGroupName = codeGroupName;
 	}
-	public Date getRegDatetime() {
-		return regDatetime;
+	public String getCodeGroupMemo() {
+		return codeGroupMemo;
 	}
-	public void setRegDatetime(Date regDatetime) {
-		this.regDatetime = regDatetime;
+	public void setCodeGroupMemo(String codeGroupMemo) {
+		this.codeGroupMemo = codeGroupMemo;
 	}
-	public Date getModDatetime() {
-		return modDatetime;
+	public Date getCodeGroupRegDate() {
+		return codeGroupRegDate;
 	}
-	public void setModDatetime(Date modDatetime) {
-		this.modDatetime = modDatetime;
+	public void setCodeGroupRegDate(Date codeGroupRegDate) {
+		this.codeGroupRegDate = codeGroupRegDate;
+	}
+	public Date getCodeGroupModDate() {
+		return codeGroupModDate;
+	}
+	public void setCodeGroupModDate(Date codeGroupModDate) {
+		this.codeGroupModDate = codeGroupModDate;
 	}
 	public Integer getxCodeGourpCount() {
 		return xCodeGourpCount;
@@ -55,6 +60,16 @@ public class CodeGroupDto {
 	public void setxCodeGourpCount(Integer xCodeGourpCount) {
 		this.xCodeGourpCount = xCodeGourpCount;
 	}
+	@Override
+	public String toString() {
+		return "CodeGroupDto [codeGroupSeq=" + codeGroupSeq + ", codeGroupDelNy=" + codeGroupDelNy + ", codeGroupUseNy="
+				+ codeGroupUseNy + ", codeGroupName=" + codeGroupName + ", codeGroupMemo=" + codeGroupMemo
+				+ ", codeGroupRegDate=" + codeGroupRegDate + ", codeGroupModDate=" + codeGroupModDate
+				+ ", xCodeGourpCount=" + xCodeGourpCount + "]";
+	}
+	
+	
+	
 	
 	
 

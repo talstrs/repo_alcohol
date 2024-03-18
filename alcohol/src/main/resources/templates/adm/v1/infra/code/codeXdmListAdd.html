@@ -524,7 +524,7 @@
 							<div class="col-xxl-12">
 								<div class="card mb-4">
 									<div class="card-header">
-										<!-- 타이틀 -->
+										<!-- 타이틀 --> 
 										<h5 class="card-title">Code</h5>
 									</div>
 									
@@ -543,7 +543,7 @@
 											</div>
 											<div class="col-md-6">
 												<label for="codeXdmListAddCodeGroupSeq" class="form-label">CodeGroup Seq</label>
-												<input type="text" class="form-control" name="codeGroupSeq" id="codeGroupSeq" placeholder="코드 그룹의 번호를 입력하세요" required />
+												<input type="text" class="form-control" name="codeGroupSeqF" id="codeGroupSeqF" placeholder="코드 그룹의 번호를 입력하세요" required />
 												<div class="valid-feedback">Looks good!</div>
 											</div>
 											<div class="d-flex justify-content-between">
@@ -657,7 +657,7 @@
 
 				if(!nullToEmpty(document.getElementById("codeName").value &&
 					document.getElementById("codeMemo").value &&
-					document.getElementById("codeGroupSeq").value)
+					document.getElementById("codeGroupSeqF").value)
 				){
 					
 					document.getElementById("codeName").setAttribute("class", "form-control is-invalid");

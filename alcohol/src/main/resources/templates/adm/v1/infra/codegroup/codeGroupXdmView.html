@@ -533,16 +533,16 @@
 										<form class="row g-3 needs-validation " method="post" action="codeGroupUele" novalidate>
 											<div class="col-md-6">
 												<label for="codeGroupXdmViewName" class="form-label">Name</label>
-												<input type="text" class="form-control" name="name" id="codeGroupXdmViewName" th:value="${item.name}" required readonly/>
+												<input type="text" class="form-control" name="codeGroupName" id="codeGroupXdmViewName" th:value="${item.codeGroupName}" required readonly/>
 											</div>
 											<div class="col-md-6">
 												<label for="codeGroupXdmViewMemo" class="form-label">Memo</label>
-												<input type="text" class="form-control" name="memo" id="codeGroupXdmViewMemo" th:value="${item.memo}" required readonly/>
+												<input type="text" class="form-control" name="codeGroupMemo" id="codeGroupXdmViewMemo" th:value="${item.codeGroupMemo}" required readonly/>
 											</div>
 											
-											<input type="hidden" name="seq" th:value="${item.seq}">
-											<input type="hidden" name="name" th:value="${item.name}">
-											<input type="hidden" name="delNy" th:value="${item.delNy}">
+											<input type="hidden" name="codeGroupSeq" th:value="${item.codeGroupSeq}">
+											<input type="hidden" name="codeGroupName" th:value="${item.codeGroupName}">
+											<input type="hidden" name="codeGroupDelNy" th:value="${item.codeGroupDelNy}">
 											
 											<div class="d-flex justify-content-between">
 
@@ -556,15 +556,15 @@
 												</div>
 												
 												<div>
-													<a class="btn btn-primary btn-icon btn-sm" th:href="@{/codeGroupXdmEdit(seq=${item.seq})}" th:text="Edit"></a>
+													<a class="btn btn-primary btn-icon btn-sm" th:href="@{/codeGroupXdmEdit(codeGroupSeq=${item.codeGroupSeq})}" th:text="Edit"></a>
 													<a class="btn btn-danger btn-icon btn-sm" 
 														data-bs-toggle="modal"
-														th:data-bs-target="'#codeGroupXdmDele'+ ${item['seq']}"
+														th:data-bs-target="'#codeGroupXdmDele'+ ${item['codeGroupSeq']}"
 														data-bs-target="#codeGroupXdmDele">Delete</i>
 													</a>
 													<!-- 수정, 삭제 모달-->
 													<div class="modal fade" 
-														th:id="'codeGroupXdmDele' + ${item['seq']}"
+														th:id="'codeGroupXdmDele' + ${item['codeGroupSeq']}"
 														id="codeGroupXdmDele"
 														tabindex="-1"
 														aria-labelledby="codeGroupXdmDeleTitle"
@@ -583,7 +583,7 @@
 																</div>
 																<div class="modal-footer">
 																	<a class="btn btn-secondary" data-bs-dismiss="modal">취소</a>
-																	<a class="btn btn-danger" th:href="@{/codeGroupUele(seq=${item.seq}, delNy=${item.delNy})}">삭제</a>
+																	<a class="btn btn-danger" th:href="@{/codeGroupUele(codeGroupSeq=${item.codeGroupSeq}, codeGroupDelNy=${item.codeGroupDelNy})}">삭제</a>
 																</div>
 															</div>
 														</div>
@@ -591,12 +591,12 @@
 													
 													<a class="btn btn-danger btn-icon btn-sm" 
 													data-bs-toggle="modal"
-													th:data-bs-target="'#codeGroupXdmDeleAll'+ ${item['seq']}"
+													th:data-bs-target="'#codeGroupXdmDeleAll'+ ${item['codeGroupSeq']}"
 													data-bs-target="#codeGroupXdmDeleAll">Delete All</i>
 													</a>
 													<!-- 수정, 완전 삭제 모달-->
 													<div class="modal fade" 
-														th:id="'codeGroupXdmDeleAll' + ${item['seq']}"
+														th:id="'codeGroupXdmDeleAll' + ${item['codeGroupSeq']}"
 														id="codeGroupXdmDeleAll"
 														tabindex="-1"
 														aria-labelledby="codeGroupXdmDeleAllTitle"
@@ -615,7 +615,7 @@
 																</div>
 																<div class="modal-footer">
 																	<a class="btn btn-secondary" data-bs-dismiss="modal">취소</a>
-																	<a class="btn btn-danger" th:href="@{/codeGroupDele(seq=${item.seq})}">삭제</a>
+																	<a class="btn btn-danger" th:href="@{/codeGroupDele(codeGroupSeq=${item.codeGroupSeq})}">삭제</a>
 																</div>
 															</div>
 														</div>

@@ -56,11 +56,11 @@ public String codeGroupView(CodeGroupDto dto, Model model) throws Exception{
 
 //	넘긴 데이터: 해당 링크 클릭시 콘솔 창에 해당 데이터 값 확인
 //	but, dto 이름과 동일하게 설정해야 함
-	System.out.println("dto.getSeq(): " + dto.getSeq());
-	System.out.println("dto.getName(): " + dto.getName());
+	System.out.println("dto.getCodeGroupSeq(): " + dto.getCodeGroupSeq());
+	System.out.println("dto.getCodeGroupName(): " + dto.getCodeGroupName());
 	
 //	넘기지 않은 데이터: 해당 링크 클릭스 콘솔 창에 null 값으로 확인
-	System.out.println("dto.getModDatetime(): " + dto.getModDatetime());
+	System.out.println("dto.getCodeGroupModDate(): " + dto.getCodeGroupModDate());
 	
 	// 모델로 내용 받았을 경우 html로 넘겨주어야 함
 	model.addAttribute("item", service.selectOne(dto));
@@ -72,7 +72,7 @@ public String codeGroupView(CodeGroupDto dto, Model model) throws Exception{
 public String codeGroupEdit(CodeGroupDto dto, Model model) throws Exception{
 
 	// 값이 실제로 넘어오는지 콘솔창으로 확인하기
-	System.out.println("dto.getSeq(): " + dto.getSeq());
+	System.out.println("dto.getCodeGroupSeq(): " + dto.getCodeGroupSeq());
 	
 	// 모델로 내용 받았을 경우 html로 넘겨주어야 함
 	// addAttribute = 함수
@@ -94,8 +94,8 @@ public String codeGroupXdmListAdd(CodeGroupDto dto) throws Exception{
 // 컨트롤러만 리턴 타입을 String으로 변경 가능
 public String codeGroupInsert(CodeGroupDto dto) throws Exception{
 	
-	System.out.println("dto.getName(): " + dto.getName());
-	System.out.println("dto.getMemo(): " + dto.getMemo());
+	System.out.println("dto.getCodeGroupName(): " + dto.getCodeGroupName());
+	System.out.println("dto.getCodeGroupMemo(): " + dto.getCodeGroupMemo());
 	
 	service.insert(dto);
 	
@@ -110,7 +110,7 @@ public String codeGroupInsert(CodeGroupDto dto) throws Exception{
 // 컨트롤러만 리턴 타입을 String으로 변경 가능
 public String codeGroupUpdt(CodeGroupDto dto) throws Exception{
 	
-	System.out.println("dto.getName(): " + dto.getName());
+	System.out.println("dto.getCodeGroupName(): " + dto.getCodeGroupName());
 	
 	service.update(dto);
 	
@@ -124,7 +124,7 @@ public String codeGroupUpdt(CodeGroupDto dto) throws Exception{
 @RequestMapping(value = "/codeGroupUele")
 public String codeGroupUele(CodeGroupDto dto) throws Exception{
 	
-	System.out.println("dto.getSeq(): " + dto.getSeq());
+	System.out.println("dto.getCodeGroupSeq(): " + dto.getCodeGroupSeq());
 	System.out.println(dto.toString());
 	service.updateDelete(dto);
 	
@@ -134,7 +134,7 @@ public String codeGroupUele(CodeGroupDto dto) throws Exception{
 @RequestMapping(value = "/codeGroupDele")
 public String codeGroupDele(CodeGroupDto dto) throws Exception{
 	
-	System.out.println("dto.getSeq(): " + dto.getSeq());
+	System.out.println("dto.getCodeGroupSeq(): " + dto.getCodeGroupSeq());
 	System.out.println(dto.toString());
 	service.delete(dto);
 	

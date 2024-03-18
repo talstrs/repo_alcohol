@@ -6,15 +6,16 @@ public class CodeVo extends BaseVo {
 	
 
 	
-	private String seq;
+	private String codeSeq;
 	private String codeGroupSeq;
 	private String codeGroupName;
 	private Integer codeGroupSeqF;
-	public String getSeq() {
-		return seq;
+	
+	public String getCodeSeq() {
+		return codeSeq;
 	}
-	public void setSeq(String seq) {
-		this.seq = seq;
+	public void setCodeSeq(String codeSeq) {
+		this.codeSeq = codeSeq;
 	}
 	public String getCodeGroupSeq() {
 		return codeGroupSeq;
@@ -36,9 +37,10 @@ public class CodeVo extends BaseVo {
 	}
 	@Override
 	public String toString() {
-		return "CodeVo [seq=" + seq + ", codeGroupSeq=" + codeGroupSeq + ", codeGroupName=" + codeGroupName
+		return "CodeVo [codeSeq=" + codeSeq + ", codeGroupSeq=" + codeGroupSeq + ", codeGroupName=" + codeGroupName
 				+ ", codeGroupSeqF=" + codeGroupSeqF + "]";
 	}
+	
 	
 	
 	

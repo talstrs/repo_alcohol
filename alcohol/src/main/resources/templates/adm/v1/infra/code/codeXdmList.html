@@ -709,8 +709,8 @@
 															<td th:text="${lista.codeMemo}"></td>
 															
 
-															<td th:text="${#dates.format(lista.codeRegDatetime, 'yyyy/MM/dd HH:mm:ss')}"></td>
-															<td th:text="${#dates.format(lista.codeModDatetime, 'yyyy/MM/dd HH:mm:ss')}"></td>
+															<td th:text="${#dates.format(lista.codeRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
+															<td th:text="${#dates.format(lista.codeModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 															<td>
 																<a class="btn btn-primary btn-icon btn-sm mb-1" th:href="@{/codeXdmEdit(codeSeq=${lista.codeSeq})}">
 																	<i class="bi bi-pencil"></i>
@@ -940,7 +940,6 @@
 			}
 
 			document.getElementById("btnSearch").onclick = function () {
-				alert("확인");
 				form.action = goUrlXdmList;
 				form.submit();
 			};

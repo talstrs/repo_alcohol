@@ -7,33 +7,34 @@
 
     <select id="selectList" resultMap="resultMapObj">
 		select
-			a.seq
-				,a.name
-				,a.memo
+			a.codeGroupSeq
+				,a.codeGroupDelNy
+				,a.codeGroupUseNy
+				,a.codeGroupName
+				,a.codeGroupMemo
 				,(select 
 					count(*)
 					from code aa
 				where 1=1
-					and	aa.codeGroup_seq = a.seq) as xCodeGourpCount
-				,a.delNy
-				,a.regDatetime
-				,a.modDateTime
+					and	aa.codeGroup_codeGroupSeq = aa.codeSeq) as xCodeGourpCount
+				,a.codeGroupRegDate
+				,a.codeGroupModDate
 		from
 			codeGroup a
 	    WHERE 1=1
 			<!-- 이후 사용여부 사용시 참고
 			<if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
-        	<if test="shDelNy != null and !shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
+        	<if test="shDelNy != null and !shDelNy.equals('')">AND a.codeGroupDelNy = #{shDelNy}</if>
         	
         	<choose>
-        		<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-				<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+        		<when test="shOptionDate == 1">AND a.codeGroupRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.codeGroupModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
         	</choose>
         	
         	<choose>
-            	<when test="shOption == 1">AND a.seq = #{shValue}</when>
-            	<when test="shOption == 2">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
-            	<when test="shOption == 3">AND a.memo LIKE CONCAT('%',#{shValue},'%')</when>
+            	<when test="shOption == 1">AND a.codeGroupSeq = #{shValue}</when>
+            	<when test="shOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
+            	<when test="shOption == 3">AND a.codeGroupMemo LIKE CONCAT('%',#{shValue},'%')</when>
         	</choose>
 
     </select>
@@ -43,18 +44,19 @@
     <!-- 조회의 경우 가져올 데이터가 필요하기 떄문에 리졸트맵오브젝트가 있음 -->
     <select id="selectOne" resultMap="resultMapObj">
 		select
-			seq
-		    ,memo
-   			,name
-			,modDateTime
-			,delNy
-			,regDatetime
+			codeGroupSeq
+			,codeGroupDelNy
+			,codeGroupUseNy
+		    ,codeGroupName
+   			,codeGroupMemo
+			,codeGroupRegDate
+			,codeGroupModDate
 		
 		from
 			codeGroup 
 			
 		where 1=1
-			and seq = #{seq}
+			and codeGroupSeq = #{codeGroupSeq}
 			<!-- #{변수명}으로 변수를 가져오는 것 -->
 
     </select>
@@ -62,13 +64,11 @@
     <!-- 삽입의 경우 가져올 필요가 없기 떄문에 리졸트맵오브젝트가 없음 -->
     <insert id="insert">
     	insert into codeGroup (
-    		name
-    		,memo
-    		,delNy
+    		codeGroupName
+    		,codeGroupMemo
    		) value (
-   			#{name}
-   			,#{memo}
-   			,0
+   			#{codeGroupName}
+   			,#{codeGroupMemo}
    		)
    		<!-- 값이 들어가는 순간 해당 시퀀스 값을 반환하기, 이후에 다시
    		예를 들어 데이터를 추가한 후 해당 데이터를 추가한 페이지를 보여주기 위함 -->
@@ -81,13 +81,13 @@
     <update id="update">
    	update codeGroup
    	set
-   		name = #{name}
-   		,memo = #{memo}
-   		,modDateTime = now()
+   		codeGroupName = #{codeGroupName}
+   		,codeGroupMemo = #{codeGroupMemo}
+   		,codeGroupModDate = now()
    		<!-- 수정일 방법.. -->
 <!--    		modDateTime = SYSDATE -->
    	WHERE 1=1
-   		and seq = #{seq}
+   		and codeGroupSeq = #{codeGroupSeq}
   	
   	</update>
   	
@@ -96,11 +96,11 @@
     <update id="updateDelete">
    	update codeGroup
    	set
-   		delNy = 1
+   		codeGroupDelNy = 1
    		<!-- 수정일 방법.. -->
 <!--    		modDateTime = SYSDATE -->
    	WHERE 1=1
-   		and seq = #{seq}
+   		and codeGroupSeq = #{codeGroupSeq}
   	
   	</update>
   	
@@ -108,7 +108,7 @@
   	delete from codeGroup
   	
   	where 1=1
-  		and seq = #{seq}
+  		and codeGroupSeq = #{codeGroupSeq}
   	
   	</delete>
     

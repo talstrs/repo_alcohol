@@ -728,18 +728,18 @@
 															<td>
 																<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
 															</td>
-															<td th:if="${lista.delNy eq 0}">N</td>
-															<td th:unless="${lista.delNy eq 0}">Y</td>
-															<td th:text="${lista.seq}"></td>
+															<td th:if="${lista.codeGroupDelNy eq 0}">N</td>
+															<td th:unless="${lista.codeGroupDelNy eq 0}">Y</td>
+															<td th:text="${lista.codeGroupSeq}"></td>
 															<td><a th:href="@{/codeGroupXdmView(
-																seq=${lista.seq}
-															)}" th:text="${lista.name}"></a></td>
-															<td th:text="${lista.memo}"></td>
+																codeGroupSeq=${lista.codeGroupSeq}
+															)}" th:text="${lista.codeGroupName}"></a></td>
+															<td th:text="${lista.codeGroupMemo}"></td>
 															<td th:text="${lista.xCodeGourpCount}"></td>
-															<td th:text="${#dates.format(lista.regDatetime, 'yyyy/MM/dd HH:mm:ss')}"></td>
-															<td th:text="${#dates.format(lista.modDatetime, 'yyyy/MM/dd HH:mm:ss')}"></td>
+															<td th:text="${#dates.format(lista.codeGroupRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
+															<td th:text="${#dates.format(lista.codeGroupModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 															<td>
-																<a class="btn btn-primary btn-icon btn-sm mb-1" th:href="@{/codeGroupXdmEdit(seq=${lista.seq})}">
+																<a class="btn btn-primary btn-icon btn-sm mb-1" th:href="@{/codeGroupXdmEdit(codeGroupSeq=${lista.codeGroupSeq})}">
 																	<i class="bi bi-pencil"></i>
 																</a>
 																
@@ -943,7 +943,7 @@
 			let goUrlXdmView = "/v1/infra/codegroup/codeGroupXdmView";								
 			
 			// 해당 구문 확인 필요
-			let seq = document.querySelector("input[name=seq]");									
+			let codeGroupSeq = document.querySelector("input[codeGroupName=codeGroupSeq]");									
 			
 			document.getElementById("btnReset").onclick = function () {
 				location.href = goUrlXdmList;
@@ -956,7 +956,7 @@
 
 
 			goForm = function (keyValue) {
-				seq.value = keyValue;
+				codeGroupSeq.value = keyValue;
 				form.action = goUrlXdmForm;
 				form.submit();
 			}

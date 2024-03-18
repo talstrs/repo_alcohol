@@ -528,16 +528,16 @@
 									<div class="card-body">
 										<form class="row g-3 needs-validation " method="post" action="codeGroupUpdt" novalidate>
 											<div class="m-0">
-												<input type="hidden" name="seq" th:value="${item.seq}">
+												<input type="hidden" name="codeGroupSeq" th:value="${item.codeGroupSeq}">
 											</div>
 											<div class="col-md-6">
 												<label for="codeGroupXdmListEditName" class="form-label">Name</label>
-												<input type="text" class="form-control" name="name" id="codeGroupXdmListEditName" th:value="${item.name}" required />
+												<input type="text" class="form-control" name="codeGroupName" id="codeGroupXdmListEditName" th:value="${item.codeGroupName}" required />
 												<div class="valid-feedback">Looks good!</div>
 											</div>
 											<div class="col-md-6">
 												<label for="codeGroupXdmListEditMemo" class="form-label">Memo</label>
-												<input type="text" class="form-control" name="memo" id="codeGroupXdmListEditMemo" th:value="${item.memo}" required />
+												<input type="text" class="form-control" name="codeGroupMemo" id="codeGroupXdmListEditMemo" th:value="${item.codeGroupMemo}" required />
 												<div class="valid-feedback">Looks good!</div>
 											</div>
 										

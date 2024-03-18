@@ -11,70 +11,72 @@
 	
 	<select id="selectList" resultMap="resultMapObj">
 		select
-			a.seq as codeSeq
-		    ,a.name as codeName
-		    ,a.memo as codeMemo
-		    ,a.delNy as codeDelNy
-		    ,a.regDatetime as codeRegDatetime
-		    ,a.modDatetime as codeModDatetime
-		    ,a.codeGroup_seq as codeGroupSeqF
-		    ,b.seq as codeGroupSeq
-		    ,b.name as codeGroupName
+			a.codeSeq
+			,a.codeDelNy
+			,a.codeUseNy
+			,a.codeName
+			,a.codeMemo
+			,a.codeRegDate
+			,a.codeModDate
+			,a.codeGroup_codeGroupSeq as codeGroupSeqF
+		    ,b.codeGroupSeq 
+		    ,b.codeGroupName
 		from
 			code a
 		left join codeGroup b 
-			on a.codeGroup_seq = b.seq 
-				and a.delNy = 0
+			on a.codeGroup_codeGroupSeq = b.codeGroupSeq 
+				and a.codeDelNy = 0
 		where 1=1
 			<!-- 추가, 사용여부 사용시 진행 필요 건 -->
 			<!-- <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
-			<if test="shDelNy != null and !shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.codeDelNy = #{shDelNy}</if>
 			
 			<!--  이후 날짜 데이터 진행시 추가 필요  -->    
  			<choose>
-				<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-				<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 1">AND a.codeRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.codeModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 			</choose>
 			
  			<choose> 
-	            <when test="shOption == 1">AND b.seq = #{shValue}</when>
-	            <when test="shOption == 2">AND b.name LIKE CONCAT('%',#{shValue},'%')</when>
-	            <when test="shOption == 3">AND a.seq = #{shValue}</when>
-	            <when test="shOption == 4">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
-	            <when test="shOption == 5">AND a.memo LIKE CONCAT('%',#{shValue},'%')</when>
+	            <when test="shOption == 1">AND b.codeGroupSeq = #{shValue}</when>
+	            <when test="shOption == 2">AND b.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
+	            <when test="shOption == 3">AND a.codeSeq = #{shValue}</when>
+	            <when test="shOption == 4">AND a.codeName LIKE CONCAT('%',#{shValue},'%')</when>
+	            <when test="shOption == 5">AND a.codeMemo LIKE CONCAT('%',#{shValue},'%')</when>
        		</choose>
 	</select>
 	
 	<!-- 셀렉원 만들기 -->
 	<select id="selectOne" resultMap="resultMapObj">
 		select
-			a.seq as codeSeq
-			,a.name as codeName
-			,a.memo as codeMemo
-			,a.delNy as codeDelNy
-			,a.regDatetime as codeRegDatetime
-			,a.modDatetime as codeModDatetime
-			,a.codeGroup_seq as codeGroupSeqF
+			a.codeSeq
+			,a.codeDelNy
+			,a.codeUseNy
+			,a.codeName
+			,a.codeMemo
+			,a.codeRegDate
+			,a.codeModDate
+			,a.codeGroup_codeGroupSeq as codeGroupSeqF
 		from
 			code a
 		where 1=1
-			and a.delNy = 0
-		    and a.seq = #{codeSeq}
+			and a.codeDelNy = 0
+		    and a.codeSeq = #{codeSeq}
 			
 			
 	</select>
 	
 	<insert id="insert">
 		insert into code(
-			name
-			,memo
-			,delNy
-			,codeGroup_seq
-		) value (
+			codeName
+			,codeMemo
+			,codeDelNy
+			,codeGroup_codeGroupSeq
+		) values (
 			#{codeName}
 			,#{codeMemo}
 			,0
-			,#{codeGroupSeq}
+			,#{codeGroupSeqF}
 		)
 	</insert>
 	
@@ -83,19 +85,20 @@
 	<update id="update">
 		update code
 		set
-			name = #{codeName}
-			,memo = #{codeMemo}
-			,modDateTime = now()
+			codeName = #{codeName}
+			,codeMemo = #{codeMemo}
+			,codeModDate = now()
+			,codeGroup_codeGroupSeq = #{codeGroupSeqF}
 		where 1=1
-			and seq = #{codeSeq}
+			and codeSeq = #{codeSeq}
 	</update>
 	
 	<update id="updateDelete">
    	update code
    	set
-   		delNy = 1
+   		codeDelNy = 1
    	WHERE 1=1
-   		and seq = #{codeSeq}
+   		and codeSeq = #{codeSeq}
   	
   	</update>
   	
@@ -103,7 +106,7 @@
   	delete from code
   	
   	where 1=1
-  		and seq = #{codeSeq}
+  		and codeSeq = #{codeSeq}
   	
   	</delete>
 </mapper>
