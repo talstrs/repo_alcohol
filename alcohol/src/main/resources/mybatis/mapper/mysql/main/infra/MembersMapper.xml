@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 모름 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Dao 경로 -->
+<mapper namespace="com.babify.infra.members.MembersDao">
+
+	<!-- 아이디 설정하여 셀렉문에 부과 / Dto 경로 -->
+	<resultMap id="resultMapObj" type="com.babify.infra.members.MembersDto"></resultMap>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		select
+			a.membersSeq
+			,a.membersDelNy
+			,a.membersUseNy
+			,a.membersEmail
+			,a.membersPw
+			,a.membersName
+			,a.membersBirth
+			,a.membersGenderCd
+			,a.membersGradeCd
+			,a.membersRegDate
+			,a.membersModDate
+			,b.codeSeq
+			,b.codeName
+		from
+			members a
+		left join code b 
+			on a.membersGenderCd = b.codeSeq 
+				and a.membersDelNy = 0
+		where 1=1
+			and a.membersDelNy = 0
+			<!-- 추가, 사용여부 사용시 진행 필요 건 -->
+			<!-- <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.membersDelNy = #{shDelNy}</if>
+			
+			<!--  이후 날짜 데이터 진행시 추가 필요  -->    
+ 			<choose>
+				<when test="shOptionDate == 1">AND a.membersRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.membersModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+			
+ 			<choose> 
+	            <when test="shOption == 1">AND a.membersSeq = #{shValue}</when>
+	            <when test="shOption == 2">AND a.membersEmail LIKE CONCAT('%',#{shValue},'%')</when>
+	            <when test="shOption == 3">AND a.membersName LIKE CONCAT('%',#{shValue},'%')</when>
+	            <when test="shOption == 4">AND a.membersBirth LIKE CONCAT('%',#{shValue},'%')</when>
+	            <when test="shOption == 5">AND a.membersGenderCd = #{shValue}</when>
+	            <when test="shOption == 6">AND a.membersGradeCd = #{shValue}</when>
+       		</choose>
+	</select>
+	
+	<!-- 셀렉원 만들기 -->
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			a.membersSeq
+			,a.membersDelNy
+			,a.membersUseNy
+			,a.membersEmail
+			,a.membersPw
+			,a.membersName
+			,a.membersBirth
+			,a.membersGenderCd
+			,a.membersGradeCd
+			,a.membersRegDate
+			,a.membersModDate
+		from
+			members a
+		where 1=1
+			and a.membersDelNy = 0
+		    and a.membersSeq = #{membersSeq}
+			
+			
+	</select>
+	
+	<insert id="insert">
+		insert into members(
+			membersEmail
+			,membersPw
+			,membersName
+			,membersDelNy
+			,membersBirth
+			,membersGenderCd
+			,membersGradeCd
+			,membersRegDate
+			,membersModDate
+		) values (
+			#{membersEmail}
+			,#{membersPw}
+			,#{membersName}
+			,0
+			,#{membersBirth}
+			,#{membersGenderCd}
+			,#{membersGradeCd}
+			,now()
+			,now()
+		)
+	</insert>
+	
+
+	
+	<update id="update">
+		update members
+		set
+			membersPw = #{membersPw}
+			,membersName = #{membersName}
+			,membersModDate = now()
+			,membersBirth = #{membersBirth}
+			,membersGenderCd = #{membersGenderCd}
+			,membersGradeCd = #{membersGradeCd}
+		where 1=1
+			and membersSeq = #{membersSeq}
+	</update>
+	
+	<update id="updateDelete">
+   	update members
+   	set
+   		membersDelNy = 1
+   	WHERE 1=1
+   		and membersSeq = #{membersSeq}
+  	
+  	</update>
+  	
+  	<delete id="delete">
+  	delete from members
+  	
+  	where 1=1
+  		and membersSeq = #{membersSeq}
+  	
+  	</delete>
+</mapper>
