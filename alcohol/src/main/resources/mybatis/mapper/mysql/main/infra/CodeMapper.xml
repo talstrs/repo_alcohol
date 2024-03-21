@@ -109,4 +109,18 @@
   		and codeSeq = #{codeSeq}
   	
   	</delete>
+  	
+  	<!-- 코드 캐시 관련 -->
+  	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			codeSeq
+			, codeName
+			, codeGroup_codeGroupSeq as codeGroupSeqF
+		FROM
+			code
+		WHERE 1=1
+			AND codeDelNy = 0
+
+   </select>
+   <!-- 		    AND ifcdUseNy = 1 -->
 </mapper>

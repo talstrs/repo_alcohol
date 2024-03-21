@@ -16,4 +16,7 @@ public interface CodeDao {
 	public int updateDelete(CodeDto dto);
 	public int delete(CodeDto dto);
 	
+	// 캐시 관련
+	public List<CodeDto> selectListCachedCodeArrayList();
+	
 }

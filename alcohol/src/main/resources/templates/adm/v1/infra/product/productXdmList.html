@@ -616,23 +616,14 @@
 											검색구분
 										</option>
 										<option value="1" th:selected="${vo.shOption == 1}">
-											Members Seq
+											Product Seq
 										</option>
 										<option value="2" th:selected="${vo.shOption == 2}">
-											Email
+											code Name
 										</option>
 										<option value="3" th:selected="${vo.shOption == 3}">
-											Member Name
-										</option>
-										<option value="4" th:selected="${vo.shOption == 4}">
-											Birth
-										</option>	
-										<option value="5" th:selected="${vo.shOption == 5}">
-											Gender
-										</option>	
-										<option value="6" th:selected="${vo.shOption == 6}">
-											Grade
-										</option>				
+											ProductName
+										</option>			
 									</select>
 								</div>
 								
@@ -693,7 +684,7 @@
 										<div class="card-header">
 											<!-- 타이틀 -->
 											<h5 class="card-title">
-												Members
+												Product
 											</h5>
 										</div>
 										<!--수정, 토탈 값 넣기 및 페이징 수 넣기-->
@@ -720,11 +711,16 @@
 															<th scope="col"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></th>
 															<th scope="col">#</th>
 															<th scope="col">Seq</th>
-															<th scope="col">Email</th>
+															<th scope="col">Best</th>
+															<th scope="col">New</th>
 															<th scope="col">Name</th>
-															<th scope="col">Birth</th>
-															<th scope="col">Gender</th>
-															<th scope="col">Grade</th>
+															<th scope="col">Stock</th>
+															<th scope="col">Price</th>
+															<th scope="col">CatMain</th>
+															<th scope="col">CatDetail</th>
+															<th scope="col">Size</th>
+															<th scope="col">Color</th>
+															<th scope="col">Star All</th>
 															<th scope="col">regDate</th>
 															<th scope="col">modDate</th>
 															<th scope="col">Edit</th>
@@ -732,27 +728,41 @@
 													</thead>
 													<tbody>
 														<tr th:if="${#lists.isEmpty(list)}">
-															<td colspan="11">There is no data!!!</td>
+															<td colspan="16">There is no data!!!</td>
 															
 														</tr>
 														<tr th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}">
 															<td>
 																<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
 															</td>
-															<td th:if="${lista.membersDelNy eq 0}">N</td>
-															<td th:unless="${lista.membersDelNy eq 0}">Y</td>
-															<td th:text="${lista.membersSeq}"></td>
-															<td><a th:href="@{/membersXdmView(
-																membersSeq=${lista.membersSeq}
-															)}" th:text="${lista.membersEmail}"></a></td>
-															<td th:text="${lista.membersName}"></td>
-															<td th:text="${lista.membersBirth.substring(0, 4) + '/' + lista.membersBirth.substring(4, 6) + '/' + lista.membersBirth.substring(6, 8)}"></td>
-															<td th:text="${lista.membersGenderCd}"></td>
-															<td th:text="${lista.membersGradeCd}"></td>
-															<td th:text="${#dates.format(lista.membersRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
-															<td th:text="${#dates.format(lista.membersModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
+															<td th:if="${lista.productDelNy eq 0}">N</td>
+															<td th:unless="${lista.productDelNy eq 0}">Y</td>
+
+															<td th:text="${lista.productSeq}"></td>
+
+															<td th:if="${lista.productBestNy eq 0}">N</td>
+															<td th:unless="${lista.productBestNy eq 0}">Y</td>
+
+
+															<td th:if="${lista.productNewNy eq 0}">N</td>
+															<td th:unless="${lista.productNewNy eq 0}">Y</td>
+
+
+															
+															<td><a th:href="@{/productXdmView(
+																productSeq=${lista.productSeq}
+															)}" th:text="${lista.productName}"></a></td>
+															<td th:text="${lista.productStock}"></td>
+															<td th:text="${lista.productPrice}"></td>
+															<td th:text="${lista.productCatMainCd}"></td>
+															<td th:text="${lista.productCatDetailCd}"></td>
+															<td th:text="${lista.productSizeCd}"></td>
+															<td th:text="${lista.productColorCd}"></td>
+															<td th:text="${lista.productStarAll}"></td>
+															<td th:text="${#dates.format(lista.productRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
+															<td th:text="${#dates.format(lista.productModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 															<td>
-																<a class="btn btn-primary btn-icon btn-sm mb-1" th:href="@{/membersXdmEdit(membersSeq=${lista.membersSeq})}">
+																<a class="btn btn-primary btn-icon btn-sm mb-1" th:href="@{/productXdmEdit(productSeq=${lista.productSeq})}">
 																	<i class="bi bi-pencil"></i>
 																</a>
 																
@@ -848,22 +858,22 @@
 														<a class="btn btn-danger btn-icon" 
 															data-bs-toggle="modal"
 															
-															data-bs-target="#membersXdmListDele"><i class="bi bi-trash"></i>
+															data-bs-target="#productXdmListDele"><i class="bi bi-trash"></i>
 														</a>
 														<!-- 수정, 삭제 모달-->
 														<!-- th:id="'codeGroupXdmListDele' + ${lista['seq']}" -->
 														<!-- 나중에 삭제 경로 설정 필요-->
 														<div class="modal fade" 
 															
-															id="membersXdmListDele"
+															id="productXdmListDele"
 															tabindex="-1"
-															aria-labelledby="membersXdmListDele"
+															aria-labelledby="productXdmListDele"
 															aria-hidden="true">
 
 															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 																	<div class="modal-header">
-																		<h5 class="modal-title" id="membersXdmListDeleTitle">
+																		<h5 class="modal-title" id="productXdmListDeleTitle">
 																			Code Group 삭제
 																		</h5>
 																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -873,7 +883,7 @@
 																	</div>
 																	<div class="modal-footer">
 																		<a class="btn btn-secondary" data-bs-dismiss="modal">취소</a>
-																		<a class="btn btn-danger" th:href="@{/membersXdmList}">삭제</a>
+																		<a class="btn btn-danger" th:href="@{/productXdmList}">삭제</a>
 																	</div>
 																</div>
 															</div>
@@ -882,7 +892,7 @@
 													</div>
 
 													<div class="">
-														<a class="btn btn-primary bi bi-plus-square" th:href="@{/membersXdmListAdd}">
+														<a class="btn btn-primary bi bi-plus-square" th:href="@{/productXdmListAdd}">
 														</a>
 													</div>
 												</div>
@@ -949,14 +959,14 @@
 			});
 			let form = document.querySelector("form[name=formList]");
 
-			let goUrlXdmList = "/membersXdmList";								
-			let goUrlXdmForm = "/v1/infra/members/membersXdmEdit";								
-			let goUrlXdmMultiUele = "/v1/infra/members/membersUele";			
-			let goUrlXdmMultiDele = "/v1/infra/members/membersDele";			
-			let goUrlXdmView = "/v1/infra/members/membersXdmView";								
+			let goUrlXdmList = "/productXdmList";								
+			let goUrlXdmForm = "/v1/infra/product/productXdmEdit";								
+			let goUrlXdmMultiUele = "/v1/infra/product/productUele";			
+			let goUrlXdmMultiDele = "/v1/infra/product/productDele";			
+			let goUrlXdmView = "/v1/infra/product/productXdmView";								
 			
 			// 해당 구문 확인 필요
-			let membersSeq = document.querySelector("input[membersName=membersSeq]");									
+			let productSeq = document.querySelector("input[productName=productSeq]");									
 			
 			document.getElementById("btnReset").onclick = function () {
 				location.href = goUrlXdmList;
@@ -969,7 +979,7 @@
 
 
 			goForm = function (keyValue) {
-				membersSeq.value = keyValue;
+				productSeq.value = keyValue;
 				form.action = goUrlXdmForm;
 				form.submit();
 			}

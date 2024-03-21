@@ -9,7 +9,7 @@ public class CodeVo extends BaseVo {
 	private String codeSeq;
 	private String codeGroupSeq;
 	private String codeGroupName;
-	private Integer codeGroupSeqF;
+	private String codeGroupSeqF;
 	
 	public String getCodeSeq() {
 		return codeSeq;
@@ -29,10 +29,10 @@ public class CodeVo extends BaseVo {
 	public void setCodeGroupName(String codeGroupName) {
 		this.codeGroupName = codeGroupName;
 	}
-	public Integer getCodeGroupSeqF() {
+	public String getCodeGroupSeqF() {
 		return codeGroupSeqF;
 	}
-	public void setCodeGroupSeqF(Integer codeGroupSeqF) {
+	public void setCodeGroupSeqF(String codeGroupSeqF) {
 		this.codeGroupSeqF = codeGroupSeqF;
 	}
 	@Override
