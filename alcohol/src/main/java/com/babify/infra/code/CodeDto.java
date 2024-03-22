@@ -14,7 +14,7 @@ public class CodeDto {
 
 	private Date codeRegDate;
 	private Date codeModDate;
-	private Integer codeGroupSeqF;
+	private String codeGroupSeqF;
 	private String codeGroupSeq;
 	private String codeGroupName;
 	
@@ -77,11 +77,11 @@ public class CodeDto {
 		this.codeModDate = codeModDate;
 	}
 
-	public Integer getCodeGroupSeqF() {
+	public String getCodeGroupSeqF() {
 		return codeGroupSeqF;
 	}
 
-	public void setCodeGroupSeqF(Integer codeGroupSeqF) {
+	public void setCodeGroupSeqF(String codeGroupSeqF) {
 		this.codeGroupSeqF = codeGroupSeqF;
 	}
 
