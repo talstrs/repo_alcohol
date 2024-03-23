@@ -20,11 +20,13 @@ public class MembersController {
 	public String membersXdmList(@ModelAttribute("vo") MembersVo vo, Model model) throws Exception{
 		
 		UtilSearch.setSearch(vo);
-		
+		System.out.println(vo.toString());
+		System.out.println("===============================================");
 		model.addAttribute("list", service.selectList(vo));
 
 		
 		System.out.println(vo.toString());
+		System.out.println("===============================================");
 	
 	return  "adm/v1/infra/members/membersXdmList";
 }
@@ -70,10 +72,11 @@ public String membersInsert(MembersDto dto) throws Exception{
 @RequestMapping(value = "/membersUpdt")
 // 컨트롤러만 리턴 타입을 String으로 변경 가능
 public String membersUpdt(MembersDto dto) throws Exception{
-
+	System.out.println(dto.toString());
 	
 	service.update(dto);
 	
+	System.out.println(dto.toString());
 
 	return "redirect:/membersXdmList";
 }

@@ -566,40 +566,14 @@
 												<label class="form-label" for="productXdmListAddCatMainCd">CatMain</label>
 												<select class="form-select" name="productCatMainCd" id="productXdmListAddCatMainCd">
 													<option value="" selected>메인 카테고리를 선택하세요</option>
-													<option value="12">Clothing</option>
-													<option value="13">Toys</option>
-													<option value="14">Feed</option>
-													<option value="15">Accessories</option>
-													<option value="16">Learning</option>
+													<option th:each="list : ${@codeService.selectListCachedCode(8)}" th:value="${list.codeSeq}" th:text="${list.codeName}"></option>
 												</select>
 											</div>
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddCatDetailCd">CatDetail</label>
 												<select class="form-select" name="productCatDetailCd" id="productXdmListAddCatDetailCd">
 													<option value="" selected>서브 카테고리를 선택하세요</option>
-													<option value="17">T-Shirt</option>
-													<option value="18">Outer</option>
-													<option value="19">OnePiece</option>
-													<option value="20">All-in-One</option>
-													<option value="21">Season Clothing</option>
-													<option value="22">Shoes</option>
-													<option value="23">Etc</option>
-													<option value="24">Fabric</option>
-													<option value="25">Ball</option>
-													<option value="26">Tug</option>
-													<option value="27">Etc</option>
-													<option value="28">Dry</option>
-													<option value="29">Soft</option>
-													<option value="30">Wet</option>
-													<option value="31">Raw</option>
-													<option value="32">Frozen</option>
-													<option value="33">Etc</option>
-													<option value="34">Moving Bag</option>
-													<option value="35">Kennel</option>
-													<option value="36">Car Seat</option>
-													<option value="37">Stroller</option>
-													<option value="38">Etc</option>
-													<option value="39">NoseWalk</option>
+													<option th:each="list : ${@codeService.selectListCachedCode(9)}" th:value="${list.codeSeq}" th:text="${list.codeName}"></option>
 												</select>
 											</div>
 											<!-- 추후 체크박스로 변경 필요-->
@@ -607,22 +581,14 @@
 												<label class="form-label" for="productXdmListAddSizeCd">Size</label>
 												<select class="form-select" name="productSizeCd" id="productXdmListAddSizeCd">
 													<option value="" selected>해당 사이즈를 선택하세요</option>
-													<option value="55">XS</option>
-													<option value="56">S</option>
-													<option value="57">M</option>
-													<option value="58">L</option>
-													<option value="59">XL</option>
+													<option th:each="list : ${@codeService.selectListCachedCode(14)}" th:value="${list.codeSeq}" th:text="${list.codeName}"></option>
 												</select>
 											</div>
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddColorCd">Color</label>
 												<select class="form-select" name="productColorCd" id="productXdmListAddColorCd">
 													<option value="" selected>해당 색상을 선택하세요</option>
-													<option value="60">Blue</option>
-													<option value="61">Brown</option>
-													<option value="62">Green</option>
-													<option value="63">Red</option>
-													<option value="64">Yellow</option>
+													<option th:each="list : ${@codeService.selectListCachedCode(15)}" th:value="${list.codeSeq}" th:text="${list.codeName}"></option>
 												</select>
 											</div>
 											

@@ -532,6 +532,10 @@
 									
 										<form class="row g-3 needs-validation " method="post" action="membersUele" novalidate>
 											<div class="col-md-6">
+												<label for="membersXdmListAddAdminNy" class="form-label">Admin Ny</label>
+												<input type="text" class="form-control" name="membersAdminNy" id="membersXdmListAddAdminNy" th:value="${item.membersAdminNy}" required readonly/>
+											</div>
+											<div class="col-md-6">
 												<label for="membersXdmListAddEmail" class="form-label">Email</label>
 												<input type="text" class="form-control" name="membersEmail" id="membersXdmListAddEmail" th:value="${item.membersEmail}" required readonly/>
 											</div>
@@ -545,16 +549,19 @@
 											</div>
 											<div class="col-md-6">
 												<label for="membersXdmListAddBirth" class="form-label">Birth</label>
-												<input type="text" class="form-control" name="membersBirth" id="membersXdmListAddBirth" th:value="${item.membersBirth}" required readonly/>
+												<input type="text" class="form-control" name="membersBirth" id="membersXdmListAddBirth" th:value="${item.membersBirth.substring(0, 4) + '/' + item.membersBirth.substring(4, 6) + '/' + item.membersBirth.substring(6, 8)}" required readonly/>
 												<div class="valid-feedback">Looks good!</div>
 											</div>
 											<div class="col-md-6">
 												<label for="membersXdmListAddGender" class="form-label">Gender</label>
-												<input type="text" class="form-control" name="membersGenderCd" id="membersXdmListAddGender" th:value="${item.membersGenderCd}" required readonly/>
+												<!-- 젠더코드> 코드 이름으로 나타내기 -->
+												<input th:if="${item.membersGenderCd != null}" th:value="${@codeService.selectOneCachedCode(item.membersGenderCd)}" id="membersXdmListAddGender" name="membersGenderCd" class="membersGenderCd align-middle form-control" required readonly></input>
+												<input th:unless="${item.membersGenderCd != null}" class="membersGenderCd align-middle"></input>
 											</div>
 											<div class="col-md-6">
 												<label for="membersXdmListAddGrade" class="form-label">Grade</label>
-												<input type="text" class="form-control" name="membersGradeCd" id="membersXdmListAddGrade" th:value="${item.membersGradeCd}" required readonly/>
+												<input th:if="${item.membersGradeCd != null}" th:value="${@codeService.selectOneCachedCode(item.membersGradeCd)}" id="membersXdmListAddGrade" name="membersGradeCd" class="membersGradeCd align-middle form-control" required readonly></input>
+												<input th:unless="${item.membersGradeCd != null}" class="membersGradeCd align-middle"></input>
 											</div>
 											
 											<input type="hidden" name="membersSeq" th:value="${item.membersSeq}">

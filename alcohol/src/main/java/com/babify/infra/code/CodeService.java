@@ -47,4 +47,33 @@ public class CodeService {
 	public int delete(CodeDto dto) {
 		return dao.delete(dto);
 	}
+	
+	// code cache 관련
+	public static String selectOneCachedCode(int code) throws Exception {
+		String rt = "";
+		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
+			if (codeRow.getCodeSeq().equals(Integer.toString(code))) {
+				rt = codeRow.getCodeName();
+			} else {
+				// by pass
+			}
+		}
+		return rt;
+	}
+	
+	// codeGroup - code list cache 관련
+	public static List<CodeDto> selectListCachedCode(String codeGroupSeq) throws Exception {
+		System.out.println("codeGroupSeq: " + codeGroupSeq);
+		List<CodeDto> rt = new ArrayList<CodeDto>();
+		
+		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
+			System.out.println(codeRow.getCodeSeq() + codeGroupSeq);
+			if (codeRow.getCodeGroupSeqF().equals(codeGroupSeq)) {
+				rt.add(codeRow);
+			} else {
+				// by pass
+			}
+		}
+		return rt;
+	}
 }

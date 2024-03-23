@@ -116,6 +116,7 @@
 			codeSeq
 			, codeName
 			, codeGroup_codeGroupSeq as codeGroupSeqF
+			
 		FROM
 			code
 		WHERE 1=1

@@ -569,61 +569,27 @@
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddCatMainCd">CatMain</label>
 												<select class="form-select" name="productCatMainCd" id="productXdmListAddCatMainCd">
-													<option value="12" th:selected="12 == ${item.productCatMainCd}">Clothing</option>
-													<option value="13" th:selected="13 == ${item.productCatMainCd}">Toys</option>
-													<option value="14" th:selected="14 == ${item.productCatMainCd}">Feed</option>
-													<option value="15" th:selected="15 == ${item.productCatMainCd}">Accessories</option>
-													<option value="16" th:selected="16 == ${item.productCatMainCd}">Learning</option>
+													<option th:each="list : ${@codeService.selectListCachedCode(8)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productCatMainCd}"></option>
 												</select>
 											</div>
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddCatDetailCd">CatDetail</label>
 												<select class="form-select" name="productCatDetailCd" id="productXdmListAddCatDetailCd">
-													<option value="17" th:selected="17 == ${item.productCatDetailCd}">T-Shirt</option>
-													<option value="18" th:selected="18 == ${item.productCatDetailCd}">Outer</option>
-													<option value="19" th:selected="19 == ${item.productCatDetailCd}">OnePiece</option>
-													<option value="20" th:selected="20 == ${item.productCatDetailCd}">All-in-One</option>
-													<option value="21" th:selected="21 == ${item.productCatDetailCd}">Season Clothing</option>
-													<option value="22" th:selected="22 == ${item.productCatDetailCd}">Shoes</option>
-													<option value="23" th:selected="23 == ${item.productCatDetailCd}">Etc</option>
-													<option value="24" th:selected="24 == ${item.productCatDetailCd}">Fabric</option>
-													<option value="25" th:selected="25 == ${item.productCatDetailCd}">Ball</option>
-													<option value="26" th:selected="26 == ${item.productCatDetailCd}">Tug</option>
-													<option value="27" th:selected="27 == ${item.productCatDetailCd}">Etc</option>
-													<option value="28" th:selected="28 == ${item.productCatDetailCd}">Dry</option>
-													<option value="29" th:selected="29 == ${item.productCatDetailCd}">Soft</option>
-													<option value="30" th:selected="30 == ${item.productCatDetailCd}">Wet</option>
-													<option value="31" th:selected="31 == ${item.productCatDetailCd}">Raw</option>
-													<option value="32" th:selected="32 == ${item.productCatDetailCd}">Frozen</option>
-													<option value="33" th:selected="33 == ${item.productCatDetailCd}">Etc</option>
-													<option value="34" th:selected="34 == ${item.productCatDetailCd}">Moving Bag</option>
-													<option value="35" th:selected="35== ${item.productCatDetailCd}">Kennel</option>
-													<option value="36" th:selected="36 == ${item.productCatDetailCd}">Car Seat</option>
-													<option value="37" th:selected="37 == ${item.productCatDetailCd}">Stroller</option>
-													<option value="38" th:selected="38 == ${item.productCatDetailCd}">Etc</option>
-													<option value="39" th:selected="39 == ${item.productCatDetailCd}">NoseWalk</option>
+													<option th:each="list : ${@codeService.selectListCachedCode(9)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productCatDetailCd}"></option>
 												</select>
 											</div>
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddSizeCd">Size</label>
 												<select class="form-select" name="productSizeCd" id="productXdmListAddSizeCd">
 													<option value="">사이즈를 선택하세요</option>
-													<option value="55" th:selected="55 == ${item.productSizeCd}">XS</option>
-													<option value="56" th:selected="56 == ${item.productSizeCd}">S</option>
-													<option value="57" th:selected="57 == ${item.productSizeCd}">M</option>
-													<option value="58" th:selected="58 == ${item.productSizeCd}">L</option>
-													<option value="59" th:selected="59 == ${item.productSizeCd}">XL</option>
+													<option th:each="list : ${@codeService.selectListCachedCode(14)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productSizeCd}"></option>
 												</select>
 											</div>
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddColorCd">Color</label>
 												<select class="form-select" name="productColorCd" id="productXdmListAddColorCd">
 													<option value="">색상을 선택하세요</option>
-													<option value="60" th:selected="60 == ${item.productColorCd}">Blue</option>
-													<option value="61" th:selected="61 == ${item.productColorCd}">Brown</option>
-													<option value="62" th:selected="62 == ${item.productColorCd}">Green</option>
-													<option value="63" th:selected="63 == ${item.productColorCd}">Red</option>
-													<option value="64" th:selected="64 == ${item.productColorCd}">Yellow</option>
+													<option th:each="list : ${@codeService.selectListCachedCode(15)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productColorCd}"></option>
 												</select>
 											</div>
 											

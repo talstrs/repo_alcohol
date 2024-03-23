@@ -529,7 +529,7 @@
 								<div class="col">
 									<select id="shDelNy" name="shDelNy" class="form-select form-select">
 										<option value="" th:selected="${vo.shDelNy == null}">
-											탈퇴여부
+											삭제여부
 										</option>
 										<option value="1" th:selected="${vo.shDelNy == 1}">
 											Y
@@ -754,10 +754,18 @@
 															)}" th:text="${lista.productName}"></a></td>
 															<td th:text="${lista.productStock}"></td>
 															<td th:text="${lista.productPrice}"></td>
-															<td th:text="${lista.productCatMainCd}"></td>
-															<td th:text="${lista.productCatDetailCd}"></td>
-															<td th:text="${lista.productSizeCd}"></td>
-															<td th:text="${lista.productColorCd}"></td>
+															<td th:if="${lista.productCatMainCd != null}" th:text="${@codeService.selectOneCachedCode(lista.productCatMainCd)}" class="productCatMainCd align-middle"></td>
+															<td th:unless="${lista.productCatMainCd != null}" class="productCatMainCd align-middle"></td>
+															
+															<td th:if="${lista.productCatDetailCd != null}" th:text="${@codeService.selectOneCachedCode(lista.productCatDetailCd)}" class="productCatDetailCd align-middle"></td>
+															<td th:unless="${lista.productCatDetailCd != null}" class="productCatDetailCd align-middle"></td>
+															
+															<td th:if="${lista.productSizeCd != null}" th:text="${@codeService.selectOneCachedCode(lista.productSizeCd)}" class="productSizeCd align-middle"></td>
+															<td th:unless="${lista.productSizeCd != null}" class="productSizeCd align-middle"></td>
+															
+															<td th:if="${lista.productColorCd != null}" th:text="${@codeService.selectOneCachedCode(lista.productColorCd)}" class="productColorCd align-middle"></td>
+															<td th:unless="${lista.productColorCd != null}" class="productColorCd align-middle"></td>
+															
 															<td th:text="${lista.productStarAll}"></td>
 															<td th:text="${#dates.format(lista.productRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 															<td th:text="${#dates.format(lista.productModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>

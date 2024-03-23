@@ -10,6 +10,7 @@ public class MembersVo extends BaseVo {
 	private String membersBirth;
 	private Integer membersGenderCd;
 	private Integer membersGradeCd;
+	private Integer membersAdminNy;
 	
 	private String codeName;
 	private String codeSeq;
@@ -55,6 +56,12 @@ public class MembersVo extends BaseVo {
 	public void setMembersGradeCd(Integer membersGradeCd) {
 		this.membersGradeCd = membersGradeCd;
 	}
+	public Integer getMembersAdminNy() {
+		return membersAdminNy;
+	}
+	public void setMembersAdminNy(Integer membersAdminNy) {
+		this.membersAdminNy = membersAdminNy;
+	}
 	public String getCodeName() {
 		return codeName;
 	}
@@ -71,9 +78,11 @@ public class MembersVo extends BaseVo {
 	public String toString() {
 		return "MembersVo [membersSeq=" + membersSeq + ", membersEmail=" + membersEmail + ", membersPw=" + membersPw
 				+ ", membersName=" + membersName + ", membersBirth=" + membersBirth + ", membersGenderCd="
-				+ membersGenderCd + ", membersGradeCd=" + membersGradeCd + ", codeName=" + codeName + ", codeSeq="
-				+ codeSeq + "]";
+				+ membersGenderCd + ", membersGradeCd=" + membersGradeCd + ", membersAdminNy=" + membersAdminNy
+				+ ", codeName=" + codeName + ", codeSeq=" + codeSeq + "]";
 	}
+	
+	
 	
 	
 	

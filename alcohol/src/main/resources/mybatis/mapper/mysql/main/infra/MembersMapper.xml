@@ -14,6 +14,7 @@
 			a.membersSeq
 			,a.membersDelNy
 			,a.membersUseNy
+			,a.membersAdminNy
 			,a.membersEmail
 			,a.membersPw
 			,a.membersName
@@ -34,6 +35,7 @@
 			<!-- 추가, 사용여부 사용시 진행 필요 건 -->
 			<!-- <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
 			<if test="shDelNy != null and !shDelNy.equals('')">AND a.membersDelNy = #{shDelNy}</if>
+			<if test="membersAdminNy != null and !membersAdminNy.equals('')">AND a.membersAdminNy = #{membersAdminNy}</if>
 			
 			<!--  이후 날짜 데이터 진행시 추가 필요  -->    
  			<choose>
@@ -57,6 +59,7 @@
 			a.membersSeq
 			,a.membersDelNy
 			,a.membersUseNy
+			,a.membersAdminNy
 			,a.membersEmail
 			,a.membersPw
 			,a.membersName
@@ -77,6 +80,7 @@
 	<insert id="insert">
 		insert into members(
 			membersEmail
+			,membersAdminNy
 			,membersPw
 			,membersName
 			,membersDelNy
@@ -87,6 +91,7 @@
 			,membersModDate
 		) values (
 			#{membersEmail}
+			,#{membersAdminNy}
 			,#{membersPw}
 			,#{membersName}
 			,0
@@ -104,6 +109,8 @@
 		update members
 		set
 			membersPw = #{membersPw}
+			
+			,membersAdminNy = #{membersAdminNy}
 			,membersName = #{membersName}
 			,membersModDate = now()
 			,membersBirth = #{membersBirth}

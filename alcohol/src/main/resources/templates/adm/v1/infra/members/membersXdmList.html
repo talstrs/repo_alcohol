@@ -529,13 +529,26 @@
 								<div class="col">
 									<select id="shDelNy" name="shDelNy" class="form-select form-select">
 										<option value="" th:selected="${vo.shDelNy == null}">
-											탈퇴여부
+											삭제여부
 										</option>
 										<option value="1" th:selected="${vo.shDelNy == 1}">
 											Y
 										</option>
 										<option value="0" th:selected="${vo.shDelNy == 0}">
 											N
+										</option>            
+									</select>
+								</div>
+								<div class="col">
+									<select id="membersAdminNy" name="membersAdminNy" class="form-select form-select">
+										<option value="" th:selected="${vo.membersAdminNy == null}">
+											관리자여부
+										</option>
+										<option value="1" th:selected="${vo.membersAdminNy == 1}">
+											N
+										</option>
+										<option value="0" th:selected="${vo.membersAdminNy == 0}">
+											Y
 										</option>            
 									</select>
 								</div>
@@ -720,6 +733,7 @@
 															<th scope="col"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></th>
 															<th scope="col">#</th>
 															<th scope="col">Seq</th>
+															<th scope="col">AdmNy</th>
 															<th scope="col">Email</th>
 															<th scope="col">Name</th>
 															<th scope="col">Birth</th>
@@ -730,9 +744,10 @@
 															<th scope="col">Edit</th>
 														</tr>
 													</thead>
+
 													<tbody>
 														<tr th:if="${#lists.isEmpty(list)}">
-															<td colspan="11">There is no data!!!</td>
+															<td colspan="12">There is no data!!!</td>
 															
 														</tr>
 														<tr th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}">
@@ -742,13 +757,20 @@
 															<td th:if="${lista.membersDelNy eq 0}">N</td>
 															<td th:unless="${lista.membersDelNy eq 0}">Y</td>
 															<td th:text="${lista.membersSeq}"></td>
+															<td th:if="${lista.membersAdminNy eq 0}">Y</td>
+															<td th:unless="${lista.membersAdminNy eq 0}">N</td>
 															<td><a th:href="@{/membersXdmView(
 																membersSeq=${lista.membersSeq}
 															)}" th:text="${lista.membersEmail}"></a></td>
 															<td th:text="${lista.membersName}"></td>
 															<td th:text="${lista.membersBirth.substring(0, 4) + '/' + lista.membersBirth.substring(4, 6) + '/' + lista.membersBirth.substring(6, 8)}"></td>
-															<td th:text="${lista.membersGenderCd}"></td>
-															<td th:text="${lista.membersGradeCd}"></td>
+															<!-- 코드 값 가져오기 !!!!!--> 
+															<td th:if="${lista.membersGenderCd != null}" th:text="${@codeService.selectOneCachedCode(lista.membersGenderCd)}" class="membersGenderCd align-middle"></td>
+															<td th:unless="${lista.membersGenderCd != null}" class="membersGenderCd align-middle"></td>
+
+															<!-- <td th:text="${lista.membersGenderCd}"></td> -->
+															<td th:if="${lista.membersGradeCd != null}" th:text="${@codeService.selectOneCachedCode(lista.membersGradeCd)}" class="membersGradeCd align-middle"></td>
+															<td th:unless="${lista.membersGradeCd != null}" class="membersGradeCd align-middle"></td>
 															<td th:text="${#dates.format(lista.membersRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 															<td th:text="${#dates.format(lista.membersModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 															<td>
