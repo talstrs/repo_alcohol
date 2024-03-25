@@ -10,7 +10,7 @@ public class CodeVo extends BaseVo {
 	private String codeGroupSeq;
 	private String codeGroupName;
 	private String codeGroupSeqF;
-	
+
 	public String getCodeSeq() {
 		return codeSeq;
 	}
@@ -40,6 +40,7 @@ public class CodeVo extends BaseVo {
 		return "CodeVo [codeSeq=" + codeSeq + ", codeGroupSeq=" + codeGroupSeq + ", codeGroupName=" + codeGroupName
 				+ ", codeGroupSeqF=" + codeGroupSeqF + "]";
 	}
+
 	
 	
 	

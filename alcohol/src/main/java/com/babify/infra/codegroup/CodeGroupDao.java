@@ -13,6 +13,8 @@ public interface CodeGroupDao {
 	public List<CodeGroupDto> selectList(CodeGroupVo vo); //List<dto>: 여러개의 데이터를 가져올때
 	public CodeGroupDto selectOne(CodeGroupDto dto); //dto: 하나의 데이터를 가져올때
 	
+	public List<CodeGroupDto> selectListWithoutPaging();
+	
 	// 데이터를 추가할 때(삽입 insert)
 	// insert, update, delete 구문 사용시 dao 파트는 리턴값을 int로 받아야 함
 	// 건수에 대한 리턴을 받기 때문에 int를 씀

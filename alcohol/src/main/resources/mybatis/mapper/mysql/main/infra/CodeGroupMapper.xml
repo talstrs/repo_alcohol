@@ -112,6 +112,16 @@
   	
   	</delete>
     
-    
+     <!-- 코드 그룹 데이터 불러오기 -->
+   <select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.codeGroupSeq
+			, a.codeGroupName
+		FROM codeGroup a
+		WHERE 1=1
+			AND a.codeGroupDelNy = 0
+			And a.codeGroupUseNy = 1
+		ORDER BY a.codeGroupSeq DESC
+	</select>
 	  
 </mapper>

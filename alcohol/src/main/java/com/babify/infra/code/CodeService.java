@@ -15,6 +15,7 @@ public class CodeService {
 	@Autowired
 	CodeDao dao;
 	
+	
 	@PostConstruct
 	public void selectListCachedCodeArrayList() throws Exception {
 		List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) dao.selectListCachedCodeArrayList();
@@ -23,6 +24,8 @@ public class CodeService {
 		CodeDto.cachedCodeArrayList.addAll(codeListFromDb);
 		System.out.println("cachedCodeArrayList: " + CodeDto.cachedCodeArrayList.size() + " chached !");
 	}
+	
+
 	
 	
 	public List<CodeDto> selectList(CodeVo vo) {

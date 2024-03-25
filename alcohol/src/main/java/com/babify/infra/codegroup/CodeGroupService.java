@@ -52,4 +52,9 @@ public class CodeGroupService {
 	public int delete(CodeGroupDto dto) {
 		return dao.delete(dto);
 	}
+	
+// codeGroup 서비스 - code 컨트롤러에 줄 데이터
+	public List<CodeGroupDto> selectListWithoutPaging() {
+		return dao.selectListWithoutPaging();
+	}
 }

@@ -7,12 +7,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.babify.common.util.UtilSearch;
+import com.babify.infra.codegroup.CodeGroupService;
 
 @Controller
 public class CodeController {
 
 	@Autowired
 	CodeService service;
+	
+	@Autowired
+	CodeGroupService codeGroupService;
 	
 	@RequestMapping(value = "/codeXdmList")
 	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
@@ -54,8 +58,9 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "/codeXdmListAdd")
-	public String codeXdmListAdd(CodeDto dto) throws Exception{
-		
+	public String codeXdmListAdd(CodeDto dto, Model model) throws Exception{
+//		서비스 내용까지는 해당 데이터 있는 테이블 내용으로 한 후에 이후 필요한 컨트롤러에 선언 후 함수로 가져오기
+		model.addAttribute("listCodeGroup", codeGroupService.selectListWithoutPaging());
 		
 		return "adm/v1/infra/code/codeXdmListAdd";
 	}

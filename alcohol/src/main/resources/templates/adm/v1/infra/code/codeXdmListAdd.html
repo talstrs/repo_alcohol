@@ -21,6 +21,7 @@
 			************ CSS Files *************
 		************* -->
 		<link rel="stylesheet" href="/adm/assets/fonts/bootstrap/bootstrap-icons.css" />
+		
 		<link rel="stylesheet" href="/adm/assets/css/main.min.css" />
 
 		<!-- *************
@@ -31,6 +32,9 @@
 		<link rel="stylesheet" href="/adm/assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
 
 		
+		<!-- validations 링크-->
+		<script src="/adm/assets/js/validations.js"></script>
+
         <!--자바스크립트 데이터피커 -->
         <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -530,21 +534,31 @@
 									
 									<div class="card-body">
 										
-										<form class="row g-3 needs-validation " name="formInsert" id="formInsert" method="post"  novalidate>
+										<form class="row g-3  " name="formInsert" id="formInsert" method="post"  novalidate>
 											<div class="col-md-6">
 												<label for="codeXdmListAddName" class="form-label">Name</label>
 												<input type="text" class="form-control" name="codeName" id="codeName" placeholder="코드 이름을 입력하세요" required />
-												<div class="invalid-feedback">데이터를 입력하세요</div>
+												<div class="invalid-feedback" id="codeNameFeedback"></div>
 											</div>
 											<div class="col-md-6">
 												<label for="codeXdmListAddMemo" class="form-label">Memo</label>
 												<input type="text" class="form-control" name="codeMemo" id="codeMemo" placeholder="코드의 메모를 입력하세요" required />
-												<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback" id="codeMemoFeedback"></div>
 											</div>
-											<div class="col-md-6">
-												<label for="codeXdmListAddCodeGroupSeq" class="form-label">CodeGroup Seq</label>
+											<!-- <div class="col-md-6">
+												<label for="codeGroupSeqF" class="form-label">CodeGroup Seq</label>
 												<input type="text" class="form-control" name="codeGroupSeqF" id="codeGroupSeqF" placeholder="코드 그룹의 번호를 입력하세요" required />
 												<div class="valid-feedback">Looks good!</div>
+												
+											</div> -->
+											<!-- 코드그룹 메모리 올린 후 내일 진행하기 -->
+											<div class="col-md-6">
+												<label class="form-label" for="codeGroupSeqF">CodeGroup Seq</label>
+												<select class="form-select" name="codeGroupSeqF" id="codeGroupSeqF">
+													<option selected>코드 그룹을 선택하세요</option>
+													<option th:each="listCodeGroup : ${@codeGroupService.selectListWithoutPaging()}" th:value="${listCodeGroup.codeGroupSeq}" th:text="${listCodeGroup.codeGroupName}"></option>
+												</select>
+												<div class="invalid-feedback" id="codeGroupSeqFFeedback"></div>
 											</div>
 											<div class="d-flex justify-content-between">
 												<div class="m-0 p-0">
@@ -654,16 +668,20 @@
 				// alert("codeName: " + document.getElementById("codeName").value +
 				// 	"\ncodeMemo: " + document.getElementById("codeMemo").value +
 				// 	"\ncodeGroupSeq: " + document.getElementById("codeGroupSeq").value )
+				if(!checkNull ('codeName', 2, '데이터 값을 입력하세요')) return false;
+				if(!checkOnlyKoreanEnglishNumber('codeName',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+				if(!checkOnlyKoreanEnglishNumber('codeMemo',2,1,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+				if(!checkSelectNull('codeGroupSeqF', 2, "목록을 선택하세요.")) return false;
 
-				if(!nullToEmpty(document.getElementById("codeName").value &&
-					document.getElementById("codeMemo").value &&
-					document.getElementById("codeGroupSeqF").value)
-				){
+				// if(!nullToEmpty(document.getElementById("codeName").value &&
+				// 	document.getElementById("codeMemo").value &&
+				// 	document.getElementById("codeGroupSeqF").value)
+				// ){
 					
-					document.getElementById("codeName").setAttribute("class", "form-control is-invalid");
-					return false;
+				// 	document.getElementById("codeName").setAttribute("class", "form-control is-invalid");
+				// 	return false;
 					
-				}
+				// }
 			}
 
 			// 등록버튼 끝

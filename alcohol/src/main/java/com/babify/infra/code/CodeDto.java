@@ -20,6 +20,8 @@ public class CodeDto {
 	
 //	for cache
 	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
+	
+	// for dto
 
 	public String getCodeSeq() {
 		return codeSeq;
@@ -101,6 +103,8 @@ public class CodeDto {
 		this.codeGroupName = codeGroupName;
 	}
 
+
+
 	public static List<CodeDto> getCachedCodeArrayList() {
 		return cachedCodeArrayList;
 	}
@@ -116,6 +120,9 @@ public class CodeDto {
 				+ ", codeGroupSeqF=" + codeGroupSeqF + ", codeGroupSeq=" + codeGroupSeq + ", codeGroupName="
 				+ codeGroupName + "]";
 	}
+
+
+
 	
 	
 
