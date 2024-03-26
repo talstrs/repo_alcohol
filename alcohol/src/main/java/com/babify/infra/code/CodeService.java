@@ -79,4 +79,14 @@ public class CodeService {
 		}
 		return rt;
 	}
+	
+	// 토탈 리턴 관련
+	public int selectOneCount(CodeVo vo) throws Exception{
+		return dao.selectOneCount(vo);
+	}
+	
+	// 페이징 처리 리스트
+	public List<CodeDto> selectListWithPaging(CodeVo vo){
+		return dao.selectListWithPaging(vo);
+	}
 }

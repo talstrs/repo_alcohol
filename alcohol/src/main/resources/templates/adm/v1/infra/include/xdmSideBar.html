@@ -2,7 +2,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-    
+<!-- index 0: dashboard
+index 10(code list): codeXdmList, codeXdmView, codeXdmEdit
+index 11(code add): codeXdmListAdd
+index 20(codeGroup list): codeGroupXdmList, codeGroupXdmView, codeGroupXdmEdit
+index 21(codeGroup add): codeGroupXdmListAdd
+index 30(members list): membersXdmList, membersXdmView, membersXdmEdit
+index 31(members add): membersXdmListAdd
+index 40(product list): productXdmList, productXdmView, productXdmEdit
+index 41(product add): productXdmListAdd -->
 
 <th:block th:fragment="xdmSideBar(index)">		
     <!-- Sidebar wrapper start -->
@@ -20,47 +28,83 @@
         <!-- Sidebar menu starts -->
         <div class="sidebarMenuScroll">
             <ul class="sidebar-menu">
-                <li th:class="${index == 0} ? 'active current-page'">
+                <li id="dashBoard" th:class="${index == 0} ? 'active current-page'">
                     <a href="index.html">
                         <i class="bi bi-pie-chart"></i>
                         <span class="menu-text">Dashboard</span>
                     </a>
                 </li>
-                <li th:class="${index == 1} ? 'active current-page'">
-                    <a th:href="@{/codeXdmList}">
-                        <i class="bi bi-layout-text-sidebar-reverse"></i>
-                        <span class="menu-text">Code</span>
-                    </a>
-                </li>
-                <li th:class="${index == 2} ? 'active current-page'">
-                    <a th:href="@{/codeGroupXdmList}">
-                        <i class="bi bi-layout-text-sidebar-reverse"></i>
-                        <span class="menu-text">CodeGroup</span>
-                    </a>
-                </li>
-                <li th:class="${index == 3} ? 'active current-page'">
-                    <a th:href="@{/membersXdmList}">
-                        <i class="bi bi-person-circle"></i>
-                        <span class="menu-text">Members</span>
-                    </a>
-                </li>
-                <li th:class="${index == 4} ? 'active current-page'">
-                    <a th:href="@{/productXdmList}">
-                        <i class="bi bi-cart4"></i>
-                        <span class="menu-text">Product</span>
-                    </a>
-                </li>
-                <!-- <li class="treeview">
+                <li id="code" th:class="${index == 10 || index == 11} ? 'active current-page'" class="treeview">
                     <a href="#!">
-                        <i class="bi bi-stickies"></i>
-                        <span class="menu-text">Components</span>
+                        <i class="bi bi-layout-text-sidebar-reverse"></i>
+                        <span class="menu-text">Code <sub>&#5167;</sub></span>
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="accordions.html">Accordions</a>
+                            <a th:href="@{/codeXdmList}" th:class="${index == 10} ? 'active-sub'">Code List</a>
                         </li>
                         <li>
-                            <a href="alerts.html">Alerts</a>
+                            <a th:href="@{/codeXdmListAdd}" th:class="${index == 11} ? 'active-sub'">Code Add</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="codeGroup" th:class="${index == 20 || index == 21} ? 'current-page'" class="treeview">
+                    <a href="#!">
+                        <i class="bi bi-layout-text-sidebar-reverse"></i>
+                        <span class="menu-text">CodeGroup <sub>&#5167;</sub></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a th:href="@{/codeGroupXdmList}" th:class="${index == 20} ? 'active-sub'">CodeGroup List</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/codeGroupXdmListAdd}" th:class="${index == 22} ? 'active-sub'">CodeGroup Add</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="members" th:class="${index == 30 || index == 31} ? 'current-page'" class="treeview">
+                    <a href="#!">
+                        <i class="bi bi-person-circle"></i>
+                        <span class="menu-text">Members <sub>&#5167;</sub></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a th:href="@{/membersXdmList}" th:class="${index == 30} ? 'active-sub'">Members List</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/membersXdmListAdd}" th:class="${index == 31} ? 'active-sub'">Members Add</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="product" th:class="${index == 40 || index == 41} ? 'active current-page'" class=" treeview::after">
+                    <a href="#!">
+                        <i class="bi bi-cart4"></i>
+                        <span class="menu-text">Product <sub>&#5167;</sub></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a th:href="@{/productXdmList}" th:class="${index == 40} ? 'active-sub'">Product List</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/productXdmListAdd}" th:class="${index == 41} ? 'active-sub'">Product Add</a>
+                        </li>
+                    </ul>
+                    
+                </li>
+                <!-- <li class="treeview active current-page">
+                    <a href="#!">
+                        <i class="bi bi-window-sidebar"></i>
+                        <span class="menu-text">Invoices</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="create-invoice.html" class="active-sub">Create Invoice</a>
+                        </li>
+                        <li>
+                            <a href="view-invoice.html">View Invoice</a>
+                        </li>
+                        <li>
+                            <a href="invoice-list.html">Invoice List</a>
                         </li>
                     </ul>
                 </li> -->
@@ -70,6 +114,25 @@
 
     </nav>
     <!-- Sidebar wrapper end -->
+
+    <!-- 픽스 및 완성시 이후 xdmHead로 이동 필요 아이디값에 따라 해당 내용만 클릭시 액티브 클래스 주기 -->
+    <script>
+        $("#code").click(function(){
+            $("#code").toggleClass("active");
+        })
+
+        $("#codeGroup").click(function(){
+            $("#codeGroup").toggleClass("active");
+        })
+
+        $("#members").click(function(){
+            $("#members").toggleClass("active");
+        })
+
+        $("#product").click(function(){
+            $("#product").toggleClass("active");
+        })
+    </script>
 </th:block>
 
 </html>

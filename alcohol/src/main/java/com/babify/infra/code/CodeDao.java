@@ -21,4 +21,11 @@ public interface CodeDao {
 	// 캐시 관련
 	public List<CodeDto> selectListCachedCodeArrayList();
 	
+	
+// 토탈 개수 관련
+	public int selectOneCount(CodeVo vo);
+	
+// 페이지네이션 관련
+	public List<CodeDto> selectListWithPaging(CodeVo vo);
+	
 }

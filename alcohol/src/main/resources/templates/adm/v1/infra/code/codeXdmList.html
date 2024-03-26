@@ -2,42 +2,7 @@
 <html lang="en">
 
 	<!--헤드 블록-->
-	<head>
-		<meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Admin Page</title>
-
-        <!-- Meta -->
-        <meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
-        <meta name="author" content="Bootstrap Gallery" />
-        <link rel="canonical" href="https://www.bootstrap.gallery/">
-        <meta property="og:url" content="https://www.bootstrap.gallery">
-        <meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
-        <meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
-        <meta property="og:type" content="Website">
-        <meta property="og:site_name" content="Bootstrap Gallery">
-        <link rel="shortcut icon" href="/adm/assets/images/favicon.svg" />
-
-        <!-- *************
-            ************ CSS Files *************
-        ************* -->
-        <link rel="stylesheet" href="/adm/assets/fonts/bootstrap/bootstrap-icons.css" />
-        <link rel="stylesheet" href="/adm/assets/css/main.min.css" />
-
-        <!-- *************
-            ************ Vendor Css Files *************
-        ************ -->
-
-        <!-- Scrollbar CSS -->
-        <link rel="stylesheet" href="/adm/assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
-
-        
-        <!--자바스크립트 데이터피커 -->
-        <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" media="screen"
-        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-	</head>
+	<div th:replace="~{/adm/v1/infra/include/xdmHead :: xdmHead}"></div>
 
 	<body>
 
@@ -48,7 +13,7 @@
 			<div class="main-container">
 
 				<!--사이드바 블록-->
-				<div th:replace="~{/adm/v1/infra/include/xdmSideBar :: xdmSideBar(1)}"></div>
+				<div th:replace="~{/adm/v1/infra/include/xdmSideBar :: xdmSideBar(10)}"></div>
 
 				
 				<!-- App container starts -->
@@ -57,8 +22,6 @@
 					<!-- 바디 헤더 블록-->
 					<div th:replace="~{/adm/v1/infra/include/xdmHeader :: xdmHeader}"></div>
 
-					<!-- App hero header starts -->
-					<!-- App hero header starts -->
 					<!-- 수정, 검색 폼 시작-->
 					<form name="formList" id="formList" method="get" autocomplete="off">
 						<div class="app-hero-header align-items-start">
@@ -103,18 +66,6 @@
 									</select>
 								</div>
 								<!--수정 데이터피커 인풋 구문, 시작일-->
-
-								<!-- <div class="m-0 col">
-									<div class="input-group"> -->
-										<!-- <input type="text" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" class="form-control form-control datetimepicker" autocomplete="off" readonly> -->
-										<!-- <input type="text" id="shDateStart" name="shDateStart" placeholder="시작일" 
-										class="form-control form-control datetimepicker" autocomplete="off">
-										<span class="input-group-text">
-											<i class="bi bi-calendar4"></i>
-										</span>
-									</div>
-								</div> -->
-								<!-- 추가, 이후 날짜 추가시 수정 필요-->
 								<div class="col">
 									<input type="text" id="shDateStart" name="shDateStart" 
 										th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" 
@@ -122,17 +73,6 @@
 								</div>  
 
 								<!-- 수정, 종료일-->
-								<!-- <div class="m-0 col">
-									<div class="input-group"> -->
-										<!-- <input type="text" id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일" class="form-control form-control datetimepicker" autocomplete="off" readonly> -->
-										<!-- <input type="text" id="shDateEnd" name="shDateEnd" placeholder="종료일" 
-										class="form-control form-control datetimepicker" autocomplete="off">
-										<span class="input-group-text">
-											<i class="bi bi-calendar4"></i>
-										</span>
-									</div>
-								</div> -->
-								<!-- 추가, 이후 날짜 추가시 수정 필요-->
 								<div class="col">
 									<input type="text" id="shDateEnd" name="shDateEnd" placeholder="종료일"
 									th:value="${#strings.substring(vo.shDateEnd, 0, 10)}"  
@@ -140,6 +80,7 @@
 								</div> 
 							</div>
 							<!-- 끝, 검색조건 첫번째 줄-->
+
 							<!-- 수정, 검색조건 두번째 줄-->
 							<div class="ms-auto d-flex flex-row justify-content-end">
 								<div class="col-6">
@@ -155,13 +96,7 @@
 										<option value="5" th:selected="${vo.shOption == 5}">codeMemo</option>				
 									</select>
 								</div>
-								<!--강사님 검색어 창-->
-								<!-- <div class="col">
-									<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control">
-									<div class="invalid-feedback" id="shValueFeedback"></div>
-								</div>  -->
-								<!-- search e -->
-								<!-- Search container start -->
+								<!-- 검색 버튼 -->
 								<div class="search-container d-lg-block d-none">
 									<div class="input-group ">
 										<input type="text" id="shValue" name="shValue" onkeyup="enterkey()" class="form-control" 
@@ -185,16 +120,6 @@
 										</i>
 									</button>
 								</div>
-								
-								<!-- Sales stats start -->
-								<!-- <div class="d-flex flex-column me-5 text-end">
-									<p class="m-0 text-secondary">Sales</p>
-									<h3 class="m-0">5,58,560</h3>
-								</div>
-								<div class="d-flex flex-column text-end">
-									<p class="m-0 text-secondary">Income</p>
-									<h3 class="m-0">$65,80,990</h3>
-								</div> -->
 							</div>
 
 						</div>
@@ -227,6 +152,7 @@
 												</div>
 											</div>
 										</div>
+										<!-- 실제 테이블 시작 -->
 										<div class="card-body">
 											<div class="table-responsive">
 												<table class="table align-middle table-hover m-0">
@@ -276,39 +202,6 @@
 																<a class="btn btn-primary btn-icon btn-sm mb-1" th:href="@{/codeXdmEdit(codeSeq=${lista.codeSeq})}">
 																	<i class="bi bi-pencil"></i>
 																</a>
-																
-																<!-- th:href="@{/codeGroupDtOne(seq=${lista.seq}, delNy=${lista.delNy})}" -->
-																<!-- <a class="btn btn-danger btn-icon btn-sm mb-1" 
-																	data-bs-toggle="modal"
-																	th:data-bs-target="'#exampleModalCenter'+ ${lista['seq']}"
-																	data-bs-target="#exampleModalCenter"><i class="bi bi-trash"></i>
-																</a> -->
-																<!-- 수정, 삭제 모달
-																<div class="modal fade" 
-																	th:id="'exampleModalCenter' + ${lista['seq']}"
-																	id="exampleModalCenter"
-																	tabindex="-1"
-																	aria-labelledby="exampleModalCenterTitle"
-																	aria-hidden="true">
-
-																	<div class="modal-dialog modal-dialog-centered">
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<h5 class="modal-title" id="exampleModalCenterTitle">
-																					Code Group 삭제
-																				</h5>
-																				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																			</div>
-																			<div class="modal-body">
-																				<p class="text-start">회원 정보를 정말로 삭제하시겠습니까?</p>
-																			</div>
-																			<div class="modal-footer">
-																				<a class="btn btn-secondary" data-bs-dismiss="modal">취소</a>
-																				<a class="btn btn-danger" th:href="@{/codeGroupDtOne(seq=${lista.seq}, delNy=${lista.delNy})}">삭제</a>
-																			</div>
-																		</div>
-																	</div> -->
-																
 															</td>
 														</tr>
 														
@@ -437,32 +330,6 @@
 		<!-- *************
 			************ JavaScript Files *************
 		************* -->
-		<!-- Required jQuery first, then Bootstrap Bundle JS -->
-		<script src="/adm/assets/js/jquery.min.js"></script>
-		<script src="/adm/assets/js/bootstrap.bundle.min.js"></script>
-
-		<!-- *************
-			************ Vendor Js Files *************
-		************* -->
-
-		<!-- Overlay Scroll JS -->
-		<script src="/adm/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
-		<script src="/adm/assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
-
-		<!-- Custom JS files -->
-		<script src="/adm/assets/js/custom.js"></script>
-
-		<!--데이터피커 자바스크립트 구문-->
-		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-		<script type="text/javascript">
-			$(function () {
-				$("#shDateStart, #shDateEnd").datetimepicker({ 
-					format: "Y-m-d",
-					timepicker:false,
-				});
-			});
-		</script>
 
 		<!-- 수정, 함수 및 컨트롤러 내용 구문-->
 		<!-- 오류시 내용 재확인-->

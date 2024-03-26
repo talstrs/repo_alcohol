@@ -4,8 +4,8 @@
 
     
 
-<head>		
-    <th:block fragment="xdmHead">
+<head th:fragment="xdmHead">		
+    
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Admin Page</title>
@@ -40,7 +40,39 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" media="screen"
         href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-    </th:block>
+
+        <!--바디 부분 위로 올린 자바스크립트-->
+		<!-- Required jQuery first, then Bootstrap Bundle JS -->
+		<script src="/adm/assets/js/jquery.min.js"></script>
+		<script src="/adm/assets/js/bootstrap.bundle.min.js"></script>
+
+		<!-- *************
+			************ Vendor Js Files *************
+		************* -->
+
+		<!-- Overlay Scroll JS -->
+		<script src="/adm/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+		<script src="/adm/assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
+
+		<!-- Custom JS files -->
+		<script src="/adm/assets/js/custom.js"></script>
+
+        <!--validations 자바스크립트 -->
+        <script src="/adm/assets/js/validations.js"></script>
+
+		<!--데이터피커 자바스크립트 구문-->
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+		<script type="text/javascript">
+			$(function () {
+				$("#shDateStart, #shDateEnd").datetimepicker({ 
+					format: "Y-m-d H:i",
+				});
+			});
+		</script>
+
+        
+    
 </head>
 
 </html>
