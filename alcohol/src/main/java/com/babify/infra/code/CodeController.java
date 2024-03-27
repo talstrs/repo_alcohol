@@ -1,7 +1,5 @@
 package com.babify.infra.code;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,26 +21,23 @@ public class CodeController {
 	@RequestMapping(value = "/codeXdmList")
 	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
 		
-		int count = service.selectOneCount(vo);
+		
 		UtilSearch.setSearch(vo);
 		
-		model.addAttribute("count", service.selectOneCount(vo));
 		
-		model.addAttribute("pagingList", service.selectListWithPaging(vo));
+		vo.setParamsPaging(service.selectOneCount(vo));
 		
-		model.addAttribute("list", service.selectList(vo));
+		if(vo.getTotalRows() > 0) {
+			
+			model.addAttribute("list", service.selectList(vo));
+		}
+		
 
-		
-		
-		
-		
 		// modelAttrubute("vo") -> 가져온 vo 내용을 바로 html 페이지로 보내는 방법으로 해당 바업 사용시 모델.addAtrribute는 주석처리
-		
-//		model.addAttribute("vo", vo);
-		System.out.println("service.selectOneCount(vo): " + service.selectOneCount(vo));
 		
 		System.out.println("--------------");
 		System.out.println(vo.toString());
+		
 		
 		return "adm/v1/infra/code/codeXdmList";
 	}

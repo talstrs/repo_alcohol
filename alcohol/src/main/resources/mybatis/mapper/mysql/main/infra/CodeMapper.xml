@@ -34,23 +34,12 @@
    		</choose>
 	</sql>
 	
-	<!-- 페이지네이션 관련 쿼리 sql 구문 -->
-<!-- 	<sql id="selectListUpperForMysql">
-		select aa.* from (
-	</sql> -->
-	
-	
-	<!-- <sql id="selectListLowerForMysql">	
-		) aa
-		limit #{rowNumToShow} offset #{startRnumForMysql}
-		limit 5 offset 0
-	</sql> -->
+
 	
 	
 	<select id="selectList" resultMap="resultMapObj">
 	
-		<!-- <include refid="Base.selectListUpperForMysql" /> -->
-		select aa.* from (	
+		<include refid="base.selectListUpperForMysql" />	
 		select
 			a.codeSeq
 			,a.codeDelNy
@@ -62,108 +51,17 @@
 			,a.codeGroup_codeGroupSeq as codeGroupSeqF
 		    ,b.codeGroupSeq 
 		    ,b.codeGroupName
-		<!-- <include refid="selectCommon" /> -->
-		<!-- select 공통 구문 SQL -->
-		FROM code a
-		left join codeGroup b 
-			on a.codeGroup_codeGroupSeq = b.codeGroupSeq 
-				and a.codeDelNy = 0
-		where 1=1
-		<!-- 추가, 사용여부 사용시 진행 필요 건 -->
-		<!-- <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
-		<if test="shDelNy != null and !shDelNy.equals('')">AND a.codeDelNy = #{shDelNy}</if>
-			  
-		<choose>
-			<when test="shOptionDate == 1">AND a.codeRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			<when test="shOptionDate == 2">AND a.codeModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-		</choose>
-			
-		<choose> 
-            <when test="shOption == 1">AND b.codeGroupSeq = #{shValue}</when>
-            <when test="shOption == 2">AND b.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 3">AND a.codeSeq = #{shValue}</when>
-            <when test="shOption == 4">AND a.codeName LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 5">AND a.codeMemo LIKE CONCAT('%',#{shValue},'%')</when>
-   		</choose>
+		<include refid="selectCommon" />
 		ORDER BY a.codeGroup_codeGroupSeq desc, a.codeSeq
-		<!-- <include refid="Base.selectListLowerForMysql" /> -->
-		) aa
-		<!-- limit #{rowNumToShow} offset #{startRnumForMysql} -->
-		limit 10 offset 0
+		limit 99999999999
+		<include refid="base.selectListLowerForMysql" />
 	</select>
 	
-	<!-- 추가한 내용 -->
-	<select id="selectListWithPaging" resultMap="resultMapObj">
-	
-		<!-- <include refid="Base.selectListUpperForMysql" /> -->
-		select aa.* from (	
-		select
-			a.codeSeq
-			,a.codeDelNy
-			,a.codeUseNy
-			,a.codeName
-			,a.codeMemo
-			,a.codeRegDate
-			,a.codeModDate
-			,a.codeGroup_codeGroupSeq as codeGroupSeqF
-		    ,b.codeGroupSeq 
-		    ,b.codeGroupName
-		<!-- <include refid="selectCommon" /> -->
-		<!-- select 공통 구문 SQL -->
-		FROM code a
-		left join codeGroup b 
-			on a.codeGroup_codeGroupSeq = b.codeGroupSeq 
-				and a.codeDelNy = 0
-		where 1=1
-		<!-- 추가, 사용여부 사용시 진행 필요 건 -->
-		<!-- <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
-		<if test="shDelNy != null and !shDelNy.equals('')">AND a.codeDelNy = #{shDelNy}</if>
-			  
-		<choose>
-			<when test="shOptionDate == 1">AND a.codeRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			<when test="shOptionDate == 2">AND a.codeModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-		</choose>
-			
-		<choose> 
-            <when test="shOption == 1">AND b.codeGroupSeq = #{shValue}</when>
-            <when test="shOption == 2">AND b.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 3">AND a.codeSeq = #{shValue}</when>
-            <when test="shOption == 4">AND a.codeName LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 5">AND a.codeMemo LIKE CONCAT('%',#{shValue},'%')</when>
-   		</choose>
-		ORDER BY a.codeGroup_codeGroupSeq desc, a.codeSeq
-		<!-- <include refid="Base.selectListLowerForMysql" /> -->
-		) aa
-		<!-- limit #{rowNumToShow} offset #{startRnumForMysql} -->
-		limit 5 offset 0
-	</select>
-	<!-- 끝 -->
 	
 	
 	<select id="selectOneCount" resultType="Integer">
 		select COUNT(*)
-		<!-- <include refid="selectCommon"></include> -->
-		FROM code a
-		left join codeGroup b 
-			on a.codeGroup_codeGroupSeq = b.codeGroupSeq 
-				and a.codeDelNy = 0
-		where 1=1
-		<!-- 추가, 사용여부 사용시 진행 필요 건 -->
-		<!-- <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
-		<if test="shDelNy != null and !shDelNy.equals('')">AND a.codeDelNy = #{shDelNy}</if>
-			  
-		<choose>
-			<when test="shOptionDate == 1">AND a.codeRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			<when test="shOptionDate == 2">AND a.codeModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-		</choose>
-			
-		<choose> 
-            <when test="shOption == 1">AND b.codeGroupSeq = #{shValue}</when>
-            <when test="shOption == 2">AND b.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 3">AND a.codeSeq = #{shValue}</when>
-            <when test="shOption == 4">AND a.codeName LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 5">AND a.codeMemo LIKE CONCAT('%',#{shValue},'%')</when>
-   		</choose>
+		<include refid="selectCommon"></include>
 	</select>
 	
 	<!-- 셀렉원 만들기 -->

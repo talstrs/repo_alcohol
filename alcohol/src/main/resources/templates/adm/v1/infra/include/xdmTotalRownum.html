@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    
+
+<th:block th:fragment="xdmTotalRownum">		
+
+    <div class="row">
+        <div class="fw-bold mt-3 ms-4 col-10">
+            total: <span th:text="${vo.totalRows}"></span>
+        </div>
+        <div class="col">
+            <div class="pe-3">
+                <select class="form-select" aria-label="Default select example" id="rowNumToShow" name="rowNumToShow" th:onchange="javascript:goList(1)">
+                    <option value="5" th:selected="${vo.rowNumToShow == 5}">5</option>
+                    <option value="10" th:selected="${vo.rowNumToShow == 10}">10</option>													
+                    <option value="25" th:selected="${vo.rowNumToShow == 25}">25</option>
+                    <option value="100" th:selected="${vo.rowNumToShow == 100}">100</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+</th:block>
+
+</html>

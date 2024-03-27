@@ -61,6 +61,12 @@ function checkOnlyKoreanEnglishNumber (objName, pattern, nullAllowedNy, message)
     return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
 }
 
+function checkOnlyKoreanEnglish (objName, pattern, nullAllowedNy, message) {
+// checkOnlyKoreanEnglish = function(obj, value, message) {
+    var regExp = /^[ㄱ-ㅎ가-힣A-Za-z]+$/;
+    return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
+}
+
 
 function checkOnlyEnglishNumber (objName, pattern, nullAllowedNy, message) {
 // checkOnlyEnglishNumber = function(obj, value, message) {
