@@ -25,6 +25,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 	
+	// 암호화 MVN repository
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.2.3'
+	
 	// for log4j2 by tony 24.03.06
 	// https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1
 	// 그래들 파일 설정시 우클릭 > 그래들 > 후에 실행해 주어야 반영됨
@@ -32,6 +36,8 @@ dependencies {
 	
 	
 }
+
+
 
 tasks.named('test') {
 	useJUnitPlatform()

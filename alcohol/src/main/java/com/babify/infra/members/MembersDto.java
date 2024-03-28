@@ -103,15 +103,6 @@ public class MembersDto {
 	public void setCodeName(String codeName) {
 		this.codeName = codeName;
 	}
-	@Override
-	public String toString() {
-		return "MembersDto [membersSeq=" + membersSeq + ", membersDelNy=" + membersDelNy + ", membersUseNy="
-				+ membersUseNy + ", membersEmail=" + membersEmail + ", membersPw=" + membersPw + ", membersName="
-				+ membersName + ", membersBirth=" + membersBirth + ", membersGenderCd=" + membersGenderCd
-				+ ", membersGradeCd=" + membersGradeCd + ", membersRegDate=" + membersRegDate + ", membersModDate="
-				+ membersModDate + ", membersAdminNy=" + membersAdminNy + ", codeSeq=" + codeSeq + ", codeName="
-				+ codeName + "]";
-	}
 	
 
 	

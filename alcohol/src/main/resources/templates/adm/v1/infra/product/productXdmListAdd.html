@@ -55,66 +55,71 @@
 									
 									<div class="card-body">
 										
-										<form class="row g-3 needs-validation " method="post" action="productInsert" novalidate>
+										<form class="row g-3 " name="formInsert" id="formInsert" method="post"  novalidate>
 											<div>
 												<div class="col-md-6">
-													<label class="form-label" for="productXdmListAddBestNy">Best</label>
-													<select class="form-select" name="productBestNy" id="productXdmListAddBestNy">
-														<option selected>베스트 유무를 선택하세요</option>
+													<label class="form-label" for="productBestNy">Best</label>
+													<select class="form-select" name="productBestNy" id="productBestNy">
+														<option value="" selected>베스트 유무를 선택하세요</option>
 														<option value="0">N</option>
 														<option value="1">Y</option>
 													</select>
+													<div class="invalid-feedback" id="productBestNyFeedback"></div>
 												</div>
 
 											</div>
 											<div class="col-md-6">
-												<label for="productXdmListAddName" class="form-label">Name</label>
-												<input type="text" class="form-control" name="productName" id="productXdmListAddName" placeholder="상품 이름을 입력하세요" required />
-												<div class="valid-feedback">Looks good!</div>
+												<label for="productName" class="form-label">Name</label>
+												<input type="text" class="form-control" name="productName" id="productName" placeholder="상품 이름을 입력하세요" required />
+												<div class="invalid-feedback" id="productNameFeedback"></div>
+											</div> 
+											<div class="col-md-6">
+												<label for="productInfo" class="form-label">Product Info</label>
+												<input type="text" class="form-control" name="productInfo" id="productInfo" placeholder="상품 설명을 입력하세요" required />
+												<div class="invalid-feedback" id="productInfoFeedback"></div>
 											</div>
 											<div class="col-md-6">
-												<label for="productXdmListAddInfo" class="form-label">Product Info</label>
-												<input type="text" class="form-control" name="productInfo" id="productXdmListAddInfo" placeholder="상품 설명을 입력하세요" required />
-												<div class="valid-feedback">Looks good!</div>
+												<label for="productStock" class="form-label">Stock</label>
+												<input type="text" class="form-control" name="productStock" id="productStock" placeholder="상품 재고를 입력하세요" required />
+												<div class="invalid-feedback" id="productStockFeedback"></div>
 											</div>
 											<div class="col-md-6">
-												<label for="productXdmListAddStock" class="form-label">Stock</label>
-												<input type="text" class="form-control" name="productStock" id="productXdmListAddStock" placeholder="상품 재고를 입력하세요" required />
-												<div class="valid-feedback">Looks good!</div>
+												<label for="productPrice" class="form-label">Price</label>
+												<input type="text" class="form-control" name="productPrice" id="productPrice" placeholder="상품 가격을 입력하세요" required />
+												<div class="invalid-feedback" id="productPriceFeedback"></div>
 											</div>
 											<div class="col-md-6">
-												<label for="productXdmListAddPrice" class="form-label">Price</label>
-												<input type="text" class="form-control" name="productPrice" id="productXdmListAddPrice" placeholder="상품 가격을 입력하세요" required />
-												<div class="valid-feedback">Looks good!</div>
-											</div>
-											<div class="col-md-6">
-												<label class="form-label" for="productXdmListAddCatMainCd">CatMain</label>
-												<select class="form-select" name="productCatMainCd" id="productXdmListAddCatMainCd">
+												<label class="form-label" for="productCatMainCd">CatMain</label>
+												<select class="form-select" name="productCatMainCd" id="productCatMainCd">
 													<option value="" selected>메인 카테고리를 선택하세요</option>
 													<option th:each="list : ${@codeService.selectListCachedCode(8)}" th:value="${list.codeSeq}" th:text="${list.codeName}"></option>
 												</select>
-											</div>
+												<div class="invalid-feedback" id="productCatMainCdFeedback"></div>
+											</div> 
 											<div class="col-md-6">
-												<label class="form-label" for="productXdmListAddCatDetailCd">CatDetail</label>
-												<select class="form-select" name="productCatDetailCd" id="productXdmListAddCatDetailCd">
+												<label class="form-label" for="productCatDetailCd">CatDetail</label>
+												<select class="form-select" name="productCatDetailCd" id="productCatDetailCd">
 													<option value="" selected>서브 카테고리를 선택하세요</option>
 													<option th:each="list : ${@codeService.selectListCachedCode(9)}" th:value="${list.codeSeq}" th:text="${list.codeName}"></option>
-												</select>
+												</select> 
+												<div class="invalid-feedback" id="productCatDetailCdFeedback"></div>
 											</div>
 											<!-- 추후 체크박스로 변경 필요-->
 											<div class="col-md-6">
-												<label class="form-label" for="productXdmListAddSizeCd">Size</label>
-												<select class="form-select" name="productSizeCd" id="productXdmListAddSizeCd">
+												<label class="form-label" for="productSizeCd">Size</label>
+												<select class="form-select" name="productSizeCd" id="productSizeCd">
 													<option value="" selected>해당 사이즈를 선택하세요</option>
 													<option th:each="list : ${@codeService.selectListCachedCode(14)}" th:value="${list.codeSeq}" th:text="${list.codeName}"></option>
 												</select>
+												<div class="invalid-feedback" id="productSizeCdFeedback"></div>
 											</div>
 											<div class="col-md-6">
-												<label class="form-label" for="productXdmListAddColorCd">Color</label>
-												<select class="form-select" name="productColorCd" id="productXdmListAddColorCd">
+												<label class="form-label" for="productColorCd">Color</label>
+												<select class="form-select" name="productColorCd" id="productColorCd">
 													<option value="" selected>해당 색상을 선택하세요</option>
 													<option th:each="list : ${@codeService.selectListCachedCode(15)}" th:value="${list.codeSeq}" th:text="${list.codeName}"></option>
 												</select>
+												<div class="invalid-feedback" id="productColorCdFeedback"></div>
 											</div>
 											
 											
@@ -129,7 +134,7 @@
 													</a>
 												</div>
 												<div class="">
-													<button class="btn btn-primary btn-sm" type="submit">
+													<button class="btn btn-primary btn-sm"  id="btnSubmit"  type="submit">
 														Submit
 													</button>
 												</div>
@@ -159,6 +164,52 @@
 		<!-- *************
 			************ JavaScript Files *************
 		************* -->
+		<script>
+			// 폼 정의 필수
+	
+			let form = document.querySelector("form[name=formInsert]");
+	
+			let goUrlXdmInst = "/productInsert";
+			// let goUrlXdmUpdt = "/productUpdt";	
+	
+			document.getElementById("btnSubmit").onclick = function () {
+				if(validationInst() == false){
+					return false;
+				} else {
+					form.action = goUrlXdmInst;
+					form.submit();
+				
+				}
+	
+			}
+	
+			function validationInst() {
+				if(validationUpdt() == false) { return false;
+				}
+			}
+	
+	
+			function validationUpdt() {
+				if(!checkSelectNull('productBestNy', 2, "목록을 선택하세요.")) return false;
+
+				if(!checkNull ('productName', 2, '데이터 값을 입력하세요')) return false;
+				if(!checkOnlyKoreanEnglish('productName',2,0,'영어, 한글만 입력 가능합니다')) return false;
+
+				if(!checkNull ('productInfo', 2, '데이터 값을 입력하세요')) return false;
+
+				if(!checkNull ('productStock', 2, '데이터 값을 입력하세요')) return false;
+				if(!checkOnlyNumber('productStock', 2, 0, 1, 0, 255, "숫자(0~255)만 입력 가능합니다.")) return false;
+
+				if(!checkNull ('productPrice', 2, '데이터 값을 입력하세요')) return false;
+
+				if(!checkSelectNull('productCatMainCd', 2, "목록을 선택하세요.")) return false;
+
+				if(!checkSelectNull('productCatDetailCd', 2, "목록을 선택하세요.")) return false;
+				
+			}
+	
+		</script>
+
 	</body>
 
 </html>

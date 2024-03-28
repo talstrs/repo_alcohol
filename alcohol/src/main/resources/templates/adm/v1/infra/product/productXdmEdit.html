@@ -51,7 +51,7 @@
 									</div>
 									
 									<div class="card-body">
-										<form class="row g-3 needs-validation " method="post" action="productUpdt" novalidate>
+										<form class="row g-3 " name="formUpdt" id="formUpdt" method="post"  novalidate>
 											<div class="m-0">
 												<input type="hidden" name="productSeq" th:value="${item.productSeq}">
 											</div>
@@ -68,27 +68,28 @@
 													<option value="0" th:selected="0 == ${item.productNewNy}">N</option>
 													<option value="1" th:selected="1 == ${item.productNewNy}">Y</option>
 												</select>
+												<div class="invalid-feedback" id="productBestNyFeedback"></div>
 											</div>
 
 											<div class="col-md-6">
 												<label for="productXdmListAddName" class="form-label">Name</label>
 												<input type="text" class="form-control" name="productName" id="productXdmListAddName" th:value="${item.productName}" required />
-												<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback" id="productNameFeedback"></div>
 											</div>
 											<div class="col-md-6">
 												<label for="productXdmListAddInfo" class="form-label">Product Info</label>
 												<input type="text" class="form-control" name="productInfo" id="productXdmListAddInfo" th:value="${item.productInfo}" required />
-												<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback" id="productInfoFeedback"></div>
 											</div>
 											<div class="col-md-6">
 												<label for="productXdmListAddStock" class="form-label">Stock</label>
 												<input type="text" class="form-control" name="productStock" id="productXdmListAddStock" th:value="${item.productStock}" required />
-												<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback" id="productStockFeedback"></div>
 											</div>
 											<div class="col-md-6">
 												<label for="productXdmListAddPrice" class="form-label">Price</label>
 												<input type="text" class="form-control" name="productPrice" id="productXdmListAddPrice" th:value="${item.productPrice}" required />
-												<div class="valid-feedback">Looks good!</div>
+												<div class="invalid-feedback" id="productPriceFeedback"></div>
 											</div>
 
 											<div class="col-md-6">
@@ -96,12 +97,14 @@
 												<select class="form-select" name="productCatMainCd" id="productXdmListAddCatMainCd">
 													<option th:each="list : ${@codeService.selectListCachedCode(8)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productCatMainCd}"></option>
 												</select>
+												<div class="invalid-feedback" id="productCatMainCdFeedback"></div>
 											</div>
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddCatDetailCd">CatDetail</label>
 												<select class="form-select" name="productCatDetailCd" id="productXdmListAddCatDetailCd">
 													<option th:each="list : ${@codeService.selectListCachedCode(9)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productCatDetailCd}"></option>
 												</select>
+												<div class="invalid-feedback" id="productCatDetailCdFeedback"></div>
 											</div>
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddSizeCd">Size</label>
@@ -128,7 +131,7 @@
 														back
 													</a>
 												</div>
-												<button class="btn btn-primary btn-sm" type="submit">
+												<button class="btn btn-primary btn-sm"  id="btnSubmit"  type="submit">
 													Submit
 												</button>
 											</div>
@@ -163,7 +166,51 @@
 	<!-- *************
 		************ JavaScript Files *************
 	************* -->
+	<script>
+		// 폼 정의 필수
 
+		let form = document.querySelector("form[name=formUpdt]");
+
+		// let goUrlXdmInst = "/productInsert";
+		let goUrlXdmUpdt = "/productUpdt";	
+
+		document.getElementById("btnSubmit").onclick = function () {
+			if(validationInst() == false){
+				return false;
+			} else {
+				form.action = goUrlXdmUpdt;
+				form.submit();
+			
+			}
+
+		}
+
+		function validationInst() {
+			if(validationUpdt() == false) { return false;
+			}
+		}
+
+
+		function validationUpdt() {
+			if(!checkSelectNull('productBestNy', 2, "목록을 선택하세요.")) return false;
+
+			if(!checkNull ('productName', 2, '데이터 값을 입력하세요')) return false;
+			if(!checkOnlyKoreanEnglish('productName',2,0,'영어, 한글만 입력 가능합니다')) return false;
+
+			if(!checkNull ('productInfo', 2, '데이터 값을 입력하세요')) return false;
+
+			if(!checkNull ('productStock', 2, '데이터 값을 입력하세요')) return false;
+			if(!checkOnlyNumber('productStock', 2, 0, 1, 0, 255, "숫자(0~255)만 입력 가능합니다.")) return false;
+
+			if(!checkNull ('productPrice', 2, '데이터 값을 입력하세요')) return false;
+
+			if(!checkSelectNull('productCatMainCd', 2, "목록을 선택하세요.")) return false;
+
+			if(!checkSelectNull('productCatDetailCd', 2, "목록을 선택하세요.")) return false;
+						
+		}
+
+	</script>
 
 
 </body>
