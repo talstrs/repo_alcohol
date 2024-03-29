@@ -57,4 +57,13 @@ public class MembersService {
 	public int delete(MembersDto dto) {
 		return dao.delete(dto);
 	}
+	
+	public int selectOneCount(MembersVo vo) throws Exception{
+		return dao.selectOneCount(vo);
+	}
+	
+	// 페이징 처리 리스트
+	public List<MembersDto> selectListWithPaging(MembersVo vo){
+		return dao.selectListWithPaging(vo);
+	}
 }

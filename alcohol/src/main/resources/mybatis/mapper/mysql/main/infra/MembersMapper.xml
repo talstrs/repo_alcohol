@@ -8,28 +8,11 @@
 
 	<!-- 아이디 설정하여 셀렉문에 부과 / Dto 경로 -->
 	<resultMap id="resultMapObj" type="com.babify.infra.members.MembersDto"></resultMap>
-	
-	<select id="selectList" resultMap="resultMapObj">
-		select
-			a.membersSeq
-			,a.membersDelNy
-			,a.membersUseNy
-			,a.membersAdminNy
-			,a.membersEmail
-			,a.membersPw
-			,a.membersName
-			,a.membersBirth
-			,a.membersGenderCd
-			,a.membersGradeCd
-			,a.membersRegDate
-			,a.membersModDate
-			,b.codeSeq
-			,b.codeName
+
+	<!-- select 공통 구문 SQL -->
+	<sql id ="selectCommon">
 		from
 			members a
-		left join code b 
-			on a.membersGenderCd = b.codeSeq 
-				and a.membersDelNy = 0
 		where 1=1
 			and a.membersDelNy = 0
 			<!-- 추가, 사용여부 사용시 진행 필요 건 -->
@@ -51,6 +34,33 @@
 	            <when test="shOption == 5">AND a.membersGenderCd = #{shValue}</when>
 	            <when test="shOption == 6">AND a.membersGradeCd = #{shValue}</when>
        		</choose>
+	</sql>
+	
+	<select id="selectList" resultMap="resultMapObj">
+	
+		<include refid="base.selectListUpperForMysql" />	
+		select
+			a.membersSeq
+			,a.membersDelNy
+			,a.membersUseNy
+			,a.membersAdminNy
+			,a.membersEmail
+			,a.membersPw
+			,a.membersName
+			,a.membersBirth
+			,a.membersGenderCd
+			,a.membersGradeCd
+			,a.membersRegDate
+			,a.membersModDate
+		<include refid="selectCommon" />
+		ORDER BY a.membersSeq
+		limit 99999999999
+		<include refid="base.selectListLowerForMysql" />
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		select COUNT(*)
+		<include refid="selectCommon"></include>
 	</select>
 	
 	<!-- 셀렉원 만들기 -->

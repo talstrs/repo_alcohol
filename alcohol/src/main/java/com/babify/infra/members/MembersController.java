@@ -25,12 +25,29 @@ public class MembersController {
 	@RequestMapping(value = "/membersXdmList")
 	public String membersXdmList(@ModelAttribute("vo") MembersVo vo, Model model) throws Exception {
 
+		System.out.println(vo.getMembersSeq());
+		System.out.println(vo.getMembersName());
 		UtilSearch.setSearch(vo);
-		model.addAttribute("list", service.selectList(vo));
+		
+		// 페이징 관련 if 함수 후 모델 객체 불러오기
+		
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if(vo.getTotalRows() > 0) {
+			
+			model.addAttribute("list", service.selectList(vo));
+		}
+		System.out.println("--------------------------");
+		System.out.println("--------------------------");
+		System.out.println("--------------------------");
+		System.out.println(vo.getMembersSeq());
+		System.out.println(vo.getMembersName());
+		
 
 		return "adm/v1/infra/members/membersXdmList";
 	}
 
+	
 	/* 링크 주소의 html 추가/ 데이터 받기 */
 	/* dto로 데이터 정상적으로 넘어오는지 확인하기: codeGroupDto dto 설정 후 sysout으로 확인 */
 	@RequestMapping(value = "/membersXdmView")
@@ -114,7 +131,6 @@ public class MembersController {
 	
 	// pw 암호화
 	public String encodeBcrypt(String planeText, int strength) {
-		
 		  return new BCryptPasswordEncoder(strength).encode(planeText);
 	}
 
@@ -150,15 +166,18 @@ public class MembersController {
 		// DB에서 데이터 가져오기
 		MembersDto dtoCheck = service.selectOneLoginCheck(dto);
 		
+		System.out.println("==============================");
+		System.out.println("==============================");
+		System.out.println("==============================");
+		System.out.println("============================== 오류 확인 1");
 		if(dtoCheck != null) {
+			System.out.println("============================== 오류 확인 2");
 			
 			String loginId = dto.getMembersEmail();
 			String loginPw = dto.getMembersPw();
-			
-			String hashedPwFromDB = dtoCheck.getMembersPw();
 
-			if(matchesBcrypt(loginPw,hashedPwFromDB,10)) {
-				
+			if(matchesBcrypt(loginPw,dtoCheck.getMembersPw(),10)) {
+				System.out.println("============================== 오류 확인 3");
 				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 				httpSession.setAttribute("sessSeqXdm", dtoCheck.getMembersSeq());
 				httpSession.setAttribute("sessIdXdm", dtoCheck.getMembersEmail());
@@ -166,12 +185,14 @@ public class MembersController {
 				
 				returnMap.put("rt", "success");
 			} else {
+				System.out.println("============================== 오류 확인 4");
 				returnMap.put("rt", "fail");
 			}
 		} else {
+			System.out.println("============================== 오류 확인 5");
 			returnMap.put("rt", "fail");
 		}
-
+		System.out.println("============================== 오류 확인 6");
 		
 		return returnMap;
 	}

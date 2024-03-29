@@ -12,8 +12,6 @@ public class MembersVo extends BaseVo {
 	private Integer membersGradeCd;
 	private Integer membersAdminNy;
 	
-	private String codeName;
-	private String codeSeq;
 	public String getMembersSeq() {
 		return membersSeq;
 	}
@@ -62,26 +60,6 @@ public class MembersVo extends BaseVo {
 	public void setMembersAdminNy(Integer membersAdminNy) {
 		this.membersAdminNy = membersAdminNy;
 	}
-	public String getCodeName() {
-		return codeName;
-	}
-	public void setCodeName(String codeName) {
-		this.codeName = codeName;
-	}
-	public String getCodeSeq() {
-		return codeSeq;
-	}
-	public void setCodeSeq(String codeSeq) {
-		this.codeSeq = codeSeq;
-	}
-	@Override
-	public String toString() {
-		return "MembersVo [membersSeq=" + membersSeq + ", membersEmail=" + membersEmail + ", membersPw=" + membersPw
-				+ ", membersName=" + membersName + ", membersBirth=" + membersBirth + ", membersGenderCd="
-				+ membersGenderCd + ", membersGradeCd=" + membersGradeCd + ", membersAdminNy=" + membersAdminNy
-				+ ", codeName=" + codeName + ", codeSeq=" + codeSeq + "]";
-	}
-	
 	
 	
 	

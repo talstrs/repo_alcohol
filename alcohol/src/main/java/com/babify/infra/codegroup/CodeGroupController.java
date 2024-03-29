@@ -36,8 +36,14 @@ public class CodeGroupController {
 //		
 		
 		
-		// 받아오자마자 바로 넘기는 방법
-		model.addAttribute("list", service.selectList(vo));
+		// 페이징 관련 if 함수 후 모델 객체 불러오기
+		
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if(vo.getTotalRows() > 0) {
+			
+			model.addAttribute("list", service.selectList(vo));
+		}
 //		list = codeGroupDtos;
 		
 		// modelAttrubute("vo") -> 가져온 vo 내용을 바로 html 페이지로 보내는 방법으로 해당 바업 사용시 모델.addAtrribute는 주석처리

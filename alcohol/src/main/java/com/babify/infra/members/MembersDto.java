@@ -17,8 +17,6 @@ public class MembersDto {
 	private Date membersModDate;
 	private Integer membersAdminNy;
 	
-	private String codeSeq;
-	private String codeName;
 	public String getMembersSeq() {
 		return membersSeq;
 	}
@@ -90,18 +88,6 @@ public class MembersDto {
 	}
 	public void setMembersAdminNy(Integer membersAdminNy) {
 		this.membersAdminNy = membersAdminNy;
-	}
-	public String getCodeSeq() {
-		return codeSeq;
-	}
-	public void setCodeSeq(String codeSeq) {
-		this.codeSeq = codeSeq;
-	}
-	public String getCodeName() {
-		return codeName;
-	}
-	public void setCodeName(String codeName) {
-		this.codeName = codeName;
 	}
 	
 

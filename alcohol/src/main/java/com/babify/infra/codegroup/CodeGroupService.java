@@ -57,4 +57,14 @@ public class CodeGroupService {
 	public List<CodeGroupDto> selectListWithoutPaging() {
 		return dao.selectListWithoutPaging();
 	}
+	
+	// 토탈 리턴 관련
+	public int selectOneCount(CodeGroupVo vo) throws Exception{
+		return dao.selectOneCount(vo);
+	}
+	
+	// 페이징 처리 리스트
+	public List<CodeGroupDto> selectListWithPaging(CodeGroupVo vo){
+		return dao.selectListWithPaging(vo);
+	}	
 }

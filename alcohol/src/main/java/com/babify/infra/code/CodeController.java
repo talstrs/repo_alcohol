@@ -25,6 +25,8 @@ public class CodeController {
 		UtilSearch.setSearch(vo);
 		
 		
+		// 페이징 관련 if 함수 후 모델 객체 불러오기
+		
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if(vo.getTotalRows() > 0) {

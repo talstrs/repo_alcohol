@@ -28,4 +28,10 @@ public interface CodeGroupDao {
 	
 	public int delete(CodeGroupDto dto);
 	
+// 토탈 개수 관련
+	public int selectOneCount(CodeGroupVo vo);
+	
+// 페이지네이션 관련
+	public List<CodeGroupDto> selectListWithPaging(CodeGroupVo vo);
+	
 }

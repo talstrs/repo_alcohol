@@ -29,4 +29,9 @@ public interface MembersDao {
 	
 	public int delete(MembersDto dto);
 	
+// 토탈 개수 관련
+	public int selectOneCount(MembersVo vo);
+	
+// 페이지네이션 관련
+	public List<MembersDto> selectListWithPaging(MembersVo vo);
 }
