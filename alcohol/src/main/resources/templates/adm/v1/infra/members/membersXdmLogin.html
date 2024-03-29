@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!--헤드 블록-->
+	<div th:replace="~{/adm/v1/infra/include/xdmHead :: xdmHead}"></div>
+
+	<body class="bg-white">
+		<!-- Container start -->
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-xl-4 col-lg-5 col-sm-6 col-12">
+					<form class="my-5">
+						<div class="border border-light rounded-2 p-4 mt-5">
+							<div class="login-form">
+								<a href="index.html" class="mb-4 d-flex">
+									<img src="/adm/assets/images/logo-dark.svg" class="img-fluid login-logo" alt="Venus Admin" />
+								</a>
+								<h4 class="fw-semibold mb-4">Login</h4>
+								<div class="mb-3">
+									<label for="membersEmail" class="form-label">Email</label>
+									<input type="text" name="membersEmail" id="membersEmail" class="form-control" placeholder="Enter your email" />
+									<div class="invalid-feedback" id="membersEmailFeedback"></div>
+								</div>
+								<div class="mb-3">
+									<label for="membersPw" class="form-label">Password</label>
+									<div class="input-group">
+										<input type="password" name="membersPw" id="membersPw" class="form-control" placeholder="Enter password" />
+										<div class="invalid-feedback" id="membersPwFeedback"></div>
+										<!-- <a href="#" class="input-group-text">
+											<i class="bi bi-eye"></i>
+										</a> -->
+									</div>
+								</div>
+								<div class="d-flex align-items-center justify-content-between">
+									<div class="form-check m-0">
+										<input class="form-check-input" type="checkbox" value="" id="rememberPassword" />
+										<label class="form-check-label" for="rememberPassword">Remember</label>
+									</div>
+									<a href="forgot-password.html" class="text-blue text-decoration-underline">Lost password?</a>
+								</div>
+								<div class="d-grid py-3 mt-2">
+									<button type="button" id="buttonSignIn" class="btn btn-lg btn-primary">
+										Login
+									</button>
+								</div>
+								<!-- <div class="text-center py-3">or Login with</div>
+								<div class="d-flex gap-2 justify-content-center">
+									<button type="submit" class="btn btn-outline-danger">
+										<i class="bi bi-google"></i>
+									</button>
+									<button type="submit" class="btn btn-outline-info">
+										<i class="bi bi-facebook"></i>
+									</button>
+								</div>
+								<div class="text-center pt-4">
+									<span>Not registered?</span>
+									<a href="signup.html" class="text-blue text-decoration-underline ms-2">
+										SignUp</a>
+								</div> -->
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Container end -->
+
+		<script>
+			document.getElementById("buttonSignIn").onclick = function () {
+				if(validation() == false) return false;
+			
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/signinXdmCheck"
+					/* ,data : $("#formLogin").serialize() */
+					,data : { "membersEmail" : $("#membersEmail").val(), "membersPw" : $("#membersPw").val()}
+					// , "autoLogin" : $("#autoLogin").is(":checked")
+					
+					,success: function(response) {
+						
+						if(response.rt == "success") {
+							
+							location.href = "/xdmIndex";
+							
+						} else {
+							alert("일치하는 회원이 존재하지 않습니다");
+							// document.getElementById("modalAlertTitle").innerText = "확 인";
+							// document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+							// $("#modalAlert").modal("show");
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+			}
+
+			function validation() {
+				if(validationCheck() == false) { return false;
+				}
+			}
+			
+			function validationCheck() {
+				
+				if(!checkNull ('membersEmail', 2, '데이터 값을 입력하세요')) return false;
+				if(!checkEmail('membersEmail',2,0,'"abc@google.com"처럼 이메일 형식에 맞게 입력하세요')) return false;
+				if(!checkNull ('membersPw', 2, '데이터 값을 입력하세요')) return false;
+				if(!checkOnlyKoreanEnglishNumber('membersPw',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+				
+				
+			}
+		</script>
+
+
+	</body>
+
+</html>

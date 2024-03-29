@@ -1,13 +1,19 @@
 package com.babify.infra.members;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.babify.common.util.UtilSearch;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MembersController {
@@ -47,14 +53,40 @@ public class MembersController {
 		return "adm/v1/infra/members/membersXdmListAdd";
 	}
 
+	// 관리자 페이지 회원 등록
 	@RequestMapping(value = "/membersInsert")
 	public String membersInsert(MembersDto dto) throws Exception {
 
+
+		
+		dto.setMembersPw(encodeBcrypt(dto.getMembersPw(), 10));
+		
+		
+		//String encodedPw = dto.getMembersPw();
+		
 		service.insert(dto);
+
 
 		return "redirect:/membersXdmList";
 	}
 
+	// 사용자 페이지 회원 등록
+	@RequestMapping(value = "/membersUsrInsert")
+	public String membersUsrInsert(MembersDto dto) throws Exception {
+
+
+		
+		dto.setMembersPw(encodeBcrypt(dto.getMembersPw(), 10));
+		
+		// String encodedPw = dto.getMembersPw();
+		
+		service.insert(dto);
+
+
+		return "redirect:/index";
+	}
+	
+	
 	// 컨트롤러만 리턴 타입을 String으로 변경 가능
 	@RequestMapping(value = "/membersUpdt")
 	public String membersUpdt(MembersDto dto) throws Exception {
@@ -79,50 +111,91 @@ public class MembersController {
 		return "redirect:/membersXdmList";
 	}
 	
-	// 이후 로그인 부분 비밀번호 비교
+	// pw 암호화
 	public String encodeBcrypt(String planeText, int strength) {
+		
 		  return new BCryptPasswordEncoder(strength).encode(planeText);
 	}
 
-			
+
+	// pw 복호화	
 	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
 	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
 	  return passwordEncoder.matches(planeText, hashValue);
 	}
 	
-	// 이후 로그인 부분 비밀번호 비교 적용 예시
-//	System.out.println("dto.getIfmmId(): " + dto.getIfmmId());
-//	
-//	dto.setIfmmId(encodeBcrypt(dto.getIfmmId(), 10));
-//	String encodedId = dto.getIfmmId();
-//	
-//	System.out.println("dto.getIfmmId()encoded: " + dto.getIfmmId());
-//	
-//	System.out.println("---------------------");
-//	
-//	System.out.println("dto.getIfmmName(): " + dto.getIfmmName());
-//	
-//	String name = dto.getIfmmName();
-//	dto.setIfmmName(encodeBcrypt(dto.getIfmmName(),9));
-//	
-//	System.out.println("dto.getIfmmName().encoded: " + dto.getIfmmName());
-//	
-//	System.out.println("---------------------");
-//	
-//	if(dto.getIfmmId().equals(dto.getIfmmName())) {
-//		System.out.println("true");
-//	} else {
-//		System.out.println("false");
-//	}
-//	
-//	System.out.println("---------------------");
-//	
-//	if(matchesBcrypt(name, dto.getIfmmId(),10)) {
-//		System.out.println("true");
-//	} else {
-//		System.out.println("false");
-//	}
-//	
-//	System.out.println("###########################");	
+	
+	// 관리자 로그인 페이지
+	@RequestMapping(value = "/membersXdmLogin")
+	public String membersXdmLogin(MembersDto dto) throws Exception {
+
+		return "adm/v1/infra/members/membersXdmLogin";
+	}
+	
+	// 관리자 인덱스
+	@RequestMapping(value = "/xdmIndex")
+	public String xdmIndex() throws Exception {
+
+		return "adm/v1/infra/stater/xdmIndex";
+	}
+	
+	// 관리자 로그인 체크
+	@ResponseBody
+	@RequestMapping(value = "signinXdmCheck")
+	public Map<String, Object> signinXdmCheck(MembersDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		String loginId = dto.getMembersEmail();
+		String loginPw = dto.getMembersPw();
+		
+		// DB에서 비밀번호 가져오기
+	    dto = service.selectOneLoginCheck(dto);
+	    String hashedPwFromDB = dto.getMembersPw();
+		
+		if(matchesBcrypt(loginPw,hashedPwFromDB,10)) {
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		
+		return returnMap;
+	}
+
+	
+	// 사용자 로그인 페이지
+	@RequestMapping(value = "/membersUsrLogin")
+	public String membersUsrLogin(MembersDto dto) throws Exception {
+
+		return "usr/v1/infra/membersUsrLogin";
+	}
+	
+	// 사용자 인덱스
+	@RequestMapping(value = "/usrIndex")
+	public String usrIndex(MembersDto dto) throws Exception {
+
+		return "usr/v1/infra/usrIndex";
+	}
+	
+	// 사용자 로그인 체크
+	@ResponseBody
+	@RequestMapping(value = "signinUsrCheck")
+	public Map<String, Object> signinUsrCheck(MembersDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		// 아이디, 패스워드를 통해서 회원인지 아닌지 여부 조회
+
+        returnMap.put("rt", "success");
+		return returnMap;
+	}
+	
+	
+
+	// 사용자 회원가입
+	@RequestMapping(value = "/membersUsrRegister")
+	public String membersUsrRegister(MembersDto dto) throws Exception {
+
+		return "usr/v1/infra/membersUsrRegister";
+	}
+	
 
 }

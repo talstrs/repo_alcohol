@@ -32,6 +32,11 @@ public class MembersService {
 	public MembersDto selectOne(MembersDto dto) {
 		return dao.selectOne(dto);
 	}
+	
+// 로그인 객체 호출
+	public MembersDto selectOneLoginCheck(MembersDto dto) {
+		return dao.selectOneLoginCheck(dto);
+	}
 
 //  insert 서비스
 	public int insert(MembersDto dto) {

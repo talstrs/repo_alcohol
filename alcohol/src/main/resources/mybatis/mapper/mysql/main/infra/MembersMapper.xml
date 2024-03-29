@@ -136,4 +136,20 @@
   		and membersSeq = #{membersSeq}
   	
   	</delete>
+  	
+  		<select id="selectOneLoginCheck" resultMap="resultMapObj">
+		select
+			a.membersSeq
+			,a.membersDelNy
+			,a.membersUseNy
+			,a.membersAdminNy
+			,a.membersEmail
+			,a.membersPw
+		from
+			members a
+		where 1=1
+		    and a.membersEmail = #{membersEmail}
+			
+			
+	</select>
 </mapper>
