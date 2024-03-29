@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.babify.common.constants.Constants;
 import com.babify.common.util.UtilSearch;
 
 import jakarta.servlet.http.HttpSession;
@@ -48,7 +49,7 @@ public class MembersController {
 	}
 
 	@RequestMapping(value = "/membersXdmListAdd")
-	public String membersXdmListAdd(MembersDto dto) throws Exception {
+	public String membersXdmListAdd() throws Exception {
 
 		return "adm/v1/infra/members/membersXdmListAdd";
 	}
@@ -127,7 +128,7 @@ public class MembersController {
 	
 	// 관리자 로그인 페이지
 	@RequestMapping(value = "/membersXdmLogin")
-	public String membersXdmLogin(MembersDto dto) throws Exception {
+	public String membersXdmLogin() throws Exception {
 
 		return "adm/v1/infra/members/membersXdmLogin";
 	}
@@ -143,35 +144,61 @@ public class MembersController {
 	@ResponseBody
 	@RequestMapping(value = "signinXdmCheck")
 	public Map<String, Object> signinXdmCheck(MembersDto dto, HttpSession httpSession) throws Exception {
+		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 
-		String loginId = dto.getMembersEmail();
-		String loginPw = dto.getMembersPw();
+		// DB에서 데이터 가져오기
+		MembersDto dtoCheck = service.selectOneLoginCheck(dto);
 		
-		// DB에서 비밀번호 가져오기
-	    dto = service.selectOneLoginCheck(dto);
-	    String hashedPwFromDB = dto.getMembersPw();
-		
-		if(matchesBcrypt(loginPw,hashedPwFromDB,10)) {
-			returnMap.put("rt", "success");
+		if(dtoCheck != null) {
+			
+			String loginId = dto.getMembersEmail();
+			String loginPw = dto.getMembersPw();
+			
+			String hashedPwFromDB = dtoCheck.getMembersPw();
+
+			if(matchesBcrypt(loginPw,hashedPwFromDB,10)) {
+				
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeqXdm", dtoCheck.getMembersSeq());
+				httpSession.setAttribute("sessIdXdm", dtoCheck.getMembersEmail());
+				httpSession.setAttribute("sessNameXdm", dtoCheck.getMembersName());
+				
+				returnMap.put("rt", "success");
+			} else {
+				returnMap.put("rt", "fail");
+			}
 		} else {
 			returnMap.put("rt", "fail");
 		}
+
 		
 		return returnMap;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "signOutXdmCheck")
+	public Map<String, Object> signOutXdmCheck(MembersDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		httpSession.invalidate(); // 세션 무효화
+		
+		returnMap.put("rt", "success");
+		
+        return returnMap; // 로그아웃 후 관리자 로그인 페이지로 리다이렉트
+    }
 
 	
 	// 사용자 로그인 페이지
 	@RequestMapping(value = "/membersUsrLogin")
-	public String membersUsrLogin(MembersDto dto) throws Exception {
+	public String membersUsrLogin() throws Exception {
 
 		return "usr/v1/infra/membersUsrLogin";
 	}
 	
 	// 사용자 인덱스
 	@RequestMapping(value = "/usrIndex")
-	public String usrIndex(MembersDto dto) throws Exception {
+	public String usrIndex() throws Exception {
 
 		return "usr/v1/infra/usrIndex";
 	}

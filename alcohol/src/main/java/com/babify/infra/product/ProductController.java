@@ -51,7 +51,7 @@ public String productEdit(ProductDto dto, Model model) throws Exception{
 }
 
 @RequestMapping(value = "/productXdmListAdd")
-public String productXdmListAdd(ProductDto dto) throws Exception{
+public String productXdmListAdd() throws Exception{
 	
 	
 	return "adm/v1/infra/product/productXdmListAdd";

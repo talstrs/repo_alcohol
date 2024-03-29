@@ -84,7 +84,7 @@ public String codeGroupEdit(CodeGroupDto dto, Model model) throws Exception{
 }
 
 @RequestMapping(value = "/codeGroupXdmListAdd")
-public String codeGroupXdmListAdd(CodeGroupDto dto) throws Exception{
+public String codeGroupXdmListAdd() throws Exception{
 	
 	
 	return "adm/v1/infra/codegroup/codeGroupXdmListAdd";

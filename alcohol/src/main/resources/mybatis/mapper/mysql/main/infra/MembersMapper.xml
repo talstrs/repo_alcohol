@@ -137,6 +137,7 @@
   	
   	</delete>
   	
+  	<!-- 비밀번호 체크 -->
   		<select id="selectOneLoginCheck" resultMap="resultMapObj">
 		select
 			a.membersSeq

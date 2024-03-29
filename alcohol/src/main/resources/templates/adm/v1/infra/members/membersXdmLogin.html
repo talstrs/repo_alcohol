@@ -68,6 +68,7 @@
 		<script>
 			document.getElementById("buttonSignIn").onclick = function () {
 				if(validation() == false) return false;
+				alert("벨리데이션");
 			
 				$.ajax({
 					async: true 
@@ -80,12 +81,14 @@
 					// , "autoLogin" : $("#autoLogin").is(":checked")
 					
 					,success: function(response) {
-						
+						alert("함수 실행");
+						alert(response.rt);
 						if(response.rt == "success") {
-							
+							alert("성공");
 							location.href = "/xdmIndex";
 							
 						} else {
+							alert("실패");
 							alert("일치하는 회원이 존재하지 않습니다");
 							// document.getElementById("modalAlertTitle").innerText = "확 인";
 							// document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
