@@ -52,4 +52,14 @@ public class ProductService {
 	public int delete(ProductDto dto) {
 		return dao.delete(dto);
 	}
+	
+	// 토탈 리턴 관련
+	public int selectOneCount(ProductVo vo) throws Exception{
+		return dao.selectOneCount(vo);
+	}
+	
+	// 페이징 처리 리스트
+	public List<ProductDto> selectListWithPaging(ProductVo vo){
+		return dao.selectListWithPaging(vo);
+	}
 }

@@ -21,8 +21,6 @@ public class ProductDto {
 	private Date productRegDate;
 	private Date productModDate;
 	
-	private String codeSeq;
-	private String codeName;
 	public String getProductSeq() {
 		return productSeq;
 	}
@@ -118,29 +116,6 @@ public class ProductDto {
 	}
 	public void setProductModDate(Date productModDate) {
 		this.productModDate = productModDate;
-	}
-	public String getCodeSeq() {
-		return codeSeq;
-	}
-	public void setCodeSeq(String codeSeq) {
-		this.codeSeq = codeSeq;
-	}
-	public String getCodeName() {
-		return codeName;
-	}
-	public void setCodeName(String codeName) {
-		this.codeName = codeName;
-	}
-	
-	@Override
-	public String toString() {
-		return "ProductDto [productSeq=" + productSeq + ", productDelNy=" + productDelNy + ", productUseNy="
-				+ productUseNy + ", productName=" + productName + ", productInfo=" + productInfo + ", productBestNy="
-				+ productBestNy + ", productNewNy=" + productNewNy + ", productStock=" + productStock
-				+ ", productPrice=" + productPrice + ", productCatMainCd=" + productCatMainCd + ", productCatDetailCd="
-				+ productCatDetailCd + ", productStarAll=" + productStarAll + ", productSizeCd=" + productSizeCd
-				+ ", productColorCd=" + productColorCd + ", productRegDate=" + productRegDate + ", productModDate="
-				+ productModDate + ", codeSeq=" + codeSeq + ", codeName=" + codeName + "]";
 	}
 	
 	

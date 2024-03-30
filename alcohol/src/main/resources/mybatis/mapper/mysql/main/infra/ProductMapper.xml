@@ -9,7 +9,33 @@
 	<!-- 아이디 설정하여 셀렉문에 부과 / Dto 경로 -->
 	<resultMap id="resultMapObj" type="com.babify.infra.product.ProductDto"></resultMap>
 	
+	<sql id ="selectCommon">
+	from
+		product a
+	where 1=1
+		and a.productDelNy = 0
+		<!-- 추가, 사용여부 사용시 진행 필요 건 -->
+		<!-- <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
+		<if test="shDelNy != null and !shDelNy.equals('')">AND a.productDelNy = #{shDelNy}</if>
+		<if test="productBestNy != null and !productBestNy.equals('')">AND a.productBestNy = #{productBestNy}</if>
+		<if test="productNewNy != null and !productNewNy.equals('')">AND a.productNewNy = #{productNewNy}</if>
+		
+		<!--  이후 날짜 데이터 진행시 추가 필요  -->    
+			<choose>
+			<when test="shOptionDate == 1">AND a.productRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 2">AND a.productModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		</choose>
+		
+			<choose> 
+            <when test="shOption == 1">AND a.productSeq = #{shValue}</when>
+            <when test="shOption == 2">AND a.productInfo LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 3">AND a.productName LIKE CONCAT('%',#{shValue},'%')</when>
+      		</choose>
+	</sql>
+	
 	<select id="selectList" resultMap="resultMapObj">
+	
+		<include refid="base.selectListUpperForMysql" />
 		select
 			a.productSeq
 			,a.productDelNy
@@ -27,32 +53,15 @@
 			,a.productColorCd
 			,a.productRegDate
 			,a.productModDate
-			,b.codeSeq
-			,b.codeName
-		from
-			product a
-		left join code b 
-			on a.productCatDetailCd = b.codeSeq 
-				and a.productDelNy = 0
-		where 1=1
-			and a.productDelNy = 0
-			<!-- 추가, 사용여부 사용시 진행 필요 건 -->
-			<!-- <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
-			<if test="shDelNy != null and !shDelNy.equals('')">AND a.productDelNy = #{shDelNy}</if>
-			<if test="productBestNy != null and !productBestNy.equals('')">AND a.productBestNy = #{productBestNy}</if>
-			<if test="productNewNy != null and !productNewNy.equals('')">AND a.productNewNy = #{productNewNy}</if>
-			
-			<!--  이후 날짜 데이터 진행시 추가 필요  -->    
- 			<choose>
-				<when test="shOptionDate == 1">AND a.productRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-				<when test="shOptionDate == 2">AND a.productModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			</choose>
-			
- 			<choose> 
-	            <when test="shOption == 1">AND a.productSeq = #{shValue}</when>
-	            <when test="shOption == 2">AND a.codeName LIKE CONCAT('%',#{shValue},'%')</when>
-	            <when test="shOption == 3">AND a.productName LIKE CONCAT('%',#{shValue},'%')</when>
-       		</choose>
+		<include refid="selectCommon" />
+     	ORDER BY a.productSeq
+		limit 99999999999
+		<include refid="base.selectListLowerForMysql" />
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		select COUNT(*)
+		<include refid="selectCommon"></include>
 	</select>
 	
 	<!-- 셀렉원 만들기 -->

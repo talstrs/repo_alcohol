@@ -21,7 +21,14 @@ public class ProductController {
 		
 		UtilSearch.setSearch(vo);
 		
-		model.addAttribute("list", service.selectList(vo));
+		// 페이징 관련 if 함수 후 모델 객체 불러오기
+		
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if(vo.getTotalRows() > 0) {
+			
+			model.addAttribute("list", service.selectList(vo));
+		}
 
 		
 		System.out.println(vo.toString());

@@ -25,5 +25,11 @@ public interface ProductDao {
 	public int updateDelete(ProductDto dto);
 	
 	public int delete(ProductDto dto);
+
+// 토탈 개수 관련
+	public int selectOneCount(ProductVo vo);
+	
+// 페이지네이션 관련
+	public List<ProductDto> selectListWithPaging(ProductVo vo);
 	
 }

@@ -16,8 +16,6 @@ public class ProductVo extends BaseVo {
 	private Integer productSizeCd;
 	private Integer productColorCd;
 	
-	private String codeSeq;
-	private String codeName;
 	public String getProductSeq() {
 		return productSeq;
 	}
@@ -89,27 +87,6 @@ public class ProductVo extends BaseVo {
 	}
 	public void setProductColorCd(Integer productColorCd) {
 		this.productColorCd = productColorCd;
-	}
-	public String getCodeSeq() {
-		return codeSeq;
-	}
-	public void setCodeSeq(String codeSeq) {
-		this.codeSeq = codeSeq;
-	}
-	public String getCodeName() {
-		return codeName;
-	}
-	public void setCodeName(String codeName) {
-		this.codeName = codeName;
-	}
-	@Override
-	public String toString() {
-		return "ProductVo [productSeq=" + productSeq + ", productName=" + productName + ", productInfo=" + productInfo
-				+ ", productBestNy=" + productBestNy + ", productNewNy=" + productNewNy + ", productStock="
-				+ productStock + ", productPrice=" + productPrice + ", productCatMainCd=" + productCatMainCd
-				+ ", productCatDetailCd=" + productCatDetailCd + ", productStarAll=" + productStarAll
-				+ ", productSizeCd=" + productSizeCd + ", productColorCd=" + productColorCd + ", codeSeq=" + codeSeq
-				+ ", codeName=" + codeName + "]";
 	}
 	
 
