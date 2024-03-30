@@ -49,8 +49,8 @@ index 41(product add): productXdmListAdd -->
                         </li>
                     </ul>
                 </li>
-                <li id="codeGroup" th:class="${index == 20 || index == 21} ? 'current-page'" class="treeview">
-                    <a href="#!">
+                <li id="codeGroup" th:class="${index == 20 || index == 21} ? 'active current-page'" class="treeview">
+                    <a th:href="@{/codeGroupXdmList}" th:class="${index == 20} ? 'active-sub'">
                         <i class="bi bi-layout-text-sidebar-reverse"></i>
                         <span class="menu-text">CodeGroup <sub>&#5167;</sub></span>
                     </a>
@@ -59,12 +59,12 @@ index 41(product add): productXdmListAdd -->
                             <a th:href="@{/codeGroupXdmList}" th:class="${index == 20} ? 'active-sub'">CodeGroup List</a>
                         </li>
                         <li>
-                            <a th:href="@{/codeGroupXdmListAdd}" th:class="${index == 22} ? 'active-sub'">CodeGroup Add</a>
+                            <a th:href="@{/codeGroupXdmListAdd}" th:class="${index == 21} ? 'active-sub'">CodeGroup Add</a>
                         </li>
                     </ul>
                 </li>
-                <li id="members" th:class="${index == 30 || index == 31} ? 'current-page'" class="treeview">
-                    <a href="#!">
+                <li id="members" th:class="${index == 30 || index == 31} ? 'active current-page'" class="treeview">
+                    <a th:href="@{/membersXdmList}" th:class="${index == 30} ? 'active-sub'">
                         <i class="bi bi-person-circle"></i>
                         <span class="menu-text">Members <sub>&#5167;</sub></span>
                     </a>
@@ -78,7 +78,7 @@ index 41(product add): productXdmListAdd -->
                     </ul>
                 </li>
                 <li id="product" th:class="${index == 40 || index == 41} ? 'active current-page'" class=" treeview::after">
-                    <a href="#!">
+                    <a th:href="@{/productXdmList}" th:class="${index == 40} ? 'active-sub'">
                         <i class="bi bi-cart4"></i>
                         <span class="menu-text">Product <sub>&#5167;</sub></span>
                     </a>

@@ -116,7 +116,7 @@
 											Product Seq
 										</option>
 										<option value="2" th:selected="${vo.shOption == 2}">
-											Product mainCatCd
+											Product Info
 										</option>
 										<option value="3" th:selected="${vo.shOption == 3}">
 											ProductName
@@ -324,10 +324,6 @@
 			************ JavaScript Files *************
 		************* -->
 
-		
-		<!-- 하드코딩 추후 하위 블럭으로 처리 필요-->
-		<script src="/adm/assets/js/utilXdm.js"></script>
-
 		<!-- 수정, 함수 및 컨트롤러 내용 구문-->
 		<!-- 오류시 내용 재확인-->
 		<script type="text/javascript">
@@ -375,6 +371,10 @@
 			}
 
 		</script>
+
+	<!--자바스크립트 주소 관련 블록-->
+	<div th:replace="~{/adm/v1/infra/include/xdmJs :: xdmJs}"></div>
+
 	</body>
 
 </html>

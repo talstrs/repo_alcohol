@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+    
+
+<th:block th:fragment="xdmJs">		
+
+    <script src="/adm/assets/js/jquery.min.js"></script>
+    <script src="/adm/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Overlay Scroll JS -->
+    <script src="/adm/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+    <script src="/adm/assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
+
+    <!-- Custom JS files -->
+    <script src="/adm/assets/js/custom.js"></script>
+
+    <!--validations 자바스크립트 -->
+    <script src="/adm/assets/js/validations.js"></script>
+
+    <!-- 페이지네이션 구문-->
+    <script src="/adm/assets/js/utilXdm.js"></script>
+
+    <!--데이터피커 자바스크립트 구문-->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#shDateStart, #shDateEnd").datetimepicker({ 
+                format: "Y-m-d H:i",
+            });
+        });
+    </script>
+    
+</th:block>
+
+</html>
