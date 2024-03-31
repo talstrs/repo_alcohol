@@ -181,10 +181,13 @@
 			if(!checkNull ('membersEmail', 2, '데이터 값을 입력하세요')) return false;
 			if(!checkEmail('membersEmail',2,0,'"abc@google.com"처럼 이메일 형식에 맞게 입력하세요')) return false;
 			if(!checkNull ('membersPw', 2, '데이터 값을 입력하세요')) return false;
+			// 이후 비밀번호 체크 패스워드로 바꿔주기
+				// if(!checkPassword('membersPw',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
 			if(!checkOnlyKoreanEnglishNumber('membersPw',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
 			if(!checkNull ('membersName', 2, '데이터 값을 입력하세요')) return false;
 			if(!checkOnlyKoreanEnglish('membersName',2,0,'영어, 한글만 입력 가능합니다')) return false;
 			if(!checkNull ('membersBirth', 2, '데이터 값을 입력하세요')) return false;
+			if(!checkOnlyEightNumber('membersBirth',2,0,'8자리 숫자만 입력 가능합니다')) return false;
 			
 		}
 

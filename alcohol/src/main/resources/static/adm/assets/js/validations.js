@@ -55,6 +55,14 @@ function checkNullWithoutFocus (value, message) {
 }
 */
 
+function checkOnlyNumberDouble (objName, pattern, nullAllowedNy, message) {
+	
+	
+    var regExp = /^([1-9]{1}\d{0,1}|0{1})(\.{1}\d{0,2})?$/
+    return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
+}
+
+
 function checkOnlyKoreanEnglishNumber (objName, pattern, nullAllowedNy, message) {
 // checkOnlyKoreanEnglishNumber = function(obj, value, message) {
     var regExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
@@ -92,6 +100,18 @@ function checkOnlyKoreanNumber (objName, pattern, nullAllowedNy, message) {
 function checkOnlyKorean (objName, pattern, nullAllowedNy, message) {
 // checkOnlyKorean = function(obj, value, message) {
     var regExp = /^[ㄱ-ㅎ가-힣]+$/;
+    return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
+}
+
+function checkOnlyNumberAll (objName, pattern, nullAllowedNy, message) {
+
+    var regExp = /^[0-9]+$/;
+    return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
+}
+
+function checkOnlyEightNumber (objName, pattern, nullAllowedNy, message) {
+
+    var regExp = /^[0-9]{8}$/;
     return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
 }
 

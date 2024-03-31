@@ -200,9 +200,10 @@
 			if(!checkNull ('productInfo', 2, '데이터 값을 입력하세요')) return false;
 
 			if(!checkNull ('productStock', 2, '데이터 값을 입력하세요')) return false;
-			if(!checkOnlyNumber('productStock', 2, 0, 1, 0, 255, "숫자(0~255)만 입력 가능합니다.")) return false;
+			if(!checkOnlyNumberAll('productStock', 2, 0, "숫자만 입력 가능합니다.")) return false;
 
 			if(!checkNull ('productPrice', 2, '데이터 값을 입력하세요')) return false;
+			if(!checkOnlyNumberDouble ('productPrice', 2,0, '숫자(정수 혹은 소수점 둘째자리까지만 입력 가능합니다.)')) return false;
 
 			if(!checkSelectNull('productCatMainCd', 2, "목록을 선택하세요.")) return false;
 

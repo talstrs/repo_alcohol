@@ -166,18 +166,14 @@ public class MembersController {
 		// DB에서 데이터 가져오기
 		MembersDto dtoCheck = service.selectOneLoginCheck(dto);
 		
-		System.out.println("==============================");
-		System.out.println("==============================");
-		System.out.println("==============================");
-		System.out.println("============================== 오류 확인 1");
+		
 		if(dtoCheck != null) {
-			System.out.println("============================== 오류 확인 2");
+			
 			
 			String loginId = dto.getMembersEmail();
 			String loginPw = dto.getMembersPw();
 
 			if(matchesBcrypt(loginPw,dtoCheck.getMembersPw(),10)) {
-				System.out.println("============================== 오류 확인 3");
 				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 				httpSession.setAttribute("sessSeqXdm", dtoCheck.getMembersSeq());
 				httpSession.setAttribute("sessIdXdm", dtoCheck.getMembersEmail());
@@ -185,14 +181,11 @@ public class MembersController {
 				
 				returnMap.put("rt", "success");
 			} else {
-				System.out.println("============================== 오류 확인 4");
 				returnMap.put("rt", "fail");
 			}
 		} else {
-			System.out.println("============================== 오류 확인 5");
 			returnMap.put("rt", "fail");
 		}
-		System.out.println("============================== 오류 확인 6");
 		
 		return returnMap;
 	}
