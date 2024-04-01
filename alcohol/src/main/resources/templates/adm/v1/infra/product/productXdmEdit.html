@@ -13,7 +13,7 @@
 			<div class="main-container">
 
 				<!--사이드바 블록-->
-				<div th:replace="~{/adm/v1/infra/include/xdmSideBar :: xdmSideBar(40)}"></div>
+				<div th:replace="~{/adm/v1/infra/include/xdmSideBar :: xdmSideBar(30)}"></div>
 
 				
 				<!-- App container starts -->
@@ -56,68 +56,65 @@
 												<input type="hidden" name="productSeq" th:value="${item.productSeq}">
 											</div>
 											<div class="col-md-6">
-												<label class="form-label" for="productXdmListAddBestNy">Best</label>
-												<select class="form-select" name="productBestNy" id="productXdmListAddBestNy">
+												<label class="form-label" for="productBestNy">Best</label>
+												<select class="form-select" name="productBestNy" id="productBestNy">
 													<option value="0" th:selected="0 == ${item.productBestNy}">N</option>
 													<option value="1" th:selected="1 == ${item.productBestNy}">Y</option>
 												</select>
 											</div>
 											<div class="col-md-6">
-												<label class="form-label" for="productXdmListAddNewNy">New</label>
-												<select class="form-select" name="productNewNy" id="productXdmListAddNewNy">
+												<label class="form-label" for="productNewNy">New</label>
+												<select class="form-select" name="productNewNy" id="productNewNy">
 													<option value="0" th:selected="0 == ${item.productNewNy}">N</option>
 													<option value="1" th:selected="1 == ${item.productNewNy}">Y</option>
 												</select>
-												
 											</div>
 
 											<div class="col-md-6">
-												<label for="productXdmListAddName" class="form-label">Name</label>
-												<input type="text" class="form-control" name="productName" id="productXdmListAddName" th:value="${item.productName}" required />
+												<label for="productName" class="form-label">Name</label>
+												<input type="text" class="form-control" name="productName" id="productName" th:value="${item.productName}" required />
 												<div class="invalid-feedback" id="productNameFeedback"></div>
 											</div>
 											<div class="col-md-6">
-												<label for="productXdmListAddInfo" class="form-label">Product Info</label>
-												<input type="text" class="form-control" name="productInfo" id="productXdmListAddInfo" th:value="${item.productInfo}" required />
+												<label for="productInfo" class="form-label">Product Info</label>
+												<input type="text" class="form-control" name="productInfo" id="productInfo" th:value="${item.productInfo}" required />
 												<div class="invalid-feedback" id="productInfoFeedback"></div>
 											</div>
 											<div class="col-md-6">
-												<label for="productXdmListAddStock" class="form-label">Stock</label>
-												<input type="text" class="form-control" name="productStock" id="productXdmListAddStock" th:value="${item.productStock}" required />
+												<label for="productStock" class="form-label">Stock</label>
+												<input type="text" class="form-control" name="productStock" id="productStock" th:value="${item.productStock}" required />
 												<div class="invalid-feedback" id="productStockFeedback"></div>
 											</div>
 											<div class="col-md-6">
-												<label for="productXdmListAddPrice" class="form-label">Price</label>
-												<input type="text" class="form-control" name="productPrice" id="productXdmListAddPrice" th:value="${item.productPrice}" required />
+												<label for="productPrice" class="form-label">Price</label>
+												<input type="text" class="form-control" name="productPrice" id="productPrice" th:value="${item.productPrice}" required />
 												<div class="invalid-feedback" id="productPriceFeedback"></div>
 											</div>
-
+											
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddCatMainCd">CatMain</label>
 												<select class="form-select" name="productCatMainCd" id="productXdmListAddCatMainCd">
-													<option th:each="list : ${@codeService.selectListCachedCode(8)}" th:value="${item.productCatMainCd}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productCatMainCd}"></option>
+													<option th:each="list : ${@codeService.selectListCachedCode(8)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productCatMainCd}"></option>
 												</select>
-												
 											</div>
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddCatDetailCd">CatDetail</label>
 												<select class="form-select" name="productCatDetailCd" id="productXdmListAddCatDetailCd">
-													<option th:each="list : ${@codeService.selectListCachedCode(9)}" th:value="${item.productCatDetailCd}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productCatDetailCd}"></option>
+													<option th:each="list : ${@codeService.selectListCachedCode(9)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productCatDetailCd}"></option>
 												</select>
-												
 											</div>
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddSizeCd">Size</label>
 												<select class="form-select" name="productSizeCd" id="productXdmListAddSizeCd">
 													<option value="">사이즈를 선택하세요</option>
-													<option th:each="list : ${@codeService.selectListCachedCode(14)}" th:value="${item.productSizeCd}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productSizeCd}"></option>
+													<option th:each="list : ${@codeService.selectListCachedCode(14)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productSizeCd}"></option>
 												</select>
 											</div>
 											<div class="col-md-6">
 												<label class="form-label" for="productXdmListAddColorCd">Color</label>
 												<select class="form-select" name="productColorCd" id="productXdmListAddColorCd">
 													<option value="">색상을 선택하세요</option>
-													<option th:each="list : ${@codeService.selectListCachedCode(15)}" th:value="${item.productColorCd}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productColorCd}"></option>
+													<option th:each="list : ${@codeService.selectListCachedCode(15)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.productColorCd}"></option>
 												</select>
 											</div>
 											
@@ -167,6 +164,7 @@
 		************ JavaScript Files *************
 	************* -->
 	<script>
+
 		// 폼 정의 필수
 
 		let form = document.querySelector("form[name=formUpdt]");
@@ -175,53 +173,46 @@
 		let goUrlXdmUpdt = "/productUpdt";	
 
 		document.getElementById("btnSubmit").onclick = function () {
-			alert("확인");
 			if(validationInst() == false){
-				alert("inst 펄스 화화과인");
 				return false;
-				
 			} else {
-				alert("트루");;
 				form.action = goUrlXdmUpdt;
 				form.submit();
-				
 			
 			}
 
 		}
 
 		function validationInst() {
-			alert("화긴영영");
 			if(validationUpdt() == false) { return false;
-				alert("끼야야악");
 			}
 		}
 
 
 		function validationUpdt() {
-			alert("밸리 확인 1");
+
 			if(!checkNull ('productName', 2, '데이터 값을 입력하세요')) return false;
-			alert("밸리 확인 2");
 			if(!checkOnlyKoreanEnglish('productName',2,0,'영어, 한글만 입력 가능합니다')) return false;
-			alert("밸리 확인 3");
 
 			if(!checkNull ('productInfo', 2, '데이터 값을 입력하세요')) return false;
-			alert("밸리 확인 4");
+
 			if(!checkNull ('productStock', 2, '데이터 값을 입력하세요')) return false;
-			alert("밸리 확인 5");
-			if(!checkOnlyNumberAll('productStock', 2, 0, "숫자만 입력 가능합니다.")) return false;
-			alert("밸리 확인 6");
+			if(!checkOnlyNumberAll('productStock',2,0,'숫자만 입력 가능합니다')) return false;
+			
 			if(!checkNull ('productPrice', 2, '데이터 값을 입력하세요')) return false;
-			alert("밸리 확인 7");
-			if(!checkOnlyNumberDouble ('productPrice', 2,0, '숫자(정수 혹은 소수점 둘째자리까지만 입력 가능합니다.)')) return false;
-			alert("밸리 확인 8");
-						
+			if(!checkOnlyNumberDouble('productPrice',2,0,'정수 혹은 소수 둘째 자리수까지만 입력 가능합니다')) return false;
+			
 		}
 
 	</script>
 
+
+
+	
 	<!--자바스크립트 주소 관련 블록-->
 	<div th:replace="~{/adm/v1/infra/include/xdmJs :: xdmJs}"></div>
+	
+
 
 </body>
 
