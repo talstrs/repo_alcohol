@@ -156,6 +156,7 @@
 			,a.membersAdminNy
 			,a.membersEmail
 			,a.membersPw
+			,a.membersName
 		from
 			members a
 		where 1=1

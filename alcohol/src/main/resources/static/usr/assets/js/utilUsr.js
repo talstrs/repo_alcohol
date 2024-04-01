@@ -1,14 +1,8 @@
 
-/*페이징 관련 js*/
-goList = function (thisPage) {
-    document.querySelector("input[name=thisPage]").value = thisPage;
-    form.action = goUrlXdmList;
-    form.submit();
-}
 
-/*관리자 페이지 세션 로그아웃*/
-if(document.getElementById("buttonXdmSignOut")){
-	document.getElementById("buttonXdmSignOut").onclick = function () {
+/*사용자 페이지 세션 로그아웃*/
+if(document.getElementById("buttonUsrSignOut")){
+	document.getElementById("buttonUsrSignOut").onclick = function () {
 	alert("확인");
 		$.ajax({
 			
@@ -16,13 +10,13 @@ if(document.getElementById("buttonXdmSignOut")){
 			,cache: false
 			,type: "post"
 			/* ,dataType:"json" */
-			,url: "/signOutXdmCheck"
+			,url: "/signOutUsrCheck"
 			
 			,success: function(response) {
 				alert("확인");
 				if(response.rt == "success") {
 					alert("logOut success")
-					location.href = "/membersXdmLogin";
+					location.href = "/membersUsrLogin";
 					
 				} else {
 					alert("logOut Fail");

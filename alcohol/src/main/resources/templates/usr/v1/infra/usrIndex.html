@@ -64,8 +64,14 @@
                             <li>
                                 <a href="login-register.html" aria-label="login">
                                     <i class="lastudioicon-single-01-1"></i>
-                                    <span>Login</span>
+                                    <span>Login</span><span>[[${session.sessNameXdm}]]</span>
                                 </a>
+                            </li>
+                            <li>
+                                <button type="button" id="buttonUsrSignOut" aria-label="logOut">
+                                    <i class="lastudioicon-single-01-1"></i>
+                                    <span>Logout</span>
+                                </button>
                             </li>
                             <li>
                                 <a href="term-of-use.html" aria-label="help">
@@ -2143,6 +2149,11 @@
     <!-- Activation JS -->
     <script src="/usr/assets/js/main.js"></script>
 
+    <!--자바스크립트 주소 관련 블록-->
+        <script src="/usr/assets/js/utilUsr.js"></script>
+
+        <!-- 제이쿼리 관련 블록-->
+        <script src="/adm/assets/js/jquery.min.js"></script>
 </body>
 
 </html>

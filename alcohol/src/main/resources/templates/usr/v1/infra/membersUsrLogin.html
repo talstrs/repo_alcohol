@@ -69,6 +69,7 @@
                                     <span>Login</span>
                                 </a>
                             </li>
+                            
                             <li>
                                 <a href="term-of-use.html" aria-label="help">
                                     <i class="lastudioicon-b-meeting-2"></i>
@@ -802,20 +803,22 @@
                         <div class="login-register">
                             <h3 class="login-register__title">Log In</h3>
 
-                            <form action="">
+                            <form>
                                 <div class="login-register__form">
                                     <!--수정, 로그인 폼 라벨 추가-->
                                     <!-- Single Form Start -->
                                     <div class="single-form">
-                                        <label for="loginRegisterEmail" class="form-label">Email address *</label>
-                                        <input class="single-form__input" type="email" id="loginRegisterEmail" placeholder="abd@google.com" />
+                                        <label for="membersEmail" class="form-label">Email</label>
+                                        <input type="text" name="membersEmail" id="membersEmail" class="single-form__input" placeholder="Enter your email" />
+                                        <div class="invalid-feedback" id="membersEmailFeedback"></div>
                                     </div>
                                     <!-- Single Form Start -->
                                     <!-- Single Form Start -->
-                                    <div class="single-form">
-                                        <label for="loginRegisterPassword" class="form-label">Password *</label>
-                                        <input class="single-form__input" type="password" id="loginRegisterPassword" />
-                                    </div>
+									<div class="single-form">
+                                        <label for="membersPw" class="form-label">Password</label>
+										<input type="password" name="membersPw" id="membersPw" class="single-form__input" placeholder="Enter password" />
+										<div class="invalid-feedback" id="membersPwFeedback"></div>
+									</div>
                                     <!-- Single Form Start -->
                                     <!-- Single Form Start -->
                                     <!--수정, 회원가입 이동 내역 추가-->
@@ -834,14 +837,14 @@
 
                                     <!-- Single Form Start -->
                                     <!--수정, 버튼 가로 값 및 회원가입 추가-->
-                                    <div class="single-form text-end">
-                                        <a class="single-form__btn btn" style="width: 300px;">
+                                    <div class="single-form text-end row">
+                                        <button class="single-form__btn btn col" type="button" id="buttonSignIn">
                                             Log In
-                                        </a>
+                                        </button>
                                         
-                                        <a class="single-form__btn btn ms-1" style="width: 300px;">
+                                        <button class="single-form__btn btn col" >
                                             Register
-                                        </a>
+                                        </button>
                                     </div>
                                     <!-- Single Form Start -->
                                 </div>
@@ -851,11 +854,11 @@
                                 <li class="col">
                                     <a class="social-facebook" href="#">
                                         <span class="social-icon">
-                                                <img
-                                                    src="/usr/assets/images/facebook.png"
-                                                    alt="Facebook"
-                                                />
-                                            </span>
+                                            <img
+                                                src="/usr/assets/images/facebook.png"
+                                                alt="Facebook"
+                                            />
+                                        </span>
                                         <span class="social-text"
                                                 >Login with Facebook</span>
                                     </a>
@@ -1057,6 +1060,64 @@
 
     <!-- Activation JS -->
     <script src="/usr/assets/js/main.js"></script>
+
+    <script>
+        document.getElementById("buttonSignIn").onclick = function () {
+            alert("벨리데이션");
+            if(validation() == false) return false;
+            alert("벨리데이션");
+        
+            $.ajax({
+                async: true 
+                ,cache: false
+                ,type: "post"
+                /* ,dataType:"json" */
+                ,url: "/signinUsrCheck"
+                /* ,data : $("#formLogin").serialize() */
+                ,data : { "membersEmail" : $("#membersEmail").val(), "membersPw" : $("#membersPw").val()}
+                // , "autoLogin" : $("#autoLogin").is(":checked")
+                
+                ,success: function(response) {
+                    alert("함수 실행");
+                    alert(response.rt);
+                    if(response.rt == "success") {
+                        alert("성공");
+                        location.href = "/usrIndex";
+                        
+                    } else if(response.rt == "failPw"){
+                        alert("비밀번호가 일치하지 않습니다");
+                        // document.getElementById("modalAlertTitle").innerText = "확 인";
+                        // document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+                        // $("#modalAlert").modal("show");
+                    } else {
+                        alert("아이디가 일치하지 않습니다");
+                    }
+                }
+                ,error : function(jqXHR, textStatus, errorThrown){
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+        }
+
+        function validation() {
+            if(validationCheck() == false) { return false;
+            }
+        }
+        
+        function validationCheck() {
+            if(!checkNull ('membersEmail', 2, '데이터 값을 입력하세요')) return false;
+            if(!checkEmail('membersEmail',2,0,'"abc@google.com"처럼 이메일 형식에 맞게 입력하세요')) return false;
+            if(!checkNull ('membersPw', 2, '데이터 값을 입력하세요')) return false;
+            if(!checkOnlyKoreanEnglishNumber('membersPw',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+            
+            
+        }
+    </script>
+
+    <!-- 밸리데이션 경로 이후 블록시 추가 필요 -->
+    <script src="/adm/assets/js/validations.js"></script>
+    <!-- 제이쿼리 경로 설정-->
+    <script src="/adm/assets/js/jquery.min.js"></script>
 
 </body>
 

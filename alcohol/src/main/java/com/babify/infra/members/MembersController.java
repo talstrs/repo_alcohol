@@ -25,8 +25,6 @@ public class MembersController {
 	@RequestMapping(value = "/membersXdmList")
 	public String membersXdmList(@ModelAttribute("vo") MembersVo vo, Model model) throws Exception {
 
-		System.out.println(vo.getMembersSeq());
-		System.out.println(vo.getMembersName());
 		UtilSearch.setSearch(vo);
 		
 		// 페이징 관련 if 함수 후 모델 객체 불러오기
@@ -164,31 +162,38 @@ public class MembersController {
 		// DB에서 데이터 가져오기
 		MembersDto dtoCheck = service.selectOneLoginCheck(dto);
 		
-		String checkPw = dtoCheck.getMembersPw();
+		
 		
 		
 		if(dtoCheck != null) {
 			
+			String checkPw = dtoCheck.getMembersPw();
 			String loginId = dto.getMembersEmail();
 			String loginPw = dto.getMembersPw();
 			
-			if(matchesBcrypt(loginPw , checkPw ,10)) {
+			
 				
-				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
-				httpSession.setAttribute("sessSeqXdm", dtoCheck.getMembersSeq());
-				httpSession.setAttribute("sessIdXdm", dtoCheck.getMembersEmail());
-				httpSession.setAttribute("sessNameXdm", dtoCheck.getMembersName());
-				
-				returnMap.put("rt", "success");
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+			httpSession.setAttribute("sessSeqXdm", dtoCheck.getMembersSeq());
+			httpSession.setAttribute("sessIdXdm", dtoCheck.getMembersEmail());
+			httpSession.setAttribute("sessNameXdm", dtoCheck.getMembersName());
+			
+			if(loginId.equals(dtoCheck.getMembersEmail())) {
+				if(matchesBcrypt(loginPw , checkPw ,10)) {
+					returnMap.put("rt", "success");
+				} else {
+					returnMap.put("rt", "failPw");
+				}
 			} else {
-				returnMap.put("rt", "fail");
+				returnMap.put("rt", "failId");
 			}
 		} else {
-			returnMap.put("rt", "fail");
+			returnMap.put("rt", "failId");
 		}
 		return returnMap;
 	}
 	
+	// 관리자 세션 로그아웃
 	@ResponseBody
 	@RequestMapping(value = "signOutXdmCheck")
 	public Map<String, Object> signOutXdmCheck(MembersDto dto, HttpSession httpSession) throws Exception {
@@ -220,11 +225,40 @@ public class MembersController {
 	@ResponseBody
 	@RequestMapping(value = "signinUsrCheck")
 	public Map<String, Object> signinUsrCheck(MembersDto dto, HttpSession httpSession) throws Exception {
+		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 
-		// 아이디, 패스워드를 통해서 회원인지 아닌지 여부 조회
-
-        returnMap.put("rt", "success");
+		// DB에서 데이터 가져오기
+		MembersDto dtoCheck = service.selectOneLoginCheck(dto);
+		
+		
+		
+		
+		if(dtoCheck != null) {
+			
+			String checkPw = dtoCheck.getMembersPw();
+			String loginId = dto.getMembersEmail();
+			String loginPw = dto.getMembersPw();
+			
+			
+				
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+			httpSession.setAttribute("sessSeqXdm", dtoCheck.getMembersSeq());
+			httpSession.setAttribute("sessIdXdm", dtoCheck.getMembersEmail());
+			httpSession.setAttribute("sessNameXdm", dtoCheck.getMembersName());
+			
+			if(loginId.equals(dtoCheck.getMembersEmail())) {
+				if(matchesBcrypt(loginPw , checkPw ,10)) {
+					returnMap.put("rt", "success");
+				} else {
+					returnMap.put("rt", "failPw");
+				}
+			} else {
+				returnMap.put("rt", "failId");
+			}
+		} else {
+			returnMap.put("rt", "failId");
+		}
 		return returnMap;
 	}
 	
@@ -236,6 +270,19 @@ public class MembersController {
 
 		return "usr/v1/infra/membersUsrRegister";
 	}
+	
+	// 사용자 세션 로그아웃
+	@ResponseBody
+	@RequestMapping(value = "signOutUsrCheck")
+	public Map<String, Object> signOutUsrCheck(MembersDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		httpSession.invalidate(); // 세션 무효화
+		
+		returnMap.put("rt", "success");
+		
+        return returnMap; // 로그아웃 후 관리자 로그인 페이지로 리다이렉트
+    }
 	
 
 }
