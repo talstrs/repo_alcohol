@@ -66,11 +66,10 @@ public class CodeService {
 	
 	// codeGroup - code list cache 관련
 	public static List<CodeDto> selectListCachedCode(String codeGroupSeq) throws Exception {
-		System.out.println("codeGroupSeq: " + codeGroupSeq);
 		List<CodeDto> rt = new ArrayList<CodeDto>();
 		
 		for(CodeDto codeRow : CodeDto.cachedCodeArrayList) {
-			System.out.println(codeRow.getCodeSeq() + codeGroupSeq);
+			
 			if (codeRow.getCodeGroupSeqF().equals(codeGroupSeq)) {
 				rt.add(codeRow);
 			} else {

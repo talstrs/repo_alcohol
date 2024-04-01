@@ -37,11 +37,6 @@ public class MembersController {
 			
 			model.addAttribute("list", service.selectList(vo));
 		}
-		System.out.println("--------------------------");
-		System.out.println("--------------------------");
-		System.out.println("--------------------------");
-		System.out.println(vo.getMembersSeq());
-		System.out.println(vo.getMembersName());
 		
 
 		return "adm/v1/infra/members/membersXdmList";
@@ -77,7 +72,7 @@ public class MembersController {
 
 
 		
-		dto.setMembersPw(encodeBcrypt(dto.getMembersPw(), 10));
+		dto.setMembersPw(encodeBcrypt((String) dto.getMembersPw(), 10));
 		
 		
 		//String encodedPw = dto.getMembersPw();
@@ -94,7 +89,7 @@ public class MembersController {
 
 
 		
-		dto.setMembersPw(encodeBcrypt(dto.getMembersPw(), 10));
+		dto.setMembersPw(encodeBcrypt((String) dto.getMembersPw(), 10));
 		
 		// String encodedPw = dto.getMembersPw();
 		
@@ -108,6 +103,9 @@ public class MembersController {
 	// 컨트롤러만 리턴 타입을 String으로 변경 가능
 	@RequestMapping(value = "/membersUpdt")
 	public String membersUpdt(MembersDto dto) throws Exception {
+		
+		dto.setMembersPw(encodeBcrypt((String) dto.getMembersPw(), 10));
+		
 		service.update(dto);
 
 		return "redirect:/membersXdmList";
@@ -131,7 +129,7 @@ public class MembersController {
 	
 	// pw 암호화
 	public String encodeBcrypt(String planeText, int strength) {
-		  return new BCryptPasswordEncoder(strength).encode(planeText);
+		  return new BCryptPasswordEncoder(strength).encode(planeText); 
 	}
 
 
@@ -166,14 +164,16 @@ public class MembersController {
 		// DB에서 데이터 가져오기
 		MembersDto dtoCheck = service.selectOneLoginCheck(dto);
 		
+		String checkPw = dtoCheck.getMembersPw();
+		
 		
 		if(dtoCheck != null) {
 			
-			
 			String loginId = dto.getMembersEmail();
 			String loginPw = dto.getMembersPw();
-
-			if(matchesBcrypt(loginPw,dtoCheck.getMembersPw(),10)) {
+			
+			if(matchesBcrypt(loginPw , checkPw ,10)) {
+				
 				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 				httpSession.setAttribute("sessSeqXdm", dtoCheck.getMembersSeq());
 				httpSession.setAttribute("sessIdXdm", dtoCheck.getMembersEmail());
@@ -186,7 +186,6 @@ public class MembersController {
 		} else {
 			returnMap.put("rt", "fail");
 		}
-		
 		return returnMap;
 	}
 	

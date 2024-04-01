@@ -132,7 +132,6 @@
 			,productStock = #{productStock}
 			,productBestNy = #{productBestNy}
 			,productNewNy = #{productNewNy}
-			,productInfo = #{productInfo}
 			,productModDate = now()
 			,productPrice = #{productPrice}
 			,productCatMainCd = #{productCatMainCd}
