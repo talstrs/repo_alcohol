@@ -9,7 +9,6 @@ goList = function (thisPage) {
 /*관리자 페이지 세션 로그아웃*/
 if(document.getElementById("buttonXdmSignOut")){
 	document.getElementById("buttonXdmSignOut").onclick = function () {
-	alert("확인");
 		$.ajax({
 			
 			async: true 
@@ -19,9 +18,7 @@ if(document.getElementById("buttonXdmSignOut")){
 			,url: "/signOutXdmCheck"
 			
 			,success: function(response) {
-				alert("확인");
 				if(response.rt == "success") {
-					alert("logOut success")
 					location.href = "/membersXdmLogin";
 					
 				} else {

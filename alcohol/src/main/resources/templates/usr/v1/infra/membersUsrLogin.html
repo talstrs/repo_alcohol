@@ -777,7 +777,7 @@
                         <div class="login-register">
                             <h3 class="login-register__title">Log In</h3>
 
-                            <form>
+                            <form method="post">
                                 <div class="login-register__form">
                                     <!--수정, 로그인 폼 라벨 추가-->
                                     <!-- Single Form Start -->
@@ -1024,12 +1024,9 @@
     <!-- JS Vendor, Plugins & Activation Script Files -->
 
 
-
     <script>
         document.getElementById("buttonSignIn").onclick = function () {
-            alert("벨리데이션");
             if(validation() == false) return false;
-            alert("벨리데이션");
         
             $.ajax({
                 async: true 
@@ -1042,10 +1039,7 @@
                 // , "autoLogin" : $("#autoLogin").is(":checked")
                 
                 ,success: function(response) {
-                    alert("함수 실행");
-                    alert(response.rt);
                     if(response.rt == "success") {
-                        alert("성공");
                         location.href = "/usrIndex";
                         
                     } else if(response.rt == "failPw"){
@@ -1077,6 +1071,7 @@
             
         }
     </script>
+
 
 	<!--자바스크립트 주소 관련 블록-->
 	<div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>
