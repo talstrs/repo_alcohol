@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+    
+
+<th:block th:fragment="usrHeadSearch">
+    
+    <!-- Search Start -->
+    <div class="search-modal modal fade" id="SearchModal">
+        <!-- Search Close Start -->
+        <button class="search-modal__close" data-bs-dismiss="modal" aria-label="remove">
+            <i class="lastudioicon-e-remove"></i>
+        </button>
+        <!-- Search Close End  -->
+
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Search Form Start  -->
+                <div class="search-modal__form">
+                    <form action="#">
+                        <input type="text" placeholder="Search product…" />
+                        <button class="" aria-label="search">
+                            <i class="lastudioicon-zoom-1"></i>
+                        </button>
+                    </form>
+                </div>
+                <!-- Search Form End  -->
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</html>

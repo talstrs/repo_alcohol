@@ -1,34 +1,8 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <!--수정, 타이틀-->
-    <title>Babify - pet world</title>
+<div th:replace="~{/usr/v1/infra/include/usrHead :: usrHead}"></div>
 
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="Babify - Kids Store & Baby Shop Template" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="/usr/assets/images/favicon.png" />
-
-    <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
-    <link rel="stylesheet" href="/usr/assets/css/giulia-plain.css" />
-
-    <!-- Vendor CSS (Bootstrap & Icon Font) -->
-    <link rel="stylesheet" href="/usr/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/usr/assets/css/lastudioicon.css" />
-
-    <!-- Plugins CSS (All Plugins Files) -->
-    <link rel="stylesheet" href="/usr/assets/css/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="/usr/assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="/usr/assets/css/nice-select2.css" />
-
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="/usr/assets/css/style.min.css" />
-</head>
 
 
 <body>
@@ -1049,17 +1023,7 @@
 
     <!-- JS Vendor, Plugins & Activation Script Files -->
 
-    <!-- Bootstrap JS -->
-    <script src="/usr/assets/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Plugins JS -->
-    <script src="/usr/assets/js/swiper-bundle.min.js"></script>
-    <script src="/usr/assets/js/masonry.pkgd.min.js"></script>
-    <script src="/usr/assets/js/glightbox.min.js"></script>
-    <script src="/usr/assets/js/nice-select2.js"></script>
-
-    <!-- Activation JS -->
-    <script src="/usr/assets/js/main.js"></script>
 
     <script>
         document.getElementById("buttonSignIn").onclick = function () {
@@ -1114,10 +1078,8 @@
         }
     </script>
 
-    <!-- 밸리데이션 경로 이후 블록시 추가 필요 -->
-    <script src="/adm/assets/js/validations.js"></script>
-    <!-- 제이쿼리 경로 설정-->
-    <script src="/adm/assets/js/jquery.min.js"></script>
+	<!--자바스크립트 주소 관련 블록-->
+	<div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>
 
 </body>
 

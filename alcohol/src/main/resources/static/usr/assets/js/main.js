@@ -124,44 +124,8 @@ const slideToggle = (target, time) => {
     }
 }
 
-/* Offcanvas/Collapseable Menu */
-const offCanvasMenu = (selector) => {
-    const offCanvasNav = document.querySelector(selector)
 
-    offCanvasNav.querySelectorAll(".menu-expand").forEach((item) => {
-        item.addEventListener("click", (e) => {
-            e.preventDefault()
-            const parent = item.parentElement.parentElement
 
-            if (parent.classList.contains("active")) {
-                parent.classList.remove("active")
-
-                parent
-                    .querySelectorAll(".sub-menu, .mega-menu, .children")
-                    .forEach((subMenu) => {
-                        subMenu.parentElement.classList.remove("active")
-                        slideUp(subMenu)
-                    })
-            } else {
-                parent.classList.add("active")
-                slideDown(item.parentElement.nextElementSibling)
-
-                getSiblings(parent).forEach((item) => {
-                    item.classList.remove("active")
-
-                    item.querySelectorAll(
-                        ".sub-menu, .mega-menu, .children"
-                    ).forEach((subMenu) => {
-                        subMenu.parentElement.classList.remove("active")
-                        slideUp(subMenu)
-                    })
-                })
-            }
-        })
-    })
-}
-
-offCanvasMenu(".navbar-mobile-menu, .slidedown-menu__menu")
 
 /*--
     Main Slider
