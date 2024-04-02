@@ -75,13 +75,16 @@
 		product a
 	where 1=1
 		and a.productDelNy = 0
+		<if test="productCatMainCd != null and !productCatMainCd.equals('')">AND a.productCatMainCd = #{productCatMainCd}</if>
+		<if test="productBestNy != null and !productBestNy.equals('')">AND a.productBestNy = #{productBestNy}</if>
+		<if test="productNewNy != null and !productNewNy.equals('')">AND a.productNewNy = #{productNewNy}</if>
 		
 	</sql>
 	
 		<!-- 사용자 셀렉리스트 -->
 	<select id="selectListUsr" resultMap="resultMapObj">
 	
-<!-- 		<include refid="base.selectListUpperForMysql" /> -->
+		<include refid="base.selectListUpperForMysql" />
 		select
 			a.productSeq
 			,a.productDelNy
@@ -102,7 +105,7 @@
 		<include refid="selectCommonUsr" />
      	ORDER BY a.productSeq
 		limit 99999999999
-<!-- 		<include refid="base.selectListLowerForMysql" /> -->
+		<include refid="base.selectListLowerForMysql" />
 	</select>
 	
 	<!-- 사용자 셀렉 카운트 -->

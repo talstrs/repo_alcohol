@@ -30,8 +30,7 @@ public class ProductController {
 			model.addAttribute("list", service.selectList(vo));
 		}
 
-		
-		System.out.println(vo.toString());
+	
 	
 	return  "adm/v1/infra/product/productXdmList";
 }
@@ -110,9 +109,17 @@ public String productDele(ProductDto dto) throws Exception{
 //사용자 리스트 목록 화면
 
 @RequestMapping(value = "/productUsrList")
-public String productUsrList(ProductVo vo, Model model) throws Exception{
+public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception{
+
+	// 페이징 관련 if 함수 후 모델 객체 불러오기
 	
-	model.addAttribute("list", service.selectListUsr(vo));
+	vo.setParamsPaging(service.selectOneCountUsr(vo));
+	
+	if(vo.getTotalRows() > 0) {
+		
+		model.addAttribute("list", service.selectListUsr(vo));
+	}
+	
 	
 	return "usr/v1/infra/productUsrList";
 }
