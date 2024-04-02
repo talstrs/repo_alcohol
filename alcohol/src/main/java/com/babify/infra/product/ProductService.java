@@ -23,9 +23,14 @@ public class ProductService {
 //		return list;
 //	}
 // 	서비스는 논리 로직
-//	패턴 2 리스트 호출
+//	패턴 2 리스트 호출(관리자)
 	public List<ProductDto> selectList(ProductVo vo) {
 		return dao.selectList(vo);
+	}
+
+//	패턴 2 리스트 호출(사용자)
+	public List<ProductDto> selectListUsr(ProductVo vo) {
+		return dao.selectListUsr(vo);
 	}
 	
 //  패턴 2 객체 하나 호출
@@ -53,9 +58,14 @@ public class ProductService {
 		return dao.delete(dto);
 	}
 	
-	// 토탈 리턴 관련
+	// 토탈 리턴 관련 (관리자)
 	public int selectOneCount(ProductVo vo) throws Exception{
 		return dao.selectOneCount(vo);
+	}
+	
+	// 토탈 리턴 관련 (사용자)
+	public int selectOneCountUsr(ProductVo vo) throws Exception{
+		return dao.selectOneCountUsr(vo);
 	}
 	
 	// 페이징 처리 리스트

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- 헤드 부분 블록 -->
+<div th:replace="~{/usr/v1/infra/include/usrHead :: usrHead}"></div>
+
+
+<body>
+
+    <!-- 헤더 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadTop :: usrHeadTop}"></div>
+
+    <!-- 헤더 서치 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadSearch :: usrHeadSearch}"></div>
+
+    <!-- 헤더 오른쪽 사이드바 오프캔버스 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadOffcanvas :: usrHeadOffcanvas}"></div>
+    <main>
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-section">
+            <div class="container-fluid custom-container">
+                <div class="breadcrumb-wrapper text-center">
+                    <h2 class="breadcrumb-wrapper__title">Shop</h2>
+                    <ul class="breadcrumb-wrapper__items justify-content-center">
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Shop</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Shop Start -->
+        <div class="shop-section section-padding-2">
+            <div class="container-fluid custom-container">
+                <!-- Shop Wrapper Start -->
+                <div class="shop-wrapper">
+                    <div class="row gy-5">
+                        <div class="col-lg-9">
+                            <!-- Shop Filter Start -->
+                            <div class="shop-filter">
+                                <!-- Shop Filter Default Start -->
+                                <div class="shop-filter-default justify-content-between align-items-center">
+                                    <!-- Shop Filter Count Start -->
+                                    <!--수정, 보여지는 수-->
+                                    <div class="shop-filter-count d-none d-sm-block">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>View</option>
+                                            <option value="1">12</option>
+                                            <option value="2">16</option>
+                                            <option value="3">20</option>
+                                        </select>
+                                    </div>
+                                    <!-- Shop Filter Count End -->
+
+                                    <!-- Shop Filter Sort By Start -->
+                                    <div class="shop-filter-sort-by">
+                                        <div class="shop-filter-sort-by__label">
+                                            <span>Sort by Default</span>
+                                            <i
+                                                    class="lastudioicon-down-arrow"
+                                                ></i>
+                                        </div>
+                                        <ul class="shop-filter-sort-by__dropdown">
+                                            <li class="active">
+                                                <a href="#">Sort by Default</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Sort by Popularity</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Sort by Rated</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Sort by Latest</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Sort by Price:
+                                                    <i
+                                                            class="lastudioicon-arrow-up"
+                                                        ></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Sort by Price:
+                                                    <i
+                                                            class="lastudioicon-arrow-down"
+                                                        ></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Shop Filter Sort By End -->
+                                </div>
+                                <!-- Shop Filter Default End -->
+                            </div>
+                            <!-- Shop Filter End -->
+
+                            <div class="row">
+                                
+                                <div class="row">
+                                    <!-- Single product Start -->
+                                    <div th:if="${#lists.isEmpty(list)}" th:each="lista:${list}">
+                                        <p>등록된 상품이 없습니다</p>
+                                    </div>
+                                    <div th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}" class="col-lg-3 col-md-4 col-sm-6">
+                                        <div class="single-product js-scroll ShortFadeInUp">
+                                            <div class="single-product__thumbnail">
+                                                <div class="single-product__thumbnail--meta-3">
+                                                    <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                                                class="lastudioicon-heart-2"
+                                                            ></i></a>
+                                                </div>
+                                                <div class="single-product__thumbnail--badge out-of-stock">
+                                                    Out of stock
+                                                </div>
+                                                <div class="single-product__thumbnail--holder">
+                                                    <a href="product-single.html">
+                                                        <img src="/usr/assets/images/products/product-02.jpg" alt="Product" width="344" height="370" />
+                                                        <img class="product-hover" src="/usr/assets/images/products/product-12.jpg" alt="Product" width="344" height="370" />
+                                                    </a>
+                                                </div>
+                                                <div class="single-product__thumbnail--meta-2">
+                                                    <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
+                                                                class="lastudioicon-shopping-cart-3"
+                                                            ></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="single-product__info text-center">
+                                                <div class="single-product__info--tags">
+                                                    <a th:href="@{/productUsrList}" th:text="${@codeService.selectOneCachedCode(lista.productCatMainCd)}"></a>
+                                                    <!-- (productCatMainCd=${lista.productCatMainCd}) -->
+                                                </div>
+                                                <!--수정, 별점 넣기-->
+                                                <div class="single-product__info--rating">
+                                                    <span class="star-rating">
+                                                            <span
+                                                                style="width: 88%"
+                                                            ></span>
+                                                    </span>
+                                                </div>
+                                                <h3 class="single-product__info--title">
+                                                    <a href="@{/productUsrView(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
+                                                </h3>
+                                                <div class="single-product__info--price">
+                                                    <ins th:text="${lista.productPrice}"></ins>
+                                                </div>
+                                                <!--색 버튼 추가-->
+                                                <div class="single-product__info--color-swatch">
+                                                    <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
+                                                    <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="brown" data-bs-custom-class="p-meta-tooltip" class="color-item bronze" aria-label="Name"></button>
+                                                    <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green" data-bs-custom-class="p-meta-tooltip" class="color-item green" aria-label="Name"></button>
+                                                    <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red" data-bs-custom-class="p-meta-tooltip" class="color-item red" aria-label="Name"></button>
+                                                    <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <!-- Single product End -->
+                                </div>
+                            </div>
+
+                            <!-- Pagination Start -->
+                            <div class="paginations">
+                                <ul class="paginations-list">
+                                    <li>
+                                        <a href="#">
+                                            <i
+                                                    class="lastudioicon-arrow-left"
+                                                ></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">1</a>
+                                    </li>
+                                    <li>
+                                        <a class="active" href="#">2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">4</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">...</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">10</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i
+                                                    class="lastudioicon-arrow-right"
+                                                ></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Pagination End -->
+                        </div>
+                        <div class="col-lg-3">
+                            <!-- Sidebar Shop Filter widget Start -->
+                            <div class="sidebar-shop-filter-widget">
+                                <!-- Sidebar widget Item Start -->
+                                <!--수정, 사이드바 카테고리-->
+                                <div class="sidebar-widget-item">
+                                    <h4 class="sidebar-widget-item__title">
+                                        Category
+                                        <span>(30)</span>
+                                    </h4>
+                                    <div class="sidebar-widget-item__filter category-filter">
+                                        <ul class="sidebar-widget-item__list category">
+                                            <li>
+                                                <input type="checkbox" id="category-1" />
+                                                <label for="category-1">
+                                                    <span></span>T-shirt (2)</label>
+                                            </li>
+                                            
+                                            <li>
+                                                <input type="checkbox" id="category-2" />
+                                                <label for="category-2">
+                                                    <span></span>Outer (3)</label>
+                                            </li>
+                                            
+                                            <li>
+                                                <input type="checkbox" id="category-3" />
+                                                <label for="category-3">
+                                                    <span></span>One piece (4)</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="category-4" />
+                                                <label for="category-4">
+                                                    <span></span>All in one (2)</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="category-5" />
+                                                <label for="category-5">
+                                                    <span></span>Season clothing (1)</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="category-6" />
+                                                <label for="category-5">
+                                                    <span></span>Shoes (7)</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="category-7" />
+                                                <label for="category-5">
+                                                    <span></span>Etc (11)</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Sidebar widget Item End -->
+                                <!--종료-->
+
+                                <!--수정, 사이드바 별점-->
+                                <div class="sidebar-widget-item">
+                                    <h4 class="sidebar-widget-item__title">
+                                        Star (30)
+                                    </h4>
+                                    <div class="sidebar-widget-item__filter category-filter">
+                                        <ul class="sidebar-widget-item__list category">
+                                            <li>
+                                                <input type="checkbox" id="categoryStar-1" />
+                                                <label for="categoryStar-1">
+                                                    <span></span>
+                                                    ★★★★★ (10)
+                                                </label>
+                                            </li>
+                                            
+                                            <li>
+                                                <input type="checkbox" id="categoryStar-2" />
+                                                <label for="categoryStar-2">
+                                                    <span></span>
+                                                    ★★★★☆ (9)
+                                                </label>
+                                            </li>
+                                            
+                                            <li>
+                                                <input type="checkbox" id="categoryStar-3" />
+                                                <label for="categoryStar-3">
+                                                    <span></span>
+                                                    ★★★☆☆ (8)
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="categoryStar-4" />
+                                                <label for="categoryStar-4">
+                                                    <span></span>
+                                                    ★★☆☆☆ (2)
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="categoryStar-5" />
+                                                <label for="categoryStar-5">
+                                                    <span></span>
+                                                    ★☆☆☆☆ (1)
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Sidebar widget Item End -->
+                                <!--종료-->
+
+                                <!-- Sidebar widget Item Start -->
+                                <div class="sidebar-widget-item">
+                                    <h4 class="sidebar-widget-item__title">
+                                        Price
+                                    </h4>
+                                    <div class="sidebar-widget-item__filter price-range-filter">
+                                        <form>
+                                            <div class="filter-slider">
+                                                <div class="filter-progress"></div>
+                                            </div>
+                                            <div class="filter-range-input">
+                                                <input type="range" class="range-min" min="0" max="500" value="10" step="10" />
+                                                <input type="range" class="range-max" min="0" max="500" value="90" step="10" />
+                                            </div>
+                                            <p class="filter-price-value">
+                                                Price:
+                                                <input type="text" class="input-min" value="$10" />
+                                                <span>—</span>
+                                                <input type="text" class="input-max" value="$90" />
+                                            </p>
+                                            <button type="button" class="filter-price-btn">
+                                                Filter
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- Sidebar widget Item End -->
+
+                                <!--수정, 사이즈-->
+                                <!-- Sidebar widget Item Start -->
+                                <div class="sidebar-widget-item">
+                                    <h4 class="sidebar-widget-item__title">
+                                        Size
+                                    </h4>
+                                    <div class="sidebar-widget-item__filter">
+                                        <ul class="sidebar-widget-item__list-2">
+                                            <li>
+                                                <input type="checkbox" id="size-1" />
+                                                <label for="size-1">
+                                                    XS</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="size-2" />
+                                                <label for="size-2">
+                                                    S</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="size-3" />
+                                                <label for="size-3">
+                                                    M</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="size-4" />
+                                                <label for="size-4">
+                                                    L</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="size-5" />
+                                                <label for="size-5">
+                                                    XL</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Sidebar widget Item End -->
+
+                                <!-- Sidebar widget Item Start -->
+                                <!--수정, 컬러-->
+                                <div class="sidebar-widget-item">
+                                    <h4 class="sidebar-widget-item__title">
+                                        Color
+                                    </h4>
+                                    <div class="sidebar-widget-item__filter">
+                                        <ul class="sidebar-widget-item__color">
+                                            <li>
+                                                <input type="checkbox" id="blue" />
+                                                <label for="blue">
+                                                    <span
+                                                            class="blue"
+                                                        ></span>Blue</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="bronze" />
+                                                <label for="bronze">
+                                                    <span
+                                                            class="bronze"
+                                                        ></span>brown</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="green" />
+                                                <label for="green">
+                                                    <span
+                                                            class="green"
+                                                        ></span>Green</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="red" />
+                                                <label for="red">
+                                                    <span class="red"></span>Red</label>
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="yellow" />
+                                                <label for="yellow">
+                                                    <span
+                                                            class="yellow"
+                                                        ></span>Yellow</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Sidebar widget Item End -->
+
+                                
+                            </div>
+                            <!-- Sidebar Shop Filter widget End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Shop Wrapper End -->
+            </div>
+        </div>
+        <!-- Shop End -->
+
+        <!-- Newsletter Start -->
+        <div class="newsletter-section">
+            <div class="newsletter-left" style="
+                        background-image: url(/usr/assets/images/newsletter-bg-1.jpg);
+                    ">
+                <div class="newsletter-social">
+                    <h4 class="newsletter-social__label">Follow us on</h4>
+                    <ul class="newsletter-social__list">
+                        <li>
+                            <a href="#" aria-label="facebook"><i class="lastudioicon-b-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="twitter"><i class="lastudioicon-b-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="instagram"><i class="lastudioicon-b-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="vimeo"><i class="lastudioicon-b-vimeo"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" aria-label="envato"><i class="lastudioicon-envato"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="newsletter-right" style="
+                        background-image: url(/usr/assets/images/newsletter-bg-2.jpg);
+                    ">
+                <!-- Newsletter Wrapper Start -->
+                <div class="newsletter-wrapper text-center">
+                    <h4 class="newsletter-wrapper__title-2">
+                        10% off when you sign up
+                    </h4>
+                    <form action="#">
+                        <div class="newsletter-form-style-1">
+                            <input type="text" placeholder="Enter your email address..." />
+                            <button>Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Newsletter Wrapper End -->
+            </div>
+        </div>
+        <!-- Newsletter End -->
+    </main>
+
+    <!-- 푸터 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>
+
+	<!--자바스크립트 주소 관련 블록-->
+	<div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>
+</body>
+
+</html>

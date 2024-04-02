@@ -107,8 +107,15 @@ public String productDele(ProductDto dto) throws Exception{
 	return "redirect:/productXdmList";
 }
 
+//사용자 리스트 목록 화면
 
-
+@RequestMapping(value = "/productUsrList")
+public String productUsrList(ProductVo vo, Model model) throws Exception{
+	
+	model.addAttribute("list", service.selectListUsr(vo));
+	
+	return "usr/v1/infra/productUsrList";
+}
 
 		
 

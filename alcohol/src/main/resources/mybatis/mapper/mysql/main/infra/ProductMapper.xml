@@ -9,11 +9,13 @@
 	<!-- 아이디 설정하여 셀렉문에 부과 / Dto 경로 -->
 	<resultMap id="resultMapObj" type="com.babify.infra.product.ProductDto"></resultMap>
 	
-	<sql id ="selectCommon">
+<!-- 	셀렉 커먼 관리자 -->
+	<sql id ="selectCommonXdm">
 	from
 		product a
 	where 1=1
 		and a.productDelNy = 0
+		
 		<!-- 추가, 사용여부 사용시 진행 필요 건 -->
 		<!-- <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
 		<if test="shDelNy != null and !shDelNy.equals('')">AND a.productDelNy = #{shDelNy}</if>
@@ -33,6 +35,8 @@
       		</choose>
 	</sql>
 	
+	
+	<!-- 관리자 셀렉리스트 -->
 	<select id="selectList" resultMap="resultMapObj">
 	
 		<include refid="base.selectListUpperForMysql" />
@@ -53,16 +57,60 @@
 			,a.productColorCd
 			,a.productRegDate
 			,a.productModDate
-		<include refid="selectCommon" />
+		<include refid="selectCommonXdm" />
      	ORDER BY a.productSeq
 		limit 99999999999
 		<include refid="base.selectListLowerForMysql" />
 	</select>
 	
+	<!-- 관리자 셀렉 카운트 -->
 	<select id="selectOneCount" resultType="Integer">
 		select COUNT(*)
-		<include refid="selectCommon"></include>
+		<include refid="selectCommonXdm"></include>
 	</select>
+	
+	<!-- 	셀렉 커먼 사용자 -->
+	<sql id ="selectCommonUsr">
+	from
+		product a
+	where 1=1
+		and a.productDelNy = 0
+		
+	</sql>
+	
+		<!-- 사용자 셀렉리스트 -->
+	<select id="selectListUsr" resultMap="resultMapObj">
+	
+<!-- 		<include refid="base.selectListUpperForMysql" /> -->
+		select
+			a.productSeq
+			,a.productDelNy
+			,a.productUseNy
+			,a.productBestNy
+			,a.productNewNy
+			,a.productName
+			,a.productInfo
+			,a.productStock
+			,a.productPrice
+			,a.productCatMainCd
+			,a.productCatDetailCd
+			,a.productStarAll
+			,a.productSizeCd
+			,a.productColorCd
+			,a.productRegDate
+			,a.productModDate
+		<include refid="selectCommonUsr" />
+     	ORDER BY a.productSeq
+		limit 99999999999
+<!-- 		<include refid="base.selectListLowerForMysql" /> -->
+	</select>
+	
+	<!-- 사용자 셀렉 카운트 -->
+	<select id="selectOneCountUsr" resultType="Integer">
+		select COUNT(*)
+		<include refid="selectCommonUsr"></include>
+	</select>
+	
 	
 	<!-- 셀렉원 만들기 -->
 	<select id="selectOne" resultMap="resultMapObj">

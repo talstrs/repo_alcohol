@@ -10,7 +10,11 @@ public interface ProductDao {
 //  service 파일의 기능등을 명시하는 인터페이스.
 //  쿼리 실행시키는 곳
 	
+	// 관리자 셀렉 리스트
 	public List<ProductDto> selectList(ProductVo vo); //List<dto>: 여러개의 데이터를 가져올때
+	// 사용자 셀렉 리스트
+	public List<ProductDto> selectListUsr(ProductVo vo); //List<dto>: 여러개의 데이터를 가져올때
+	
 	public ProductDto selectOne(ProductDto dto); //dto: 하나의 데이터를 가져올때
 	
 	// 데이터를 추가할 때(삽입 insert)
@@ -26,8 +30,11 @@ public interface ProductDao {
 	
 	public int delete(ProductDto dto);
 
-// 토탈 개수 관련
+// 토탈 개수 관련 (관리자)
 	public int selectOneCount(ProductVo vo);
+
+// 토탈 개수 관련 (사용자)
+	public int selectOneCountUsr(ProductVo vo);
 	
 // 페이지네이션 관련
 	public List<ProductDto> selectListWithPaging(ProductVo vo);
