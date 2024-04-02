@@ -61,13 +61,13 @@
                     </div>
                     <div class="header__top--right">
                         <ul class="header__top--items">
-                            <li>
-                                <a href="login-register.html" aria-label="login">
+                            <li th:if="${session.sessNameXdm == null}">
+                                <a th:href="@{/membersUsrLogin}" > 
                                     <i class="lastudioicon-single-01-1"></i>
-                                    <span>Login</span><span>[[${session.sessNameXdm}]]</span>
+                                    <span>Login</span>
                                 </a>
                             </li>
-                            <li>
+                            <li th:unless="${session.sessNameXdm} == null">
                                 <button type="button" id="buttonUsrSignOut" aria-label="logOut">
                                     <i class="lastudioicon-single-01-1"></i>
                                     <span>Logout</span>
