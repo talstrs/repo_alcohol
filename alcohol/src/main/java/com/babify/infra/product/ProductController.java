@@ -124,6 +124,14 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 	return "usr/v1/infra/productUsrList";
 }
 
+// 사용자 인덱스
+@RequestMapping(value = "/usrIndex")
+public String usrIndex(ProductVo vo, Model model) throws Exception {
+	
+    model.addAttribute("listBest", service.selectListUsrIndexBest(vo));
+    
+    return "usr/v1/infra/usrIndex";
+}
 		
 
 }

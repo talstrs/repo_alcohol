@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 모름 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Dao 경로 -->
+<mapper namespace="com.babify.infra.orders.OrdersDao">
+
+	<!-- 아이디 설정하여 셀렉문에 부과 / Dto 경로 -->
+	<resultMap id="resultMapObj" type="com.babify.infra.orders.OrdersDto"></resultMap>
+	
+
+	<select id="selectList" resultMap="resultMapObj">
+	
+		SELECT 
+			b.membersSeq
+			,b.membersName
+		    ,b.membersEmail
+		    ,b.membersGradeCd
+			,a.ordersSeq
+		    ,a.ordersDelNy
+		    ,a.ordersUseNy
+		    ,a.ordersStatusCd
+		    ,a.ordersPaymentCd
+		    ,a.ordersCardCompanyCd
+		    ,a.ordersCardNo
+		    ,a.ordersName
+		    ,a.ordersCardDate
+		    ,a.ordersCardCvv
+		    ,a.ordersFeeNy
+		    ,a.ordersPrice
+		    ,a.ordersTotalPrice
+		    ,a.ordersRegDate
+		    ,a.ordersModDate
+		    ,a.members_membersSeq as membersMembersSeqF
+		    ,c.orders_ordersSeq as ordersOrdersSeqF
+		    ,c.product_productSeq as productProductSeqF
+		FROM orders a
+			LEFT JOIN members b
+				on b.membersSeq = a.members_membersSeq
+			LEFT JOIN productOrders c
+				on c.orders_ordersSeq = a.ordersSeq
+		WHERE a.members_membersSeq = #{membersMembersSeqF}
+		     	ORDER BY a.ordersSeq
+				limit 99999999999
+	</select>
+
+	
+	<!-- 셀렉원 만들기 -->
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			a.ordersSeq
+		    ,a.ordersDelNy
+		    ,a.ordersUseNy
+		    ,a.ordersStatusCd
+		    ,a.ordersPaymentCd
+		    ,a.ordersCardCompanyCd
+		    ,a.ordersCardNo
+		    ,a.ordersName
+		    ,a.ordersCardDate
+		    ,a.ordersCardCvv
+		    ,a.ordersFeeNy
+		    ,a.ordersPrice
+		    ,a.ordersTotalPrice
+		    ,a.ordersRegDate
+		    ,a.ordersModDate
+		    ,a.members_membersSeq
+		from
+			orders a
+		where 1=1
+			and a.ordersDelNy = 0
+		    and a.ordersSeq = #{ordersSeq}
+			
+			
+	</select>
+</mapper>

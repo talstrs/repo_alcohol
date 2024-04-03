@@ -15,6 +15,10 @@ public interface ProductDao {
 	// 사용자 셀렉 리스트
 	public List<ProductDto> selectListUsr(ProductVo vo); //List<dto>: 여러개의 데이터를 가져올때
 	
+	// 사용자 인덱스 베스트 셀렉 리스트
+	public List<ProductDto> selectListUsrIndexBest(ProductVo vo);
+	
+	
 	public ProductDto selectOne(ProductDto dto); //dto: 하나의 데이터를 가져올때
 	
 	// 데이터를 추가할 때(삽입 insert)

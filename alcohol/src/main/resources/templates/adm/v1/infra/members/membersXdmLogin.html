@@ -16,6 +16,7 @@
 									<img src="/adm/assets/images/logo-dark.svg" class="img-fluid login-logo" alt="Venus Admin" />
 								</a>
 								<h4 class="fw-semibold mb-4">Login</h4>
+								
 								<div class="mb-3">
 									<label for="membersEmail" class="form-label">Email</label>
 									<input type="text" name="membersEmail" id="membersEmail" class="form-control" placeholder="Enter your email" />
@@ -72,7 +73,7 @@
 					,type: "post"
 					/* ,dataType:"json" */
 					,url: "/signinXdmCheck"
-					/* ,data : $("#formLogin").serialize() */
+					/* ,data : $("#formLogin").serialize() */ 
 					,data : { "membersEmail" : $("#membersEmail").val(), "membersPw" : $("#membersPw").val()}
 					// , "autoLogin" : $("#autoLogin").is(":checked")
 					

@@ -17,23 +17,24 @@
                     <div class="header__top--left d-none d-md-block">
                         <ul class="header__top--items">
                             <li>
-                                <a href="#" aria-label="Map">
-                                    <i class="lastudioicon-pin-3-1"></i>
-                                    <span>Korea</span>
-                                </a>
+                                <i class="lastudioicon-pin-3-1"></i>
+                                <span>Korea</span>
                             </li>
                         </ul>
                     </div>
                     <div class="header__top--right">
                         <ul class="header__top--items">
                             <!-- 세션 여부로 로그인/로그아웃 표시-->
-                            <li th:if="${session.sessNameXdm == null}">
+                            <li th:if="${session.sessNameUsr == null}">
                                 <a th:href="@{/membersUsrLogin}" > 
                                     <i class="lastudioicon-single-01-1"></i>
                                     <span>Login</span>
                                 </a>
                             </li>
-                            <li th:unless="${session.sessNameXdm} == null">
+                            <li th:unless="${session.sessNameUsr} == null">
+                                <a th:href="@{/myAccount}">My Account</a>
+                            </li>
+                            <li th:unless="${session.sessNameUsr} == null">
                                 <button type="button" id="buttonUsrSignOut" aria-label="logOut">
                                     <i class="lastudioicon-single-01-1"></i>
                                     <span>Logout</span>
@@ -59,7 +60,7 @@
                     </div>
                     <div class="col-xl-3 col-md-4 col-6">
                         <div class="header__main--logo text-center text-xl-start">
-                            <a href="index.html">
+                            <a th:href="@{/usrIndex}">
                                 <img src="/usr/assets/images/logo.png" alt="Logo" width="150" height="28" />
                             </a>
                         </div>
@@ -121,7 +122,7 @@
                             <!-- Meta Item List Start -->
                             <ul class="meta-items-list meta-items-list--dark d-flex justify-content-end align-items-center">
                                 <li class="search d-none d-lg-block">
-                                    <form action="#">
+                                    <form>
                                         <div class="meta-search meta-search--dark">
                                             <input type="text" placeholder="Search products…" />
                                             <button aria-label="search">

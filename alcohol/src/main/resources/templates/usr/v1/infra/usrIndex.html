@@ -39,7 +39,7 @@
 
                                 <ul class="home-1-slider-content-style-1__btns justify-content-center">
                                     <li class="button-01">
-                                        <a class="home-1-slider-content-style-1__btn" href="shop-fullwidth.html">
+                                        <a class="home-1-slider-content-style-1__btn" th:href="@{/productUsrList(productNewNy=1)}" >
                                             Shop now
                                         </a>
                                     </li>
@@ -63,7 +63,7 @@
 
                                 <ul class="home-1-slider-content-style-1__btns">
                                     <li class="button-01">
-                                        <a class="home-1-slider-content-style-1__btn" href="shop-fullwidth.html">
+                                        <a class="home-1-slider-content-style-1__btn" th:href="@{/productUsrList(productCatMainCd=12)}">
                                             Shop now
                                         </a>
                                     </li>
@@ -87,7 +87,7 @@
 
                                 <ul class="home-1-slider-content-style-1__btns">
                                     <li class="button-01">
-                                        <a class="home-1-slider-content-style-1__btn" href="shop-fullwidth.html">
+                                        <a class="home-1-slider-content-style-1__btn" th:href="@{/productUsrList(productCatMainCd=13)}">
                                             Shop now
                                         </a>
                                     </li>
@@ -123,11 +123,10 @@
                     <div class="col-lg-4 col-sm-6 grid-item">
                         <!-- Banner Start -->
                         <div class="banner-item banner-1 js-scroll ShortFadeInUp">
-                            <a href="#">
+                            <a th:href="@{/productUsrList(productCatMainCd=14)}">
                                 <div class="banner-item__image">
                                     <img src="/usr/assets/images/bannerA.png" alt="Banner" />
                                 </div>
-                                <!--수정, 새로운 옷-->
                                 <div class="banner-item__content">
                                     <h3 class="banner-item__title">
                                         New Feed
@@ -145,9 +144,9 @@
                     </div>
                     <div class="col-lg-4 col-sm-6 grid-item">
                         <!-- Banner Start -->
-                        <!--수정, 첫 산책-->
+                        
                         <div class="banner-item banner-2 js-scroll ShortFadeInUp">
-                            <a href="#">
+                            <a th:href="@{/productUsrList(productCatMainCd=12)}">
                                 <div class="banner-item__image">
                                     <img src="/usr/assets/images/bannerB.jpg" alt="Banner" width="453" height="266" loading="lazy" />
                                 </div>
@@ -169,9 +168,9 @@
                     <div class="col-lg-4 col-sm-6 grid-item">
                         <!-- Banner Start -->
                         <div class="banner-item banner-2 js-scroll ShortFadeInUp">
-                            <a href="#">
+                            <a th:href="@{/productUsrList(productCatMainCd=16)}">
                                 <div class="banner-item__image">
-                                    <!--수정, 배우는 시간을 사진 찍자-->
+                                    
                                     <img src="/usr/assets/images/bannerC.png" alt="Banner" width="453" height="266" loading="lazy" />
                                 </div>
                                 <div class="banner-item__content text-center">
@@ -192,12 +191,12 @@
                     <div class="col-lg-4 col-sm-6 grid-item">
                         <!-- Banner Start -->
                         <div class="banner-item banner-3 js-scroll ShortFadeInUp">
-                            <a href="#">
+                            <a th:href="@{/productUsrList(productCatMainCd=13)}">
                                 <div class="banner-item__image">
                                     <img src="/usr/assets/images/bannerD.jpg" alt="Banner" width="453" height="266" loading="lazy" />
                                 </div>
                                 <div class="banner-item__content text-center">
-                                    <!--수정, 토이 장난감-->
+                                    
                                     <h3 class="banner-item__title">
                                         Enjoy
                                     </h3>
@@ -215,11 +214,11 @@
                     <div class="col-lg-4 col-sm-6 grid-item">
                         <!-- Banner Start -->
                         <div class="banner-item banner-4 js-scroll ShortFadeInUp">
-                            <a href="#">
+                            <a th:href="@{/productUsrList(productCatMainCd=15)}">
                                 <div class="banner-item__image">
                                     <img src="/usr/assets/images/bannerE.jpg" alt="Banner" width="453" height="266" loading="lazy" />
                                 </div>
-                                <!--수정, 유용한 악세사리-->
+                                
                                 <div class="banner-item__content text-center">
                                     <h3 class="banner-item__title">
                                         Useful
@@ -242,7 +241,7 @@
 
         <!-- Product Clothing Start -->
         <div class="product-section section-padding-1">
-            <div class="container-fluid custom-container">
+            <div class="container-fluid custom-container row">
                 <!-- Section Title Start -->
                 <div class="section-title text-center js-scroll ShortFadeInUp">
                     <span class="section-title__icon">
@@ -257,318 +256,56 @@
                 <!-- Section Title End -->
 
                 <!-- Product Wrapper Start -->
-                <div class="product-wrapper product-active navigation-arrows-style-1">
-                    <div class="swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <!--수정, 옷 카테고리-->
-                                        <!--수정, 야구 캡틴 옷 첫번째-->
-                                        <!--https://dogpre.com/product/100187-->
-                                        <div class="single-product__thumbnail--badge onsale">
-                                            Sale
-                                        </div>
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-06.jpg" alt="Product" width="344" height="370" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                        class="lastudioicon-shopping-cart-3"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
-                                                        class="lastudioicon-heart-2"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                                        class="lastudioicon-ic_compare_arrows_24px"
-                                                    ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                                        class="lastudioicon-search-zoom-in"
-                                                    ></i>
-                                            </button>
-                                        </div>
-                                    </div>
+                <div th:if="${!#lists.isEmpty(listBest)}" th:each="lista:${listBest}" class="col-3">
+                    
                                     
-                                    <div class="single-product__info">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">Clothing</a>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                baseball club captain
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <del>$45.99</del>
-                                            <ins>$24.99</ins>
-                                        </div>
-                                        <div class="single-product__info--rating">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <div class="single-product__info--color-swatch">
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <div class="swiper-slide ">
-                                <!-- Single product Start -->
-                                <div class="single-product js-scroll ShortFadeInUp ">
-                                    <div class="single-product__thumbnail ">
-                                        <div class="single-product__thumbnail--badge onsale">
-                                            Sale
-                                        </div>
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <!--수정, 옷 두번째-->
-                                                <!--멍바오, https://dogpre.com/product/100326-->
-                                                <img src="/usr/assets/images/products/product-05.jpg" alt="Product" width="344" height="370" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2 ">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                        class="lastudioicon-shopping-cart-3"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
-                                                        class="lastudioicon-heart-2"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                                        class="lastudioicon-ic_compare_arrows_24px"
-                                                    ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                                        class="lastudioicon-search-zoom-in"
-                                                    ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info ">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">Clothing</a>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                baby panda
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <del>$39.99</del>
-                                            <ins>$29.99</ins>
-                                        </div>
-                                        <div class="single-product__info--rating">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <div class="single-product__info--color-swatch">
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="brown" data-bs-custom-class="p-meta-tooltip" class="color-item bronze" aria-label="Name"></button>
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green" data-bs-custom-class="p-meta-tooltip" class="color-item green" aria-label="Name"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <!--수정, 옷 세번째-->
-                            <!--도그나라 공주 2세, https://dogpre.com/product/98412 -->
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--badge onsale">
-                                            Sale
-                                        </div>
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-04.jpg" alt="Product" width="344" height="370" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                        class="lastudioicon-shopping-cart-3"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
-                                                        class="lastudioicon-heart-2"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                                        class="lastudioicon-ic_compare_arrows_24px"
-                                                    ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                                        class="lastudioicon-search-zoom-in"
-                                                    ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">Clothing</a>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                Puppy Country Princess II
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <del>$29.99</del>
-                                            <ins>$13.99</ins>
-                                        </div>
-                                        <div class="single-product__info--rating">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <div class="single-product__info--color-swatch">
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <!--수정, 옷 네 번째-->
-                                <!--겨울 눈, https://dogpre.com/product/100197-->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-03.jpg" alt="Product" width="344" height="370" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                        class="lastudioicon-shopping-cart-3"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
-                                                        class="lastudioicon-heart-2"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                                        class="lastudioicon-ic_compare_arrows_24px"
-                                                    ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                                        class="lastudioicon-search-zoom-in"
-                                                    ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">Clothing</a>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                winter snow
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <del></del>
-                                            <ins>$29.99</ins>
-                                        </div>
-                                        <div class="single-product__info--rating">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <div class="single-product__info--color-swatch">
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <!--수정, 옷 다섯번째-->
-                                <!--곰, https://dogpre.com/product/99993-->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-02.jpg" alt="Product" width="344" height="370" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                        class="lastudioicon-shopping-cart-3"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
-                                                        class="lastudioicon-heart-2"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                                        class="lastudioicon-ic_compare_arrows_24px"
-                                                    ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                                        class="lastudioicon-search-zoom-in"
-                                                    ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">Clothing</a>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                pretend to be a bear
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <del></del>
-                                            <ins>$31.99</ins>
-                                        </div>
-                                        <div class="single-product__info--rating">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <div class="single-product__info--color-swatch">
-                                            
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="brown" data-bs-custom-class="p-meta-tooltip" class="color-item brown" aria-label="Name"></button>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
+                                    
+                    <div class="single-product__thumbnail">
+                        <div class="single-product__thumbnail--badge out-of-stock">
+                            Out of stock
+                        </div>
+                        <div class="single-product__thumbnail--holder">
+                            <a href="product-single.html">
+                                <img src="/usr/assets/images/products/product-06.jpg" alt="Product" width="344" height="370" />
+                            </a>
+                        </div>
+                        <div class="single-product__thumbnail--meta-2">
+                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                        class="lastudioicon-heart-2"
+                            ></i></a>
                         </div>
                     </div>
-
-                    <div class="swiper-button-prev">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12.624" height="30.79" viewBox="0 0 12.624 30.79">
-                            <path d="m11.229 1.395-10 14 10 14" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path>
-                        </svg>
-                    </div>
-                    <div class="swiper-button-next">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12.624" height="30.79" viewBox="0 0 12.624 30.79">
-                            <path d="m1.395 1.395 10 14-10 14" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path>
-                        </svg>
+                    
+                    <div class="single-product__info">
+                        <div class="single-product__info--tags">
+                            <a th:href="@{/productUsrList}" th:text="${@codeService.selectOneCachedCode(lista.productCatMainCd)}"></a>
+                        </div>
+                        <h3 class="single-product__info--title">
+                            <!-- th:href로 변경 필요 -->
+                            <a href="@{/productUsrView(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
+                        </h3>
+                        <div class="single-product__info--price">
+                            <ins th:text="${lista.productPrice}"></ins>
+                        </div>
+                        <div class="single-product__info--rating">
+                            <span class="star-rating">
+                                    <span
+                                        style="width: 88%"
+                                    ></span>
+                            </span>
+                        </div>
+                        <div class="single-product__info--color-swatch">
+                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
+                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
+                        </div>
                     </div>
                 </div>
                 <!-- Product Wrapper End -->
-
+            </div>
+            <div>
                 <!-- More Button Start -->
                 <div class="text-center js-scroll ShortFadeInUp">
-                    <a class="view-more-btn" href="#">View more Clothing</a>
+                    <a class="view-more-btn" th:href="@{/productUsrList(productBestNy=1)}">View more BEST</a>
                 </div>
                 <!-- More Button End -->
             </div>
@@ -576,7 +313,7 @@
         <!-- Product Clothing End -->
 
         <!-- Product Toys Start -->
-        <div class="product-section section-padding-1">
+        <div class="product-section section-padding-1" >
             <div class="container-fluid custom-container">
                 <!-- Section Title Start -->
                 <div class="section-title text-center js-scroll ShortFadeInUp">
@@ -654,263 +391,15 @@
                                 </div>
                                 <!-- Single product End -->
                             </div>
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <!--수정, 토이 두번째-->
-                                <!--로켓집, https://dogpre.com/product/98278-->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail--badge onsale">
-                                        Sale
-                                    </div>
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-12.jpg" alt="Product" width="344" height="370" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                        class="lastudioicon-shopping-cart-3"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
-                                                        class="lastudioicon-heart-2"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                                        class="lastudioicon-ic_compare_arrows_24px"
-                                                    ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                                        class="lastudioicon-search-zoom-in"
-                                                    ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">Toys</a>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                Pet Happy Cushion
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <del>$149.99</del>
-                                            <ins>$99.99</ins>
-                                        </div>
-                                        <div class="single-product__info--rating">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <div class="single-product__info--color-swatch">
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
-                                            
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green" data-bs-custom-class="p-meta-tooltip" class="color-item green" aria-label="Name"></button>
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red" data-bs-custom-class="p-meta-tooltip" class="color-item red" aria-label="Name"></button>
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!--수정, 토이 세번째-->
-                                <!--led목걸이, https://dogpre.com/product/98297-->
-                                <!-- Single product Start -->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--badge onsale">
-                                            Sale
-                                        </div>
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-15.jpg" alt="Product" width="344" height="370" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                        class="lastudioicon-shopping-cart-3"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
-                                                        class="lastudioicon-heart-2"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                                        class="lastudioicon-ic_compare_arrows_24px"
-                                                    ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                                        class="lastudioicon-search-zoom-in"
-                                                    ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">Toys</a>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                LED Pendant Wiggle Bear
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <del>$79.99</del>
-                                            <ins>$61.99</ins>
-                                        </div>
-                                        <div class="single-product__info--rating">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <div class="single-product__info--color-swatch">
-                                            
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red" data-bs-custom-class="p-meta-tooltip" class="color-item red" aria-label="Name"></button>
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <!--수정, 토이 네번째-->
-                                <!--pet party set, https://dogpre.com/product/98298-->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-16.jpg" alt="Product" width="344" height="370" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                        class="lastudioicon-shopping-cart-3"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
-                                                        class="lastudioicon-heart-2"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                                        class="lastudioicon-ic_compare_arrows_24px"
-                                                    ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                                        class="lastudioicon-search-zoom-in"
-                                                    ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">Toys</a>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                pet party set
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <del></del>
-                                            <ins>$17.99</ins>
-                                        </div>
-                                        <div class="single-product__info--rating">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <div class="single-product__info--color-swatch">
-                                            
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green" data-bs-custom-class="p-meta-tooltip" class="color-item green" aria-label="Name"></button>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <!--수정, 토이 다섯번째-->
-                                <!--pet tv, https://dogpre.com/product/98285-->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-11.jpg" alt="Product" width="344" height="370" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                        class="lastudioicon-shopping-cart-3"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
-                                                        class="lastudioicon-heart-2"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                                        class="lastudioicon-ic_compare_arrows_24px"
-                                                    ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                                        class="lastudioicon-search-zoom-in"
-                                                    ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">Toys</a>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                Rising Star Tv
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <del></del>
-                                            <ins>$72.99</ins>
-                                        </div>
-                                        <div class="single-product__info--rating">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <div class="single-product__info--color-swatch">
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green" data-bs-custom-class="p-meta-tooltip" class="color-item green" aria-label="Name"></button>
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red" data-bs-custom-class="p-meta-tooltip" class="color-item red" aria-label="Name"></button>
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                                <!--종료-->
-                            </div>
                         </div>
-                    </div>
-
-                    <div class="swiper-button-prev">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12.624" height="30.79" viewBox="0 0 12.624 30.79">
-                            <path d="m11.229 1.395-10 14 10 14" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path>
-                        </svg>
-                    </div>
-                    <div class="swiper-button-next">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12.624" height="30.79" viewBox="0 0 12.624 30.79">
-                            <path d="m1.395 1.395 10 14-10 14" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path>
-                        </svg>
                     </div>
                 </div>
                 <!-- Product Wrapper End -->
 
                 <!-- More Button Start -->
                 <div class="text-center js-scroll ShortFadeInUp">
-                    <a class="view-more-btn" href="#">View more Toys</a>
+                    
+                    <a class="view-more-btn" th:href="@{/productUsrList(productNewNy=1)}">View more NEW</a>
                 </div>
                 <!-- More Button End -->
             </div>

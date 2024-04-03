@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- 헤드 부분 블록 -->
+<div th:replace="~{/usr/v1/infra/include/usrHead :: usrHead}"></div>
+
+
+<body>
+
+
+    <!-- 헤더 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadTop :: usrHeadTop}"></div>
+
+    <!-- 헤더 서치 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadSearch :: usrHeadSearch}"></div>
+
+    <!-- 헤더 오른쪽 사이드바 오프캔버스 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadOffcanvas :: usrHeadOffcanvas}"></div>
+    
+
+    <main>
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-section">
+            <div class="container-fluid custom-container">
+                <div class="breadcrumb-wrapper text-center">
+                    <h2 class="breadcrumb-wrapper__title">My Account</h2>
+                    <ul class="breadcrumb-wrapper__items justify-content-center">
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>My Account</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- My Account Start -->
+        <div class="my-account-section section-padding-2">
+            <div class="container-fluid custom-container">
+                <!-- My Account Tabs Start -->
+                <div class="my-account-tab">
+                    <!-- My Account Tabs Menu Start -->
+                    <div class="my-account-tab__menu">
+                        <ul class="nav justify-content-center">
+                            <li>
+                                <button class="account-btn active" data-bs-toggle="tab" data-bs-target="#dashboard" type="button">
+                                    Dashboard
+                                </button>
+                            </li>
+                            <li>
+                                <button class="account-btn" data-bs-toggle="tab" data-bs-target="#account-detail" type="button">
+                                    Account
+                                </button>
+                            </li>
+                            <li>
+                                <button class="account-btn" data-bs-toggle="tab" data-bs-target="#orders" type="button">
+                                    Orders
+                                </button>
+                            </li>
+                            <li>
+                                <button class="account-btn" data-bs-toggle="tab" data-bs-target="#address" type="button">
+                                    Address
+                                </button>
+                            </li>
+                            
+                            <li>
+                                <a class="account-btn" href="login-register.html">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- My Account Tabs Menu End -->
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="dashboard">
+                            <!-- My Account Dashboard Start -->
+                            
+                            <div class="my-account-dashboard">
+                                <p>
+                                    Hello, <strong>[[${session.sessNameUsr}]]</strong> 님
+                                </p>
+                                
+                                <div class="border border-opacity-50 rounded p-4 mt-4">
+                                    <form>
+                                        <div class="row col-6">
+                                            <!--수정, 대시보드-->
+                                            <div class="col-md-6">
+                                                <label for="membersName" class="form-label">* Name: [[${session.sessNameUsr}]]</label>
+												
+                                            </div>
+                                            <div class="single-form">
+                                                <label class="single-form__label">* Total Order Amount: <strong>$ 1,154.63</strong></label>
+                                            </div>
+                                            <div class="single-form">
+                                                <label class="single-form__label">* Membership Level: <strong>New</strong></label>
+                                            </div>
+                                        </div>
+                                        <!-- Single Form Start -->
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- My Account Dashboard End -->
+                        </div>
+                        <div class="tab-pane fade" id="account-detail">
+                            <!-- My Account Account Detail Start -->
+                            
+                            <div class="my-account-detail">
+                                <form>
+                                    <!--수정, 계정 정보-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!-- Single Form Start -->
+                                            <div class="single-form">
+                                                <label class="single-form__label">Name *</label>
+                                                <div>name</div>
+                                            </div>
+                                            <!-- Single Form Start -->
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- Single Form Start -->
+                                    <div class="single-form">
+                                        <label class="single-form__label">Gender *</label>
+                                        <div>male</div>
+                                    </div>
+                                    <!-- Single Form Start -->
+
+                                    <!-- Single Form Start -->
+                                    <div class="single-form">
+                                        <label class="single-form__label">Email address *</label>
+                                        <div>abc@google.com</div>
+                                    </div>
+                                    <div class="single-form">
+                                        <label class="single-form__label">Birth date *</label>
+                                        <div>19950519</div>
+                                    </div>
+                                    <div class="mt-4">
+                                    <!-- Single Form Start -->
+                                    <!-- 수정, 나중에 수정 페이지로 설정 필요-->
+                                        <a class="btn btn-outline-secondary" href="#">
+                                            Edit
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- My Account Account Detail End -->
+                        </div>
+                        <div class="tab-pane fade" id="orders">
+                            <!-- My Account Orders Start -->
+                            <div class="my-account-orders">
+                                <div class="my-account-table table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Seq</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Reg Date</th>
+                                                <th scope="col">Mod Date</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:if="${#lists.isEmpty(list)}">
+                                                <td colspan="7">주문 및 결제 내역이 없습니다</td>
+                                            </tr>
+                                            <tr th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}">
+                                                <td th:text="${lista.ordersSeq}"></td>
+                                                <td th:text="${lista.ordersName}"></td>
+                                                <td th:if="${lista.ordersStatusCd != null}" th:text="${@codeService.selectOneCachedCode(lista.ordersStatusCd)}" class=" align-middle"></td>
+												<td th:unless="${lista.ordersStatusCd != null}" class="ordersStatusCd align-middle"></td>
+                                                <td th:text="${lista.ordersPrice}"></td>
+                                                <td th:text="${#dates.format(lista.ordersRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
+												<td th:text="${#dates.format(lista.ordersModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
+                                                <td><a href="#" type="button">VIEW</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- My Account Orders End -->
+                        </div>
+                        
+                        <div class="tab-pane fade" id="address">
+                            <!-- My Account Address Start -->
+                            <!-- 수정, 주소 테이블-->
+                            <div class="my-account-orders">
+                                <div class="my-account-table table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th>
+                                                    <span>Title</span>
+                                                </th>
+                                                <th>
+                                                    <span>Zipcode</span>
+                                                </th>
+                                                <th>
+                                                    <span>Address</span>
+                                                </th>
+                                                <th>
+                                                    <span>Detail Address</span>
+                                                </th>
+                                                <th>
+                                                    <span>Etc Address</span>
+                                                </th>
+                                                <th>
+                                                    <span>Name</span>
+                                                </th>
+                                                <th>
+                                                    <span>Phone Number</span>
+                                                </th>
+                                                <th>
+                                                    <span>Edit</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    Home
+                                                </td>
+                                                <td>
+                                                    012354
+                                                </td>
+                                                <td>road name&nstreet number</td>
+                                                <td>
+                                                    detail address
+                                                </td>
+                                                <td>
+                                                    etc address
+                                                </td>
+                                                <td>
+                                                    name
+                                                </td>
+                                                <td>
+                                                    010-1234-5678
+                                                </td>
+                                                <td>
+                                                    <a class="btn" href="#">
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Company
+                                                </td>
+                                                <td>
+                                                    012354
+                                                </td>
+                                                <td>road name&nstreet number</td>
+                                                <td>
+                                                    detail address
+                                                </td>
+                                                <td>
+                                                    etc address
+                                                </td>
+                                                <td>
+                                                    name
+                                                </td>
+                                                <td>
+                                                    010-1234-5678
+                                                </td>
+                                                <td>
+                                                    <a class="btn" href="#">
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    etc
+                                                </td>
+                                                <td>
+                                                    012354
+                                                </td>
+                                                <td>road name&nstreet number</td>
+                                                <td>
+                                                    detail address
+                                                </td>
+                                                <td>
+                                                    etc address
+                                                </td>
+                                                <td>
+                                                    name
+                                                </td>
+                                                <td>
+                                                    010-1234-5678
+                                                </td>
+                                                <td>
+                                                    <a class="btn" href="#">
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <a class="btn btn-outline-secondary" href="#">
+                                        Add Address
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- My Account Address End -->
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- My Account Tabs End -->
+            </div>
+        </div>
+        <!-- My Account End -->
+
+    </main>
+
+    <!-- 푸터 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>
+
+	<!--자바스크립트 주소 관련 블록-->
+	<div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>
+</body>
+
+</html>

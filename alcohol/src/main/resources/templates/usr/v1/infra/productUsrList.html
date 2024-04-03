@@ -31,71 +31,71 @@
         <!-- Breadcrumb End -->
 
         <!-- Shop Start -->
-        <form name="formList" id="formList" method="get" autocomplete="off">
-            <div class="shop-section section-padding-2">
-                <div class="container-fluid custom-container">
-                    <!-- Shop Wrapper Start -->
-                    <div class="shop-wrapper">
-                        <div class="row gy-5">
-                            <div class="col-lg-9">
-                                <!-- Shop Filter Start -->
-                                <div class="shop-filter">
-                                    <!-- Shop Filter Default Start -->
-                                    <div class="shop-filter-default justify-content-between align-items-center">
-                                        <!-- Shop Filter Count Start -->
-                                        <!--수정, 보여지는 수-->
-                                        <div class="shop-filter-count d-none d-sm-block">
-                                            <select class="form-select" aria-label="Default select example" id="rowNumToShow" name="rowNumToShow" th:onchange="javascript:goList(1)">
-                                                <option value="4" th:selected="${vo.rowNumToShow == 4}">4</option>
-                                                <option value="8" th:selected="${vo.rowNumToShow == 8}">8</option>
-                                                <option value="12" th:selected="${vo.rowNumToShow == 12}">12</option>													
-                                            </select>
-                                        </div>
-                                        <!-- Shop Filter Count End -->
-
-                                        <!-- Shop Filter Sort By Start -->
-                                        <div class="shop-filter-sort-by">
-                                            <div class="shop-filter-sort-by__label">
-                                                <span>Sort by Default</span>
-                                                <i
-                                                        class="lastudioicon-down-arrow"
-                                                    ></i>
-                                            </div>
-                                            <ul class="shop-filter-sort-by__dropdown">
-                                                <li class="active">
-                                                    <a href="#">Sort by Default</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Sort by Popularity</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Sort by Rated</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Sort by Latest</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Sort by Price:
-                                                        <i
-                                                                class="lastudioicon-arrow-up"
-                                                            ></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Sort by Price:
-                                                        <i
-                                                                class="lastudioicon-arrow-down"
-                                                            ></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Shop Filter Sort By End -->
+    
+        <div class="shop-section section-padding-2">
+            <div class="container-fluid custom-container">
+                <!-- Shop Wrapper Start -->
+                <div class="shop-wrapper">
+                    <div class="row gy-5">
+                        <div class="col-lg-9">
+                            <!-- Shop Filter Start -->
+                            <div class="shop-filter">
+                                <!-- Shop Filter Default Start -->
+                                <div class="shop-filter-default justify-content-between align-items-center">
+                                    <!-- Shop Filter Count Start -->
+                                    <!--수정, 보여지는 수-->
+                                    <div class="shop-filter-count d-none d-sm-block">
+                                        <select class="form-select" aria-label="Default select example" id="rowNumToShow" name="rowNumToShow" th:onchange="javascript:goList(1)">
+                                            <option value="4" th:selected="${vo.rowNumToShow == 4}">4</option>
+                                            <option value="8" th:selected="${vo.rowNumToShow == 8}">8</option>
+                                            <option value="12" th:selected="${vo.rowNumToShow == 12}">12</option>													
+                                        </select>
                                     </div>
-                                    <!-- Shop Filter Default End -->
-                                </div>
-                                <!-- Shop Filter End -->
+                                    <!-- Shop Filter Count End -->
 
-                                <div class="row">
-                                    
+                                    <!-- Shop Filter Sort By Start -->
+                                    <div class="shop-filter-sort-by">
+                                        <div class="shop-filter-sort-by__label">
+                                            <span>Sort by Default</span>
+                                            <i
+                                                    class="lastudioicon-down-arrow"
+                                                ></i>
+                                        </div>
+                                        <ul class="shop-filter-sort-by__dropdown">
+                                            <li class="active">
+                                                <a href="#">Sort by Default</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Sort by Popularity</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Sort by Rated</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Sort by Latest</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Sort by Price:
+                                                    <i
+                                                            class="lastudioicon-arrow-up"
+                                                        ></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Sort by Price:
+                                                    <i
+                                                            class="lastudioicon-arrow-down"
+                                                        ></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Shop Filter Sort By End -->
+                                </div>
+                                <!-- Shop Filter Default End -->
+                            </div>
+                            <!-- Shop Filter End -->
+
+                            <div class="row">
+                                <form name="formList" id="formList" method="get" autocomplete="off">
                                     <div class="row">
                                         <!-- Single product Start -->
                                         <div th:if="${#lists.isEmpty(list)}" th:each="lista:${list}">
@@ -118,11 +118,11 @@
                                                             <img class="product-hover" src="/usr/assets/images/products/product-12.jpg" alt="Product" width="344" height="370" />
                                                         </a>
                                                     </div>
-                                                    <!-- <div class="single-product__thumbnail--meta-2">
+                                                    <div class="single-product__thumbnail--meta-2">
                                                         <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
                                                                     class="lastudioicon-shopping-cart-3"
                                                                 ></i></a>
-                                                    </div> -->
+                                                    </div>
                                                 </div>
                                                 <div class="single-product__info text-center">
                                                     <div class="single-product__info--tags">
@@ -138,6 +138,7 @@
                                                         </span>
                                                     </div>
                                                     <h3 class="single-product__info--title">
+                                                        <!-- th:href로 변경 필요 -->
                                                         <a href="@{/productUsrView(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
                                                     </h3>
                                                     <div class="single-product__info--price">

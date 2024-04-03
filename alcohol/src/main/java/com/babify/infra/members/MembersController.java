@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.babify.common.constants.Constants;
 import com.babify.common.util.UtilSearch;
+import com.babify.infra.product.ProductService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -21,6 +22,9 @@ public class MembersController {
 
 	@Autowired
 	MembersService service;
+	
+	@Autowired
+	ProductService productervice;
 
 	@RequestMapping(value = "/membersXdmList")
 	public String membersXdmList(@ModelAttribute("vo") MembersVo vo, Model model) throws Exception {
@@ -72,9 +76,6 @@ public class MembersController {
 		
 		dto.setMembersPw(encodeBcrypt((String) dto.getMembersPw(), 10));
 		
-		
-		//String encodedPw = dto.getMembersPw();
-		
 		service.insert(dto);
 
 
@@ -89,12 +90,11 @@ public class MembersController {
 		
 		dto.setMembersPw(encodeBcrypt((String) dto.getMembersPw(), 10));
 		
-		// String encodedPw = dto.getMembersPw();
 		
 		service.insert(dto);
 
 
-		return "redirect:/index";
+		return "redirect:/usrIndex";
 	}
 	
 	
@@ -170,6 +170,7 @@ public class MembersController {
 			String checkPw = dtoCheck.getMembersPw();
 			String loginId = dto.getMembersEmail();
 			String loginPw = dto.getMembersPw();
+			Integer checkAdminNy = dtoCheck.getMembersAdminNy();
 			
 			
 				
@@ -178,7 +179,7 @@ public class MembersController {
 			httpSession.setAttribute("sessIdXdm", dtoCheck.getMembersEmail());
 			httpSession.setAttribute("sessNameXdm", dtoCheck.getMembersName());
 			
-			if(loginId.equals(dtoCheck.getMembersEmail())) {
+			if(loginId.equals(dtoCheck.getMembersEmail()) && checkAdminNy == 1) {
 				if(matchesBcrypt(loginPw , checkPw ,10)) {
 					returnMap.put("rt", "success");
 				} else {
@@ -214,12 +215,7 @@ public class MembersController {
 		return "usr/v1/infra/membersUsrLogin";
 	}
 	
-	// 사용자 인덱스
-	@RequestMapping(value = "/usrIndex")
-	public String usrIndex() throws Exception {
 
-		return "usr/v1/infra/usrIndex";
-	}
 	
 	// 사용자 로그인 체크
 	@ResponseBody
@@ -239,15 +235,16 @@ public class MembersController {
 			String checkPw = dtoCheck.getMembersPw();
 			String loginId = dto.getMembersEmail();
 			String loginPw = dto.getMembersPw();
+			Integer checkAdminNy = dtoCheck.getMembersAdminNy();
 			
 			
 				
 			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
-			httpSession.setAttribute("sessSeqXdm", dtoCheck.getMembersSeq());
-			httpSession.setAttribute("sessIdXdm", dtoCheck.getMembersEmail());
-			httpSession.setAttribute("sessNameXdm", dtoCheck.getMembersName());
+			httpSession.setAttribute("sessSeqUsr", dtoCheck.getMembersSeq());
+			httpSession.setAttribute("sessIdUsr", dtoCheck.getMembersEmail());
+			httpSession.setAttribute("sessNameUsr", dtoCheck.getMembersName());
 			
-			if(loginId.equals(dtoCheck.getMembersEmail())) {
+			if(loginId.equals(dtoCheck.getMembersEmail()) && checkAdminNy == 0) {
 				if(matchesBcrypt(loginPw , checkPw ,10)) {
 					returnMap.put("rt", "success");
 				} else {
