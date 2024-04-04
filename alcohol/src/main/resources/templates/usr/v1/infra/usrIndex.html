@@ -241,7 +241,7 @@
 
         <!-- Product Clothing Start -->
         <div class="product-section section-padding-1">
-            <div class="container-fluid custom-container row">
+            <div class="container-fluid custom-container">
                 <!-- Section Title Start -->
                 <div class="section-title text-center js-scroll ShortFadeInUp">
                     <span class="section-title__icon">
@@ -256,56 +256,68 @@
                 <!-- Section Title End -->
 
                 <!-- Product Wrapper Start -->
-                <div th:if="${!#lists.isEmpty(listBest)}" th:each="lista:${listBest}" class="col-3">
-                    
+                <div class="product-wrapper product-active navigation-arrows-style-1">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div th:if="${#lists.isEmpty(listBest)}" th:each="lista:${listBest}">
+                                <p>등록된 상품이 없습니다</p>
+                            </div>
+                            <div th:if="${!#lists.isEmpty(listBest)}" th:each="lista:${listBest}" class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="swiper-slide">
+                                <!-- Single product Start -->
+                                <div class="single-product js-scroll ShortFadeInUp">
+                                    <div class="single-product__thumbnail">
+                                        <div class="single-product__thumbnail--badge onsale">
+                                            Sale
+                                        </div>
+                                        <div class="single-product__thumbnail--holder">
+                                            <a href="product-single.html">
+                                                <img src="/usr/assets/images/products/product-06.jpg" alt="Product" width="344" height="370" />
+                                            </a>
+                                        </div>
+                                        <div class="single-product__thumbnail--meta-2">
+                                            <!-- <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
+                                                        class="lastudioicon-shopping-cart-3"
+                                                    ></i></a> -->
+                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                                        class="lastudioicon-heart-2"
+                                                    ></i></a>
+                                        </div>
+                                    </div>
                                     
-                                    
-                    <div class="single-product__thumbnail">
-                        <div class="single-product__thumbnail--badge out-of-stock">
-                            Out of stock
-                        </div>
-                        <div class="single-product__thumbnail--holder">
-                            <a href="product-single.html">
-                                <img src="/usr/assets/images/products/product-06.jpg" alt="Product" width="344" height="370" />
-                            </a>
-                        </div>
-                        <div class="single-product__thumbnail--meta-2">
-                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
-                                        class="lastudioicon-heart-2"
-                            ></i></a>
-                        </div>
-                    </div>
-                    
-                    <div class="single-product__info">
-                        <div class="single-product__info--tags">
-                            <a th:href="@{/productUsrList}" th:text="${@codeService.selectOneCachedCode(lista.productCatMainCd)}"></a>
-                        </div>
-                        <h3 class="single-product__info--title">
-                            <!-- th:href로 변경 필요 -->
-                            <a href="@{/productUsrView(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
-                        </h3>
-                        <div class="single-product__info--price">
-                            <ins th:text="${lista.productPrice}"></ins>
-                        </div>
-                        <div class="single-product__info--rating">
-                            <span class="star-rating">
-                                    <span
-                                        style="width: 88%"
-                                    ></span>
-                            </span>
-                        </div>
-                        <div class="single-product__info--color-swatch">
-                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
-                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
+                                    <div class="single-product__info">
+                                        <div class="single-product__info--tags">
+                                            <a th:href="@{/productUsrList}" th:text="${@codeService.selectOneCachedCode(lista.productCatMainCd)}"></a>
+                                        </div>
+                                        <h3 class="single-product__info--title">
+                                            <a href="@{/productUsrView(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
+                                        </h3>
+                                        <div class="single-product__info--price">
+                                            <ins th:text="${lista.productPrice}"></ins>
+                                        </div>
+                                        <div class="single-product__info--rating">
+                                            <span class="star-rating">
+                                                    <span
+                                                        style="width: 88%"
+                                                    ></span>
+                                            </span>
+                                        </div>
+                                        <div class="single-product__info--color-swatch">
+                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
+                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Single product End -->
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Product Wrapper End -->
-            </div>
-            <div>
+
                 <!-- More Button Start -->
                 <div class="text-center js-scroll ShortFadeInUp">
-                    <a class="view-more-btn" th:href="@{/productUsrList(productBestNy=1)}">View more BEST</a>
+                    <a th:href="@{/productUsrList(productBestNy=1)}">View more Best</a>
                 </div>
                 <!-- More Button End -->
             </div>
@@ -313,7 +325,7 @@
         <!-- Product Clothing End -->
 
         <!-- Product Toys Start -->
-        <div class="product-section section-padding-1" >
+        <div class="product-section section-padding-1">
             <div class="container-fluid custom-container">
                 <!-- Section Title Start -->
                 <div class="section-title text-center js-scroll ShortFadeInUp">
@@ -331,61 +343,54 @@
                 <div class="product-wrapper product-active navigation-arrows-style-1">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <!--수정, 토이 첫번째-->
-                                <!--라텍스 세트, https://dogpre.com/product/98299-->
-                                <!-- Single product Start -->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
+                            <div th:if="${#lists.isEmpty(listNew)}" th:each="lista:${listNew}">
+                                <p>등록된 상품이 없습니다</p>
+                            </div>
+                            <div th:if="${!#lists.isEmpty(listNew)}" th:each="lista:${listNew}" class="col-lg-3 col-md-4 col-sm-6">
+
+                                <div class="swiper-slide">
+                                    <!-- Single product Start -->
+                                    <div class="single-product js-scroll ShortFadeInUp">
+                                        <div class="single-product__thumbnail">
+                                            <div class="single-product__thumbnail--badge onsale">
+                                                Sale
+                                            </div>
+                                            <div class="single-product__thumbnail--holder">
+                                                <a href="product-single.html">
+                                                    <img src="/usr/assets/images/products/product-06.jpg" alt="Product" width="344" height="370" />
+                                                </a>
+                                            </div>
+                                            <div class="single-product__thumbnail--meta-2">
+                                                <!-- <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
+                                                            class="lastudioicon-shopping-cart-3"
+                                                        ></i></a> -->
+                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                                            class="lastudioicon-heart-2"
+                                                        ></i></a>
+                                            </div>
+                                        </div>
                                         
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-14.jpg" alt="Product" width="344" height="370" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                        class="lastudioicon-shopping-cart-3"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
-                                                        class="lastudioicon-heart-2"
-                                                    ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                                        class="lastudioicon-ic_compare_arrows_24px"
-                                                    ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                                        class="lastudioicon-search-zoom-in"
-                                                    ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">Toys</a>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                Latex Happy Toy Set
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <del></del>
-                                            <ins>$29.99</ins>
-                                        </div>
-                                        <div class="single-product__info--rating">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <div class="single-product__info--color-swatch">
-                                            
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Bronze" data-bs-custom-class="p-meta-tooltip" class="color-item bronze" aria-label="Name"></button>
-                                            
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red" data-bs-custom-class="p-meta-tooltip" class="color-item red" aria-label="Name"></button>
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
+                                        <div class="single-product__info">
+                                            <div class="single-product__info--tags">
+                                                <a th:href="@{/productUsrList}" th:text="${@codeService.selectOneCachedCode(lista.productCatMainCd)}"></a>
+                                            </div>
+                                            <h3 class="single-product__info--title">
+                                                <a href="@{/productUsrView(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
+                                            </h3>
+                                            <div class="single-product__info--price">
+                                                <ins th:text="${lista.productPrice}"></ins>
+                                            </div>
+                                            <div class="single-product__info--rating">
+                                                <span class="star-rating">
+                                                        <span
+                                                            style="width: 88%"
+                                                        ></span>
+                                                </span>
+                                            </div>
+                                            <div class="single-product__info--color-swatch">
+                                                <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
+                                                <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -393,14 +398,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Product Wrapper End -->
-
                 <!-- More Button Start -->
-                <div class="text-center js-scroll ShortFadeInUp">
-                    
-                    <a class="view-more-btn" th:href="@{/productUsrList(productNewNy=1)}">View more NEW</a>
                 </div>
+                <div class="text-center js-scroll ShortFadeInUp">
+                    <a th:href="@{/productUsrList(productNewNy=1)}">View more New</a>
+                </div>
+                <div class="m-3"></div>
                 <!-- More Button End -->
             </div>
         </div>

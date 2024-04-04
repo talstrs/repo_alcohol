@@ -113,10 +113,10 @@
 		select COUNT(*)
 		<include refid="selectCommonUsr"></include>
 	</select>
-	
-	<!-- 사용자 인덱스 베스트 -->
+
+		<!-- 사용자 인덱스 베스트 -->
 	<select id="selectListUsrIndexBest" resultMap="resultMapObj">
-	
+		<include refid="base.selectListUpperForMysql" />
 		select
 			a.productSeq
 			,a.productDelNy
@@ -141,8 +141,38 @@
 			and a.productBestNy = 1
      	ORDER BY a.productSeq
 		limit 99999999999
+		<include refid="base.selectListLowerForMysql" />
 	</select>
 	
+		<!-- 사용자 인덱스 New -->
+	<select id="selectListUsrIndexNew" resultMap="resultMapObj">
+		<include refid="base.selectListUpperForMysql" />
+		select
+			a.productSeq
+			,a.productDelNy
+			,a.productUseNy
+			,a.productBestNy
+			,a.productNewNy
+			,a.productName
+			,a.productInfo
+			,a.productStock
+			,a.productPrice
+			,a.productCatMainCd
+			,a.productCatDetailCd
+			,a.productStarAll
+			,a.productSizeCd
+			,a.productColorCd
+			,a.productRegDate
+			,a.productModDate
+		from
+			product a
+		where 1=1
+			and a.productDelNy = 0
+			and a.productNewNy = 1
+     	ORDER BY a.productSeq
+		limit 99999999999
+		<include refid="base.selectListLowerForMysql" />
+	</select>
 	
 	<!-- 셀렉원 만들기 -->
 	<select id="selectOne" resultMap="resultMapObj">

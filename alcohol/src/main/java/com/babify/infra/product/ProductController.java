@@ -112,13 +112,14 @@ public String productDele(ProductDto dto) throws Exception{
 public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception{
 
 	// 페이징 관련 if 함수 후 모델 객체 불러오기
-	
+
 	vo.setParamsPaging(service.selectOneCountUsr(vo));
 	
 	if(vo.getTotalRows() > 0) {
 		
 		model.addAttribute("list", service.selectListUsr(vo));
 	}
+	
 	
 	
 	return "usr/v1/infra/productUsrList";
@@ -129,6 +130,11 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 public String usrIndex(ProductVo vo, Model model) throws Exception {
 	
     model.addAttribute("listBest", service.selectListUsrIndexBest(vo));
+    
+    model.addAttribute("listNew", service.selectListUsrIndexNew(vo));
+    
+    
+    
     
     return "usr/v1/infra/usrIndex";
 }

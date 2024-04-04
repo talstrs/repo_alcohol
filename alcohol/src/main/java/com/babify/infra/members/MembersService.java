@@ -66,4 +66,6 @@ public class MembersService {
 	public List<MembersDto> selectListWithPaging(MembersVo vo){
 		return dao.selectListWithPaging(vo);
 	}
+	
+	
 }

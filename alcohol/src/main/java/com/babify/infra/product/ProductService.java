@@ -38,6 +38,11 @@ public class ProductService {
 		return dao.selectListUsrIndexBest(vo);
 	}
 	
+//	패턴 2 리스트 호출(사용자 인덱스 뉴)
+	public List<ProductDto> selectListUsrIndexNew(ProductVo vo) {
+		return dao.selectListUsrIndexNew(vo);
+	}
+	
 //  패턴 2 객체 하나 호출
 	public ProductDto selectOne(ProductDto dto) {
 		return dao.selectOne(dto);

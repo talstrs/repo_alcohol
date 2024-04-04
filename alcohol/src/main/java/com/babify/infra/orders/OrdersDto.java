@@ -8,6 +8,7 @@ public class OrdersDto {
 	private String membersSeq;
 	private String membersName;
 	private String membersEmail;
+	private Integer membersGradeCd;
 	
 	private String ordersSeq;
 	private	Integer ordersDelNy;
@@ -27,8 +28,6 @@ public class OrdersDto {
 	private String membersMembersSeqF;	
 	private String ordersOrdersSeqF;
 	private String productProductSeqF;
-	
-	
 	public String getMembersSeq() {
 		return membersSeq;
 	}
@@ -46,6 +45,12 @@ public class OrdersDto {
 	}
 	public void setMembersEmail(String membersEmail) {
 		this.membersEmail = membersEmail;
+	}
+	public Integer getMembersGradeCd() {
+		return membersGradeCd;
+	}
+	public void setMembersGradeCd(Integer membersGradeCd) {
+		this.membersGradeCd = membersGradeCd;
 	}
 	public String getOrdersSeq() {
 		return ordersSeq;
@@ -157,16 +162,6 @@ public class OrdersDto {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-
-	
-
 	
 }
 	

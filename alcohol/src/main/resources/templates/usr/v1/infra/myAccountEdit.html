@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- 헤드 부분 블록 -->
+<div th:replace="~{/usr/v1/infra/include/usrHead :: usrHead}"></div>
+
+
+<body>
+
+
+    <!-- 헤더 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadTop :: usrHeadTop}"></div>
+
+    <!-- 헤더 서치 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadSearch :: usrHeadSearch}"></div>
+
+    <!-- 헤더 오른쪽 사이드바 오프캔버스 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadOffcanvas :: usrHeadOffcanvas}"></div>
+    
+
+    <main>
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-section">
+            <div class="container-fluid custom-container">
+                <div class="breadcrumb-wrapper text-center">
+                    <h2 class="breadcrumb-wrapper__title">My Account</h2>
+                    <ul class="breadcrumb-wrapper__items justify-content-center">
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>My Account</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- My Account Start -->
+        <div class="my-account-section section-padding-2">
+
+            <form class="row g-3 " name="formUpdt" id="formUpdt" method="post"  novalidate>
+                <div class="container-fluid custom-container">
+                    <div class="border border-opacity-50 rounded p-4 mt-4">
+                        <div class="col-md-6">
+                            <!-- Single Form Start -->
+                            <div class="m-0">
+                                <input type="hidden" name="membersSeq" th:value="${item.membersSeq}">
+                                <input type="hidden" name="membersAdminNy" th:value="${item.membersAdminNy}">
+                            </div>
+                            <div class="single-form">
+                                <label for="membersName" class="form-label">Name</label>
+                                <input type="text" class="form-control" name="membersName" id="membersName" th:value="${item.membersName}" required />
+                                <div class="invalid-feedback" id="membersNameFeedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label class="form-label" for="membersGenderCd">Gender</label>
+                                <select id="membersGenderCd" name="membersGenderCd" class="form-select">
+                                    <option value="">성별을 선택하세요</option>
+                                    <option th:each="list : ${@codeService.selectListCachedCode(6)}" th:value="${item.membersGenderCd}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.membersGenderCd}"></option>
+                                </select>
+                                <div class="invalid-feedback" id="membersGenderCdFeedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label for="membersXdmListAddEmail" class="form-label">Email</label>
+                                <input type="text" class="form-control" name="membersEmail" id="membersXdmListAddEmail" th:value="${item.membersEmail}" required readonly/>
+                            </div>
+                            <div class="single-form">
+                                <label for="membersBirth" class="form-label">Birth</label>
+                                <input type="text" class="form-control" name="membersBirth" id="membersBirth" th:value="${item.membersBirth}" required />
+                                <div class="invalid-feedback" id="membersBirthFeedback"></div>
+                            </div>
+                            <div >
+                                
+                                <input type="hidden" class="form-control" name="membersGradeCd" id="membersGradeCd" th:value="${item.membersGradeCd}" required readonly/>
+                                
+                            </div>
+                            <div class="single-form">
+                                <label for="membersPw" class="form-label">Pw</label>
+                                <input type="text" class="form-control" name="membersPw" id="membersPw" th:value="${item.membersPw}" required />
+                                <div class="invalid-feedback" id="membersPwFeedback"></div>
+                            </div>
+                            <div class="mt-4">
+                            <!-- Single Form Start -->
+                                <button id="btnSubmit" type="submit" class="btn btn-outline-secondary">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Form Start -->
+                </div>
+            </form>
+        </div>
+        <!-- My Account End -->
+
+    </main>
+
+    <!-- 푸터 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>
+
+    <!--자바스크립트 시작-->
+
+    <script>
+		// 폼 정의 필수
+
+		let form = document.querySelector("form[name=formUpdt]");
+
+		
+		let goUrlXdmUpdt = "/myAccountMembersUpdt";	
+
+		document.getElementById("btnSubmit").onclick = function () {
+			if(validationInst() == false){
+				return false;
+			} else {
+				form.action = goUrlXdmUpdt;
+				form.submit();
+			
+			}
+
+		}
+
+		function validationInst() {
+			if(validationUpdt() == false) { return false;
+			}
+		}
+
+
+		function validationUpdt() {
+			if(!checkNull ('membersName', 2, '데이터 값을 입력하세요')) return false;
+            if(!checkOnlyKoreanEnglish('membersName',2,0,'영어, 한글만 입력 가능합니다')) return false;
+
+            if(!checkNull ('membersBirth', 2, '데이터 값을 입력하세요')) return false;
+			if(!checkOnlyEightNumber('membersBirth',2,0,'8자리 숫자만 입력 가능합니다')) return false;
+
+			if(!checkNull ('membersPw', 2, '데이터 값을 입력하세요')) return false;
+			// 이후 비밀번호 체크 패스워드로 바꿔주기
+				// if(!checkPassword('membersPw',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+			if(!checkOnlyKoreanEnglishNumber('membersPw',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+
+			
+
+			
+		}
+
+	</script>
+
+	<!--자바스크립트 주소 관련 블록-->
+	<div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>
+</body>
+
+</html>

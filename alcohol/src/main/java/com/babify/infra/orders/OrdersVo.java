@@ -9,6 +9,7 @@ public class OrdersVo extends BaseVo {
 	private String membersSeq;
 	private String membersName;
 	private String membersEmail;
+	private Integer membersGradeCd;
 	
 	private String ordersSeq;
 	private	Integer ordersStatusCd;
@@ -31,8 +32,6 @@ public class OrdersVo extends BaseVo {
 	private	Integer ordersUseNy;
 	private Date ordersRegDate;
 	private Date ordersModDate;
-	
-	
 	public String getMembersSeq() {
 		return membersSeq;
 	}
@@ -50,6 +49,12 @@ public class OrdersVo extends BaseVo {
 	}
 	public void setMembersEmail(String membersEmail) {
 		this.membersEmail = membersEmail;
+	}
+	public Integer getMembersGradeCd() {
+		return membersGradeCd;
+	}
+	public void setMembersGradeCd(Integer membersGradeCd) {
+		this.membersGradeCd = membersGradeCd;
 	}
 	public String getOrdersSeq() {
 		return ordersSeq;
@@ -160,20 +165,6 @@ public class OrdersVo extends BaseVo {
 		this.ordersModDate = ordersModDate;
 	}
 	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-	
-	
-	
+		
 	
 }

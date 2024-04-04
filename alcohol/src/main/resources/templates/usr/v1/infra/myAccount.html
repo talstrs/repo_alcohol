@@ -47,11 +47,6 @@
                                 </button>
                             </li>
                             <li>
-                                <button class="account-btn" data-bs-toggle="tab" data-bs-target="#account-detail" type="button">
-                                    Account
-                                </button>
-                            </li>
-                            <li>
                                 <button class="account-btn" data-bs-toggle="tab" data-bs-target="#orders" type="button">
                                     Orders
                                 </button>
@@ -60,10 +55,6 @@
                                 <button class="account-btn" data-bs-toggle="tab" data-bs-target="#address" type="button">
                                     Address
                                 </button>
-                            </li>
-                            
-                            <li>
-                                <a class="account-btn" href="login-register.html">Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -80,20 +71,44 @@
                                 
                                 <div class="border border-opacity-50 rounded p-4 mt-4">
                                     <form>
-                                        <div class="row col-6">
-                                            <!--수정, 대시보드-->
-                                            <div class="col-md-6">
-                                                <label for="membersName" class="form-label">* Name: [[${session.sessNameUsr}]]</label>
-												
+                                        <!--수정, 계정 정보-->
+                                        <div class="col-md-6">
+                                            <!-- Single Form Start -->
+                                            <div class="m-0">
+                                                <input type="hidden" name="membersSeq" th:value="${item.membersSeq}">
                                             </div>
                                             <div class="single-form">
-                                                <label class="single-form__label">* Total Order Amount: <strong>$ 1,154.63</strong></label>
+												<label for="membersName" class="form-label">Name</label>
+												<input type="text" class="form-control" name="membersName" id="membersName" th:value="${item.membersName}" required readonly/>
                                             </div>
                                             <div class="single-form">
-                                                <label class="single-form__label">* Membership Level: <strong>New</strong></label>
+												<label for="membersXdmListAddGender" class="form-label">Gender</label>
+												<!-- 젠더코드> 코드 이름으로 나타내기 -->
+												<input th:if="${item.membersGenderCd != null}" th:value="${@codeService.selectOneCachedCode(item.membersGenderCd)}" id="membersGenderCd" name="membersGenderCd" class="align-middle form-control" required readonly></input>
+												<input th:unless="${item.membersGenderCd != null}" class="membersGenderCd align-middle"></input>
+                                            </div>
+                                            <div class="single-form">
+												<label for="membersXdmListAddEmail" class="form-label">Email</label>
+												<input type="text" class="form-control" name="membersEmail" id="membersXdmListAddEmail" th:value="${item.membersEmail}" required readonly/>
+                                            </div>
+                                            <div class="single-form">
+                                                <label for="membersXdmListAddBirth" class="form-label">Birth</label>
+												<input type="text" class="form-control" name="membersBirth" id="membersXdmListAddBirth" th:value="${item.membersBirth.substring(0, 4) + '/' + item.membersBirth.substring(4, 6) + '/' + item.membersBirth.substring(6, 8)}" required readonly/>
+                                            </div>
+                                            <div class="single-form">
+												<label for="membersXdmListAddGrade" class="form-label">Grade</label>
+												<input th:if="${item.membersGradeCd != null}" th:value="${@codeService.selectOneCachedCode(item.membersGradeCd)}" id="membersXdmListAddGrade" name="membersGradeCd" class="membersGradeCd align-middle form-control" required readonly></input>
+												<input th:unless="${item.membersGradeCd != null}" class="membersGradeCd align-middle"></input>
+                                            </div>
+                                            <div class="mt-4">
+                                            <!-- Single Form Start -->
+                                            <!-- 수정, 나중에 수정 페이지로 설정 필요-->
+                                                <a class="btn btn-outline-secondary" th:href="@{/myAccountMembersEdit(membersSeq=${item.membersSeq})}">>
+                                                    
+                                                    Edit
+                                                </a>
                                             </div>
                                         </div>
-                                        <!-- Single Form Start -->
                                     </form>
                                 </div>
                             </div>
@@ -104,43 +119,7 @@
                             <!-- My Account Account Detail Start -->
                             
                             <div class="my-account-detail">
-                                <form>
-                                    <!--수정, 계정 정보-->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <!-- Single Form Start -->
-                                            <div class="single-form">
-                                                <label class="single-form__label">Name *</label>
-                                                <div>name</div>
-                                            </div>
-                                            <!-- Single Form Start -->
-                                        </div>
-                                        
-                                    </div>
-                                    <!-- Single Form Start -->
-                                    <div class="single-form">
-                                        <label class="single-form__label">Gender *</label>
-                                        <div>male</div>
-                                    </div>
-                                    <!-- Single Form Start -->
 
-                                    <!-- Single Form Start -->
-                                    <div class="single-form">
-                                        <label class="single-form__label">Email address *</label>
-                                        <div>abc@google.com</div>
-                                    </div>
-                                    <div class="single-form">
-                                        <label class="single-form__label">Birth date *</label>
-                                        <div>19950519</div>
-                                    </div>
-                                    <div class="mt-4">
-                                    <!-- Single Form Start -->
-                                    <!-- 수정, 나중에 수정 페이지로 설정 필요-->
-                                        <a class="btn btn-outline-secondary" href="#">
-                                            Edit
-                                        </a>
-                                    </div>
-                                </form>
                             </div>
                             <!-- My Account Account Detail End -->
                         </div>
@@ -172,7 +151,7 @@
                                                 <td th:text="${lista.ordersPrice}"></td>
                                                 <td th:text="${#dates.format(lista.ordersRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 												<td th:text="${#dates.format(lista.ordersModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
-                                                <td><a href="#" type="button">VIEW</a></td>
+                                                <td><a href="#" class="btn" type="button">VIEW</a></td>
                                             </tr>
                                         </tbody>
                                     </table>
