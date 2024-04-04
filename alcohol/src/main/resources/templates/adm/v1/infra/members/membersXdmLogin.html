@@ -64,7 +64,8 @@
 		<!-- Container end -->
 
 		<script>
-			document.getElementById("buttonSignIn").onclick = function () {
+
+			function siginIn() {
 				if(validation() == false) return false;
 			
 				$.ajax({
@@ -96,6 +97,10 @@
 				});
 			}
 
+			document.getElementById("buttonSignIn").onclick = function () {
+				siginIn();
+			}
+
 			function validation() {
 				if(validationCheck() == false) { return false;
 				}
@@ -110,6 +115,15 @@
 				
 				
 			}
+
+			document.addEventListener("keydown", function(event) {
+				// 엔터키를 눌렀을 때
+				if (event.key === "Enter") {
+					event.preventDefault(); // 폼 제출을 막음
+					
+					siginIn();
+				}
+			});
 		</script>
 
 	<!--자바스크립트 주소 관련 블록-->

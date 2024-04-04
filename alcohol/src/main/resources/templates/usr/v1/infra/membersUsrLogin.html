@@ -84,9 +84,9 @@
                                             Log In
                                         </button>
                                         
-                                        <button class="single-form__btn btn col" >
+                                        <a th:href="@{/membersUsrRegister}" class="single-form__btn btn col" >
                                             Register
-                                        </button>
+                                        </a>
                                     </div>
                                     <!-- Single Form Start -->
                                 </div>
@@ -159,7 +159,8 @@
 
 
     <script>
-        document.getElementById("buttonSignIn").onclick = function () {
+
+        function siginIn() {
             if(validation() == false) return false;
         
             $.ajax({
@@ -189,7 +190,13 @@
                     alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
                 }
             });
+        }        
+
+        document.getElementById("buttonSignIn").onclick = function () {
+            siginIn();
         }
+
+        
 
         function validation() {
             if(validationCheck() == false) { return false;
@@ -204,6 +211,18 @@
             
             
         }
+
+        document.addEventListener("keydown", function(event) {
+            // 엔터키를 눌렀을 때
+            if (event.key === "Enter") {
+                event.preventDefault(); // 폼 제출을 막음
+
+                siginIn();
+            }
+        });
+
+
+
     </script>
 
 
