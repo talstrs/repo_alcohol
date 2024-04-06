@@ -31,7 +31,7 @@
         <!-- Breadcrumb End -->
 
         <!-- Shop Start -->
-        <form name="formList" id="formList" method="get" autocomplete="off">
+        <form name="formList" id="formList" method="post" autocomplete="off">
             <div class="shop-section section-padding-2">
                 <div class="container-fluid custom-container">
                     <!-- Shop Wrapper Start -->
@@ -105,6 +105,9 @@
                                         <div th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}" class="col-lg-3 col-md-4 col-sm-6">
                                             <div class="single-product js-scroll ShortFadeInUp">
                                                 <div class="single-product__thumbnail">
+                                                    <input th:if="${vo.productCatMainCd != null}" type="hidden" name="productCatMainCd" th:value="${vo.productCatMainCd}">
+                                                    <input th:if="${vo.productBestNy != null}" type="hidden" name="productBestNy" th:value="${vo.productBestNy}">
+                                                    <input th:if="${vo.productNewNy != null}" type="hidden" name="productNewNy" th:value="${vo.productNewNy}">
                                                     <div class="single-product__thumbnail--meta-3">
                                                         <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
                                                                     class="lastudioicon-heart-2"
@@ -409,14 +412,26 @@
     <!-- 푸터 블록 -->
     <div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>
 
-	<!--자바스크립트 주소 관련 블록-->
-	<div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>
+
 
     <script>
         let goUrlUsrList = "/productUsrList";
 
-        let form = document.querySelector("form[name=formList]");			
+        let form = document.querySelector("form[name=formList]");		
+        
+        
+        /*페이징 관련 js*/
+        goList = function (thisPage) {
+            document.querySelector("input[name=thisPage]").value = thisPage;
+            form.action = goUrlUsrList;
+            form.submit();
+        }
+
+        
     </script>
+
+    <!--자바스크립트 주소 관련 블록-->
+	<div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>
 </body>
 
 </html>

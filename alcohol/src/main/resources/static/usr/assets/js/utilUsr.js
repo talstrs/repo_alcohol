@@ -1,9 +1,3 @@
-/*페이징 관련 js*/
-goList = function (thisPage) {
-    document.querySelector("input[name=thisPage]").value = thisPage;
-    form.action = goUrlUsrList;
-    form.submit();
-}
 
 
 /*사용자 페이지 세션 로그아웃*/

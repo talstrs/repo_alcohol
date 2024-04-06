@@ -220,8 +220,8 @@
 															<td th:if="${lista.membersDelNy eq 0}">N</td>
 															<td th:unless="${lista.membersDelNy eq 0}">Y</td>
 															<td th:text="${lista.membersSeq}"></td>
-															<td th:if="${lista.membersAdminNy eq 0}">Y</td>
-															<td th:unless="${lista.membersAdminNy eq 0}">N</td>
+															<td th:if="${lista.membersAdminNy eq 0}">N</td>
+															<td th:unless="${lista.membersAdminNy eq 0}">Y</td>
 															<td><a th:href="@{/membersXdmView(
 																membersSeq=${lista.membersSeq}
 															)}" th:text="${lista.membersEmail}"></a></td>

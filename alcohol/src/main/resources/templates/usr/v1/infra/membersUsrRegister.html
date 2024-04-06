@@ -45,36 +45,37 @@
                         <div class="login-register">
                             <h3 class="login-register__title">Register</h3>
 
-                            <form name="formInsert" id="formInsert" method="post"  novalidate>
+                            <form name="formInsert" id="formInsert" method="post"  novalidate> 
                                 <div class="login-register__form">
                                     <!--수정, 회원가입 폼 라벨 추가-->
                                     <input type="hidden" name="membersAdminNy" value="0" />
                                     <!-- Single Form Start -->
                                     <div class="single-form">
                                         <label for="membersEmail" class="form-label">Email address *</label>
-                                        <input type="text" class="single-form__input form-control" name="membersEmail" id="membersEmail" placeholder="사용자 이메일을 입력하세요" required />
+                                        <input type="text" class="form-control" name="membersEmail" id="membersEmail" placeholder="사용자 이메일을 입력하세요" required />
                                         <div class="invalid-feedback" id="membersEmailFeedback"></div>
                                     </div>
                                     <!-- Single Form Start -->
                                     <!-- Single Form Start -->
                                     <div class="single-form">
                                         <label for="membersPw" class="form-label">Password *</label>
-                                        <input type="text" class="single-form__input form-control" name="membersPw" id="membersPw" placeholder="사용자 비밀번호를 입력하세요" required />
+                                        <input type="password" class="form-control" name="membersPw" id="membersPw" placeholder="사용자 비밀번호를 입력하세요" required />
                                         <div class="invalid-feedback" id="membersPwFeedback"></div>
                                     </div>
                                     <div class="single-form">
                                         <label for="pwCheck" class="form-label">Password check *</label>
-                                        <input class="single-form__input" type="password" id="pwCheck" />
+                                        <input type="password" class="form-control" name="pwCheck" id="pwCheck" placeholder="사용자 비밀번호를 입력하세요" required />
+                                        <div class="invalid-feedback" id="pwCheckFeedback"></div>
                                     </div>
                                     
                                     <div class="single-form">
                                         <label for="membersName" class="form-label">Name *</label>
-                                        <input type="text" class="single-form__input form-control" name="membersName" id="membersName" placeholder="사용자 이름을 입력하세요" required />
+                                        <input type="text" class="form-control" name="membersName" id="membersName" placeholder="사용자 이름을 입력하세요" required />
                                         <div class="invalid-feedback" id="membersNameFeedback"></div>
                                     </div>
                                     <div class="single-form">
                                         <label for="membersBirth" class="form-label">Birth *</label>
-                                        <input type="text" class="form-control" name="membersBirth" id="membersBirth" placeholder="20000101" required />
+                                        <input type="text" class="form-control" name="membersBirth" id="membersBirth" placeholder="사용자 생일을 입력하세요" required />
                                         <div class="invalid-feedback" id="membersBirthFeedback"></div>
                                     </div>
                                     <div class="single-form">
@@ -86,21 +87,6 @@
                                         <div class="invalid-feedback" id="membersGenderCdFeedback"></div>
                                     </div>
                                     <input type="hidden" name="membersGradeCd" value="11" />
-                                    <!-- Single Form Start -->
-                                    <!-- Single Form Start -->
-                                    <div class="single-form">
-                                        <p class="privacy-policy-text">
-                                            Your personal data will be used
-                                            to support your experience
-                                            throughout this website, to
-                                            manage access to your account,
-                                            and for other purposes described
-                                            in our
-                                        </p>
-                                    </div>
-                                    <!-- Single Form Start -->
-
-                                    <!-- Single Form Start -->
                                     
                                     <div class="single-form text-center row">
                                         <button class="btn single-form__btn col" id="btnSubmit" type="submit" >
@@ -180,10 +166,8 @@
         // 등록 버튼
 
         let goUrlUsrInst = "/membersUsrInsert";
-        // let goUrlXdmUpdt = "/membersUpdt";	
 
-        document.getElementById("btnSubmit").onclick = function () {
-            alert=("확인");
+        function registerIn() {
             if(validationInst() == false){
                 return false;
             } else {
@@ -191,6 +175,12 @@
                 form.action = goUrlUsrInst;
                 form.submit();
             }
+        }
+
+        document.getElementById("btnSubmit").onclick = function () {
+            alert("확인");
+            registerIn();
+            
             
         }
 
@@ -201,20 +191,36 @@
         
         function validationUpdt() {
             
-            if(!checkSelectNull('membersAdminNy', 2, "목록을 선택하세요.")) return false;
             if(!checkNull ('membersEmail', 2, '데이터 값을 입력하세요')) return false;
             if(!checkEmail('membersEmail',2,0,'"abc@google.com"처럼 이메일 형식에 맞게 입력하세요')) return false;
+
             if(!checkNull ('membersPw', 2, '데이터 값을 입력하세요')) return false;
             // 이후 비밀번호 체크 패스워드로 바꿔주기
             // if(!checkPassword('membersPw',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
             if(!checkOnlyKoreanEnglishNumber('membersPw',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+
+            if(!checkNull ('pwCheck', 2, '데이터 값을 입력하세요')) return false;
+            if(!checkOnlyKoreanEnglishNumber('pwCheck',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+
             if(!checkNull ('membersName', 2, '데이터 값을 입력하세요')) return false;
             if(!checkOnlyKoreanEnglish('membersName',2,0,'영어, 한글만 입력 가능합니다')) return false;
+
             if(!checkNull ('membersBirth', 2, '데이터 값을 입력하세요')) return false;
             if(!checkOnlyEightNumber('membersBirth',2,0,'8자리 숫자만 입력 가능합니다')) return false;
+
             if(!checkSelectNull('membersGenderCd', 2, "목록을 선택하세요.")) return false;
-            if(!checkSelectNull('membersGradeCd', 2, "목록을 선택하세요.")) return false;
         }
+
+
+
+        document.addEventListener("keydown", function(event) {
+            // 엔터키를 눌렀을 때
+            if (event.key === "Enter") {
+                event.preventDefault(); // 폼 제출을 막음
+                
+                registerIn();
+            }
+        });
 
     </script>
 

@@ -15,10 +15,6 @@ public class ProductVo extends BaseVo {
 	private Integer productStarAll;
 	private Integer productSizeCd;
 	private Integer productColorCd;
-	
-	
-	
-	
 	public String getProductSeq() {
 		return productSeq;
 	}
@@ -92,18 +88,7 @@ public class ProductVo extends BaseVo {
 		this.productColorCd = productColorCd;
 	}
 	
-
 	
-	
-	
-	
-
-
-
-
-
-
-
 	
 	
 	

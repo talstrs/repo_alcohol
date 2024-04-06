@@ -261,7 +261,7 @@ public class MembersController {
 	
 	
 
-	// 사용자 회원가입
+	// 사용자 회원가입 페이지
 	@RequestMapping(value = "/membersUsrRegister")
 	public String membersUsrRegister(MembersDto dto) throws Exception {
 

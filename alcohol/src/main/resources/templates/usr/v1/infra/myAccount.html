@@ -151,7 +151,7 @@
                                                 <td th:text="${lista.ordersPrice}"></td>
                                                 <td th:text="${#dates.format(lista.ordersRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 												<td th:text="${#dates.format(lista.ordersModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
-                                                <td><a href="#" class="btn" type="button">VIEW</a></td>
+                                                <td><a th:href="@{/myAccountOrderView(ordersSeq=${lista.ordersSeq})}" class="btn" type="button">VIEW</a></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -168,7 +168,6 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                
                                                 <th>
                                                     <span>Title</span>
                                                 </th>
@@ -196,78 +195,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    Home
-                                                </td>
-                                                <td>
-                                                    012354
-                                                </td>
-                                                <td>road name&nstreet number</td>
-                                                <td>
-                                                    detail address
-                                                </td>
-                                                <td>
-                                                    etc address
-                                                </td>
-                                                <td>
-                                                    name
-                                                </td>
-                                                <td>
-                                                    010-1234-5678
-                                                </td>
-                                                <td>
-                                                    <a class="btn" href="#">
-                                                        Edit
-                                                    </a>
-                                                </td>
+                                            <tr th:if="${#lists.isEmpty(listAddress)}">
+                                                <td colspan="7">주소 데이터가 없습니다</td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    Company
-                                                </td>
-                                                <td>
-                                                    012354
-                                                </td>
-                                                <td>road name&nstreet number</td>
-                                                <td>
-                                                    detail address
-                                                </td>
-                                                <td>
-                                                    etc address
-                                                </td>
-                                                <td>
-                                                    name
-                                                </td>
-                                                <td>
-                                                    010-1234-5678
-                                                </td>
-                                                <td>
-                                                    <a class="btn" href="#">
-                                                        Edit
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    etc
-                                                </td>
-                                                <td>
-                                                    012354
-                                                </td>
-                                                <td>road name&nstreet number</td>
-                                                <td>
-                                                    detail address
-                                                </td>
-                                                <td>
-                                                    etc address
-                                                </td>
-                                                <td>
-                                                    name
-                                                </td>
-                                                <td>
-                                                    010-1234-5678
-                                                </td>
+                                            <tr th:if="${!#lists.isEmpty(listAddress)}" th:each="listAddress:${listAddress}">
+                                                <td th:text="${listAddress.addressTitle}"></td>
+                                                <td th:text="${listAddress.addressZipcode}"></td>
+                                                <td th:text="${listAddress.addressMain}"></td>
+                                                <td th:text="${listAddress.addressDetail}"></td>
+                                                <td th:text="${listAddress.addressEtc}"></td>
+                                                <td th:text="${listAddress.addressName}"></td>
+                                                <td th:text="${listAddress.addressPhone}"></td>
                                                 <td>
                                                     <a class="btn" href="#">
                                                         Edit

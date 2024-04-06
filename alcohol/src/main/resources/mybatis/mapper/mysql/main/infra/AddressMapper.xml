@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 모름 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Dao 경로 -->
+<mapper namespace="com.babify.infra.address.AddressDao">
+
+	<!-- Dto 경로 -->
+	<resultMap id="resultMapObj" type="com.babify.infra.address.AddressDto"></resultMap>
+
+	
+	<select id="selectList" resultMap="resultMapObj">
+	
+		SELECT 
+			a.addressSeq
+		    ,a.addressDelNy
+		    ,a.addressUseNy
+		    ,a.addressDefaultNy
+		    ,a.addressTitle
+		    ,a.addressZipcode
+		    ,a.addressMain
+		    ,a.addressDetail
+		    ,a.addressEtc
+		    ,a.addressName
+		    ,a.addressPhone
+		    ,a.addressLat
+		    ,a.addressLon
+		    ,a.addressLocalACd
+		    ,a.addressLocalBCd
+		    ,a.addressRegDate
+		    ,a.addressModDate
+		    ,a.members_membersSeq as membersMembersSeqF
+
+		FROM address a
+		WHERE a.members_membersSeq = #{membersMembersSeqF}
+		     	ORDER BY a.addressSeq
+				limit 99999999999
+	</select>
+
+	
+	<!-- 셀렉원 만들기 -->
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			a.addressSeq
+		    ,a.addressDelNy
+		    ,a.addressUseNy
+		    ,a.addressDefaultNy
+		    ,a.addressTitle
+		    ,a.addressZipcode
+		    ,a.addressMain
+		    ,a.addressDetail
+		    ,a.addressEtc
+		    ,a.addressName
+		    ,a.addressPhone
+		    ,a.addressLat
+		    ,a.addressLon
+		    ,a.addressLocalACd
+		    ,a.addressLocalBCd
+		    ,a.addressRegDate
+		    ,a.addressModDate
+		    ,a.members_membersSeq as membersMembersSeqF
+		from
+			address a
+		where 1=1
+			and a.addressDelNy = 0
+		    and a.addressSeq = #{addressSeq}
+			
+			
+	</select>
+	
+</mapper>
