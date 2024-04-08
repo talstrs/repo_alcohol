@@ -33,7 +33,9 @@
 		    ,a.members_membersSeq as membersMembersSeqF
 
 		FROM address a
-		WHERE a.members_membersSeq = #{membersMembersSeqF}
+		WHERE 1 = 1
+		 	and addressDelNy = 0
+			and a.members_membersSeq = #{membersMembersSeqF}
 		     	ORDER BY a.addressSeq
 				limit 99999999999
 	</select>
@@ -68,5 +70,65 @@
 			
 			
 	</select>
+	
+	<insert id="insert">
+		insert into address(
+			addressTitle
+			,addressZipcode
+			,addressMain
+			,addressDetail
+			,addressEtc
+			,addressName
+			,addressPhone
+			,addressLat
+			,addressLon
+			,addressLocalACd
+			,addressLocalBCd
+			,members_membersSeq
+		) values (
+			#{addressTitle}
+			,#{addressZipcode}
+			,#{addressMain}
+			,#{addressDetail}
+			,#{addressEtc}
+			,#{addressName}
+			,#{addressPhone}
+			,#{addressLat}
+			,#{addressLon}
+			,#{addressLocalACd}
+			,#{addressLocalBCd}
+			,#{membersMembersSeqF}
+		)
+	</insert>
+	
+
+	
+	<update id="update">
+		update address
+		set
+			addressTitle = #{addressTitle}
+			,addressZipcode = #{addressZipcode}
+			,addressMain = #{addressMain}
+			,addressDetail = #{addressDetail}
+			,addressEtc = #{addressEtc}
+			,addressName = #{addressName}
+			,addressPhone = #{addressPhone}
+			,addressLat = #{addressLat}
+			,addressLon = #{addressLon}
+			,addressLocalACd = #{addressLocalACd}
+			,addressLocalBCd = #{addressLocalBCd}
+			,addressModDate = now()
+		where 1=1
+			and addressSeq = #{addressSeq}
+	</update>
+	
+	<update id="updateDelete">
+   	update address
+   	set
+   		addressDelNy = 1
+   	WHERE 1=1
+   		and addressSeq = #{addressSeq}
+  	
+  	</update>
 	
 </mapper>

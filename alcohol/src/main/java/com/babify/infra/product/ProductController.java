@@ -76,13 +76,8 @@ public String productInsert(ProductDto dto) throws Exception{
 @RequestMapping(value = "/productUpdt")
 // 컨트롤러만 리턴 타입을 String으로 변경 가능
 public String productUpdt(ProductDto dto) throws Exception{
-	System.out.println("---------------------------------");
-	System.out.println("---------------------------------");
-	System.out.println("---------------------------------");
-	System.out.println(dto.getProductName());
-	System.out.println(dto.getProductSeq());
+
 	service.update(dto);
-	System.out.println(dto.getProductSeq());
 	
 
 	return "redirect:/productXdmList";
@@ -91,7 +86,6 @@ public String productUpdt(ProductDto dto) throws Exception{
 @RequestMapping(value = "/productUele")
 public String productUele(ProductDto dto) throws Exception{
 	
-	System.out.println(dto.toString());
 	service.updateDelete(dto);
 	
 	return "redirect:/productXdmList";
@@ -101,7 +95,6 @@ public String productUele(ProductDto dto) throws Exception{
 @RequestMapping(value = "/productDele")
 public String productDele(ProductDto dto) throws Exception{
 
-	System.out.println(dto.toString());
 	service.delete(dto);
 	
 	return "redirect:/productXdmList";

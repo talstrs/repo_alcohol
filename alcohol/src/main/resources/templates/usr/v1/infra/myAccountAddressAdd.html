@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- 헤드 부분 블록 -->
+<div th:replace="~{/usr/v1/infra/include/usrHead :: usrHead}"></div>
+
+
+<body>
+
+
+    <!-- 헤더 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadTop :: usrHeadTop}"></div>
+
+    <!-- 헤더 서치 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadSearch :: usrHeadSearch}"></div>
+
+    <!-- 헤더 오른쪽 사이드바 오프캔버스 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadOffcanvas :: usrHeadOffcanvas}"></div>
+    
+
+
+    <main>
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-section">
+            <div class="container-fluid custom-container">
+                <div class="breadcrumb-wrapper text-center">
+                    <h2 class="breadcrumb-wrapper__title">My Account</h2>
+                    <ul class="breadcrumb-wrapper__items justify-content-center">
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>My Account</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- My Account Start -->
+        
+        <div class="my-account-section section-padding-2">
+            <div class="container-fluid custom-container">
+                <div class="my-account-orders">
+                    <form class="row g-3  " name="formInsert" id="formInsert" method="post"  novalidate>
+                        <div class="col-6">
+                            <div class="single-form">
+                                <label class="single-form__label" for="addressTitle">title *</label>
+                                <input type="text" class="form-control" name="addressTitle" id="addressTitle" placeholder="타이틀을 입력하세요" required />
+                                <div class="invalid-feedback" id="addressTitleFeedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label class="single-form__label" for="addressZipcode">addressZipcode *</label>
+                                <input type="text" class="form-control" name="addressZipcode" id="addressZipcode" placeholder="우편번호를 입력하세요" required />
+                                <div class="invalid-feedback" id="addressZipcodeFeedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label class="single-form__label" for="addressMain">addressMain *</label>
+                                <input type="text" class="form-control" name="addressMain" id="addressMain" placeholder="주소를 입력하세요" required />
+                                <div class="invalid-feedback" id="addressMainFeedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label class="single-form__label" for="addressDetail">addressDetail *</label>
+                                <input type="text" class="form-control" name="addressDetail" id="addressDetail" placeholder="주소 상세를 입력하세요" required />
+                                <div class="invalid-feedback" id="addressDetailFeedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label class="single-form__label" for="addressEtc">addressEtc</label>
+                                <input type="text" class="form-control" name="addressEtc" id="addressEtc" placeholder="주소 기타를 입력하세요" required />
+                                <div class="invalid-feedback" id="Feedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label class="single-form__label" for="addressName">addressName *</label>
+                                <input type="text" class="form-control" name="addressName" id="addressName" placeholder="주소의 수령인을 입력하세요" required />
+                                <div class="invalid-feedback" id="addressNameFeedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label class="single-form__label" for="addressPhone">addressPhone *</label>
+                                <input type="text" class="form-control" name="addressPhone" id="addressPhone" placeholder="주소 수령인의 번호를 입력하세요" required />
+                                <div class="invalid-feedback" id="addressPhoneFeedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label class="single-form__label" for="addressLat">addressLat *</label>
+                                <input type="text" class="form-control" name="addressLat" id="addressLat" placeholder="addressLat 입력하세요" required />
+                                <div class="invalid-feedback" id="addressLatFeedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label class="single-form__label" for="addressLon">addressLon *</label>
+                                <input type="text" class="form-control" name="addressLon" id="addressLon" placeholder="addressLon 입력하세요" required />
+                                <div class="invalid-feedback" id="addressLonFeedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label class="single-form__label" for="addressLocalACd">addressLocalACd *</label>
+                                <input type="text" class="form-control" name="addressLocalACd" id="addressLocalACd" placeholder="addressLocalACd 입력하세요" required />
+                                <div class="invalid-feedback" id="addressLocalACdFeedback"></div>
+                            </div>
+                            <div class="single-form">
+                                <label class="single-form__label" for="addressLocalBCd">addressLocalBCd *</label>
+                                <input type="text" class="form-control" name="addressLocalBCd" id="addressLocalBCd" placeholder="타이틀을 입력하세요" required />
+                                <div class="invalid-feedback" id="addressLocalBCdFeedback"></div>
+                            </div>
+                        </div>
+                        <!-- Single Form Start -->
+                        <div class="single-form">
+                            <button class="btn btn-primary btn-sm" id="btnSubmit" type="submit" >
+                                Save Change
+                            </button>
+                        </div>
+                        <!-- Single Form Start -->
+                    </form>
+                    <!-- My Account Address End -->
+                </div>
+            </div>
+        </div>
+        <!-- My Account End -->
+
+    </main>
+
+    <!-- 자바스크립트 시작 -->
+    <script>
+        // 폼 정의 필수
+
+        let form = document.querySelector("form[name=formInsert]");
+
+        // 등록 버튼
+
+        let goUrlXdmInst = "/addressInsert";
+        // let goUrlXdmUpdt = "/addressUpdt";	
+
+        document.getElementById("btnSubmit").onclick = function () {
+            if(validationInst() == false){
+                return false;
+            } else {
+
+                form.action = goUrlXdmInst;
+                form.submit();
+            }
+            
+        }
+
+        function validationInst() {
+            if(validationUpdt() == false) { return false;
+            }
+        }
+        
+        function validationUpdt() {
+            
+            if(!checkNull ('addressTitle', 2, '데이터 값을 입력하세요')) return false;
+            if(!checkOnlyKoreanEnglishNumber('addressTitle',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+            
+            if(!checkNull ('addressEtc', 2, '데이터 값을 입력하세요')) return false;
+            if(!checkOnlyKoreanEnglishNumber('addressEtc',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+
+            
+            if(!checkNull ('addressName', 2, '데이터 값을 입력하세요')) return false;
+            if(!checkOnlyKoreanEnglish('addressName',2,0,'영어, 한글만 입력 가능합니다')) return false;
+
+            
+            if(!checkNull ('addressPhone', 2, '데이터 값을 입력하세요')) return false;
+            // 추후 정규표현식으로 변경해 주기
+            if(!checkOnlyKoreanEnglishNumber('addressPhone',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+
+
+        }
+
+    </script>
+
+    <!-- 푸터 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>
+
+	<!--자바스크립트 주소 관련 블록-->
+	<div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>
+</body>
+
+</html>

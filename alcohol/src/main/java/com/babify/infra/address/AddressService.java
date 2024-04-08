@@ -23,5 +23,19 @@ public class AddressService {
 	public AddressDto selectOne(AddressDto dto) {
 		return dao.selectOne(dto);
 	}
+	
+	public int insert(AddressDto dto) {
+		return dao.insert(dto);
+	}
+	
+	public int update(AddressDto dto) {
+		return dao.update(dto);
+	}
+	
+	public int updateDelete(AddressDto dto) {
+		return dao.updateDelete(dto);
+	}
+	
+	
 
 }

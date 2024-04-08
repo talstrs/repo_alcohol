@@ -22,8 +22,7 @@ public class AddressDto {
 	private Date addressRegDate;
 	private Date addressModDate;
 	private String membersMembersSeqF;
-	
-	
+	private	String members_membersSeq;
 	public String getAddressSeq() {
 		return addressSeq;
 	}
@@ -132,7 +131,12 @@ public class AddressDto {
 	public void setMembersMembersSeqF(String membersMembersSeqF) {
 		this.membersMembersSeqF = membersMembersSeqF;
 	}
+	public String getMembers_membersSeq() {
+		return members_membersSeq;
+	}
+	public void setMembers_membersSeq(String members_membersSeq) {
+		this.members_membersSeq = members_membersSeq;
+	}
 	
-	
-	
+		
 }

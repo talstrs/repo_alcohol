@@ -102,8 +102,7 @@
                                             </div>
                                             <div class="mt-4">
                                             <!-- Single Form Start -->
-                                            <!-- 수정, 나중에 수정 페이지로 설정 필요-->
-                                                <a class="btn btn-outline-secondary" th:href="@{/myAccountMembersEdit(membersSeq=${item.membersSeq})}">>
+                                                <a class="btn btn-outline-secondary" th:href="@{/myAccountMembersEdit(membersSeq=${item.membersSeq})}">
                                                     
                                                     Edit
                                                 </a>
@@ -207,7 +206,7 @@
                                                 <td th:text="${listAddress.addressName}"></td>
                                                 <td th:text="${listAddress.addressPhone}"></td>
                                                 <td>
-                                                    <a class="btn" href="#">
+                                                    <a class="btn btn-outline-secondary" th:href="@{/myAccountAddressEdit(addressSeq=${listAddress.addressSeq})}">
                                                         Edit
                                                     </a>
                                                 </td>
@@ -216,7 +215,7 @@
                                     </table>
                                 </div>
                                 <div>
-                                    <a class="btn btn-outline-secondary" href="#">
+                                    <a class="btn btn-outline-secondary" th:href="@{/myAccountAddressAdd}">
                                         Add Address
                                     </a>
                                 </div>
