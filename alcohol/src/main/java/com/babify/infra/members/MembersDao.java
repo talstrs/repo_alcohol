@@ -23,9 +23,16 @@ public interface MembersDao {
 	
 	// 데이터를 수정할 때(수정 update)
 	public int update(MembersDto dto);
+
 	
 	// 유저 정보 업데이트
 	public int updateUsr(MembersDto dto);
+	
+	// 유저 비밀번호 업데이트
+	public int updateUsrPw(MembersDto dto);
+	
+	// 유저 비밀번호 셀렉문 
+	public MembersDto selectOnePw(MembersDto dto);
 	
 	// 데이터를 삭제할 때(삭제 update)
 	public int updateDelete(MembersDto dto);

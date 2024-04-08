@@ -1,11 +1,15 @@
 package com.babify.infra.orders;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.babify.infra.address.AddressDto;
 import com.babify.infra.address.AddressService;
@@ -90,12 +94,57 @@ public class OrdersController {
 		return  "usr/v1/infra/myAccountPwEdit";
 	}
 	
+	// 개인정보 수정(비밀번호)
+	
+	@ResponseBody
+	@RequestMapping(value = "/pwdUpdate")
+	public Map<String, Object> pwdUpdate(OrdersDto dto, MembersDto mdto , HttpSession httpSession,Model model) throws Exception {
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			
+			mdto.setMembersSeq((String)httpSession.getAttribute("sessSeqUsr"));
+			
+			
+			
+			// DB에서 데이터 가져오기
+			MembersDto dtoCheck = membersService.selectOnePw(mdto);
+			
+			
+			
+			
+			if(dtoCheck != null) {
+				
+			
+				if(matchesBcrypt(mdto.getxMembersBeforePw(), dtoCheck.getMembersPw(),10) )  {
+					if(mdto.getMembersPw().equals(mdto.getxMembersNewPwCheck()) ) {
+						mdto.setMembersPw(encodeBcrypt(mdto.getMembersPw(), 10));
+						membersService.updateUsrPw(mdto);
+						returnMap.put("rt", "success");
+					} else {
+						returnMap.put("rt", "fail");
+					}
+					
+				} else {
+					returnMap.put("rt", "fail");
+				}
+			} else {
+				returnMap.put("rt", "fail");
+			}
+		
+			
+			return returnMap;
+
+	}
 	
 	// pw 암호화
 	public String encodeBcrypt(String planeText, int strength) {
 		  return new BCryptPasswordEncoder(strength).encode(planeText); 
 	}
 	
+	// pw 복호화	
+	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
+	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
+	  return passwordEncoder.matches(planeText, hashValue);
+	}
 	
 	// 오더 상세페이지 페이지 myAccountOrderView
 	@RequestMapping(value = "/myAccountOrderView")

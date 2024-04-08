@@ -145,6 +145,27 @@
 			and membersSeq = #{membersSeq}
 	</update>
 	
+<!-- 	유저 비밀번호 관련 셀렉문 -->
+<select id="selectOnePw" resultMap="resultMapObj">
+	
+		select
+			membersEmail
+			,membersPw
+		from members
+		where 1=1
+		    and membersSeq = #{membersSeq}
+	</select>
+
+<!-- 	유저 비밀번호 업데이트 -->
+
+	<update id="updateUsrPw">
+		update members
+		set
+			membersPw = #{membersPw}
+		where 1=1
+			and membersSeq = #{membersSeq}
+	</update>
+	
 	<update id="updateDelete">
    	update members
    	set

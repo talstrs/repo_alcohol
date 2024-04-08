@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- 헤드 부분 블록 -->
+<div th:replace="~{/usr/v1/infra/include/usrHead :: usrHead}"></div>
+
+
+<body>
+
+
+    <!-- 헤더 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadTop :: usrHeadTop}"></div>
+
+    <!-- 헤더 서치 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadSearch :: usrHeadSearch}"></div>
+
+    <!-- 헤더 오른쪽 사이드바 오프캔버스 -->
+    <div th:replace="~{/usr/v1/infra/include/usrHeadOffcanvas :: usrHeadOffcanvas}"></div>
+    
+
+    <main>
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-section">
+            <div class="container-fluid custom-container">
+                <div class="breadcrumb-wrapper text-center">
+                    <h2 class="breadcrumb-wrapper__title">My Account</h2>
+                    <ul class="breadcrumb-wrapper__items justify-content-center">
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>My Account</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- My Account Start -->
+        <div class="my-account-section section-padding-2">
+
+            <div class="container-fluid custom-container">
+                <div class="border border-opacity-50 rounded p-4 mt-4">
+                    <div class="col-md-6">
+                        <!-- Single Form Start -->
+                        <div class="m-0">
+                            <!-- <input type="hidden" name="membersSeq" th:value="${item.membersSeq}"> -->
+                        </div>
+
+                        <div class="single-form">
+                            <label for="xMembersBeforePw" class="form-label">Password</label>
+                            <input type="text" class="form-control" name="xMembersBeforePw" id="xMembersBeforePw"  required />
+                            <div class="invalid-feedback" id="xMembersBeforePwFeedback"></div>
+                        </div>
+                        <div class="single-form">
+                            <label for="membersPw" class="form-label">New Password</label>
+                            <input type="text" class="form-control" name="membersPw" id="membersPw" required />
+                            <div class="invalid-feedback" id="membersPwFeedback"></div>
+                        </div>
+                        <div class="single-form">
+                            <label for="xMembersNewPwCheck" class="form-label">New Password Check</label>
+                            <input type="text" class="form-control" name="xMembersNewPwCheck" id="xMembersNewPwCheck" required />
+                            <div class="invalid-feedback" id="xMembersNewPwCheckFeedback"></div>
+                        </div>
+
+                        <div class="mt-4">
+                        <!-- Single Form Start -->
+                            <button id="btnSubmit" type="submit" class="btn btn-outline-secondary">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Form Start -->
+            </div>
+        </div>
+        <!-- My Account End -->
+
+    </main>
+
+    <!-- 푸터 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>
+
+    <!--자바스크립트 시작-->
+
+    <script>
+		// 폼 정의 필수
+
+
+		
+		
+
+        function pwChange() {
+            if(validationInst() == false) return false;
+
+		
+	
+            $.ajax({
+                async: true 
+                ,cache: false
+                ,type: "post"
+                /* ,dataType:"json" */
+                ,url: "/pwdUpdate"
+                /* ,data : $("#formLogin").serialize() */
+                ,data : {"membersPw" : $("#membersPw").val(), "xMembersBeforePw" : $("#xMembersBeforePw").val(), "xMembersNewPwCheck" : $("#xMembersNewPwCheck").val()}
+                ,success: function(response) {
+                    if(response.rt == "success") {
+                        location.href = "/myAccount";
+                    }else {
+                            alert("비밀번호가 틀렸습니다");
+                    }
+                }
+                ,error : function(jqXHR, textStatus, errorThrown){
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+        }
+
+		document.getElementById("btnSubmit").onclick = function () {
+            pwChange();
+
+		}
+
+		function validationInst() {
+			if(validationUpdt() == false) { return false;
+			}
+		}
+
+
+		function validationUpdt() {
+			if(!checkNull ('xMembersBeforePw', 2, '데이터 값을 입력하세요')) return false;
+            // 비밀번호 추후 변경 필요
+            if(!checkOnlyKoreanEnglishNumber('xMembersBeforePw',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+            if(!checkNull ('membersPw', 2, '데이터 값을 입력하세요')) return false;
+			if(!checkOnlyKoreanEnglishNumber('membersPw',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+            if(!checkNull ('xMembersNewPwCheck', 2, '데이터 값을 입력하세요')) return false;
+            if(!checkOnlyKoreanEnglishNumber('xMembersNewPwCheck',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+
+			
+
+			
+		}
+
+        document.addEventListener("keydown", function(event) {
+				// 엔터키를 눌렀을 때
+				if (event.key === "Enter") {
+					event.preventDefault(); // 폼 제출을 막음
+					
+					pwChange();
+				}
+			});
+
+	</script>
+
+	<!--자바스크립트 주소 관련 블록-->
+	<div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>
+</body>
+
+</html>

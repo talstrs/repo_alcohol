@@ -53,6 +53,17 @@ public class MembersService {
 		return dao.updateUsr(dto);
 	}
 	
+// 유저 비밀번호 업데이트
+	public int updateUsrPw(MembersDto dto) {
+		return dao.updateUsrPw(dto);
+	}
+	
+// 유저 비밀번호 셀렉문
+	public MembersDto selectOnePw(MembersDto dto) {
+		return dao.selectOnePw(dto);
+	}
+	
+	
 //  delete 업데이트 서비스
 	public int updateDelete(MembersDto dto) {
 		return dao.updateDelete(dto);

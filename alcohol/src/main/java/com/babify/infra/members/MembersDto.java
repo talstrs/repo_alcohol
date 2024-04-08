@@ -17,6 +17,8 @@ public class MembersDto {
 	private Date membersModDate;
 	private Integer membersAdminNy;
 	
+	private	String xMembersBeforePw;
+	private String xMembersNewPwCheck;
 	public String getMembersSeq() {
 		return membersSeq;
 	}
@@ -89,18 +91,19 @@ public class MembersDto {
 	public void setMembersAdminNy(Integer membersAdminNy) {
 		this.membersAdminNy = membersAdminNy;
 	}
-	
-
-	
-	
-	
-	
-	
-	
-	
-
-	
-
+	public String getxMembersBeforePw() {
+		return xMembersBeforePw;
+	}
+	public void setxMembersBeforePw(String xMembersBeforePw) {
+		this.xMembersBeforePw = xMembersBeforePw;
+	}
+	public String getxMembersNewPwCheck() {
+		return xMembersNewPwCheck;
+	}
+	public void setxMembersNewPwCheck(String xMembersNewPwCheck) {
+		this.xMembersNewPwCheck = xMembersNewPwCheck;
+	}
+		
 	
 }
 	
