@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.babify.infra.address.AddressDto;
 import com.babify.infra.address.AddressService;
 import com.babify.infra.address.AddressVo;
 import com.babify.infra.members.MembersDto;
@@ -69,12 +70,24 @@ public class OrdersController {
 		mdto.setMembersSeq((String) httpSession.getAttribute("sessSeqUsr"));
 		
 
-		mdto.setMembersPw(encodeBcrypt((String) mdto.getMembersPw(), 10));
+//		mdto.setMembersPw(encodeBcrypt((String) mdto.getMembersPw(), 10));
 		
 		
-		membersService.update(mdto);
+		membersService.updateUsr(mdto);
 
 		return "redirect:/myAccount";
+	}
+	
+	// 개인정보 수정(비밀번호) 페이지
+	@RequestMapping(value = "/myAccountPwEdit")
+	public String myAccountPwEdit(MembersDto mdto,  Model model, HttpSession httpSession) throws Exception{
+
+		mdto.setMembersSeq((String) httpSession.getAttribute("sessSeqUsr"));
+		
+		
+		model.addAttribute("item", membersService.selectOne(mdto));
+		
+		return  "usr/v1/infra/myAccountPwEdit";
 	}
 	
 	
@@ -86,13 +99,21 @@ public class OrdersController {
 	
 	// 오더 상세페이지 페이지 myAccountOrderView
 	@RequestMapping(value = "/myAccountOrderView")
-	public String myAccountOrderView(OrdersDto dto, MembersDto mdto,  Model model, HttpSession httpSession) throws Exception{
-
+	public String myAccountOrderView(OrdersDto dto, MembersDto mdto, AddressDto addto,  Model model, HttpSession httpSession) throws Exception{
+		// 하나의 매퍼로 진행하기!!!! ㅠㅠㅠㅠ
 		mdto.setMembersSeq((String) httpSession.getAttribute("sessSeqUsr"));
 		
 		model.addAttribute("itemMembers", membersService.selectOne(mdto));
 		
 		model.addAttribute("item", service.selectOne(dto));
+		
+		addto.setAddressSeq((String) dto.getOrdersAddressSeq());
+		System.out.println(dto.getOrdersAddressSeq());
+		System.out.println("addto.getAddressSeq(): " + addto.getAddressSeq());
+		System.out.println("---------------------------");
+		System.out.println("---------------------------");
+		System.out.println("---------------------------");
+		model.addAttribute("itemAddress", addressService.selectOne(addto));
 		
 		return  "usr/v1/infra/myAccountOrderView";
 	}

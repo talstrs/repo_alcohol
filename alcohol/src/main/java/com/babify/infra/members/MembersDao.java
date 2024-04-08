@@ -21,8 +21,11 @@ public interface MembersDao {
 	// 건수에 대한 리턴을 받기 때문에 int를 씀
 	public int insert(MembersDto dto);
 	
-	// 데이터를 수장할 때(수정 update)
+	// 데이터를 수정할 때(수정 update)
 	public int update(MembersDto dto);
+	
+	// 유저 정보 업데이트
+	public int updateUsr(MembersDto dto);
 	
 	// 데이터를 삭제할 때(삭제 update)
 	public int updateDelete(MembersDto dto);

@@ -32,6 +32,7 @@
 		    ,a.ordersTotalPrice
 		    ,a.ordersRegDate
 		    ,a.ordersModDate
+		    ,a.ordersAddressSeq
 		    ,a.members_membersSeq as membersMembersSeqF
 		    ,c.orders_ordersSeq as ordersOrdersSeqF
 		    ,c.product_productSeq as productProductSeqF
@@ -64,6 +65,7 @@
 		    ,a.ordersTotalPrice
 		    ,a.ordersRegDate
 		    ,a.ordersModDate
+		    ,a.ordersAddressSeq
 		    ,a.members_membersSeq
 		from
 			orders a

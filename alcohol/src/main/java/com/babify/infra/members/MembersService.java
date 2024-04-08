@@ -48,6 +48,11 @@ public class MembersService {
 		return dao.update(dto);
 	}
 	
+// 유저 정보 업데이트
+	public int updateUsr(MembersDto dto) {
+		return dao.updateUsr(dto);
+	}
+	
 //  delete 업데이트 서비스
 	public int updateDelete(MembersDto dto) {
 		return dao.updateDelete(dto);

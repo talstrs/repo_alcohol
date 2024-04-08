@@ -25,6 +25,7 @@ public class OrdersVo extends BaseVo {
 	private String membersMembersSeqF;
 	private String ordersOrdersSeqF;
 	private String productProductSeqF;
+	private String ordersAddressSeq;
 	
 	
 	// 추후 VO로 진행
@@ -140,6 +141,12 @@ public class OrdersVo extends BaseVo {
 	public void setProductProductSeqF(String productProductSeqF) {
 		this.productProductSeqF = productProductSeqF;
 	}
+	public String getOrdersAddressSeq() {
+		return ordersAddressSeq;
+	}
+	public void setOrdersAddressSeq(String ordersAddressSeq) {
+		this.ordersAddressSeq = ordersAddressSeq;
+	}
 	public Integer getOrdersDelNy() {
 		return ordersDelNy;
 	}
@@ -164,7 +171,6 @@ public class OrdersVo extends BaseVo {
 	public void setOrdersModDate(Date ordersModDate) {
 		this.ordersModDate = ordersModDate;
 	}
-	
-		
+			
 	
 }

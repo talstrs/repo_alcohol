@@ -28,6 +28,7 @@ public class OrdersDto {
 	private String membersMembersSeqF;	
 	private String ordersOrdersSeqF;
 	private String productProductSeqF;
+	private String ordersAddressSeq;
 	public String getMembersSeq() {
 		return membersSeq;
 	}
@@ -160,8 +161,13 @@ public class OrdersDto {
 	public void setProductProductSeqF(String productProductSeqF) {
 		this.productProductSeqF = productProductSeqF;
 	}
-	
-	
+	public String getOrdersAddressSeq() {
+		return ordersAddressSeq;
+	}
+	public void setOrdersAddressSeq(String ordersAddressSeq) {
+		this.ordersAddressSeq = ordersAddressSeq;
+	}
+		
 	
 }
 	
