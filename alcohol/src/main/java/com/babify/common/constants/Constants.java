@@ -9,7 +9,7 @@ public class Constants {
 	public static final String ABBREVIATION_ADVERTISER = "Adt";
 	
 //	for paging
-	public static final int ROW_NUM_TO_SHOW = 4;
+	public static final int ROW_NUM_TO_SHOW = 8;
 	public static final int PAGE_NUM_TO_SHOW = 5;
 
 // insert 또는 update 후 페이지 전환 타입: 1:form, 2:list	

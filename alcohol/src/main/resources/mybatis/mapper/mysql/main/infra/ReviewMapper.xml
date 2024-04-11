@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 모름 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Dao 경로 -->
+<mapper namespace="com.babify.infra.review.ReviewDao">
+
+	<!-- Dto 경로 -->
+	<resultMap id="resultMapObj" type="com.babify.infra.review.ReviewDto"></resultMap>
+	
+	<!-- select 공통 구문 SQL -->
+	<sql id ="selectCommon">
+		FROM review a
+		left join members b 
+			on b.membersSeq = a.reviewMembersSeq
+		WHERE 1 = 1
+		 	and reviewDelNy = 0
+			and a.product_productSeq = #{productSeq}
+	
+	</sql>
+
+	
+	<select id="selectList" resultMap="resultMapObj">
+	
+		SELECT 
+			a.reviewSeq
+		    ,a.reviewDelNy
+		    ,a.reviewUseNy
+		    ,a.reviewText
+		    ,a.reviewStarCd
+		    ,a.reviewRegDate
+		    ,a.reviewModDate
+		    ,a.product_productSeq as productSeq
+		    ,a.reviewMembersSeq
+		    ,b.membersSeq
+		    ,b.membersName
+		<include refid="selectCommon"></include>
+
+		
+		     	ORDER BY a.reviewSeq
+				limit 99999999999
+	</select>
+
+<!-- 	seleList total 개수 -->
+	<select id="selectListCount" resultType="Integer">
+		select COUNT(*)
+		<include refid="selectCommon"></include>
+	</select>
+	
+	<!-- 셀렉원 만들기 -->
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			a.reviewSeq
+		    ,a.reviewDelNy
+		    ,a.reviewUseNy
+		    ,a.reviewText
+		    ,a.reviewStarCd
+		    ,a.reviewRegDate
+		    ,a.reviewModDate
+		    ,a.product_productSeq as productSeq
+		    ,a.reviewMembersSeq
+		FROM review a
+		where 1=1
+			and a.reviewDelNy = 0
+		    and a.reviewSeq = #{reviewSeq}
+			
+			
+	</select>
+	
+	
+	<insert id="insert">
+		insert into review(
+			reviewText
+			,reviewStarCd
+			,product_productSeq
+			,reviewMembersSeq
+		) values (
+			#{reviewText}
+			,#{reviewStarCd}
+			,#{productSeq}
+			,#{reviewMembersSeq}
+		)
+	</insert>
+
+	
+
+	
+</mapper>

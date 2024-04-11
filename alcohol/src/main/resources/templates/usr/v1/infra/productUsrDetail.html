@@ -103,7 +103,7 @@
                         <!--수정, 제품, 가격-->
                         <div class="product-single-content">
                             <!--카테고리 추가-->
-                            <div>
+                            <div class="mb-2">
                                 <a th:href="@{/productUsrList(productCatMainCd=${item.productCatMainCd})}" 
                                 th:text="${@codeService.selectOneCachedCode(item.productCatMainCd)}"></a>
                             </div>
@@ -114,7 +114,8 @@
                                 <span class="star-rating">
                                         <span
                                             style="width: 88%"
-                                        ></span>(3)
+                                        ></span>
+                                        
                                 </span>
                             </div>
                             <div class="product-single-content__price-stock">
@@ -252,199 +253,84 @@
                 <!-- Product Single Tabs Start -->
                 <div class="product-single-tabs">
                     <ul class="nav justify-content-center">
-                        
-                        <li>
-                            <button  data-bs-toggle="pill" data-bs-target="#additionalInformation " type="button">
-                                Additional information
-                            </button>
-                        </li>
                         <li>
                             <button data-bs-toggle="pill" data-bs-target="#reviews" type="button">
-                                Reviews (03)
+                                Reviews <span>&#40;</span><span th:text="${reviewCount}"></span><span>&#41;</span>
                             </button>
                         </li>
                     </ul>
 
                     <div class="tab-content">
-                        <div class="tab-pane fade " id="additionalInformation">
-                            <!-- Product Single Table Start -->
-                            <!--수정, 하단 정보-->
-                            <div class="product-single-table">
-                                <div class="table-responsive">
-                                    <table class="table align-middle">
-                                        <tbody>
-                                            <tr>
-                                                <th>Color</th>
-                                                <td>
-                                                    <p>Blue, Green, Red</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Size</th>
-                                                <td>
-                                                    <p>XS, S, M, L</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Use</th>
-                                                <td>
-                                                    <p>year, month</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- Product Single Table End -->
-                        </div>
                         <div class="tab-pane fade" id="reviews">
                             <!-- Product Single Review Start -->
                             <div class="product-single-review">
                                 <!-- Product Comment Start -->
                                 <div class="product-comment">
                                     <!--수정, 리뷰 수-->
-                                    <h3 class="comment-title">
-                                        3 review
+                                    <h3 class="comment-title mt-4">
+                                        <span th:text="${reviewCount}"></span> review
                                     </h3>
 
                                     <!-- Comment Items Start -->
-                                    <ul class="comment-items">
+                                    <ul class="comment-items" th:if="${#lists.isEmpty(listReview)}">
+                                        <li>
+                                            <div>등록된 리뷰가 없습니다</div>
+                                        </li>
+                                    </ul>
+                                    <ul th:if="${!#lists.isEmpty(listReview)}" th:each="lista:${listReview}">
                                         <!-- Comment Item Start -->
-                                        <li class="comment-item">
-                                            <div class="comment-item__author">
-                                                <img src="/usr/assets/images/user/user-1.jpg" alt="Author" width="90" height="90" loading="lazy" />
-                                            </div>
+                                        <li class="comment-item mt-3">
                                             <div class="comment-item__content">
                                                 <div class="comment-item__rating">
-                                                    <span
-                                                            class="star-rating"
-                                                        >
-                                                            <span
-                                                                style="
-                                                                    width: 80%;
-                                                                "
-                                                            ></span>
+                                                    <span class="star-rating">
+                                                            <span th:if="${lista.reviewStarCd == 40}" style="width: 100%;"></span>
+                                                            <span th:if="${lista.reviewStarCd == 41}" style="width: 80%;"></span>
+                                                            <span th:if="${lista.reviewStarCd == 42}" style="width: 60%;"></span>
+                                                            <span th:if="${lista.reviewStarCd == 43}" style="width: 40%;"></span>
+                                                            <span th:if="${lista.reviewStarCd == 44}" style="width: 20%;"></span>
                                                     </span>
                                                 </div>
-                                                <p class="comment-item__description">
-                                                    Fringed jacquard
-                                                    cardigan
+                                                <p class="comment-item__description" th:text="${lista.reviewText}">
                                                 </p>
                                                 <p class="comment-item__meta">
-                                                    <strong
-                                                            >HasTheme</strong>
-                                                    - June 3, 2024
+                                                    <strong th:text="${lista.membersName}"></strong>
+                                                    <span th:text="${lista.reviewModDate}"></span>
                                                 </p>
                                             </div>
                                         </li>
-                                        <!-- Comment Item End -->
-
-                                        <!-- Comment Item Start -->
-                                        <li class="comment-item">
-                                            <div class="comment-item__author">
-                                                <img src="/usr/assets/images/user/user-2.jpg" alt="Author" width="90" height="90" loading="lazy" />
-                                            </div>
-                                            <div class="comment-item__content">
-                                                <div class="comment-item__rating">
-                                                    <span
-                                                            class="star-rating"
-                                                        >
-                                                            <span
-                                                                style="
-                                                                    width: 80%;
-                                                                "
-                                                            ></span>
-                                                    </span>
-                                                </div>
-                                                <p class="comment-item__description">
-                                                    Fringed jacquard
-                                                    cardigan
-                                                </p>
-                                                <p class="comment-item__meta">
-                                                    <strong
-                                                            >HasTheme</strong>
-                                                    - June 3, 2024
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <!-- Comment Item End -->
-
-                                        <!-- Comment Item Start -->
-                                        <li class="comment-item">
-                                            <div class="comment-item__author">
-                                                <img src="/usr/assets/images/user/user-3.jpg" alt="Author" width="90" height="90" loading="lazy" />
-                                            </div>
-                                            <div class="comment-item__content">
-                                                <div class="comment-item__rating">
-                                                    <span
-                                                            class="star-rating"
-                                                        >
-                                                            <span
-                                                                style="
-                                                                    width: 80%;
-                                                                "
-                                                            ></span>
-                                                    </span>
-                                                </div>
-                                                <p class="comment-item__description">
-                                                    Fringed jacquard
-                                                    cardigan
-                                                </p>
-                                                <p class="comment-item__meta">
-                                                    <strong
-                                                            >HasTheme</strong>
-                                                    - June 3, 2024
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <!-- Comment Item End -->
                                     </ul>
                                     <!-- Comment Items End -->
                                 </div>
                                 <!-- Product Comment End -->
 
                                 <!-- Product Comment Form Start -->
-                                <div class="product-comment-form">
+                                <div th:unless="${session.sessNameUsr} == null" class="product-comment-form" >
                                     <h3 class="comment-title">
                                         Add a review
                                     </h3>
-
-                                    <form action="#">
+                                    <form class="row g-3  " name="formInsert" id="formInsert" method="post"  novalidate>
                                         <!-- Comment Form Start -->
                                         <div class="comment-form">
-                                            <div class="comment-form__notes">
-                                                Your email address will not
-                                                be published.
-                                            </div>
                                             <div class="comment-form__rating">
                                                 <div class="label">
                                                     Your rating *
                                                 </div>
                                                 <!--수정, 별점-->
-                                                <input type="radio" class="btn-check" name="star" id="staroption1" autocomplete="off" checked>
-                                                <label class="btn btn-secondary" for="staroption1">1</label>
-
-                                                <input type="radio" class="btn-check" name="star" id="staroption2" autocomplete="off" checked>
-                                                <label class="btn btn-secondary" for="staroption2">2</label>
-
-                                                <input type="radio" class="btn-check" name="star" id="staroption3" autocomplete="off" checked>
-                                                <label class="btn btn-secondary" for="staroption3">3</label>
-
-                                                <input type="radio" class="btn-check" name="star" id="staroption4" autocomplete="off" checked>
-                                                <label class="btn btn-secondary" for="staroption4">4</label>
-
-                                                <input type="radio" class="btn-check" name="star" id="staroption5" autocomplete="off" checked>
-                                                <label class="btn btn-secondary" for="staroption5">5</label>
+                                                <span th:each="list : ${@codeService.selectListCachedCode(10)}">
+                                                    <input type="radio" class="btn-check" name="reviewStarCd" th:id="'reviewStarCd' + ${list.codeSeq}" th:value="${list.codeSeq}" autocomplete="off">
+                                                    <label class="btn btn-secondary" th:for="'reviewStarCd' + ${list.codeSeq}" th:text="${list.codeName}"></label>
+                                                </span>
                                             </div>
+                                            <input type="hidden" name="productSeq" th:value="${item.productSeq}">
                                             <!-- Single Form Start -->
                                             <div class="single-form">
                                                 <label class="single-form__label">
                                                     Your review *
                                                 </label>
-                                                <textarea class="single-form__input"></textarea>
+                                                <textarea class="single-form__input" name="reviewText"></textarea>
                                             </div>
                                             <div class="single-form">
-                                                <button class="single-form__btn btn" type="submit">
+                                                <button class="single-form__btn btn" id="btnSubmit" type="submit">
                                                     Submit
                                                 </button>
                                             </div>
@@ -812,6 +698,19 @@
         
     </main>
 
+    <script>
+        // 폼 정의 필수
+
+        let form = document.querySelector("form[name=formInsert]");
+
+        let goUrlXdmInst = "/reviewInsert";
+
+        document.getElementById("btnSubmit").onclick = function () {
+                form.action = goUrlXdmInst;
+                form.submit();
+        }
+    </script>
+    
     <!-- 푸터 블록 -->
     <div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>
 

@@ -118,7 +118,7 @@
                                                         Out of stock
                                                     </div>
                                                     <div class="single-product__thumbnail--holder">
-                                                        <a href="product-single.html">
+                                                        <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq})}">
                                                             <img src="/usr/assets/images/products/product-02.jpg" alt="Product" width="344" height="370" />
                                                             <img class="product-hover" src="/usr/assets/images/products/product-12.jpg" alt="Product" width="344" height="370" />
                                                         </a>
@@ -143,10 +143,7 @@
                                                         </span>
                                                     </div>
                                                     <h3 class="single-product__info--title">
-                                                        <!-- th:href로 변경 필요 -->
-                                                        <a th:href="@{/productUsrDetail(
-                                                            productSeq=${lista.productSeq}
-                                                        )}" th:text="${lista.productName}"></a>
+                                                        <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
                                                     </h3>
                                                     <div class="single-product__info--price">
                                                         <ins th:text="${lista.productPrice}"></ins>
@@ -165,12 +162,13 @@
                                             <!-- Single product End -->
                                     </div>
                                 </div>
-
+                                <div class="mt-3 mb-3"></div>
                                 <!-- Pagination Start -->
                                 <!--페이징 관련 기본 내용 받기-->
                                 <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
                                 <!-- 페이지네이션 -->
-                                <div class="">
+                                <div style="margin-top: 3px;"></div>
+                                <div class="mt-5">
                                     <nav aria-label="Page Navigation">
                                         <!-- <ul class="paginations-list"> -->
                                         <ul class="pagination justify-content-center"> 
