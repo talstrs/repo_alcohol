@@ -15,6 +15,7 @@
 
     <!-- 헤더 오른쪽 사이드바 오프캔버스 -->
     <div th:replace="~{/usr/v1/infra/include/usrHeadOffcanvas :: usrHeadOffcanvas}"></div>
+
     <main>
         <!-- Breadcrumb Start -->
         <div class="breadcrumb-section">
@@ -130,8 +131,8 @@
                                                 </div>
                                                 <div class="single-product__info text-center">
                                                     <div class="single-product__info--tags">
-                                                        <a th:href="@{/productUsrList}" th:text="${@codeService.selectOneCachedCode(lista.productCatMainCd)}"></a>
-                                                        <!-- (productCatMainCd=${lista.productCatMainCd}) -->
+                                                        <a th:href="@{/productUsrList(productCatMainCd=${lista.productCatMainCd})}" 
+                                                        th:text="${@codeService.selectOneCachedCode(lista.productCatMainCd)}"></a>
                                                     </div>
                                                     <!--수정, 별점 넣기-->
                                                     <div class="single-product__info--rating">
@@ -143,7 +144,9 @@
                                                     </div>
                                                     <h3 class="single-product__info--title">
                                                         <!-- th:href로 변경 필요 -->
-                                                        <a href="@{/productUsrView(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
+                                                        <a th:href="@{/productUsrDetail(
+                                                            productSeq=${lista.productSeq}
+                                                        )}" th:text="${lista.productName}"></a>
                                                     </h3>
                                                     <div class="single-product__info--price">
                                                         <ins th:text="${lista.productPrice}"></ins>

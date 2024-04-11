@@ -131,6 +131,15 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 	return "usr/v1/infra/productUsrList";
 }
 
+// 상품 상세 페이지
+	@RequestMapping(value = "/productUsrDetail")
+	public String productUsrDetail(ProductDto dto, Model model) throws Exception{
+		
+		model.addAttribute("item", service.selectOne(dto));
+		
+		return "usr/v1/infra/productUsrDetail";
+	}
+
 // 사용자 인덱스
 @RequestMapping(value = "/usrIndex")
 public String usrIndex(ProductVo vo, Model model) throws Exception {
