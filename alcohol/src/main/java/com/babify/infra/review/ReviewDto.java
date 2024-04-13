@@ -17,6 +17,7 @@ public class ReviewDto {
 	private Integer membersSeq;
 	private String membersName;
 	
+	private Integer xReviewStarAvg;
 
 	public String getReviewSeq() {
 		return reviewSeq;
@@ -106,8 +107,15 @@ public class ReviewDto {
 		this.membersName = membersName;
 	}
 
+	public Integer getxReviewStarAvg() {
+		return xReviewStarAvg;
+	}
+
+	public void setxReviewStarAvg(Integer xReviewStarAvg) {
+		this.xReviewStarAvg = xReviewStarAvg;
+	}
 	
-				
+	
 }
 	
 	

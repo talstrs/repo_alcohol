@@ -141,8 +141,10 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 	public String productUsrDetail(ProductDto dto, ReviewVo rvo, Model model) throws Exception{
 		
 		model.addAttribute("item", service.selectOne(dto));
+		
 		model.addAttribute("listReview", reviewService.selectList(rvo));
 		model.addAttribute("reviewCount", reviewService.selectListCount(rvo));
+		model.addAttribute("reviewAvg", reviewService.selectOneReviewAvg(rvo));
 		
 		return "usr/v1/infra/productUsrDetail";
 	}

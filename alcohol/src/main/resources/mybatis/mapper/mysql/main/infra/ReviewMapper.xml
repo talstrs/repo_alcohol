@@ -33,6 +33,18 @@
 		    ,a.reviewModDate
 		    ,a.product_productSeq as productSeq
 		    ,a.reviewMembersSeq
+		    ,(select AVG(
+		    	case aa.reviewStarCd
+		    		when 40 then 1
+		    		when 41 then 2
+		    		when 42 then 3
+		    		when 43 then 4
+		    		when 44 then 5
+		    		else null
+		    	end)
+		    	from review aa
+		    	where 1=1
+		    		and aa.product_productSeq = #{productSeq}) as xReviewStarAvg
 		    ,b.membersSeq
 		    ,b.membersName
 		<include refid="selectCommon"></include>
@@ -66,6 +78,22 @@
 		    and a.reviewSeq = #{reviewSeq}
 			
 			
+	</select>
+	
+<!-- 	리뷰 평균 아이템 셀렉원  -->
+	<select id="selectOneReviewAvg" resultMap="resultMapObj">
+	select AVG(
+		    	case a.reviewStarCd
+		    		when 40 then 1
+		    		when 41 then 2
+		    		when 42 then 3
+		    		when 43 then 4
+		    		when 44 then 5
+		    		else null
+		    	end) as xReviewStarAvg
+		    	from review a
+		    	where 1=1
+		    		and a.product_productSeq = #{productSeq}
 	</select>
 	
 	

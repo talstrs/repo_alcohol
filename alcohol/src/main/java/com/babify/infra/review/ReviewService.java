@@ -28,5 +28,10 @@ public class ReviewService {
 	public int insert(ReviewDto dto) {
 		return dao.insert(dto);
 	}
+	
+	// 리뷰 벌점 평균 리턴
+	public ReviewVo selectOneReviewAvg(ReviewVo vo) throws Exception{
+		return dao.selectOneReviewAvg(vo);
+	}
 
 }

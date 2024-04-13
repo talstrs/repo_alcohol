@@ -15,6 +15,8 @@ public class ReviewVo extends BaseVo {
 	private Integer membersSeq;
 	private String membersName;
 	
+	private Integer xReviewStarAvg;
+	
 	
 	// 추후 VO로 진행
 	private	Integer reviewDelNy;
@@ -63,6 +65,12 @@ public class ReviewVo extends BaseVo {
 	public void setMembersName(String membersName) {
 		this.membersName = membersName;
 	}
+	public Integer getxReviewStarAvg() {
+		return xReviewStarAvg;
+	}
+	public void setxReviewStarAvg(Integer xReviewStarAvg) {
+		this.xReviewStarAvg = xReviewStarAvg;
+	}
 	public Integer getReviewDelNy() {
 		return reviewDelNy;
 	}
@@ -87,6 +95,7 @@ public class ReviewVo extends BaseVo {
 	public void setReviewModDate(Date reviewModDate) {
 		this.reviewModDate = reviewModDate;
 	}
+	
 	
 	
 }
