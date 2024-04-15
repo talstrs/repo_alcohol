@@ -112,12 +112,12 @@
                             <!--수정 필요, 별점 추가-->
                             <div class="single-product__info--rating mt-0 mb-4">
                                 <span class="star-rating">
-                                    <span th:if="${reviewAvg == 5}" style="width:100%;"></span>
-                                    <span th:if="${reviewAvg == 4}" style="width:80%;"></span>
-                                    <span th:if="${reviewAvg == 3}" style="width:60%;"></span>
-                                    <span th:if="${reviewAvg == 2}" style="width:40%;"></span>
-                                    <span th:if="${reviewAvg == 1}" style="width:20%;"></span>
-                                    <span th:if="${reviewAvg == null}" style="width:0%;"></span>
+                                    <span th:if="${reviewAvg.xReviewStarAvg == 5}" style="width:100%;"></span>
+                                    <span th:if="${reviewAvg.xReviewStarAvg == 4}" style="width:80%;"></span>
+                                    <span th:if="${reviewAvg.xReviewStarAvg == 3}" style="width:60%;"></span>
+                                    <span th:if="${reviewAvg.xReviewStarAvg == 2}" style="width:40%;"></span>
+                                    <span th:if="${reviewAvg.xReviewStarAvg == 1}" style="width:20%;"></span>
+                                    <span th:if="${reviewAvg.xReviewStarAvg == null}" style="width:0%;"></span>
                                         
                                         
                                 </span>

@@ -14,7 +14,7 @@ public interface ReviewDao {
 	public ReviewDto selectOne(ReviewDto dto); //dto: 하나의 데이터를 가져올때
 	
 	// 리뷰 별점 평균
-	public ReviewVo selectOneReviewAvg(ReviewVo vo);
+	public ReviewDto selectOneReviewAvg(ReviewDto dto);
 	
 	public Integer insert(ReviewDto dto);
 	

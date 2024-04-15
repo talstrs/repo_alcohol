@@ -21,6 +21,8 @@ public class ProductDto {
 	private Date productRegDate;
 	private Date productModDate;
 	
+	private Integer xReviewStarAvg;
+	
 	public String getProductSeq() {
 		return productSeq;
 	}
@@ -116,6 +118,12 @@ public class ProductDto {
 	}
 	public void setProductModDate(Date productModDate) {
 		this.productModDate = productModDate;
+	}
+	public Integer getxReviewStarAvg() {
+		return xReviewStarAvg;
+	}
+	public void setxReviewStarAvg(Integer xReviewStarAvg) {
+		this.xReviewStarAvg = xReviewStarAvg;
 	}
 	
 	

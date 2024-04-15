@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 모름 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Dao 경로 -->
+<mapper namespace="com.babify.infra.wishlist.WishlistDao">
+
+	<!-- 아이디 설정하여 셀렉문에 부과 / Dto 경로 -->
+	<resultMap id="resultMapObj" type="com.babify.infra.wishlist.WishlistDto"></resultMap>
+	
+
+	
+
+	
+	
+	<select id="selectList" resultMap="resultMapObj">
+	
+	select
+		a.wishListSeq
+		,a.wishListDelNy
+		,a.wishListUseNy
+		,a.wishListRegDate
+		,a.wishListModDate
+		,a.members_membersSeq as membersSeq
+		,a.product_productSeq as productSeq
+	from
+		wishlist a
+	where 1=1
+		and a.wishlistDelNy = 0
+		and a.members_membersSeq = #{membersSeq}
+	</select>
+	
+
+	
+	<!-- 셀렉원 만들기 -->
+	<select id="selectOne" resultMap="resultMapObj">
+	select
+		a.wishListSeq
+		,a.wishListDelNy
+		,a.wishListUseNy
+		,a.wishListRegDate
+		,a.wishListModDate
+		,a.members_membersSeq as membersSeq
+		,a.product_productSeq as productSeq
+	from
+		wishlist a
+	where 1=1
+		and a.wishlistDelNy = 0
+		    and a.wishListSeq = #{wishListSeq}
+			
+			
+	</select>
+	
+	<insert id="insert">
+		insert into wishlist (
+			members_membersSeq
+			,product_productSeq
+		) values (
+			#{membersSeq}
+			,#{productSeq}
+		)
+	</insert>
+	
+
+	
+	
+	<update id="updateDelete">
+   	update wishlist
+   	set
+   		wishListDelNy = 1
+   	WHERE 1=1
+   		and wishListSeq = #{wishListSeq}
+  	
+  	</update>
+  	
+
+  
+</mapper>

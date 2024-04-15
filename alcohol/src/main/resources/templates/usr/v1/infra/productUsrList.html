@@ -137,9 +137,14 @@
                                                     <!--수정, 별점 넣기-->
                                                     <div class="single-product__info--rating">
                                                         <span class="star-rating">
-                                                                <span
-                                                                    style="width: 88%"
-                                                                ></span>
+                                                            <span th:if="${lista.xReviewStarAvg == 5}" style="width:100%;"></span>
+                                                            <span th:if="${lista.xReviewStarAvg == 4}" style="width:80%;"></span>
+                                                            <span th:if="${lista.xReviewStarAvg == 3}" style="width:60%;"></span>
+                                                            <span th:if="${lista.xReviewStarAvg == 2}" style="width:40%;"></span>
+                                                            <span th:if="${lista.xReviewStarAvg == 1}" style="width:20%;"></span>
+                                                            <span th:if="${lista.xReviewStarAvg == null}" style="width:0%;"></span>
+                                                                
+                                                                
                                                         </span>
                                                     </div>
                                                     <h3 class="single-product__info--title">

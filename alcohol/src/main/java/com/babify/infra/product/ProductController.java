@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.babify.common.util.UtilSearch;
+import com.babify.infra.review.ReviewDto;
 import com.babify.infra.review.ReviewService;
 import com.babify.infra.review.ReviewVo;
 
@@ -138,13 +139,13 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 
 // 상품 상세 페이지
 	@RequestMapping(value = "/productUsrDetail")
-	public String productUsrDetail(ProductDto dto, ReviewVo rvo, Model model) throws Exception{
+	public String productUsrDetail(ProductDto dto, ReviewVo rvo, ReviewDto rdto, Model model) throws Exception{
 		
 		model.addAttribute("item", service.selectOne(dto));
 		
 		model.addAttribute("listReview", reviewService.selectList(rvo));
 		model.addAttribute("reviewCount", reviewService.selectListCount(rvo));
-		model.addAttribute("reviewAvg", reviewService.selectOneReviewAvg(rvo));
+		model.addAttribute("reviewAvg", reviewService.selectOneReviewAvg(rdto));
 		
 		return "usr/v1/infra/productUsrDetail";
 	}

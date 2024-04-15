@@ -15,6 +15,8 @@ public class ProductVo extends BaseVo {
 	private Integer productStarAll;
 	private Integer productSizeCd;
 	private Integer productColorCd;
+	
+	private Integer xReviewStarAvg;
 	public String getProductSeq() {
 		return productSeq;
 	}
@@ -87,6 +89,13 @@ public class ProductVo extends BaseVo {
 	public void setProductColorCd(Integer productColorCd) {
 		this.productColorCd = productColorCd;
 	}
+	public Integer getxReviewStarAvg() {
+		return xReviewStarAvg;
+	}
+	public void setxReviewStarAvg(Integer xReviewStarAvg) {
+		this.xReviewStarAvg = xReviewStarAvg;
+	}
+	
 	
 	
 	
