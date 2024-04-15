@@ -145,7 +145,6 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 		
 		model.addAttribute("listReview", reviewService.selectList(rvo));
 		model.addAttribute("reviewCount", reviewService.selectListCount(rvo));
-		model.addAttribute("reviewAvg", reviewService.selectOneReviewAvg(rdto));
 		
 		return "usr/v1/infra/productUsrDetail";
 	}

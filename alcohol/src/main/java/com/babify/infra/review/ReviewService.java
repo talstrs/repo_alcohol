@@ -29,9 +29,5 @@ public class ReviewService {
 		return dao.insert(dto);
 	}
 	
-	// 리뷰 벌점 평균 리턴
-	public ReviewDto selectOneReviewAvg(ReviewDto dto) throws Exception{
-		return dao.selectOneReviewAvg(dto);
-	}
 
 }

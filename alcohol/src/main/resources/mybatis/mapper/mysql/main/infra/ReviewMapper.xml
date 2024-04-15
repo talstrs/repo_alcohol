@@ -80,21 +80,6 @@
 			
 	</select>
 	
-<!-- 	리뷰 평균 아이템 셀렉원  -->
-	<select id="selectOneReviewAvg" resultMap="resultMapObj">
-	select AVG(
-		    	case a.reviewStarCd
-		    		when 40 then 1
-		    		when 41 then 2
-		    		when 42 then 3
-		    		when 43 then 4
-		    		when 44 then 5
-		    		else null
-		    	end) as xReviewStarAvg
-		    	from review a
-		    	where 1=1
-		    		and a.product_productSeq = #{productSeq}
-	</select>
 	
 	
 	<insert id="insert">
