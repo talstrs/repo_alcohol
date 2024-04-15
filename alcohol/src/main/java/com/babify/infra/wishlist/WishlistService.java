@@ -12,9 +12,11 @@ public class WishlistService {
 	@Autowired
 	WishlistDao dao;
 
+	
 	public List<WishlistDto> selectList(WishlistVo vo) {
 		return dao.selectList(vo);
 	}
+	
 	
 	public WishlistDto selectOne(WishlistDto dto) {
 		return dao.selectOne(dto);

@@ -9,8 +9,15 @@ public class WishlistDto {
 	private	Integer wishListUseNy;
 	private Date wishListRegDate;
 	private Date wishListModDate;
-	private	String membersSeq;
-	private	String productSeq;
+	private	String membersSeqF;
+	private	String productSeqF;
+	
+	private String productSeq;
+	private String productName;
+	private Double productPrice;
+	private Integer productStock;
+	
+	
 	public String getWishListSeq() {
 		return wishListSeq;
 	}
@@ -41,11 +48,17 @@ public class WishlistDto {
 	public void setWishListModDate(Date wishListModDate) {
 		this.wishListModDate = wishListModDate;
 	}
-	public String getMembersSeq() {
-		return membersSeq;
+	public String getMembersSeqF() {
+		return membersSeqF;
 	}
-	public void setMembersSeq(String membersSeq) {
-		this.membersSeq = membersSeq;
+	public void setMembersSeqF(String membersSeqF) {
+		this.membersSeqF = membersSeqF;
+	}
+	public String getProductSeqF() {
+		return productSeqF;
+	}
+	public void setProductSeqF(String productSeqF) {
+		this.productSeqF = productSeqF;
 	}
 	public String getProductSeq() {
 		return productSeq;
@@ -53,7 +66,28 @@ public class WishlistDto {
 	public void setProductSeq(String productSeq) {
 		this.productSeq = productSeq;
 	}
-
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public Double getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(Double productPrice) {
+		this.productPrice = productPrice;
+	}
+	public Integer getProductStock() {
+		return productStock;
+	}
+	public void setProductStock(Integer productStock) {
+		this.productStock = productStock;
+	}
+	
+	
+	
+	
 	
 }
 	

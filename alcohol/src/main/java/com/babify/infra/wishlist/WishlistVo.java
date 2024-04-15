@@ -6,8 +6,8 @@ public class WishlistVo  {
 
 	private String wishListSeq;
 
-	private	String membersSeq;
-	private	String productSeq;
+	private	String membersSeqF;
+	private	String productSeqF;
 	
 	
 	// 추후 VO로 진행
@@ -16,23 +16,27 @@ public class WishlistVo  {
 	private Date wishListRegDate;
 	private Date wishListModDate;
 	
+	private String productSeq;
+	private String productName;
+	private Double productPrice;
+	private Integer productStock;
 	public String getWishListSeq() {
 		return wishListSeq;
 	}
 	public void setWishListSeq(String wishListSeq) {
 		this.wishListSeq = wishListSeq;
 	}
-	public String getMembersSeq() {
-		return membersSeq;
+	public String getMembersSeqF() {
+		return membersSeqF;
 	}
-	public void setMembersSeq(String membersSeq) {
-		this.membersSeq = membersSeq;
+	public void setMembersSeqF(String membersSeqF) {
+		this.membersSeqF = membersSeqF;
 	}
-	public String getProductSeq() {
-		return productSeq;
+	public String getProductSeqF() {
+		return productSeqF;
 	}
-	public void setProductSeq(String productSeq) {
-		this.productSeq = productSeq;
+	public void setProductSeqF(String productSeqF) {
+		this.productSeqF = productSeqF;
 	}
 	public Integer getWishListDelNy() {
 		return wishListDelNy;
@@ -58,7 +62,30 @@ public class WishlistVo  {
 	public void setWishListModDate(Date wishListModDate) {
 		this.wishListModDate = wishListModDate;
 	}
-	
+	public String getProductSeq() {
+		return productSeq;
+	}
+	public void setProductSeq(String productSeq) {
+		this.productSeq = productSeq;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public Double getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(Double productPrice) {
+		this.productPrice = productPrice;
+	}
+	public Integer getProductStock() {
+		return productStock;
+	}
+	public void setProductStock(Integer productStock) {
+		this.productStock = productStock;
+	}
 	
 	
 }

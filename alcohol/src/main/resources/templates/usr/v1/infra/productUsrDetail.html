@@ -112,12 +112,12 @@
                             <!--수정 필요, 별점 추가-->
                             <div class="single-product__info--rating mt-0 mb-4">
                                 <span class="star-rating">
-                                    <span th:if="${reviewAvg.xReviewStarAvg == 5}" style="width:100%;"></span>
-                                    <span th:if="${reviewAvg.xReviewStarAvg == 4}" style="width:80%;"></span>
-                                    <span th:if="${reviewAvg.xReviewStarAvg == 3}" style="width:60%;"></span>
-                                    <span th:if="${reviewAvg.xReviewStarAvg == 2}" style="width:40%;"></span>
-                                    <span th:if="${reviewAvg.xReviewStarAvg == 1}" style="width:20%;"></span>
-                                    <span th:if="${reviewAvg.xReviewStarAvg == null}" style="width:0%;"></span>
+                                    <span th:if="${item.xReviewStarAvg == 5}" style="width:100%;"></span>
+                                    <span th:if="${item.xReviewStarAvg == 4}" style="width:80%;"></span>
+                                    <span th:if="${item.xReviewStarAvg == 3}" style="width:60%;"></span>
+                                    <span th:if="${item.xReviewStarAvg == 2}" style="width:40%;"></span>
+                                    <span th:if="${item.xReviewStarAvg == 1}" style="width:20%;"></span>
+                                    <span th:if="${item.xReviewStarAvg == null}" style="width:0%;"></span>
                                         
                                         
                                 </span>
@@ -135,9 +135,12 @@
                                         </span>
                                         <!--수정, 재고 있음-->
                                         
-                                    <span class="stock-text">
-                                            on stock
-                                        </span>
+                                    <span th:if="${item.productStock > 0}"  class="stock-text">
+                                        on stock
+                                    </span>
+                                    <span th:unless="${item.productStock > 0}" class="stock-text">
+                                        Out of stock
+                                    </span>
                                 </div>
                             </div>
                             <div class="product-single-content__short-description" th:text="${item.productInfo}">
@@ -231,12 +234,8 @@
                                         </button>
                                     </div>
                                 </div>
-                                <!--수정, 비교하기 주석-->
-                                <!-- <a href="#" class="product-add-compare">
-                                    Add to Compare
-                                </a> -->
                                 <!--수정, 위시 리스트-->
-                                <a href="#" class="product-add-wishlist  mt-1">
+                                <a th:href="@{/wishlistInsert(productSeq=${item.productSeq})}"  class="product-add-wishlist  mt-1">
                                     <i
                                         class="lastudioicon lastudioicon-heart-1 me-2"
                                     ></i> Add to Wishlist

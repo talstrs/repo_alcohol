@@ -70,7 +70,6 @@ public String productXdmListAdd() throws Exception{
 }
 
 @RequestMapping(value = "/productInsert")
-// 컨트롤러만 리턴 타입을 String으로 변경 가능
 public String productInsert(ProductDto dto) throws Exception{
 
 	
@@ -80,7 +79,6 @@ public String productInsert(ProductDto dto) throws Exception{
 }
 
 @RequestMapping(value = "/productUpdt")
-// 컨트롤러만 리턴 타입을 String으로 변경 가능
 public String productUpdt(ProductDto dto) throws Exception{
 
 	service.update(dto);

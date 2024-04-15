@@ -23,7 +23,7 @@
                 <div class="breadcrumb-wrapper text-center">
                     <h2 class="breadcrumb-wrapper__title">Wishlist</h2>
                     <ul class="breadcrumb-wrapper__items justify-content-center">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a th:href="@{/usrIndex}">Home</a></li>
                         <li><span>Wishlist</span></li>
                     </ul>
                 </div>
@@ -49,13 +49,16 @@
                                 <th class="product-stock text-md-center">
                                     Stock status
                                 </th>
-                                <th class="product-action text-md-end"></th>
+                                <th class="product-action text-md-center">Checkout</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="wishlist-item">
+                            <tr th:if="${#lists.isEmpty(list)}" th:each="lista:${list}">
+                                <td>등록된 상품이 없습니다</td>
+                            </tr>
+                            <tr th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}"  class="wishlist-item">
                                 <td class="product-remove">
-                                    <a href="#" class="remove">×</a>
+                                    <a th:href="@{/wishlistUele(wishListSeq=${lista.wishListSeq})}" class="remove">×</a>
                                 </td>
                                 <td class="product-thumbnail text-md-center">
                                     <a href="product-single.html">
@@ -63,85 +66,29 @@
                                     </a>
                                 </td>
                                 <td class="product-name product-price text-md-center">
-                                    <a href="product-single.html">
-                                        Princess set
-                                    </a>
+                                    <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
+
                                 </td>
                                 <td class="product-price text-md-center" data-title="Price">
                                     <span>
-                                            <del>$89.99</del>
-                                            <ins>$69.99</ins>
-                                        </span>
+                                        <ins th:text="${lista.productPrice}"></ins>
+                                    </span>
                                 </td>
                                 <td class="product-stock text-md-center" data-title="Stock status">
-                                    <span class="stock in-stock">
-                                            In stock
-                                        </span>
+                                    <span th:if="${lista.productStock > 0}"  class="stock in-stock">
+                                        In stock
+                                    </span>
+                                    <span th:unless="${lista.productStock > 0}"  class="text-danger">
+                                        Out of stock
+                                    </span>
                                 </td>
-                                <td class="product-action text-md-end">
-                                    <a href="#" class="wishlist-table__btn btn">
-                                        Add to cart
+                                <td class="product-action text-md-center">
+                                    <a th:if="${lista.productStock > 0}" href="#" class="wishlist-table__btn btn">
+                                        Go To Checkout
                                     </a>
-                                </td>
-                            </tr>
-                            <tr class="wishlist-item">
-                                <td class="product-remove">
-                                    <a href="#" class="remove">×</a>
-                                </td>
-                                <td class="product-thumbnail text-md-center">
-                                    <a href="product-single.html">
-                                        <img src="/usr/assets/images/products/product-04.jpg" alt="Product" width="90" height="114" />
-                                    </a>
-                                </td>
-                                <td class="product-name product-price text-md-center">
-                                    <a href="product-single.html">
-                                        Senecio stapeliiformis
-                                    </a>
-                                </td>
-                                <td class="product-price text-md-center" data-title="Price">
-                                    <span>
-                                            <ins>$39.99</ins>
-                                        </span>
-                                </td>
-                                <td class="product-stock text-md-center" data-title="Stock status">
-                                    <span class="stock in-stock">
-                                            In stock
-                                        </span>
-                                </td>
-                                <td class="product-action text-md-end">
-                                    <a href="#" class="wishlist-table__btn btn">
-                                        Add to cart
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="wishlist-item">
-                                <td class="product-remove ">
-                                    <a href="#" class="remove">×</a>
-                                </td>
-                                <td class="product-thumbnail text-md-center">
-                                    <a href="product-single.html">
-                                        <img src="/usr/assets/images/products/product-05.jpg" alt="Product" width="90" height="114" />
-                                    </a>
-                                </td>
-                                <td class="product-name product-price text-md-center">
-                                    <a href="product-single.html">
-                                        Hoya burtoniae
-                                    </a>
-                                </td>
-                                <td class="product-price text-md-center" data-title="Price">
-                                    <span>
-                                            <ins>$49.99</ins>
-                                        </span>
-                                </td>
-                                <td class="product-stock text-md-center" data-title="Stock status">
-                                    <span class="stock in-stock">
-                                            In stock
-                                        </span>
-                                </td>
-                                <td class="product-action text-md-end">
-                                    <a href="#" class="wishlist-table__btn btn">
-                                        Add to cart
-                                    </a>
+                                    <span th:unless="${lista.productStock > 0}" href="#" class="fw-bold">
+                                        SOLD OUT
+                                    </span>
                                 </td>
                             </tr>
                         </tbody>

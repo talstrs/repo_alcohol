@@ -267,21 +267,21 @@
                                 <!-- Single product Start -->
                                 <div class="single-product js-scroll ShortFadeInUp">
                                     <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--badge onsale">
-                                            Sale
-                                        </div>
+
                                         <div class="single-product__thumbnail--holder">
                                             <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq})}">
                                                 <img src="/usr/assets/images/products/product-06.jpg" alt="Product" width="344" height="370" />
                                             </a>
                                         </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <!-- <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                        class="lastudioicon-shopping-cart-3"
-                                                    ></i></a> -->
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                        <div th:if="${session.sessNameUsr == null}" class="single-product__thumbnail--meta-2">
+                                            <a th:href="@{/membersUsrLogin}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
                                                         class="lastudioicon-heart-2"
-                                                    ></i></a>
+                                            ></i></a>
+                                        </div>
+                                        <div th:unless="${session.sessNameUsr == null}" class="single-product__thumbnail--meta-2">
+                                            <a th:href="@{/wishlistInsert(productSeq=${lista.productSeq})}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                                        class="lastudioicon-heart-2"
+                                            ></i></a>
                                         </div>
                                     </div>
                                     
@@ -290,16 +290,21 @@
                                             <a th:href="@{/productUsrList}" th:text="${@codeService.selectOneCachedCode(lista.productCatMainCd)}"></a>
                                         </div>
                                         <h3 class="single-product__info--title">
-                                            <a href="@{/productUsrView(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
+                                            <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
                                         </h3>
                                         <div class="single-product__info--price">
                                             <ins th:text="${lista.productPrice}"></ins>
                                         </div>
                                         <div class="single-product__info--rating">
                                             <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
+                                                <span th:if="${lista.xReviewStarAvg == 5}" style="width:100%;"></span>
+                                                <span th:if="${lista.xReviewStarAvg == 4}" style="width:80%;"></span>
+                                                <span th:if="${lista.xReviewStarAvg == 3}" style="width:60%;"></span>
+                                                <span th:if="${lista.xReviewStarAvg == 2}" style="width:40%;"></span>
+                                                <span th:if="${lista.xReviewStarAvg == 1}" style="width:20%;"></span>
+                                                <span th:if="${lista.xReviewStarAvg == null}" style="width:0%;"></span>
+                                                    
+                                                    
                                             </span>
                                         </div>
                                         <div class="single-product__info--color-swatch">
@@ -352,21 +357,20 @@
                                     <!-- Single product Start -->
                                     <div class="single-product js-scroll ShortFadeInUp">
                                         <div class="single-product__thumbnail">
-                                            <div class="single-product__thumbnail--badge onsale">
-                                                Sale
-                                            </div>
                                             <div class="single-product__thumbnail--holder">
-                                                <a href="product-single.html">
+                                                <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq})}">
                                                     <img src="/usr/assets/images/products/product-06.jpg" alt="Product" width="344" height="370" />
                                                 </a>
                                             </div>
-                                            <div class="single-product__thumbnail--meta-2">
-                                                <!-- <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                            class="lastudioicon-shopping-cart-3"
-                                                        ></i></a> -->
-                                                <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                            <div th:if="${session.sessNameUsr == null}" class="single-product__thumbnail--meta-2">
+                                                <a th:href="@{/membersUsrLogin}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
                                                             class="lastudioicon-heart-2"
-                                                        ></i></a>
+                                                ></i></a>
+                                            </div>
+                                            <div th:unless="${session.sessNameUsr == null}" class="single-product__thumbnail--meta-2">
+                                                <a th:href="@{/wishlistInsert(productSeq=${lista.productSeq})}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                                            class="lastudioicon-heart-2"
+                                                ></i></a>
                                             </div>
                                         </div>
                                         
@@ -375,16 +379,21 @@
                                                 <a th:href="@{/productUsrList}" th:text="${@codeService.selectOneCachedCode(lista.productCatMainCd)}"></a>
                                             </div>
                                             <h3 class="single-product__info--title">
-                                                <a href="@{/productUsrView(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
+                                                <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
                                             </h3>
                                             <div class="single-product__info--price">
                                                 <ins th:text="${lista.productPrice}"></ins>
                                             </div>
                                             <div class="single-product__info--rating">
                                                 <span class="star-rating">
-                                                        <span
-                                                            style="width: 88%"
-                                                        ></span>
+                                                    <span th:if="${lista.xReviewStarAvg == 5}" style="width:100%;"></span>
+                                                    <span th:if="${lista.xReviewStarAvg == 4}" style="width:80%;"></span>
+                                                    <span th:if="${lista.xReviewStarAvg == 3}" style="width:60%;"></span>
+                                                    <span th:if="${lista.xReviewStarAvg == 2}" style="width:40%;"></span>
+                                                    <span th:if="${lista.xReviewStarAvg == 1}" style="width:20%;"></span>
+                                                    <span th:if="${lista.xReviewStarAvg == null}" style="width:0%;"></span>
+                                                        
+                                                        
                                                 </span>
                                             </div>
                                             <div class="single-product__info--color-swatch">
