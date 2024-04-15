@@ -109,12 +109,20 @@
                                                     <input th:if="${vo.productCatMainCd != null}" type="hidden" name="productCatMainCd" th:value="${vo.productCatMainCd}">
                                                     <input th:if="${vo.productBestNy != null}" type="hidden" name="productBestNy" th:value="${vo.productBestNy}">
                                                     <input th:if="${vo.productNewNy != null}" type="hidden" name="productNewNy" th:value="${vo.productNewNy}">
-                                                    <div class="single-product__thumbnail--meta-3">
-                                                        <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                                    <div th:if="${session.sessNameUsr == null}" class="single-product__thumbnail--meta-2">
+                                                        <a th:href="@{/membersUsrLogin}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
                                                                     class="lastudioicon-heart-2"
-                                                                ></i></a>
+                                                        ></i></a>
                                                     </div>
-                                                    <div class="single-product__thumbnail--badge out-of-stock">
+                                                    <div th:unless="${session.sessNameUsr == null}" class="single-product__thumbnail--meta-2">
+                                                        <a th:href="@{/wishlistInsert(productSeq=${lista.productSeq})}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                                                    class="lastudioicon-heart-2"
+                                                        ></i></a>
+                                                    </div>
+                                                    <div th:if="${lista.productStock > 0}">
+                                                        
+                                                    </div>
+                                                    <div th:unless="${lista.productStock > 0}"  class="single-product__thumbnail--badge out-of-stock">
                                                         Out of stock
                                                     </div>
                                                     <div class="single-product__thumbnail--holder">
@@ -122,11 +130,6 @@
                                                             <img src="/usr/assets/images/products/product-02.jpg" alt="Product" width="344" height="370" />
                                                             <img class="product-hover" src="/usr/assets/images/products/product-12.jpg" alt="Product" width="344" height="370" />
                                                         </a>
-                                                    </div>
-                                                    <div class="single-product__thumbnail--meta-2">
-                                                        <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                                                    class="lastudioicon-shopping-cart-3"
-                                                                ></i></a>
                                                     </div>
                                                 </div>
                                                 <div class="single-product__info text-center">

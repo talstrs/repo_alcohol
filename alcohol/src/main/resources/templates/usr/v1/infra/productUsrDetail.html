@@ -311,7 +311,7 @@
                                     <h3 class="comment-title">
                                         Add a review
                                     </h3>
-                                    <form class="row g-3  " name="formInsert" id="formInsert" method="post"  novalidate>
+                                    <form class="row g-3 " method="post" >
                                         <!-- Comment Form Start -->
                                         <div class="comment-form">
                                             <div class="comment-form__rating">
@@ -319,19 +319,20 @@
                                                     Your rating *
                                                 </div>
                                                 <!--수정, 별점-->
-                                                <span th:each="list : ${@codeService.selectListCachedCode(10)}">
+                                                <span th:each="list : ${@codeService.selectListCachedCode(10)}" id="reviewStarCd">
                                                     <input type="radio" class="btn-check" name="reviewStarCd" th:id="'reviewStarCd' + ${list.codeSeq}" th:value="${list.codeSeq}" autocomplete="off">
                                                     <label class="btn btn-secondary" th:for="'reviewStarCd' + ${list.codeSeq}" th:text="${list.codeName}"></label>
                                                 </span>
                                             </div>
-                                            <input type="hidden" name="productSeq" th:value="${item.productSeq}">
+                                            <input type="hidden" name="productSeq" id="productSeq" th:value="${item.productSeq}">
                                             <!-- Single Form Start -->
                                             <div class="single-form">
                                                 <label class="single-form__label">
                                                     Your review *
                                                 </label>
-                                                <textarea class="single-form__input" name="reviewText"></textarea>
+                                                <textarea class="single-form__input" id="reviewText" name="reviewText"></textarea>
                                             </div>
+                                            
                                             <div class="single-form">
                                                 <button class="single-form__btn btn" id="btnSubmit" type="submit">
                                                     Submit
@@ -698,6 +699,26 @@
 
         <!-- Related Product End -->
 
+        <!-- 모달창 -->
+
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="errorMessage"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </main>
 
@@ -706,12 +727,45 @@
 
         let form = document.querySelector("form[name=formInsert]");
 
-        let goUrlXdmInst = "/reviewInsert";
 
         document.getElementById("btnSubmit").onclick = function () {
-                form.action = goUrlXdmInst;
-                form.submit();
+                reviewAdd();
         }
+
+        function reviewAdd() {
+
+            $.ajax({
+                async: true 
+                ,cache: false
+                ,type: "post"
+                /* ,dataType:"json" */
+                ,url: "/reviewInsert"
+                /* ,data : $("#formLogin").serialize() */
+                ,data : { "reviewText" : $("#reviewText").val(), "reviewStarCd" : $("input[name='reviewStarCd']:checked").val(), "productSeq" : $("#productSeq").val(), "reviewMembersSeq" : $("#reviewMembersSeq").val()}
+                // , "autoLogin" : $("#autoLogin").is(":checked")
+                
+                ,success: function(response) {
+                    if(response.rt == "success") {
+                        location.href = "[[@{/productUsrDetail(productSeq=${item.productSeq})}]]";
+                    } else {
+                        alert("아이디가 일치하지 않습니다");
+                    }
+                }
+                ,error : function(jqXHR, textStatus, errorThrown){
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+        }      
+
+        document.addEventListener("keydown", function(event) {
+            // 엔터키를 눌렀을 때
+            if (event.key === "Enter") {
+                event.preventDefault(); // 폼 제출을 막음
+
+                reviewAdd();
+            }
+        });
+
     </script>
     
     <!-- 푸터 블록 -->
