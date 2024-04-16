@@ -58,7 +58,37 @@
                             </tr>
                             <tr th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}"  class="wishlist-item">
                                 <td class="product-remove">
-                                    <a th:href="@{/wishlistUele(wishListSeq=${lista.wishListSeq})}" class="remove">×</a>
+                                    <a class="remove" 
+                                    data-bs-toggle="modal"
+                                    th:data-bs-target="'#wishlistUele'+ ${lista['wishListSeq']}"
+                                    data-bs-target="#wishlistUele">×</i>
+                                    </a>
+                                    <!-- 수정, 완전 삭제 모달-->
+                                    <div class="modal fade" 
+                                        th:id="'wishlistUele' + ${lista['wishListSeq']}"
+                                        id="wishlistUele"
+                                        tabindex="-1"
+                                        aria-labelledby="wishlistUeleTitle"
+                                        aria-hidden="true">
+
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="wishlistUeleTitle">
+                                                        wishlist 삭제
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="text-start">정말로 삭제하시겠습니까?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-bs-dismiss="modal">취소</a>
+                                                    <a class="btn btn-danger" th:href="@{/wishlistUele(wishListSeq=${lista.wishListSeq})}">삭제</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td class="product-thumbnail text-md-center">
                                     <a href="product-single.html">

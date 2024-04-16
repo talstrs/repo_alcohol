@@ -129,7 +129,15 @@
                                         </div>
                                     </form>
                                 </li>
-                                <li class="wishlist">
+                                <li th:if="${session.sessNameUsr == null}" class="wishlist">
+                                    <a th:href="@{/membersUsrLogin}" aria-label="Wishlist">
+                                        <i
+                                        class="lastudioicon lastudioicon-heart-1"
+                                    ></i>
+
+                                    </a>
+                                </li>
+                                <li th:unless="${session.sessNameUsr == null}" class="wishlist">
                                     <a th:href="@{/wishlist}" aria-label="Wishlist">
                                         <i
                                         class="lastudioicon lastudioicon-heart-1"

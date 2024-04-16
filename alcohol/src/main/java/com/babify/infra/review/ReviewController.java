@@ -45,7 +45,6 @@ public class ReviewController {
 			returnMap.put("rt", "fail");
 		}
 		
-		service.insert(dto);
 		
 		return returnMap;
 	}
