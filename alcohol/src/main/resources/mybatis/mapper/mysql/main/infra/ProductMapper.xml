@@ -78,7 +78,7 @@
 		<if test="productCatMainCd != null and !productCatMainCd.equals('')">AND a.productCatMainCd = #{productCatMainCd}</if>
 		<if test="productBestNy != null and !productBestNy.equals('')">AND a.productBestNy = #{productBestNy}</if>
 		<if test="productNewNy != null and !productNewNy.equals('')">AND a.productNewNy = #{productNewNy}</if>
-		
+		<if test="shValue != null and shValue != ''"> AND a.productName LIKE CONCAT('%', #{shValue}, '%')</if>
 	</sql>
 	
 		<!-- 사용자 셀렉리스트 -->

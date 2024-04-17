@@ -120,10 +120,10 @@
                             <!-- Meta Item List Start -->
                             <ul class="meta-items-list meta-items-list--dark d-flex justify-content-end align-items-center">
                                 <li class="search d-none d-lg-block">
-                                    <form>
+                                    <form name="formListSearch" id="formListSearch" method="get" autocomplete="off">
                                         <div class="meta-search meta-search--dark">
-                                            <input type="text" placeholder="Search products…" />
-                                            <button aria-label="search">
+                                            <input type="text" id="shValue" name="shValue" onkeyup="enterkey()" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="btnSearch">
+                                            <button aria-label="search" type="button" id="btnSearch">
                                                 <i class="lastudioicon-zoom-1"></i>
                                             </button>
                                         </div>
@@ -160,6 +160,29 @@
         <!-- Header Main End -->
     </header>
 
+    <script>
+        let goUrlUsrList = "/productUsrList";
+
+        let form = document.querySelector("form[name=formListSearch]");
+
+        function SearchList() {
+            form.action = goUrlUsrList;
+            form.submit();
+        };
+
+        document.getElementById("btnSearch").onclick = function () {
+            SearchList();
+        };
+
+        document.getElementById("formListSearch").addEventListener("keydown", function(event) {
+            // 엔터키를 눌렀을 때
+            if (event.key === "Enter") {
+                event.preventDefault(); // 폼 제출을 막음
+
+                SearchList();
+            }
+        });
+    </script>
     <!-- Header End -->
 
 </th:block>

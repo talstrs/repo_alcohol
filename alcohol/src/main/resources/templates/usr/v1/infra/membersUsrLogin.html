@@ -45,7 +45,7 @@
                         <div class="login-register">
                             <h3 class="login-register__title">Log In</h3>
 
-                            <form method="post">
+                            <form method="post" id="loginEvent">
                                 <div class="login-register__form">
                                     <!--수정, 로그인 폼 라벨 추가-->
                                     <!-- Single Form Start -->
@@ -212,7 +212,7 @@
             
         }
 
-        document.addEventListener("keydown", function(event) {
+        document.getElementById("loginEvent").addEventListener("keydown", function(event) {
             // 엔터키를 눌렀을 때
             if (event.key === "Enter") {
                 event.preventDefault(); // 폼 제출을 막음
@@ -220,7 +220,6 @@
                 siginIn();
             }
         });
-
 
 
     </script>
