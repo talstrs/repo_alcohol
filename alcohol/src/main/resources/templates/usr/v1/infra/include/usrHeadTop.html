@@ -75,7 +75,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/productUsrList(productCatMainCd=12)}">
+                                    <a th:href="@{/productUsrList}">
                                         <span>Category </span>
                                         <i class="lastudioicon-down-arrow" aria-hidden="true"></i>
                                     </a>
@@ -161,13 +161,13 @@
     </header>
 
     <script>
-        let goUrlUsrList = "/productUsrList";
+        let goUrlUsrListSearch = "/productUsrList";
 
-        let form = document.querySelector("form[name=formListSearch]");
+        let formSearch = document.querySelector("form[name=formListSearch]");
 
         function SearchList() {
-            form.action = goUrlUsrList;
-            form.submit();
+            formSearch.action = goUrlUsrListSearch;
+            formSearch.submit();
         };
 
         document.getElementById("btnSearch").onclick = function () {

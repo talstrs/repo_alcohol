@@ -21,6 +21,9 @@ public interface ProductDao {
 	// 사용자 인덱스 뉴 셀렉 리스트
 	public List<ProductDto> selectListUsrIndexNew(ProductVo vo);
 	
+	// 사용자 품목 연관상품
+	public List<ProductDto> selectListRelated(ProductVo vo);
+	
 	
 	public ProductDto selectOne(ProductDto dto); //dto: 하나의 데이터를 가져올때
 	

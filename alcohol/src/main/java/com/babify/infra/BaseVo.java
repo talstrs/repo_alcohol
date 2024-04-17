@@ -35,57 +35,54 @@ public class BaseVo {
 	
 
 	// 페이징 관련 totalRoswParam
-	public void setParamsPaging(int totalRowsParam) {
-		
-		totalRows = totalRowsParam;
+	public void setParamsPaging(int totalRows) {
+		setTotalRows(totalRows);
 
-		totalPages = totalRows / rowNumToShow;
-
-		if (totalRows % rowNumToShow > 0) {
-			totalPages = totalPages+ 1;
-		}
-		
-
-		if (totalPages < thisPage) {
-			thisPage = totalPages;
-		}
-		
-		
-		startPage = (((thisPage - 1) / pageNumToShow) * pageNumToShow + 1);
-	
-
-		endPage = (startPage + pageNumToShow - 1);
-		
-
-		if (endPage > totalPages) {
-			endPage = (totalPages);
-		}
-		
-		
-		endRnumForOracle = ((rowNumToShow * thisPage));
-		startRnumForOracle = ((endRnumForOracle - rowNumToShow) + 1);
-		if (startRnumForOracle < 1) startRnumForOracle = 1;
-		
-		
-		if (thisPage == 1) {
-			startRnumForMysql = 0;
+		if (getTotalRows() == 0) {
+			setTotalPages(1);
 		} else {
-			startRnumForMysql = ((rowNumToShow * (thisPage-1)));
+			setTotalPages(getTotalRows() / getRowNumToShow());
 		}
-		
-//		System.out.println("최종 결과값--------------------------------------------------");
-//		System.out.println("getThisPage():" + thisPage);
-//		System.out.println("getTotalRows():" + totalRows);
-//		System.out.println("getRowNumToShow():" + rowNumToShow);
-//		System.out.println("getTotalPages():" + totalPages);
-//		System.out.println("getStartPage():" + startPage);
-//		System.out.println("getEndPage():" + endPage);		
-//		System.out.println("getStartRnumForOracle():" + startRnumForOracle);
-//		System.out.println("getEndRnumForOracle():" + endRnumForOracle);
-//		System.out.println("getStartRnumForMysql(): " + startRnumForMysql);
-//		
-	
-}
+
+		if (getTotalRows() % getRowNumToShow() > 0) {
+			setTotalPages(getTotalPages() + 1);
+		}
+
+		if (getTotalPages() < getThisPage()) {
+			setThisPage(getTotalPages());
+		}
+
+		setStartPage(((getThisPage() - 1) / getPageNumToShow()) * getPageNumToShow() + 1);
+
+		setEndPage(getStartPage() + getPageNumToShow() - 1);
+
+		if (getEndPage() > getTotalPages()) {
+			setEndPage(getTotalPages());
+		}
+
+		setEndRnumForOracle((getRowNumToShow() * getThisPage()));
+		setStartRnumForOracle((getEndRnumForOracle() - getRowNumToShow()) + 1);
+
+		if (getStartRnumForOracle() < 1)
+			setStartRnumForOracle(1);
+
+		if (thisPage == 1) {
+			setStartRnumForMysql(0);
+		} else {
+			setStartRnumForMysql((getRowNumToShow() * (getThisPage() - 1)));
+		}
+
+//			System.out.println("getThisPage():" + getThisPage());
+//			System.out.println("getTotalRows():" + getTotalRows());
+//			System.out.println("getRowNumToShow():" + getRowNumToShow());
+//			System.out.println("getTotalPages():" + getTotalPages());
+//			System.out.println("getStartPage():" + getStartPage());
+//			System.out.println("getEndPage():" + getEndPage());		
+//			System.out.println("getStartRnumForOracle():" + getStartRnumForOracle());
+//			System.out.println("getEndRnumForOracle():" + getEndRnumForOracle());
+//			System.out.println("getStartRnumForMysql(): " + getStartRnumForMysql());
+
+	}
 
 	// get/set
 	

@@ -101,7 +101,7 @@
                                     <div class="row">
                                         <!-- Single product Start -->
                                         <div th:if="${#lists.isEmpty(list)}" th:each="lista:${list}">
-                                            <p>등록된 상품이 없습니다</p>
+                                            <div>등록된 상품이 없습니다</div>
                                         </div>
                                         <div th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}" class="col-lg-3 col-md-4 col-sm-6">
                                             <div class="single-product js-scroll ShortFadeInUp">
@@ -109,6 +109,7 @@
                                                     <input th:if="${vo.productCatMainCd != null}" type="hidden" name="productCatMainCd" th:value="${vo.productCatMainCd}">
                                                     <input th:if="${vo.productBestNy != null}" type="hidden" name="productBestNy" th:value="${vo.productBestNy}">
                                                     <input th:if="${vo.productNewNy != null}" type="hidden" name="productNewNy" th:value="${vo.productNewNy}">
+                                                    
                                                     <div th:if="${session.sessNameUsr == null}" class="single-product__thumbnail--meta-2">
                                                         <a th:href="@{/membersUsrLogin}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
                                                                     class="lastudioicon-heart-2"
@@ -126,7 +127,7 @@
                                                         Out of stock
                                                     </div>
                                                     <div class="single-product__thumbnail--holder">
-                                                        <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq})}">
+                                                        <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq},productCatDetailCd=${lista.productCatDetailCd})}">
                                                             <img src="/usr/assets/images/products/product-02.jpg" alt="Product" width="344" height="370" />
                                                             <img class="product-hover" src="/usr/assets/images/products/product-12.jpg" alt="Product" width="344" height="370" />
                                                         </a>
@@ -151,18 +152,16 @@
                                                         </span>
                                                     </div>
                                                     <h3 class="single-product__info--title">
-                                                        <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq})}" th:text="${lista.productName}"></a>
+                                                        <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq},productCatDetailCd=${lista.productCatDetailCd})}" th:text="${lista.productName}"></a>
                                                     </h3>
                                                     <div class="single-product__info--price">
-                                                        <ins th:text="${lista.productPrice}"></ins>
+                                                        <ins th:text="'$ ' + ${lista.productPrice}"></ins>
                                                     </div>
                                                     <!--색 버튼 추가-->
-                                                    <div class="single-product__info--color-swatch">
-                                                        <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
-                                                        <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="brown" data-bs-custom-class="p-meta-tooltip" class="color-item bronze" aria-label="Name"></button>
-                                                        <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green" data-bs-custom-class="p-meta-tooltip" class="color-item green" aria-label="Name"></button>
-                                                        <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red" data-bs-custom-class="p-meta-tooltip" class="color-item red" aria-label="Name"></button>
-                                                        <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
+                                                    <div th:unless="${lista.productColorCd == null}" class="single-product__info--color-swatch" >
+                                                        <button th:if="${lista.productColorCd == 60}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
+                                                        <button th:if="${lista.productColorCd == 62}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green" data-bs-custom-class="p-meta-tooltip" class="color-item green" aria-label="Name"></button>
+                                                        <button th:if="${lista.productColorCd == 63}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red" data-bs-custom-class="p-meta-tooltip" class="color-item red" aria-label="Name"></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,6 +179,7 @@
                                     <nav aria-label="Page Navigation">
                                         <!-- <ul class="paginations-list"> -->
                                         <ul class="pagination justify-content-center"> 
+                                            <input th:if="${vo.shValue != null}" type="hidden" name="shValue" th:value="${vo.shValue}">
                                             <li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="lastudioicon-arrow-left"></i></a></li>
                                             <li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a></li>
                                             <li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="lastudioicon-arrow-right"></i></a></li>
@@ -196,46 +196,23 @@
                                     <div class="sidebar-widget-item">
                                         <h4 class="sidebar-widget-item__title">
                                             Category
-                                            <span>(30)</span>
                                         </h4>
                                         <div class="sidebar-widget-item__filter category-filter">
                                             <ul class="sidebar-widget-item__list category">
-                                                <li>
-                                                    <input type="checkbox" id="category-1" />
-                                                    <label for="category-1">
-                                                        <span></span>T-shirt (2)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input type="checkbox" id="category-2" />
-                                                    <label for="category-2">
-                                                        <span></span>Outer (3)</label>
-                                                </li>
-                                                
-                                                <li>
-                                                    <input type="checkbox" id="category-3" />
-                                                    <label for="category-3">
-                                                        <span></span>One piece (4)</label>
+                                                <li>  
+                                                    - <a th:href="@{/productUsrList(productCatMainCd=12)}" ><span>Clothing</span></a>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="category-4" />
-                                                    <label for="category-4">
-                                                        <span></span>All in one (2)</label>
+                                                    - <a th:href="@{/productUsrList(productCatMainCd=13)}"><span>Toys</span></a>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="category-5" />
-                                                    <label for="category-5">
-                                                        <span></span>Season clothing (1)</label>
+                                                    - <a th:href="@{/productUsrList(productCatMainCd=14)}"><span>Feed</span></a>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="category-6" />
-                                                    <label for="category-5">
-                                                        <span></span>Shoes (7)</label>
+                                                    - <a th:href="@{/productUsrList(productCatMainCd=15)}"><span>Accessories</span></a>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="category-7" />
-                                                    <label for="category-5">
-                                                        <span></span>Etc (11)</label>
+                                                    - <a th:href="@{/productUsrList(productCatMainCd=16)}"><span>Learning</span></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -246,7 +223,7 @@
                                     <!--수정, 사이드바 별점-->
                                     <div class="sidebar-widget-item">
                                         <h4 class="sidebar-widget-item__title">
-                                            Star (30)
+                                            Star
                                         </h4>
                                         <div class="sidebar-widget-item__filter category-filter">
                                             <ul class="sidebar-widget-item__list category">
@@ -254,7 +231,7 @@
                                                     <input type="checkbox" id="categoryStar-1" />
                                                     <label for="categoryStar-1">
                                                         <span></span>
-                                                        ★★★★★ (10)
+                                                        ★★★★★
                                                     </label>
                                                 </li>
                                                 
@@ -262,7 +239,7 @@
                                                     <input type="checkbox" id="categoryStar-2" />
                                                     <label for="categoryStar-2">
                                                         <span></span>
-                                                        ★★★★☆ (9)
+                                                        ★★★★☆
                                                     </label>
                                                 </li>
                                                 
@@ -270,21 +247,21 @@
                                                     <input type="checkbox" id="categoryStar-3" />
                                                     <label for="categoryStar-3">
                                                         <span></span>
-                                                        ★★★☆☆ (8)
+                                                        ★★★☆☆
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="categoryStar-4" />
                                                     <label for="categoryStar-4">
                                                         <span></span>
-                                                        ★★☆☆☆ (2)
+                                                        ★★☆☆☆
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <input type="checkbox" id="categoryStar-5" />
                                                     <label for="categoryStar-5">
                                                         <span></span>
-                                                        ★☆☆☆☆ (1)
+                                                        ★☆☆☆☆
                                                     </label>
                                                 </li>
                                             </ul>
@@ -375,13 +352,6 @@
                                                             ></span>Blue</label>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" id="bronze" />
-                                                    <label for="bronze">
-                                                        <span
-                                                                class="bronze"
-                                                            ></span>brown</label>
-                                                </li>
-                                                <li>
                                                     <input type="checkbox" id="green" />
                                                     <label for="green">
                                                         <span
@@ -392,13 +362,6 @@
                                                     <input type="checkbox" id="red" />
                                                     <label for="red">
                                                         <span class="red"></span>Red</label>
-                                                </li>
-                                                <li>
-                                                    <input type="checkbox" id="yellow" />
-                                                    <label for="yellow">
-                                                        <span
-                                                                class="yellow"
-                                                            ></span>Yellow</label>
                                                 </li>
                                             </ul>
                                         </div>

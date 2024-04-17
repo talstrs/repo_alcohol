@@ -210,6 +210,49 @@
 		<include refid="base.selectListLowerForMysql" />
 	</select>
 	
+	<!-- 사용자 품목 리스트 연관상품 -->
+	<select id="selectListRelated" resultMap="resultMapObj">
+		<include refid="base.selectListUpperForMysql" />
+		select
+			a.productSeq
+			,a.productDelNy
+			,a.productUseNy
+			,a.productBestNy
+			,a.productNewNy
+			,a.productName
+			,a.productInfo
+			,a.productStock
+			,a.productPrice
+			,a.productCatMainCd
+			,a.productCatDetailCd
+			,a.productStarAll
+			,a.productSizeCd
+			,a.productColorCd
+			,a.productRegDate
+			,a.productModDate
+			,(select avg(
+				case bb.reviewStarCd
+					when 40 then 1
+		    		when 41 then 2
+		    		when 42 then 3
+		    		when 43 then 4
+		    		when 44 then 5
+		    		else null
+	    		end)
+	    		from review bb
+	    		where 1=1
+	    			and bb.product_productSeq = a.productSeq) as xReviewStarAvg
+		from
+			product a
+		where 1=1
+			and a.productDelNy = 0
+			and a.productSeq != #{productSeq}
+			and a.productCatDetailCd = #{productCatDetailCd}
+     	ORDER BY a.productSeq
+		limit 99999999999
+		<include refid="base.selectListLowerForMysql" />
+	</select>
+	
 	<!-- 셀렉원 만들기 -->
 	<select id="selectOne" resultMap="resultMapObj">
 		select

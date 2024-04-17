@@ -128,12 +128,7 @@
                                     <ins th:text="${item.productPrice}"></ins>
                                 </div>
                                 <div class="product-single-content__stock">
-                                    <span class="stock-icon">
-                                            <i
-                                                class="dlicon ui-1_check-circle-08"
-                                            ></i>
-                                        </span>
-                                        <!--수정, 재고 있음-->
+
                                         
                                     <span th:if="${item.productStock > 0}"  class="stock-text">
                                         on stock
@@ -150,60 +145,57 @@
                                     <tbody>
                                         <tr>
                                             <!--수정, 상품코드-->
-                                            <th>Code</th>
-                                            <td th:text="${item.productSeq}">
-                                            </td>
+                                            <th>Product Code</th>
+                                            <div>
+                                                <td th:text="${item.productSeq}">
+                                                </td>
+                                            </div>
                                         </tr>
-                                        <tr>
+                                        <tr th:unless="${item.productColorCd == null}">
                                             <!--수정, 컬러-->
                                             <th>Color</th>
                                             <td>
                                                 <!-- Variable Color Start -->
                                                 <div class="variable-color">
-                                                    <div class="variable-color__color" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue">
+                                                    <div th:if="${item.productColorCd == 60}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name">
                                                         <span
                                                                 class="blue"
                                                             ></span>
                                                     </div>
-                                                    <div class="variable-color__color" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green">
+                                                    <div th:if="${item.productColorCd == 62}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green" data-bs-custom-class="p-meta-tooltip" class="color-item green" aria-label="Name">
                                                         <span
                                                                 class="green"
                                                             ></span>
                                                     </div>
-                                                    <div class="variable-color__color" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red">
+                                                    <div th:if="${item.productColorCd == 63}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red" data-bs-custom-class="p-meta-tooltip" class="color-item Red" aria-label="Name">
                                                         <span
                                                                 class="red"
-                                                            ></span>
-                                                    </div>
-                                                    <div class="variable-color__color" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow">
-                                                        <span
-                                                                class="yellow"
-                                                            ></span>
+                                                        ></span>
                                                     </div>
                                                 </div>
                                                 
                                                 <!-- Variable Color End -->
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <tr th:unless="${item.productSizeCd == null}" >
                                             <th>Size</th>
                                             <td>
                                                 <!--수정, 사이즈-->
                                                 <!-- Variable Size Start -->
                                                 <div class="variable-size">
-                                                    <div class="variable-size__size" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="XS">
+                                                    <div th:if="${item.productSizeCd == 55}" class="variable-size__size" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="XS">
                                                         <span>XS</span>
                                                     </div>
-                                                    <div class="variable-size__size" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="S">
+                                                    <div th:if="${item.productSizeCd == 56}" class="variable-size__size" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="S">
                                                         <span>S</span>
                                                     </div>
-                                                    <div class="variable-size__size" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="M">
+                                                    <div th:if="${item.productSizeCd == 57}" class="variable-size__size" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="M">
                                                         <span>M</span>
                                                     </div>
-                                                    <div class="variable-size__size" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="L">
+                                                    <div th:if="${item.productSizeCd == 58}" class="variable-size__size" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="L">
                                                         <span>L</span>
                                                     </div>
-                                                    <div class="variable-size__size" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="L">
+                                                    <div th:if="${item.productSizeCd == 59}" class="variable-size__size" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="L">
                                                         <span>XL</span>
                                                     </div>
 
@@ -218,7 +210,7 @@
                                     Clear
                                 </button>
                             </div>
-                            <div class="product-single-content__add-to-cart-wrapper">
+                            <!-- <div class="product-single-content__add-to-cart-wrapper">
                                 <div class="product-single-content__quantity-add-to-cart">
                                     <div class="product-single-content__quantity product-quantity">
                                         <button type="button" class="decrease" aria-label="delete">
@@ -233,7 +225,7 @@
                                                 ></i>
                                         </button>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!--수정, 위시 리스트-->
                                 <a th:if="${session.sessNameUsr == null}" th:href="@{/membersUsrLogin}"  class="product-add-wishlist  mt-1">
                                     <i
@@ -316,7 +308,7 @@
                                     <h3 class="comment-title">
                                         Add a review
                                     </h3>
-                                    <form class="row g-3 " method="post" >
+                                    <form class="row g-3 " method="post" id="reviewAdd" >
                                         <!-- Comment Form Start -->
                                         <div class="comment-form">
                                             <div class="comment-form__rating">
@@ -371,324 +363,62 @@
                 <div class="related-product-active swiper-dot-style-1">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
+                            <div class="swiper-slide" th:if="${!#lists.isEmpty(listRelated)}" th:each="lista:${listRelated}" >
                                 <!-- Single product Start -->
-                                <div class="single-product js-scroll ShortFadeInUp">
+                                <div class="single-product js-scroll ShortFadeInUp" >
                                     <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--meta-3">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="heart"><i class="lastudioicon-heart-2"></i></a>
+                                        <div th:if="${session.sessNameUsr == null}" class="single-product__thumbnail--meta-2">
+                                            <a th:href="@{/membersUsrLogin}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                                        class="lastudioicon-heart-2"
+                                            ></i></a>
                                         </div>
-                                        <div class="single-product__thumbnail--badge onsale">
-                                            Sale
+                                        <div th:unless="${session.sessNameUsr == null}" class="single-product__thumbnail--meta-2">
+                                            <a th:href="@{/wishlistInsert(productSeq=${lista.productSeq})}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
+                                                        class="lastudioicon-heart-2"
+                                            ></i></a>
+                                        </div>
+                                        <div th:if="${lista.productStock > 0}">
+                                            
+                                        </div>
+                                        <div th:unless="${lista.productStock > 0}"  class="single-product__thumbnail--badge out-of-stock">
+                                            Out of stock
                                         </div>
                                         <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-12.jpg" alt="Product" width="344" height="370" loading="lazy" />
+                                            <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq},productCatDetailCd=${lista.productCatDetailCd})}">
+                                                <img src="/usr/assets/images/products/product-02.jpg" alt="Product" width="344" height="370" />
+                                                <img class="product-hover" src="/usr/assets/images/products/product-12.jpg" alt="Product" width="344" height="370" />
                                             </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                            class="lastudioicon-shopping-cart-3"
-                                        ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                            class="lastudioicon-ic_compare_arrows_24px"
-                                        ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                            class="lastudioicon-search-zoom-in"
-                                        ></i>
-                                            </button>
                                         </div>
                                     </div>
                                     <div class="single-product__info text-center">
                                         <div class="single-product__info--tags">
-                                            <a href="#">baby</a>
+                                            <a th:href="@{/productUsrList(productCatMainCd=${lista.productCatMainCd})}" 
+                                            th:text="${@codeService.selectOneCachedCode(lista.productCatMainCd)}"></a>
                                         </div>
-                                        <!--수정, 별점 추가하기-->
+                                        <!--수정, 별점 넣기-->
                                         <div class="single-product__info--rating">
                                             <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
+                                                <span th:if="${lista.xReviewStarAvg == 5}" style="width:100%;"></span>
+                                                <span th:if="${lista.xReviewStarAvg == 4}" style="width:80%;"></span>
+                                                <span th:if="${lista.xReviewStarAvg == 3}" style="width:60%;"></span>
+                                                <span th:if="${lista.xReviewStarAvg == 2}" style="width:40%;"></span>
+                                                <span th:if="${lista.xReviewStarAvg == 1}" style="width:20%;"></span>
+                                                <span th:if="${lista.xReviewStarAvg == null}" style="width:0%;"></span>
+                                                    
+                                                    
                                             </span>
                                         </div>
                                         <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                BunnyBounce Baby Jumper - Bouncing
-                                                Smiles and Giggles
-                                            </a>
+                                            <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq},productCatDetailCd=${lista.productCatDetailCd})}" th:text="${lista.productName}"></a>
                                         </h3>
                                         <div class="single-product__info--price">
-                                            <del>$39.99</del>
-                                            <ins>$29.99</ins>
+                                            <ins th:text="'$ ' + ${lista.productPrice}"></ins>
                                         </div>
-                                        
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--meta-3">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="heart"><i class="lastudioicon-heart-2"></i></a>
-                                        </div>
-                                        <div class="single-product__thumbnail--badge onsale">
-                                            Sale
-                                        </div>
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-11.jpg" alt="Product" width="344" height="370" loading="lazy" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                            class="lastudioicon-shopping-cart-3"
-                                        ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                            class="lastudioicon-ic_compare_arrows_24px"
-                                        ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                            class="lastudioicon-search-zoom-in"
-                                        ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info text-center">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">baby</a>
-                                        </div>
-                                        <!--수정, 별점 추가하기-->
-                                        <div class="single-product__info--rating mt-0 mb-4">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                OceanWonders Bath Time Set -
-                                                Splish-Splash Joy for Baby
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <ins>$39.99</ins>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--meta-3">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="heart"><i class="lastudioicon-heart-2"></i></a>
-                                        </div>
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-10.jpg" alt="Product" width="344" height="370" loading="lazy" />
-                                                <img class="product-hover" src="/usr/assets/images/products/product-09.jpg" alt="Product" width="344" height="370" loading="lazy" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                            class="lastudioicon-shopping-cart-3"
-                                        ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                            class="lastudioicon-ic_compare_arrows_24px"
-                                        ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                            class="lastudioicon-search-zoom-in"
-                                        ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info text-center">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">baby</a>
-                                        </div>
-                                        <!--수정, 별점 추가하기-->
-                                        <div class="single-product__info--rating mt-0 mb-4">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                Wonderland Dreams Crib Bedding Set -
-                                                Creating Magical Sleep
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <ins>$49.99</ins>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--meta-3">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="heart"><i class="lastudioicon-heart-2"></i></a>
-                                        </div>
-                                        <div class="single-product__thumbnail--badge onsale">
-                                            Sale
-                                        </div>
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-09.jpg" alt="Product" width="344" height="370" loading="lazy" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                            class="lastudioicon-shopping-cart-3"
-                                        ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                            class="lastudioicon-ic_compare_arrows_24px"
-                                        ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                            class="lastudioicon-search-zoom-in"
-                                        ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info text-center">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">baby</a>
-                                        </div>
-                                        <!--수정, 별점 추가하기-->
-                                        <div class="single-product__info--rating mt-0 mb-4">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                CuddleCloud Nursing Pillow - Support for
-                                                Feeding and Bonding
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <del>$59.99</del>
-                                            <ins>$39.99</ins>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--meta-3">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="heart"><i class="lastudioicon-heart-2"></i></a>
-                                        </div>
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-08.jpg" alt="Product" width="344" height="370" loading="lazy" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                            class="lastudioicon-shopping-cart-3"
-                                        ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                            class="lastudioicon-ic_compare_arrows_24px"
-                                        ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                            class="lastudioicon-search-zoom-in"
-                                        ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info text-center">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">baby</a>
-                                        </div>
-                                        <!--수정, 별점 추가하기-->
-                                        <div class="single-product__info--rating mt-0 mb-4">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                GentleGlow Nightlight - Soft
-                                                Illumination for Peaceful Nights
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <ins>$29.99</ins>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single product End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Single product Start -->
-                                <div class="single-product js-scroll ShortFadeInUp">
-                                    <div class="single-product__thumbnail">
-                                        <div class="single-product__thumbnail--meta-3">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="heart"><i class="lastudioicon-heart-2"></i></a>
-                                        </div>
-                                        <div class="single-product__thumbnail--badge onsale">
-                                            Sale
-                                        </div>
-                                        <div class="single-product__thumbnail--holder">
-                                            <a href="product-single.html">
-                                                <img src="/usr/assets/images/products/product-07.jpg" alt="Product" width="344" height="370" loading="lazy" />
-                                            </a>
-                                        </div>
-                                        <div class="single-product__thumbnail--meta-2">
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to cart" data-bs-custom-class="p-meta-tooltip" aria-label="cart"><i
-                                            class="lastudioicon-shopping-cart-3"
-                                        ></i></a>
-                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to compare" data-bs-custom-class="p-meta-tooltip" aria-label="compare"><i
-                                            class="lastudioicon-ic_compare_arrows_24px"
-                                        ></i></a>
-                                            <button data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Quickview" data-bs-custom-class="p-meta-tooltip" data-bs-toggle="modal" data-bs-target="#quickView" aria-label="zoom-in">
-                                                <i
-                                            class="lastudioicon-search-zoom-in"
-                                        ></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="single-product__info text-center">
-                                        <div class="single-product__info--tags">
-                                            <a href="#">baby</a>
-                                        </div>
-                                        <!--수정, 별점 추가하기-->
-                                        <div class="single-product__info--rating mt-0 mb-4">
-                                            <span class="star-rating">
-                                                    <span
-                                                        style="width: 88%"
-                                                    ></span>
-                                            </span>
-                                        </div>
-                                        <h3 class="single-product__info--title">
-                                            <a href="product-single.html">
-                                                Dapper Dino Baby shirt - Playful and
-                                                Stylish Dressing for Boys
-                                            </a>
-                                        </h3>
-                                        <div class="single-product__info--price">
-                                            <ins>$46.99</ins>
-                                            <ins>$36.99</ins>
+                                        <!--색 버튼 추가-->
+                                        <div th:unless="${lista.productColorCd == null}" class="single-product__info--color-swatch" >
+                                            <button th:if="${lista.productColorCd == 60}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
+                                            <button th:if="${lista.productColorCd == 62}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green" data-bs-custom-class="p-meta-tooltip" class="color-item green" aria-label="Name"></button>
+                                            <button th:if="${lista.productColorCd == 63}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red" data-bs-custom-class="p-meta-tooltip" class="color-item red" aria-label="Name"></button>
                                         </div>
                                     </div>
                                 </div>
@@ -762,7 +492,8 @@
             });
         }      
 
-        document.addEventListener("keydown", function(event) {
+
+        document.getElementById("reviewAdd").addEventListener("keydown", function(event) {
             // 엔터키를 눌렀을 때
             if (event.key === "Enter") {
                 event.preventDefault(); // 폼 제출을 막음

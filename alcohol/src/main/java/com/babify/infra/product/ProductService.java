@@ -43,6 +43,11 @@ public class ProductService {
 		return dao.selectListUsrIndexNew(vo);
 	}
 	
+//	패턴 2 리스트 호출(사용자 품목 연관상품)
+	public List<ProductDto> selectListRelated(ProductVo vo) {
+		return dao.selectListRelated(vo);
+	}
+	
 //  패턴 2 객체 하나 호출
 	public ProductDto selectOne(ProductDto dto) {
 		return dao.selectOne(dto);

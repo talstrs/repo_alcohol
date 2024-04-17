@@ -125,6 +125,13 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 
 	vo.setParamsPaging(service.selectOneCountUsr(vo));
 	
+	System.out.println("vo.getThisPage(): " + vo.getThisPage());
+	System.out.println("vo.getStartRnumForMysql(): " + vo.getStartRnumForMysql());
+	System.out.println("vo.getTotalRows(): " + vo.getTotalRows());
+	System.out.println("---------------------------------------------");
+	System.out.println("---------------------------------------------");
+	System.out.println("---------------------------------------------");
+	
 	if(vo.getTotalRows() > 0) {
 		
 		model.addAttribute("list", service.selectListUsr(vo));
@@ -137,12 +144,13 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 
 // 상품 상세 페이지
 	@RequestMapping(value = "/productUsrDetail")
-	public String productUsrDetail(ProductDto dto, ReviewVo rvo, ReviewDto rdto, Model model) throws Exception{
+	public String productUsrDetail(ProductDto dto, ProductVo vo, ReviewVo rvo, ReviewDto rdto, Model model) throws Exception{
 		
 		model.addAttribute("item", service.selectOne(dto));
 		
 		model.addAttribute("listReview", reviewService.selectList(rvo));
 		model.addAttribute("reviewCount", reviewService.selectListCount(rvo));
+		model.addAttribute("listRelated", service.selectListRelated(vo));
 		
 		return "usr/v1/infra/productUsrDetail";
 	}

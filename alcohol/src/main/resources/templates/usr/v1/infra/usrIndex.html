@@ -258,7 +258,7 @@
                 <!-- Product Wrapper Start -->
                 <div class="product-wrapper product-active navigation-arrows-style-1">
                     <div class="swiper">
-                        <div class="swiper-wrapper">
+                        <div class="swiper-wrapper row">
                             <div th:if="${#lists.isEmpty(listBest)}" th:each="lista:${listBest}">
                                 <p>등록된 상품이 없습니다</p>
                             </div>
@@ -307,9 +307,10 @@
                                                     
                                             </span>
                                         </div>
-                                        <div class="single-product__info--color-swatch">
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
-                                            <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
+                                        <div th:unless="${lista.productColorCd == null}" class="single-product__info--color-swatch" >
+                                            <button th:if="${lista.productColorCd == 60}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
+                                            <button th:if="${lista.productColorCd == 62}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green" data-bs-custom-class="p-meta-tooltip" class="color-item green" aria-label="Name"></button>
+                                            <button th:if="${lista.productColorCd == 63}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red" data-bs-custom-class="p-meta-tooltip" class="color-item red" aria-label="Name"></button>
                                         </div>
                                     </div>
                                 </div>
@@ -347,7 +348,7 @@
                 <!-- Product Wrapper Start -->
                 <div class="product-wrapper product-active navigation-arrows-style-1">
                     <div class="swiper">
-                        <div class="swiper-wrapper">
+                        <div class="swiper-wrapper row">
                             <div th:if="${#lists.isEmpty(listNew)}" th:each="lista:${listNew}">
                                 <p>등록된 상품이 없습니다</p>
                             </div>
@@ -396,9 +397,10 @@
                                                         
                                                 </span>
                                             </div>
-                                            <div class="single-product__info--color-swatch">
-                                                <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
-                                                <button type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Yellow" data-bs-custom-class="p-meta-tooltip" class="color-item yellow" aria-label="Name"></button>
+                                            <div th:unless="${lista.productColorCd == null}" class="single-product__info--color-swatch" >
+                                                <button th:if="${lista.productColorCd == 60}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Blue" data-bs-custom-class="p-meta-tooltip" class="color-item blue" aria-label="Name"></button>
+                                                <button th:if="${lista.productColorCd == 62}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Green" data-bs-custom-class="p-meta-tooltip" class="color-item green" aria-label="Name"></button>
+                                                <button th:if="${lista.productColorCd == 63}" type="submit" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Red" data-bs-custom-class="p-meta-tooltip" class="color-item red" aria-label="Name"></button>
                                             </div>
                                         </div>
                                     </div>
@@ -417,127 +419,6 @@
             </div>
         </div>
         <!-- Product Toys End -->
-
-
-
-        <!-- Client End -->
-        <div class="client-section section-padding bg-color">
-            <div class="container-fluid custom-container">
-                <!-- Section Title Start -->
-                <div class="section-title text-center js-scroll ShortFadeInUp">
-                    <span class="section-title__icon">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="64.735"
-                                height="66.178"
-                                viewBox="0 0 64.735 66.178"
-                            >
-                                <g fill="currentColor">
-                                    <path
-                                        d="M44.761 16.782a1.577 1.577 0 0 0-1.576 1.576v2.79a1.577 1.577 0 0 0 3.153 0v-2.79a1.577 1.577 0 0 0-1.576-1.576"
-                                    ></path>
-                                    <path
-                                        d="M63.882 19.483a1.573 1.573 0 0 0-1.469-.01c-2.658 1.373-5.19-.006-6.237-.732.015-.294.026-.588.026-.884a17.857 17.857 0 1 0-31.06 12.011 24.616 24.616 0 0 0-5.534 4.136c-1.839 1.713-2.878 2.607-4.565 2.607-.669 0-3.017-.712-6.593-2.276-1.533-.671-3.794-1.419-5.7-.168C.873 35.394-.001 38.103-.001 42.69c0 17.336 13.463 23.488 24.992 23.488h13.358a19.549 19.549 0 0 0 19.528-19.523c0-6.8-2.6-12.463-7.208-15.875a17.955 17.955 0 0 0 2.014-2.283 19.319 19.319 0 0 0 3.718.4 8.638 8.638 0 0 0 6.043-2.008 7.8 7.8 0 0 0 2.265-6.185 1.575 1.575 0 0 0-.822-1.216m-9.162 27.167A16.393 16.393 0 0 1 38.35 63.029H24.992c-10.557 0-21.839-5.342-21.839-20.335 0-4.529.925-5.624 1.324-5.884.467-.306 1.383-.165 2.715.418 2.649 1.159 6.163 2.541 7.856 2.541 3.007 0 4.807-1.677 6.713-3.453a20.164 20.164 0 0 1 5.912-4.162 17.868 17.868 0 0 0 10.676 3.565 1.576 1.576 0 0 0 0-3.152 14.719 14.719 0 0 1-9.434-3.429 14.7 14.7 0 1 1 18.179.547l-.012.011a1.632 1.632 0 0 0-.157.143c-.025.025-.053.048-.077.074s-.062.083-.092.125-.065.087-.092.134c0 .007-.009.012-.013.02-.02.035-.03.073-.046.108a1.563 1.563 0 0 0-.066.155 3.6 3.6 0 0 0-.067.3c-.007.051-.007.1-.008.153v.153c0 .053.012.093.02.14a1.549 1.549 0 0 0 .031.161c.012.046.03.089.046.134s.036.1.06.151a1.582 1.582 0 0 0 .087.145c.021.033.036.068.06.1a.189.189 0 0 0 .015.015 1.571 1.571 0 0 0 .239.253c.023.019.049.032.073.05a1.489 1.489 0 0 0 .181.125c4.806 2.644 7.453 7.731 7.453 14.324m5.591-22.093c-1.158 1.058-3.18 1.41-5.89 1.035a17.981 17.981 0 0 0 1.261-3.49 9.236 9.236 0 0 0 5.578 1.026 3.676 3.676 0 0 1-.949 1.429"
-                                    ></path>
-                                    <path
-                                        d="M28.053 55.412h-7.422c-7.665 0-9.511-8.036-9.591-8.4a1.576 1.576 0 0 0-3.083.655c.8 3.77 4.472 10.9 12.674 10.9h7.421a1.577 1.577 0 0 0 0-3.153"
-                                    ></path>
-                                    <path
-                                        d="M22.637 51.663a1.577 1.577 0 0 0 0-3.153 4.667 4.667 0 0 1-4.661-3.426 1.576 1.576 0 0 0-3.058.762 7.85 7.85 0 0 0 7.719 5.817"
-                                    ></path>
-                                </g>
-                            </svg>
-                        </span>
-                    <h2 class="section-title__title">Client reviews</h2>
-                </div>
-                <!-- Section Title End -->
-
-                <!-- 이후 리뷰 가져와서 보여주기 기능 넣기-->
-                <!-- Client Wrapper Start -->
-                <div class="client-wrapper client-active swiper-dot-style-2">
-                    <div class="swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <!-- Client Item Start -->
-                                <div class="client-item text-center js-scroll ShortFadeInUp">
-                                    <div class="client-item__user">
-                                        <img src="/usr/assets/images/user/user-1.jpg" alt="User" width="60" height="60" loading="lazy" />
-                                    </div>
-                                    <div class="client-item__comment">
-                                        <p>
-                                            Out of all themes I purchased
-                                            this had the best document
-                                            included about installing and
-                                            editing the theme. Beginners
-                                            friendly.
-                                        </p>
-                                    </div>
-                                    <div class="client-item__name">
-                                        Anthony Gilbert
-                                    </div>
-                                    <div class="client-item__position">
-                                        Toronto
-                                    </div>
-                                </div>
-                                <!-- Client Item End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Client Item Start -->
-                                <div class="client-item text-center js-scroll ShortFadeInUp">
-                                    <div class="client-item__user">
-                                        <img src="/usr/assets/images/user/user-2.jpg" alt="User" width="60" height="60" loading="lazy" />
-                                    </div>
-                                    <div class="client-item__comment">
-                                        <p>
-                                            Out of all themes I purchased
-                                            this had the best document
-                                            included about installing and
-                                            editing the theme. Beginners
-                                            friendly.
-                                        </p>
-                                    </div>
-                                    <div class="client-item__name">
-                                        Anthony Gilbert
-                                    </div>
-                                    <div class="client-item__position">
-                                        Toronto
-                                    </div>
-                                </div>
-                                <!-- Client Item End -->
-                            </div>
-                            <div class="swiper-slide">
-                                <!-- Client Item Start -->
-                                <div class="client-item text-center js-scroll ShortFadeInUp">
-                                    <div class="client-item__user">
-                                        <img src="/usr/assets/images/user/user-3.jpg" alt="User" width="60" height="60" loading="lazy" />
-                                    </div>
-                                    <div class="client-item__comment">
-                                        <p>
-                                            Out of all themes I purchased
-                                            this had the best document
-                                            included about installing and
-                                            editing the theme. Beginners
-                                            friendly.
-                                        </p>
-                                    </div>
-                                    <div class="client-item__name">
-                                        Anthony Gilbert
-                                    </div>
-                                    <div class="client-item__position">
-                                        Toronto
-                                    </div>
-                                </div>
-                                <!-- Client Item End -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-pagination"></div>
-                </div>
-                <!-- Client Wrapper End -->
-            </div>
-        </div>
-        <!-- Client End -->
 
         
     </main>
