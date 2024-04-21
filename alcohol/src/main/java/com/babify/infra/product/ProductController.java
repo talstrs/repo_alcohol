@@ -122,7 +122,8 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 		    ? null
 		    : vo.getProductNewNy());
 	
-
+	UtilSearch.setSearch(vo);
+	
 	vo.setParamsPaging(service.selectOneCountUsr(vo));
 	
 	System.out.println("vo.getThisPage(): " + vo.getThisPage());

@@ -22,7 +22,15 @@ public class ProductDto {
 	private Date productModDate;
 	
 	private Integer xReviewStarAvg;
+	private Integer xReviewSrarAvgAll;
+
 	
+	public Integer getxReviewSrarAvgAll() {
+		return xReviewSrarAvgAll;
+	}
+	public void setxReviewSrarAvgAll(Integer xReviewSrarAvgAll) {
+		this.xReviewSrarAvgAll = xReviewSrarAvgAll;
+	}
 	public String getProductSeq() {
 		return productSeq;
 	}

@@ -79,6 +79,38 @@
 		<if test="productBestNy != null and !productBestNy.equals('')">AND a.productBestNy = #{productBestNy}</if>
 		<if test="productNewNy != null and !productNewNy.equals('')">AND a.productNewNy = #{productNewNy}</if>
 		<if test="shValue != null and shValue != ''"> AND a.productName LIKE CONCAT('%', #{shValue}, '%')</if>
+		
+		
+<!-- 		체크박스 vo -->
+<!-- 		<if test="shCheckboxStarArray != null and shCheckboxStarArray.length != 0"> -->
+<!-- 			AND (SELECT AVG( -->
+<!--                         CASE bb.reviewStarCd -->
+<!--                             WHEN 40 THEN 1 -->
+<!--                             WHEN 41 THEN 2 -->
+<!--                             WHEN 42 THEN 3 -->
+<!--                             WHEN 43 THEN 4 -->
+<!--                             WHEN 44 THEN 5 -->
+<!--                             ELSE NULL -->
+<!--                         END) -->
+<!--                  FROM review bb -->
+<!--                  WHERE bb.product_productSeq = a.productSeq -->
+<!--                 ) IN -->
+<!--             	<foreach collection="shCheckboxStarArray" item="xStar" open="(" close=")" separator=","> -->
+<!--             		#{xStar} -->
+<!-- 		 		</foreach> 		               -->
+<!--         </if> -->
+<!--         <if test="shCheckboxSizeArray != null and shCheckboxSizeArray.length != 0"> -->
+<!-- 			AND a.productSizeCd IN -->
+<!--             	<foreach collection="shCheckboxSizeArray" item="size" open="(" close=")" separator=","> -->
+<!--             		#{size} -->
+<!-- 		 		</foreach> 		               -->
+<!--         </if> -->
+<!-- 		<if test="shCheckboxColorArray != null and shCheckboxColorArray.length != 0"> -->
+<!-- 			AND a.productColorCd IN -->
+<!--             	<foreach collection="shCheckboxColorArray" item="color" open="(" close=")" separator=","> -->
+<!--             		#{color} -->
+<!-- 		 		</foreach> 		               -->
+<!--         </if> -->
 	</sql>
 	
 		<!-- 사용자 셀렉리스트 -->
