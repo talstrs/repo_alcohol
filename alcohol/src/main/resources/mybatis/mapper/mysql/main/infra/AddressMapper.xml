@@ -67,9 +67,9 @@
 		where 1=1
 			and a.addressDelNy = 0
 		    and a.addressSeq = #{addressSeq}
-			
-			
 	</select>
+	
+	
 	
 	<insert id="insert">
 		insert into address(

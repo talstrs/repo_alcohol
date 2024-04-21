@@ -90,7 +90,7 @@
 												<label class="form-label" for="membersGenderCd">Gender</label>
 												<select id="membersGenderCd" name="membersGenderCd" class="form-select">
 													<option value="">성별을 선택하세요</option>
-													<option th:each="list : ${@codeService.selectListCachedCode(6)}" th:value="${item.membersGenderCd}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.membersGenderCd}"></option>
+													<option th:each="list : ${@codeService.selectListCachedCode(6)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.membersGenderCd}"></option>
 												</select>
 												<div class="invalid-feedback" id="membersGenderCdFeedback"></div>
 											</div>
@@ -99,7 +99,7 @@
 												<label class="form-label" for="membersGradeCd">Gender</label>
 												<select id="membersGradeCd" name="membersGradeCd" class="form-select">
 													<option value="">등급을 선택하세요</option>
-													<option th:each="list : ${@codeService.selectListCachedCode(7)}" th:value="${item.membersGradeCd}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.membersGradeCd}"></option>
+													<option th:each="list : ${@codeService.selectListCachedCode(7)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.membersGradeCd}"></option>
 												</select>
 												<div class="invalid-feedback" id="membersGradeCdFeedback"></div>
 											</div>
