@@ -75,4 +75,33 @@
 			
 			
 	</select>
+	
+		<insert id="insert">
+		insert into orders(
+		    ordersStatusCd
+		    ,ordersPaymentCd
+		    ,ordersCardCompanyCd
+		    ,ordersCardNo
+		    ,ordersName
+		    ,ordersCardDate
+		    ,ordersCardCvv
+		    ,ordersPrice
+		    ,ordersTotalPrice
+		    ,ordersAddressSeq
+		    ,members_membersSeq
+		) values (
+			#{ordersStatusCd}
+			,#{ordersPaymentCd}
+			,#{ordersCardCompanyCd}
+			,#{ordersCardNo}
+			,#{ordersName}
+			,#{ordersCardDate}
+			,#{ordersCardCvv}
+			,#{ordersPrice}
+			,#{ordersTotalPrice}
+			,#{ordersAddressSeq}
+			,#{membersMembersSeqF}
+		)
+	</insert>
+	
 </mapper>

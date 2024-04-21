@@ -149,7 +149,7 @@ public class OrdersController {
 	// 오더 상세페이지 페이지 myAccountOrderView
 	@RequestMapping(value = "/myAccountOrderView")
 	public String myAccountOrderView(OrdersDto dto, MembersDto mdto, AddressDto addto,  Model model, HttpSession httpSession) throws Exception{
-		// 하나의 매퍼로 진행하기!!!! ㅠㅠㅠㅠ
+
 		mdto.setMembersSeq((String) httpSession.getAttribute("sessSeqUsr"));
 		
 		model.addAttribute("itemMembers", membersService.selectOne(mdto));
@@ -157,17 +157,33 @@ public class OrdersController {
 		model.addAttribute("item", service.selectOne(dto));
 		
 		addto.setAddressSeq((String) dto.getOrdersAddressSeq());
-		System.out.println(dto.getOrdersAddressSeq());
-		System.out.println("addto.getAddressSeq(): " + addto.getAddressSeq());
-		System.out.println("---------------------------");
-		System.out.println("---------------------------");
-		System.out.println("---------------------------");
+
 		model.addAttribute("itemAddress", addressService.selectOne(addto));
 		
 		return  "usr/v1/infra/myAccountOrderView";
 	}
 	
+	// 결제 페이지
+	@RequestMapping(value = "/checkOut")
+	public String checkOut( AddressVo avo,  Model model, HttpSession httpSession) throws Exception{
+		
+		avo.setMembersMembersSeqF((String) httpSession.getAttribute("sessSeqUsr"));
+		
+		model.addAttribute("listAddress", addressService.selectList(avo));
+		
 
+		
+		return  "usr/v1/infra/checkOut";
+	}
+	
+	// 결제 등록
+	@RequestMapping(value = "/checkOutInsert")
+	public String checkOutInsert(OrdersDto dto,  Model model, HttpSession httpSession) throws Exception{
+
+		service.insert(dto);
+		
+		return  "usr/v1/infra/myAccount";
+	}
 		
 
 }

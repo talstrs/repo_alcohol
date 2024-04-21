@@ -10,5 +10,7 @@ public interface OrdersDao {
 	// 오더 셀렉 원
 	public OrdersDto selectOne(OrdersDto dto); //dto: 하나의 데이터를 가져올때
 	
+	public int insert(OrdersDto dto);
+	
 	
 }

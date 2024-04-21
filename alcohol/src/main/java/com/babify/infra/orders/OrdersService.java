@@ -19,6 +19,11 @@ public class OrdersService {
 	public OrdersDto selectOne(OrdersDto dto) {
 		return dao.selectOne(dto);
 	}
+	
+//  insert 서비스
+	public int insert(OrdersDto dto) {
+		return dao.insert(dto);
+	}
 
 	
 }
