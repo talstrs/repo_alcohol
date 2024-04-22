@@ -183,7 +183,7 @@
                                         <!-- <ul class="paginations-list"> -->
                                         <ul class="pagination justify-content-center"> 
                                             <input th:if="${vo.shValue != null}" type="hidden" name="shValue" th:value="${vo.shValue}">
-                                            <input th:if="${vo.shCheckboxColorArray != null}" type="hidden" name="shCheckboxColorArray" th:value="${vo.shCheckboxColorArray}">
+                                            <!-- <input th:if="${vo.shCheckboxColorArray != null}" type="hidden" name="shCheckboxColorArray" th:value="${vo.shCheckboxColorArray}"> -->
                                             <li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="lastudioicon-arrow-left"></i></a></li>
                                             <li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a></li>
                                             <li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="lastudioicon-arrow-right"></i></a></li>
@@ -325,26 +325,13 @@
                                             Color
                                         </h4>
                                         <div class="sidebar-widget-item__filter">
-                                            <ul class="sidebar-widget-item__color">
-                                                <li>
-                                                    <input type="checkbox"  th:value="60" th:id="checkboxSeq_60" name="checkboxColorSeq" onclick="fnCheckboxClick()"/>
-                                                    <label for="checkboxSeq_60">
-                                                        <span
-                                                                class="blue"
-                                                            ></span>Blue</label>
-                                                </li>
-                                                <li>
-                                                    <input type="checkbox"  th:value="62" th:id="checkboxSeq_62" name="checkboxColorSeq" onclick="fnCheckboxClick()"/>
-                                                    <label for="checkboxSeq_62">
-                                                        <span
-                                                                class="green"
-                                                            ></span>Green</label>
-                                                </li>
-                                                <li>
-                                                    <input type="checkbox" th:value="63" th:id="checkboxSeq_63" name="checkboxColorSeq" onclick="fnCheckboxClick()"/>
-                                                    <label for="checkboxSeq_63">
-                                                        <span class="red"></span>Red</label>
-                                                </li>
+                                            <ul class="sidebar-widget-item__list-2">
+                                                <div th:each="list : ${@codeService.selectListCachedCode(15)}" >
+                                                    <li>
+                                                        <input type="checkbox" th:value="${list.codeSeq}" th:id="checkboxSeq + ${list.codeSeq}" name="checkboxColorSeq" onclick="fnCheckboxClick()"/>
+                                                        <label th:for="checkboxSeq + ${list.codeSeq}" th:text="${list.codeName}">
+                                                    </li>
+                                                </div>
                                             </ul>
                                         </div>
                                     </div>

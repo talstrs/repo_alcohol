@@ -126,12 +126,15 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 	
 	vo.setParamsPaging(service.selectOneCountUsr(vo));
 	
-	System.out.println("vo.getThisPage(): " + vo.getThisPage());
-	System.out.println("vo.getStartRnumForMysql(): " + vo.getStartRnumForMysql());
-	System.out.println("vo.getTotalRows(): " + vo.getTotalRows());
-	System.out.println("---------------------------------------------");
-	System.out.println("---------------------------------------------");
-	System.out.println("---------------------------------------------");
+//    if(vo.getShCheckboxColorArray().length > 0) {
+//		for (String color : vo.getShCheckboxColorArray()) {
+//		    System.out.println(color);
+//		}
+//    } else {
+//    	System.out.println("데이터가 없습니다");    }
+//	System.out.println("---------------------------------------------");
+//	System.out.println("---------------------------------------------");
+//	System.out.println("---------------------------------------------");
 	
 	if(vo.getTotalRows() > 0) {
 		

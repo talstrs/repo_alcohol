@@ -11,7 +11,7 @@ public class ProductService {
 //	dao를 쓸 수 있게 해 주는 어노테이션
 	@Autowired
 	ProductDao dao;
-//	CodeGroupDao CodeGroupDao;
+//	CodeGroupDao CodeGroupDao; 
 //	@Autowired 와 CodeGroupDao dao;의 이미는 아래와 같다
 //	CodeGroupDao dao = new CodeGroupDao();
 
