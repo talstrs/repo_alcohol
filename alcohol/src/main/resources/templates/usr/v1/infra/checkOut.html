@@ -35,232 +35,234 @@
         <div class="checkout-section section-padding-2">
             <div class="container-fluid custom-container">
                 <!-- Checkout Start -->
-                <div class="checkout-wrapper">
+                <form name="formInsert" id="formInsert" method="post"  novalidate>
+                    <div class="checkout-wrapper">
 
-                    <div class="checkout-row">
-                        <div class="checkout-col-1">
-                            <!-- Checkout Details Start -->
-                            <div class="checkout-details">
-                                <h3 class="checkout-details__title">
-                                    Billing details
-                                </h3>
-                                <div th:if="${#lists.isEmpty(listAddress)}" >
-                                    <div class="m-3">등록된 주소가 없어 결제할 수 없습니다</div>
-                                    <a class="btn btn-outline-secondary" th:href="@{/myAccountAddressAdd}">Address Add</a>
-                                </div>
-                                <div th:if="${!#lists.isEmpty(listAddress)}" >
-                                    <!-- Checkout Details Billing Start -->
-                                    <!--수정, 주소 타이틀-->
-                                    <div class="single-form">
-                                        <label class="form-label" for="addressSeq">Address Title</label>
-                                        <select class="form-select" name="addressSeq" id="addressSeq">
-                                            <option value="" selected>주소를 선택하세요</option>
-                                            <option  th:each="address : ${listAddress}" th:value="${address.addressSeq}" th:text="${address.addressTitle}"></option>
-                                        </select>
+                        <div class="checkout-row">
+                            <div class="checkout-col-1">
+                                <!-- Checkout Details Start -->
+                                <div class="checkout-details">
+                                    <h3 class="checkout-details__title">
+                                        Billing details
+                                    </h3>
+                                    <div th:if="${#lists.isEmpty(listAddress)}" >
+                                        <div class="m-3">등록된 주소가 없어 결제할 수 없습니다</div>
+                                        <a class="btn btn-outline-secondary" th:href="@{/myAccountAddressAdd}">Address Add</a>
                                     </div>
-                                    
-                                    <!-- Checkout Details Billing End -->
+                                    <div th:if="${!#lists.isEmpty(listAddress)}" >
+                                        <!-- Checkout Details Billing Start -->
+                                        <!--수정, 주소 타이틀-->
+                                        <div class="single-form">
+                                            <label class="form-label" for="addressSeq">Address Title</label>
+                                            <select class="form-select" name="addressSeq" id="addressSeq">
+                                                <option value="" selected>주소를 선택하세요</option>
+                                                <option  th:each="address : ${listAddress}" th:value="${address.addressSeq}" th:text="${address.addressTitle}"></option>
+                                            </select>
+                                        </div>
+                                        
+                                        <!-- Checkout Details Billing End -->
+                                    </div>
                                 </div>
+                                <!-- Checkout Details End -->
                             </div>
-                            <!-- Checkout Details End -->
-                        </div>
-                        <div class="checkout-col-2">
-                            <!-- Checkout Details Start -->
-                            <div class="checkout-details">
-                                <h3 class="checkout-details__title">
-                                    Your order
-                                </h3>
+                            <div class="checkout-col-2">
+                                <!-- Checkout Details Start -->
+                                <div class="checkout-details">
+                                    <h3 class="checkout-details__title">
+                                        Your order
+                                    </h3>
 
-                                <div class="checkout-details__order-review">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th class="product-name">
-                                                    Product
-                                                </th>
-                                                <th class="product-total">
-                                                    Subtotal
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="cart-item">
-                                                <td class="product-name">
-                                                    Bomber jacket&nbsp;
-                                                    <strong
-                                                            >×&nbsp;1</strong>
-                                                </td>
-                                                <td class="product-total">
-                                                    <span> $69.99 </span>
-                                                </td>
-                                            </tr>
-                                            <tr class="cart_item">
-                                                <td class="product-name">
-                                                    Textured overshirt&nbsp;
-                                                    <strong
-                                                            >×&nbsp;1</strong>
-                                                </td>
-                                                <td class="product-total">
-                                                    <span> $89.99 </span>
-                                                </td>
-                                            </tr>
-                                            <tr class="cart_item">
-                                                <td class="product-name">
-                                                    Oversize linen
-                                                    blazer&nbsp;
-                                                    <strong
-                                                            >×&nbsp;1</strong>
-                                                </td>
-                                                <td class="product-total">
-                                                    <span> $36.99 </span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr class="cart-subtotal">
-                                                <th>Sale Price</th>
-                                                <td>
-                                                    <span>- $20.00 </span>
-                                                </td>
-                                            </tr>
-                                            <tr class="cart-subtotal">
-                                                <th>Subtotal</th>
-                                                <td>
-                                                    <span><del>$189.97</del>
-                                                    <ins>$169.97</ins></span>
-                                                </td>
-                                            </tr>
+                                    <div class="checkout-details__order-review">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-name">
+                                                        Product
+                                                    </th>
+                                                    <th class="product-total">
+                                                        Subtotal
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="cart-item">
+                                                    <td class="product-name">
+                                                        Bomber jacket&nbsp;
+                                                        <strong
+                                                                >×&nbsp;1</strong>
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <span> $69.99 </span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="cart_item">
+                                                    <td class="product-name">
+                                                        Textured overshirt&nbsp;
+                                                        <strong
+                                                                >×&nbsp;1</strong>
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <span> $89.99 </span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="cart_item">
+                                                    <td class="product-name">
+                                                        Oversize linen
+                                                        blazer&nbsp;
+                                                        <strong
+                                                                >×&nbsp;1</strong>
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <span> $36.99 </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="cart-subtotal">
+                                                    <th>Sale Price</th>
+                                                    <td>
+                                                        <span>- $20.00 </span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="cart-subtotal">
+                                                    <th>Subtotal</th>
+                                                    <td>
+                                                        <span><del>$189.97</del>
+                                                        <ins>$169.97</ins></span>
+                                                    </td>
+                                                </tr>
 
-                                            <tr class="cart-shipping">
-                                                <th>Shipping</th>
-                                                <td data-title="Shipping">
-                                                    <form action="#">
-                                                        <ul class="shipping-methods">
-                                                            <li class="single-form">
-                                                                <input type="radio" name="shippingMethod" id="flat-rate" />
-                                                                <label for="flat-rate" class="single-form__label radio-label">
-                                                                    <span></span>
-                                                                    Delivery Fee
-                                                                    <strong
-                                                                            class="price"
-                                                                        >
-                                                                            $20.00
-                                                                        </strong>
-                                                                </label>
-                                                            </li>
-                                                            <li class="single-form">
-                                                                <input type="radio" name="shippingMethod" id="local-pickup" />
-                                                                <label for="local-pickup" class="single-form__label radio-label">
-                                                                    <span></span>
-                                                                    Delivery Free
-                                                                </label>
-                                                            </li>
-                                                        </ul>
-                                                    </form>
-                                                </td>
-                                            </tr>
+                                                <tr class="cart-shipping">
+                                                    <th>Shipping</th>
+                                                    <td data-title="Shipping">
+                                                        <form action="#">
+                                                            <ul class="shipping-methods">
+                                                                <li class="single-form">
+                                                                    <input type="radio" name="shippingMethod" id="flat-rate" />
+                                                                    <label for="flat-rate" class="single-form__label radio-label">
+                                                                        <span></span>
+                                                                        Delivery Fee
+                                                                        <strong
+                                                                                class="price"
+                                                                            >
+                                                                                $20.00
+                                                                            </strong>
+                                                                    </label>
+                                                                </li>
+                                                                <li class="single-form">
+                                                                    <input type="radio" name="shippingMethod" id="local-pickup" />
+                                                                    <label for="local-pickup" class="single-form__label radio-label">
+                                                                        <span></span>
+                                                                        Delivery Free
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                        </form>
+                                                    </td>
+                                                </tr>
 
-                                            <tr class="order-total">
-                                                <th>Total</th>
-                                                <td>
-                                                    <strong>
-                                                            <span>
-                                                                $189.97
-                                                            </span>
-                                                        </strong>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
+                                                <tr class="order-total">
+                                                    <th>Total</th>
+                                                    <td>
+                                                        <strong>
+                                                                <span>
+                                                                    $189.97
+                                                                </span>
+                                                            </strong>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
 
-                                    <div class="checkout-details__payment-method">
-                                        <div class="accordion" id="payment-method">
-                                            <form action="#">
-                                                <!-- 수정, 카드 결제, 네이버페이, 카카오페이-->
-                                                <!-- 수정, 카드-->
-                                                <div class="accordion-item">
-                                                    <div class="single-form collapsed mt-1" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                                                        <input type="radio" name="payment-method" id="credit-card" />
-                                                        <label for="credit-card" class="single-form__label radio-label ">
-                                                            <span></span>
-                                                            Credit card
-                                                        </label>
-                                                    </div>
-                                                    <div id="collapseTwo" class="accordion-collapse collapse mt-2" data-bs-parent="#payment-method">
-                                                        <div class="payment-method-body">
-                                                            <select class="form-select p-3" aria-label="Default select example">
-                                                                <option selected>Card Company Select</option>
-                                                                <option value="bank1">Card Company One</option>
-                                                                <option value="bank2">Card Company Two</option>
-                                                                <option value="bank3">Card Company Three</option>
-                                                            </select>
+                                        <div class="checkout-details__payment-method">
+                                            <div class="accordion" id="payment-method">
+                                                <form action="#">
+                                                    <!-- 수정, 카드 결제, 네이버페이, 카카오페이-->
+                                                    <!-- 수정, 카드-->
+                                                    <div class="accordion-item">
+                                                        <div class="single-form collapsed mt-1" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                            <input type="radio" name="payment-method" id="credit-card" />
+                                                            <label for="credit-card" class="single-form__label radio-label ">
+                                                                <span></span>
+                                                                Credit card
+                                                            </label>
+                                                        </div>
+                                                        <div id="collapseTwo" class="accordion-collapse collapse mt-2" data-bs-parent="#payment-method">
+                                                            <div class="payment-method-body">
+                                                                <select class="form-select p-3" aria-label="Default select example">
+                                                                    <option selected>Card Company Select</option>
+                                                                    <option value="bank1">Card Company One</option>
+                                                                    <option value="bank2">Card Company Two</option>
+                                                                    <option value="bank3">Card Company Three</option>
+                                                                </select>
 
-                                                            <div class="single-form pt-3">
-                                                                <label class="single-form__label">Card No *</label>
-                                                                <input class="single-form__input" type="text" />
-                                                            </div>
-                                                            <div class="single-form pt-3">
-                                                                <label class="single-form__label">Cardholder's name *</label>
-                                                                <input class="single-form__input" type="text" />
-                                                            </div>
-                                                            <div class="single-form pt-3">
-                                                                <label class="single-form__label">MM/YY *</label>
-                                                                <input class="single-form__input" type="text" />
-                                                            </div>
-                                                            <div class="single-form pt-3">
-                                                                <label class="single-form__label">CVV / CVC *</label>
-                                                                <input class="single-form__input" type="text" />
+                                                                <div class="single-form pt-3">
+                                                                    <label class="single-form__label">Card No *</label>
+                                                                    <input class="single-form__input" type="text" />
+                                                                </div>
+                                                                <div class="single-form pt-3">
+                                                                    <label class="single-form__label">Cardholder's name *</label>
+                                                                    <input class="single-form__input" type="text" />
+                                                                </div>
+                                                                <div class="single-form pt-3">
+                                                                    <label class="single-form__label">MM/YY *</label>
+                                                                    <input class="single-form__input" type="text" />
+                                                                </div>
+                                                                <div class="single-form pt-3">
+                                                                    <label class="single-form__label">CVV / CVC *</label>
+                                                                    <input class="single-form__input" type="text" />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- 수정, 카카오페이-->
-                                                <div class="accordion-item ">
-                                                    <div class="single-form collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                                                        <input type="radio" name="payment-method" id="kakaopay" />
-                                                        <label for="kakaopay" class="single-form__label radio-label">
-                                                            <span></span>
-                                                            Kakao Pay
-                                                        </label>
+                                                    <!-- 수정, 카카오페이-->
+                                                    <div class="accordion-item ">
+                                                        <div class="single-form collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                            <input type="radio" name="payment-method" id="kakaopay" />
+                                                            <label for="kakaopay" class="single-form__label radio-label">
+                                                                <span></span>
+                                                                Kakao Pay
+                                                            </label>
+                                                        </div>
+                                                        
                                                     </div>
-                                                    
-                                                </div>
-                                                <!-- 수정, 네이버페이-->
-                                                <div class="accordion-item ">
-                                                    <div class="single-form collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour">
-                                                        <input type="radio" name="payment-method" id="naverpay" />
-                                                        <label for="naverpay" class="single-form__label radio-label">
-                                                            <span></span>
-                                                            Naver Pay
-                                                        </label>
+                                                    <!-- 수정, 네이버페이-->
+                                                    <div class="accordion-item ">
+                                                        <div class="single-form collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                                            <input type="radio" name="payment-method" id="naverpay" />
+                                                            <label for="naverpay" class="single-form__label radio-label">
+                                                                <span></span>
+                                                                Naver Pay
+                                                            </label>
+                                                        </div>
+                                                        
                                                     </div>
-                                                    
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div class="checkout-details__privacy-policy">
+                                            <p>
+                                                Your personal data will be used
+                                                to process your order, support
+                                                your experience throughout this
+                                                website, and for other purposes
+                                                described in our privacy policy.
+                                            </p>
+                                        </div>
+
+                                        <div class="checkout-details__btn">
+                                            <button class="btn">
+                                                Place Order
+                                            </button>
                                         </div>
                                     </div>
-
-                                    <div class="checkout-details__privacy-policy">
-                                        <p>
-                                            Your personal data will be used
-                                            to process your order, support
-                                            your experience throughout this
-                                            website, and for other purposes
-                                            described in our privacy policy.
-                                        </p>
-                                    </div>
-
-                                    <div class="checkout-details__btn">
-                                        <button class="btn">
-                                            Place Order
-                                        </button>
-                                    </div>
                                 </div>
+                                <!-- Checkout Details End -->
                             </div>
-                            <!-- Checkout Details End -->
                         </div>
                     </div>
-                </div>
+                </form>
                 <!-- Checkout End -->
             </div>
         </div>
