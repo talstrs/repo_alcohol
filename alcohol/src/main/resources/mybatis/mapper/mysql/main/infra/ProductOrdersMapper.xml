@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 모름 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Dao 경로 -->
+<mapper namespace="com.babify.infra.productorders.ProductOrdersDao">
+
+	<!-- 아이디 설정하여 셀렉문에 부과 / Dto 경로 -->
+	<resultMap id="resultMapObj" type="com.babify.infra.productorders.ProductOrdersDto"></resultMap>
+	
+	<!-- select 공통 구문 SQL -->
+	<sql id ="selectCommon">
+		 from productorders a
+		 left join product b
+		 	on a.product_productSeq = b.productSeq
+		 left join orders c
+		 	on a.orders_ordersSeq = c.ordersSeq
+	</sql>
+	
+	
+	<select id="selectList" resultMap="resultMapObj">
+	
+		select
+			a.productOrdersSeq
+			,a.productOrdersDelNy
+			,a.productOrdersCount
+			,a.productOrdersRegDate
+			,a.productOrdersModDate
+			,a.product_productSeq as productSeqF
+			,a.orders_ordersSeq as ordersSeqF
+		    ,b.productSeq 
+		    ,c.ordersSeq
+		<include refid="selectCommon"></include>
+		ORDER BY a.productOrdersSeq desc
+	</select>
+	
+	
+	
+	<select id="selectOneCount" resultType="Integer">
+		select COUNT(*)
+		<include refid="selectCommon"></include>
+	</select>
+	
+	<!-- 셀렉원 만들기 -->
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			a.productOrdersSeq
+			,a.productOrdersDelNy
+			,a.productOrdersCount
+			,a.productOrdersRegDate
+			,a.productOrdersModDate
+			,a.product_productSeq as productSeqF
+			,a.orders_ordersSeq as ordersSeqF
+		    ,b.productSeq 
+		    ,c.ordersSeq
+		 from productorders a
+		 left join product b
+		 	on a.product_productSeq = b.productSeq
+		 left join orders c
+		 	on a.orders_ordersSeq = c.ordersSeq
+		where 1=1
+			and a.productOrdersDelNy = 0
+		    and a.productOrdersSeq = #{codeSeq}
+			
+			
+	</select>
+	
+	<insert id="insert">
+		insert into productorders(
+			productOrdersCount
+			,product_productSeq
+			,orders_ordersSeq
+		) values (
+			#{productOrdersCount}
+			,#{productSeq}
+			,#{ordersSeq}
+		)
+	</insert>
+	
+
+	
+	<update id="update">
+		update productorders
+		set
+			productOrdersCount = #{productOrdersCount}
+			,product_productSeq = #{productSeq}
+			,codeModDate = now()
+			,orders_ordersSeq = #{ordersSeq}
+		where 1=1
+			and productOrdersSeq = #{productOrdersSeq}
+	</update>
+	
+	<update id="updateDelete">
+   	update productorders
+   	set
+   		productOrdersDelNy = 1
+   	WHERE 1=1
+   		and productOrdersSeq = #{productOrdersSeq}
+  	
+  	</update>
+  	
+  	<delete id="delete">
+  	delete from productorders
+  	
+  	where 1=1
+  		and productOrdersSeq = #{productOrdersSeq}
+  	
+  	</delete>
+
+  
+</mapper>
