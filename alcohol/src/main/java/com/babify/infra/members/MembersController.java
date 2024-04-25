@@ -135,6 +135,7 @@ public class MembersController {
 	public boolean matchesBcrypt(String planeText, String hashValue, int strength) {
 	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
 	  return passwordEncoder.matches(planeText, hashValue);
+	  
 	}
 	
 	

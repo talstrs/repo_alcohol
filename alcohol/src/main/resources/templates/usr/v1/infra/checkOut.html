@@ -50,17 +50,46 @@
                                         <a class="btn btn-outline-secondary" th:href="@{/myAccountAddressAdd}">Address Add</a>
                                     </div>
                                     <div th:if="${!#lists.isEmpty(listAddress)}" >
-                                        <!-- Checkout Details Billing Start -->
-                                        <!--수정, 주소 타이틀-->
                                         <div class="single-form">
-                                            <label class="form-label" for="addressSeq">Address Title</label>
-                                            <select class="form-select" name="addressSeq" id="addressSeq">
+                                            <label class="form-label" for="addressSeq1">Address Title</label>
+                                            <select class="form-select" name="addressSeq" id="addressSeq1">
                                                 <option value="" selected>주소를 선택하세요</option>
                                                 <option  th:each="address : ${listAddress}" th:value="${address.addressSeq}" th:text="${address.addressTitle}"></option>
                                             </select>
                                         </div>
-                                        
                                         <!-- Checkout Details Billing End -->
+                                    </div>
+                                    <div id="addressInfo">
+<!-- 				                        <div th:if="${itemAddress} != null"> -->
+<!-- 				                    		<input type="text" name="addressSeq" id="addressSeq" th:value=" ${itemAddress.addressSeq}"/> -->
+<!-- 					                        <div class="single-form"> -->
+<!-- 					                            <label for="addressZipcode" class="form-label">Address Zipcode</label> -->
+<!-- 					                            <input type="text" class="form-control" name="addressZipcode" id="addressZipcode" th:value="${itemAddress.addressZipcode}" required readonly/> -->
+<!-- 					                        </div> -->
+<!-- 					                        <div class="single-form"> -->
+<!-- 					                            <label for="addressMain" class="form-label">Address Main</label> -->
+<!-- 					                            <input type="text" class="form-control" name="addressMain" id="addressMain" th:value="${itemAddress.addressMain}" required readonly/> -->
+<!-- 					                        </div> -->
+<!-- 					                        <div class="single-form"> -->
+<!-- 					                            <label for="addressDetail" class="form-label">Address Detail</label> -->
+<!-- 					                            <input type="text" class="form-control" name="addressDetail" id="addressDetail" th:value="${itemAddress.addressDetail}" required readonly/> -->
+<!-- 					                        </div> -->
+<!-- 					                        <div class="single-form"> -->
+<!-- 					                            <label for="addressEtc" class="form-label">Address Etc</label> -->
+<!-- 					                            <input type="text" class="form-control" name="addressEtc" id="addressEtc" th:value="${itemAddress.addressEtc}" required readonly/> -->
+<!-- 					                        </div> -->
+<!-- 					                        <div class="single-form"> -->
+<!-- 					                            <label class="form-label">Orders Info</label> -->
+<!-- 					                            <div class="col-6"> -->
+<!-- 					                                <label for="addressName" class="form-label">Address Name</label> -->
+<!-- 					                                <input type="text" class="form-control" name="addressName" id="addressName" th:value="${itemAddress.addressName}" required readonly/> -->
+<!-- 					                            </div> -->
+<!-- 					                            <div class="col-6"> -->
+<!-- 					                                <label for="addressPhone" class="form-label">Address Phone</label> -->
+<!-- 					                                <input type="text" class="form-control" name="addressPhone" id="addressPhone" th:value="${itemAddress.addressPhone}" required readonly/> -->
+<!-- 					                            </div> -->
+<!-- 					                        </div> -->
+<!-- 					                    </div> -->
                                     </div>
                                 </div>
                                 <!-- Checkout Details End -->
@@ -119,48 +148,18 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr class="cart-subtotal">
-                                                    <th>Sale Price</th>
+                                                    <th>Size</th>
                                                     <td>
                                                         <span>- $20.00 </span>
                                                     </td>
                                                 </tr>
                                                 <tr class="cart-subtotal">
-                                                    <th>Subtotal</th>
+                                                    <th>Color</th>
                                                     <td>
                                                         <span><del>$189.97</del>
                                                         <ins>$169.97</ins></span>
                                                     </td>
                                                 </tr>
-
-                                                <tr class="cart-shipping">
-                                                    <th>Shipping</th>
-                                                    <td data-title="Shipping">
-                                                        <form action="#">
-                                                            <ul class="shipping-methods">
-                                                                <li class="single-form">
-                                                                    <input type="radio" name="shippingMethod" id="flat-rate" />
-                                                                    <label for="flat-rate" class="single-form__label radio-label">
-                                                                        <span></span>
-                                                                        Delivery Fee
-                                                                        <strong
-                                                                                class="price"
-                                                                            >
-                                                                                $20.00
-                                                                            </strong>
-                                                                    </label>
-                                                                </li>
-                                                                <li class="single-form">
-                                                                    <input type="radio" name="shippingMethod" id="local-pickup" />
-                                                                    <label for="local-pickup" class="single-form__label radio-label">
-                                                                        <span></span>
-                                                                        Delivery Free
-                                                                    </label>
-                                                                </li>
-                                                            </ul>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-
                                                 <tr class="order-total">
                                                     <th>Total</th>
                                                     <td>
@@ -274,6 +273,87 @@
 <!-- 푸터 블록 -->
 <div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>
 
+<script>
+
+        // 셀렉문 어드레스 데이터 뿌려주기 아작스
+        function selectTitle() {
+        
+            $.ajax({
+                async: true 
+                ,cache: false
+                ,type: "post"
+                /* ,dataType:"json" */
+                ,url: "/addressSelectCheck"
+                /* ,data : $("#formLogin").serialize() */
+                ,data : { "addressSeq" : $("#addressSeq1").val()
+                		, "addressZipcode" : $("#addressZipcode").val()
+                		, "addressMain" : $("#addressMain").val()
+                		, "addressDetail" : $("#addressDetail").val()
+                		, "addressName" : $("#addressName").val()
+                		, "addressEtc" : $("#addressEtc").val()
+                		, "addressPhone" : $("#addressPhone").val()}
+                // , "autoLogin" : $("#autoLogin").is(":checked")
+                
+                ,success: function(response) {
+                    if(response.rt == "success") {
+                        
+                        var itemAddress = response.itemAddress;
+                        $("#addressSeq").val(itemAddress.addressSeq);
+                        $("#addressZipcode").val(itemAddress.addressZipcode);
+                        $("#addressMain").val(itemAddress.addressMain);
+                        $("#addressDetail").val(itemAddress.addressDetail);
+                        $("#addressEtc").val(itemAddress.addressEtc);
+                        $("#addressName").val(itemAddress.addressName);
+                        $("#addressPhone").val(itemAddress.addressPhone);
+                        console.log(response);
+                        $("#addressInfo").html(
+                                "<div>" +
+                                "<input type='hidden' name='addressSeq' id='addressSeq' value='" + itemAddress.addressSeq + "'/>" +
+                                "<div class='single-form'>" +
+                                "<label for='addressZipcode' class='form-label'>Address Zipcode</label>" +
+                                "<input type='text' class='form-control' name='addressZipcode' id='addressZipcode' value='" + itemAddress.addressZipcode + "' required readonly/>" +
+                                "</div>" +
+                                "<div class='single-form'>" +
+                                "<label for='addressMain' class='form-label'>Address Main</label>" +
+                                "<input type='text' class='form-control' name='addressMain' id='addressMain' value='" + itemAddress.addressMain + "' required readonly/>" +
+                                "</div>" +
+                                "<div class='single-form'>" +
+                                "<label for='addressDetail' class='form-label'>Address Detail</label>" +
+                                "<input type='text' class='form-control' name='addressDetail' id='addressDetail' value='" + itemAddress.addressDetail + "' required readonly/>" +
+                                "</div>" +
+                                "<div class='single-form'>" +
+                                "<label for='addressEtc' class='form-label'>Address Etc</label>" +
+                                "<input type='text' class='form-control' name='addressEtc' id='addressEtc' value='" + itemAddress.addressEtc + "' required readonly/>" +
+                                "</div>" +
+                                "<div class='single-form row'>" +
+                                "<label class='form-label'>Orders Info</label>" +
+                                "<div class='col-6'>" +
+                                "<label for='addressName' class='form-label'>Address Name</label>" +
+                                "<input type='text' class='form-control' name='addressName' id='addressName' value='" + itemAddress.addressName + "' required readonly/>" +
+                                "</div>" +
+                                "<div class='col-6'>" +
+                                "<label for='addressPhone' class='form-label'>Address Phone</label>" +
+                                "<input type='text' class='form-control' name='addressPhone' id='addressPhone' value='" + itemAddress.addressPhone + "' required readonly/>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>"
+                            );
+                    } else {
+                        alert("주소가 일치하지 않습니다");
+                    }
+                }
+                ,error : function(jqXHR, textStatus, errorThrown){
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+        }        
+
+
+        document.getElementById("addressSeq1").onchange = function () {
+            selectTitle();
+        }
+
+</script>
 
 <!--자바스크립트 주소 관련 블록-->
 <div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>

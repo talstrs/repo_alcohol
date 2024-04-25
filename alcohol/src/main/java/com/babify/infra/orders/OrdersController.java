@@ -165,15 +165,56 @@ public class OrdersController {
 	
 	// 결제 페이지
 	@RequestMapping(value = "/checkOut")
-	public String checkOut( AddressVo avo,  Model model, HttpSession httpSession) throws Exception{
+	public String checkOut( AddressVo avo, AddressDto adto,  Model model,HttpSession httpSession) throws Exception{
 		
+		// 어드레스 셀렉문
 		avo.setMembersMembersSeqF((String) httpSession.getAttribute("sessSeqUsr"));
-		
 		model.addAttribute("listAddress", addressService.selectList(avo));
 		
-
+		
+		
+		
 		
 		return  "usr/v1/infra/checkOut";
+	}
+	
+	// 결제 페이지 셀렉문 아작스
+	@ResponseBody
+	@RequestMapping(value = "addressSelectCheck")
+	public Map<String, Object> addressSelectCheck(AddressDto adto, Model model, HttpSession httpSession) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		
+		
+		// DB에서 데이터 가져오기
+		System.out.println("adto.getAddressSeq() : " + adto.getAddressSeq());
+		System.out.println("addressService.selectOne(adto).getAddressSeq();: " + addressService.selectOne(adto).getAddressSeq());
+		System.out.println("--------------------------------------");
+		System.out.println("--------------------------------------");
+		System.out.println("--------------------------------------");
+				
+		if(adto.getAddressSeq() != null) {
+			
+		       // 주소 데이터를 Map에 담아 JSON으로 전달
+	        Map<String, Object> addressMap = new HashMap<>();
+	        AddressDto addressDto = addressService.selectOne(adto);
+	        addressMap.put("addressSeq", addressDto.getAddressSeq());
+	        addressMap.put("addressZipcode", addressDto.getAddressZipcode());
+	        addressMap.put("addressMain", addressDto.getAddressMain());
+	        addressMap.put("addressDetail", addressDto.getAddressDetail());
+	        addressMap.put("addressEtc", addressDto.getAddressEtc());
+	        addressMap.put("addressName", addressDto.getAddressName());
+	        addressMap.put("addressPhone", addressDto.getAddressPhone());
+	        
+	        // returnMap에도 성공 여부와 함께 데이터를 담아 전달
+	        returnMap.put("rt", "success");
+	        returnMap.put("itemAddress", addressMap);
+			
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
 	}
 	
 	// 결제 등록

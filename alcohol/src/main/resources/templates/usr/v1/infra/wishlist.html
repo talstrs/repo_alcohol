@@ -113,7 +113,7 @@
                                     </span>
                                 </td>
                                 <td class="product-action text-md-center">
-                                    <a th:if="${lista.productStock > 0}" th:href="@{/checkOut}" class="wishlist-table__btn btn">
+                                    <a th:if="${lista.productStock > 0}" th:href="@{/checkOut(productSeq=${lista.productSeq})}" class="wishlist-table__btn btn">
                                         Go To Checkout
                                     </a>
                                     <span th:unless="${lista.productStock > 0}" class="fw-bold">
