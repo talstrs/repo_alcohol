@@ -59,37 +59,9 @@
                                         </div>
                                         <!-- Checkout Details Billing End -->
                                     </div>
+<!--                                     address 아작스 추가 블럭 -->
                                     <div id="addressInfo">
-<!-- 				                        <div th:if="${itemAddress} != null"> -->
-<!-- 				                    		<input type="text" name="addressSeq" id="addressSeq" th:value=" ${itemAddress.addressSeq}"/> -->
-<!-- 					                        <div class="single-form"> -->
-<!-- 					                            <label for="addressZipcode" class="form-label">Address Zipcode</label> -->
-<!-- 					                            <input type="text" class="form-control" name="addressZipcode" id="addressZipcode" th:value="${itemAddress.addressZipcode}" required readonly/> -->
-<!-- 					                        </div> -->
-<!-- 					                        <div class="single-form"> -->
-<!-- 					                            <label for="addressMain" class="form-label">Address Main</label> -->
-<!-- 					                            <input type="text" class="form-control" name="addressMain" id="addressMain" th:value="${itemAddress.addressMain}" required readonly/> -->
-<!-- 					                        </div> -->
-<!-- 					                        <div class="single-form"> -->
-<!-- 					                            <label for="addressDetail" class="form-label">Address Detail</label> -->
-<!-- 					                            <input type="text" class="form-control" name="addressDetail" id="addressDetail" th:value="${itemAddress.addressDetail}" required readonly/> -->
-<!-- 					                        </div> -->
-<!-- 					                        <div class="single-form"> -->
-<!-- 					                            <label for="addressEtc" class="form-label">Address Etc</label> -->
-<!-- 					                            <input type="text" class="form-control" name="addressEtc" id="addressEtc" th:value="${itemAddress.addressEtc}" required readonly/> -->
-<!-- 					                        </div> -->
-<!-- 					                        <div class="single-form"> -->
-<!-- 					                            <label class="form-label">Orders Info</label> -->
-<!-- 					                            <div class="col-6"> -->
-<!-- 					                                <label for="addressName" class="form-label">Address Name</label> -->
-<!-- 					                                <input type="text" class="form-control" name="addressName" id="addressName" th:value="${itemAddress.addressName}" required readonly/> -->
-<!-- 					                            </div> -->
-<!-- 					                            <div class="col-6"> -->
-<!-- 					                                <label for="addressPhone" class="form-label">Address Phone</label> -->
-<!-- 					                                <input type="text" class="form-control" name="addressPhone" id="addressPhone" th:value="${itemAddress.addressPhone}" required readonly/> -->
-<!-- 					                            </div> -->
-<!-- 					                        </div> -->
-<!-- 					                    </div> -->
+                                    
                                     </div>
                                 </div>
                                 <!-- Checkout Details End -->
@@ -108,66 +80,47 @@
                                                     <th class="product-name">
                                                         Product
                                                     </th>
-                                                    <th class="product-total">
-                                                        Subtotal
+                                                    <th th:text="${itemProduct.productName}"></th>
+                                                </tr>
+                                                <tr th:if="${itemProduct.productSizeCd != null}" >
+                                                	<th class="product-name">
+                                                        Size
+                                                    </th>
+                                                    <th th:text="${@codeService.selectOneCachedCode(itemProduct.productSizeCd)}" id="productSizeCd" name="productSizeCd"></th>
+                                                </tr>
+                                                <tr th:if="${itemProduct.productColorCd != null}" >
+                                                	<th class="product-name">
+                                                        Color
+                                                    </th>
+                                                    <th th:text="${@codeService.selectOneCachedCode(itemProduct.productColorCd)}" id="productColorCd" name="productColorCd"></th>
+                                                </tr>
+                                                <tr >
+                                                	<th class="product-name">
+                                                	<input type="hidden" name="ordersPrice" id="ordersPrice" th:value="${itemProduct.productPrice}"/>
+                                                        Amount
+                                                    </th>
+                                                	<th class="cart-product-quantity text-md-center" data-title="Quantity">
+			                                            <div class="cart-table__quantity product-quantity">
+			                                                <button type="button" class="decrease" aria-label="delete">
+			                                                    <i
+			                                                            class="lastudioicon-i-delete-2"
+			                                                        ></i>
+			                                                </button>
+			                                                <input class="quantity-input" type="text" value="01" />
+			                                                <button type="button" class="increase" aria-label="add">
+			                                                    <i
+			                                                            class="lastudioicon-i-add-2"
+			                                                        ></i>
+			                                                </button>
+			                                            </div>
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr class="cart-item">
-                                                    <td class="product-name">
-                                                        Bomber jacket&nbsp;
-                                                        <strong
-                                                                >×&nbsp;1</strong>
-                                                    </td>
-                                                    <td class="product-total">
-                                                        <span> $69.99 </span>
-                                                    </td>
-                                                </tr>
-                                                <tr class="cart_item">
-                                                    <td class="product-name">
-                                                        Textured overshirt&nbsp;
-                                                        <strong
-                                                                >×&nbsp;1</strong>
-                                                    </td>
-                                                    <td class="product-total">
-                                                        <span> $89.99 </span>
-                                                    </td>
-                                                </tr>
-                                                <tr class="cart_item">
-                                                    <td class="product-name">
-                                                        Oversize linen
-                                                        blazer&nbsp;
-                                                        <strong
-                                                                >×&nbsp;1</strong>
-                                                    </td>
-                                                    <td class="product-total">
-                                                        <span> $36.99 </span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
                                             <tfoot>
-                                                <tr class="cart-subtotal">
-                                                    <th>Size</th>
-                                                    <td>
-                                                        <span>- $20.00 </span>
-                                                    </td>
-                                                </tr>
-                                                <tr class="cart-subtotal">
-                                                    <th>Color</th>
-                                                    <td>
-                                                        <span><del>$189.97</del>
-                                                        <ins>$169.97</ins></span>
-                                                    </td>
-                                                </tr>
                                                 <tr class="order-total">
                                                     <th>Total</th>
                                                     <td>
-                                                        <strong>
-                                                                <span>
-                                                                    $189.97
-                                                                </span>
-                                                            </strong>
+                                                    	<strong id="ordersTotalPrice" name="ordersTotalPrice"></strong>
                                                     </td>
                                                 </tr>
                                             </tfoot>
@@ -352,6 +305,9 @@
         document.getElementById("addressSeq1").onchange = function () {
             selectTitle();
         }
+        
+//         수량 증감 표시
+
 
 </script>
 

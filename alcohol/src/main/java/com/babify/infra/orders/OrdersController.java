@@ -16,6 +16,8 @@ import com.babify.infra.address.AddressService;
 import com.babify.infra.address.AddressVo;
 import com.babify.infra.members.MembersDto;
 import com.babify.infra.members.MembersService;
+import com.babify.infra.product.ProductDto;
+import com.babify.infra.product.ProductService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -32,6 +34,9 @@ public class OrdersController {
 
 	@Autowired
 	AddressService addressService;
+	
+	@Autowired
+	ProductService productService;
 	
 	// 마이페이지 페이지
 	@RequestMapping(value = "/myAccount")
@@ -165,13 +170,13 @@ public class OrdersController {
 	
 	// 결제 페이지
 	@RequestMapping(value = "/checkOut")
-	public String checkOut( AddressVo avo, AddressDto adto,  Model model,HttpSession httpSession) throws Exception{
+	public String checkOut( AddressVo avo, AddressDto adto, ProductDto pdto,  Model model,HttpSession httpSession) throws Exception{
 		
 		// 어드레스 셀렉문
 		avo.setMembersMembersSeqF((String) httpSession.getAttribute("sessSeqUsr"));
 		model.addAttribute("listAddress", addressService.selectList(avo));
 		
-		
+		model.addAttribute("itemProduct", productService.selectOne(pdto));
 		
 		
 		

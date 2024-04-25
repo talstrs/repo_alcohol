@@ -653,6 +653,7 @@ const productQuantity = (selector) => {
         const quantityIncrease = element.querySelector(".increase")
         const quantityDecrease = element.querySelector(".decrease")
         const quantityInput = element.querySelector(".quantity-input")
+        const ordersPrice = parseFloat(document.getElementById("ordersPrice").value) || 0 // HTML에서 가져온 값이 문자열이므로 파싱
 
         let count = 1
 
@@ -660,12 +661,21 @@ const productQuantity = (selector) => {
             count++
             count = count < 10 ? "0" + count : count
             quantityInput.value = count
+
+             // 가격 증가 수정
+            const ordersTotalPrice = ordersPrice * count
+            document.getElementById("ordersTotalPrice").innerText = "$ " + ordersTotalPrice.toLocaleString()
+
         })
         quantityDecrease.addEventListener("click", () => {
             if (count > 1) {
                 count--
                 count = count < 10 ? "0" + count : count
                 quantityInput.value = count
+
+                // 가격 감소 수정
+                const ordersTotalPrice = ordersPrice * count
+                document.getElementById("ordersTotalPrice").innerText = "$ " + ordersTotalPrice.toLocaleString()
             }
         })
     })
