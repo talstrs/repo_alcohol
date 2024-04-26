@@ -33,7 +33,37 @@ public class OrdersDto {
 	private String ordersAddressSeq;
 	private String addressSeq;
 	
+	private Integer productOrdersCount;
+    private String productSeq;
+    private String productName;
+    private String addressTitle;
 
+    
+
+	public String getAddressTitle() {
+		return addressTitle;
+	}
+	public void setAddressTitle(String addressTitle) {
+		this.addressTitle = addressTitle;
+	}
+	public Integer getProductOrdersCount() {
+		return productOrdersCount;
+	}
+	public void setProductOrdersCount(Integer productOrdersCount) {
+		this.productOrdersCount = productOrdersCount;
+	}
+	public String getProductSeq() {
+		return productSeq;
+	}
+	public void setProductSeq(String productSeq) {
+		this.productSeq = productSeq;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 	public String getSeq() {
 		return seq;
 	}

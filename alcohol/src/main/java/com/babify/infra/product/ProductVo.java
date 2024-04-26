@@ -22,6 +22,8 @@ public class ProductVo extends BaseVo {
 	private String[] shCheckboxSizeArray = null; // 사이즈
 	private String[] shCheckboxColorArray = null; // 색상
 	
+	
+	
 	public Integer getxReviewSrarAvgAll() {
 		return xReviewSrarAvgAll;
 	}

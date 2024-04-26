@@ -12,5 +12,7 @@ public interface OrdersDao {
 	
 	public int insert(OrdersDto dto);
 	
+	public int updateDelete(OrdersDto dto);
+	
 	
 }

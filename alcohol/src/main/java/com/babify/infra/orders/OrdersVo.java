@@ -26,13 +26,44 @@ public class OrdersVo extends BaseVo {
 	private String ordersOrdersSeqF;
 	private String productProductSeqF;
 	private String ordersAddressSeq;
+	private Integer productOrdersCount;
+    private String productSeq;
+    private String productName;
+    private String addressTitle;
+
 	
+    // 추후 VO로 진행
+    private	Integer ordersDelNy;
+    private	Integer ordersUseNy;
+    private Date ordersRegDate;
+    private Date ordersModDate;
+    
+    
 	
-	// 추후 VO로 진행
-	private	Integer ordersDelNy;
-	private	Integer ordersUseNy;
-	private Date ordersRegDate;
-	private Date ordersModDate;
+	public String getAddressTitle() {
+		return addressTitle;
+	}
+	public void setAddressTitle(String addressTitle) {
+		this.addressTitle = addressTitle;
+	}
+	public Integer getProductOrdersCount() {
+		return productOrdersCount;
+	}
+	public void setProductOrdersCount(Integer productOrdersCount) {
+		this.productOrdersCount = productOrdersCount;
+	}
+	public String getProductSeq() {
+		return productSeq;
+	}
+	public void setProductSeq(String productSeq) {
+		this.productSeq = productSeq;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 	public String getMembersSeq() {
 		return membersSeq;
 	}

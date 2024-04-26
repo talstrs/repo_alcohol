@@ -36,12 +36,22 @@
 		    ,a.members_membersSeq as membersMembersSeqF
 		    ,c.orders_ordersSeq as ordersOrdersSeqF
 		    ,c.product_productSeq as productProductSeqF
+		    ,c.productOrdersCount
+		    ,d.productSeq
+		    ,d.productName
+		    ,e.addressSeq
+		    ,e.addressTitle
 		FROM orders a
 			LEFT JOIN members b
 				on b.membersSeq = a.members_membersSeq
 			LEFT JOIN productOrders c
 				on c.orders_ordersSeq = a.ordersSeq
+			LEFT JOIN product d
+				on c.product_productSeq = d.productSeq
+			LEFT JOIN address e
+				on a.ordersAddressSeq = e.addressSeq
 		WHERE a.members_membersSeq = #{membersMembersSeqF}
+				and a.ordersDelNy = 0
 		     	ORDER BY a.ordersSeq
 				limit 99999999999
 	</select>
@@ -106,5 +116,14 @@
     		select last_insert_id()
     	</selectKey>
 	</insert>
+	
+		<update id="updateDelete">
+   	update orders
+   	set
+   		ordersDelNy = 1
+   	WHERE 1=1
+   		and ordersSeq = #{ordersSeq}
+  	
+  	</update>
 	
 </mapper>

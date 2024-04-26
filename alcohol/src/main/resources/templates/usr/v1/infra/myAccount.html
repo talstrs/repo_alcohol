@@ -133,10 +133,13 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">No</th>
+                                            	<th class="col">&nbsp;</th>
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Status</th>
-                                                <th scope="col">Price</th>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Count</th>
+                                                <th scope="col">All Price</th>
+                                                <th scope="col">Ad Title</th>
                                                 <th scope="col">Reg Date</th>
                                                 <th scope="col">Mod Date</th>
                                                 <th scope="col">Actions</th>
@@ -147,11 +150,45 @@
                                                 <td colspan="7">주문 및 결제 내역이 없습니다</td>
                                             </tr>
                                             <tr th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}">
-                                                <td th:text="${lista.ordersSeq}"></td>
+                                            	<td class="product-remove">
+				                                    <a class="remove" 
+				                                    data-bs-toggle="modal"
+				                                    th:data-bs-target="'#ordersUele'+ ${lista['ordersSeq']}"
+				                                    data-bs-target="#ordersUele">×</i>
+				                                    </a>
+				                                    <!-- 수정, 완전 삭제 모달-->
+				                                    <div class="modal fade" 
+				                                        th:id="'ordersUele' + ${lista['ordersSeq']}"
+				                                        tabindex="-1"
+				                                        aria-labelledby="ordersUeleTitle"
+				                                        aria-hidden="true">
+				
+				                                        <div class="modal-dialog modal-dialog-centered">
+				                                            <div class="modal-content">
+				                                                <div class="modal-header">
+				                                                    <h5 class="modal-title" id="ordersUeleTitle">
+				                                                        Order 삭제
+				                                                    </h5>
+				                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				                                                </div>
+				                                                <div class="modal-body">
+				                                                    <p class="text-start">정말로 삭제하시겠습니까?</p>
+				                                                </div>
+				                                                <div class="modal-footer">
+				                                                    <a class="btn btn-secondary" data-bs-dismiss="modal">취소</a>
+				                                                    <a class="btn btn-danger" th:href="@{/ordersUele(ordersSeq=${lista.ordersSeq})}">삭제</a>
+				                                                </div>
+				                                            </div>
+				                                        </div>
+				                                    </div>
+				                                </td>
                                                 <td th:text="${lista.ordersName}"></td>
                                                 <td th:if="${lista.ordersStatusCd != null}" th:text="${@codeService.selectOneCachedCode(lista.ordersStatusCd)}" class=" align-middle"></td>
 												<td th:unless="${lista.ordersStatusCd != null}" class="ordersStatusCd align-middle"></td>
-                                                <td th:text="${lista.ordersPrice}"></td>
+                                                <td th:text="${lista.productName}"></td>
+                                                <td th:text="${lista.productOrdersCount}"></td>
+                                                <td th:text="'$ ' + ${lista.ordersTotalPrice}"></td>
+                                                <td th:text="${lista.addressTitle}" th:value="${lista.addressSeq}"></td>
                                                 <td th:text="${#dates.format(lista.ordersRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 												<td th:text="${#dates.format(lista.ordersModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
                                                 <td><a th:href="@{/myAccountOrderView(ordersSeq=${lista.ordersSeq})}" class="btn" type="button">VIEW</a></td>
@@ -171,28 +208,29 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>
+                                            	<th class="col">&nbsp;</th>
+                                                <th  class="col">
                                                     <span>Title</span>
                                                 </th>
-                                                <th>
+                                                <th class="col">
                                                     <span>Zipcode</span>
                                                 </th>
-                                                <th>
+                                                <th class="col">
                                                     <span>Address</span>
                                                 </th>
-                                                <th>
+                                                <th class="col">
                                                     <span>Detail Address</span>
                                                 </th>
-                                                <th>
+                                                <th class="col">
                                                     <span>Etc Address</span>
                                                 </th>
-                                                <th>
+                                                <th class="col">
                                                     <span>Name</span>
                                                 </th>
-                                                <th>
+                                                <th class="col">
                                                     <span>Phone Number</span>
                                                 </th>
-                                                <th>
+                                                <th class="col">
                                                     <span>Edit</span>
                                                 </th>
                                             </tr>
@@ -202,6 +240,38 @@
                                                 <td colspan="7">주소 데이터가 없습니다</td>
                                             </tr>
                                             <tr th:if="${!#lists.isEmpty(listAddress)}" th:each="listAddress:${listAddress}">
+                                            	<td class="product-remove">
+				                                    <a class="remove" 
+				                                    data-bs-toggle="modal"
+				                                    th:data-bs-target="'#addressUele'+ ${listAddress['addressSeq']}"
+				                                    data-bs-target="#addressUele">×</i>
+				                                    </a>
+				                                    <!-- 수정, 완전 삭제 모달-->
+				                                    <div class="modal fade" 
+				                                        th:id="'addressUele' + ${listAddress['addressSeq']}"
+				                                        tabindex="-1"
+				                                        aria-labelledby="addressUeleTitle"
+				                                        aria-hidden="true">
+				
+				                                        <div class="modal-dialog modal-dialog-centered">
+				                                            <div class="modal-content">
+				                                                <div class="modal-header">
+				                                                    <h5 class="modal-title" id="addressUeleTitle">
+				                                                        Order 삭제
+				                                                    </h5>
+				                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				                                                </div>
+				                                                <div class="modal-body">
+				                                                    <p class="text-start">정말로 삭제하시겠습니까?</p>
+				                                                </div>
+				                                                <div class="modal-footer">
+				                                                    <a class="btn btn-secondary" data-bs-dismiss="modal">취소</a>
+				                                                    <a class="btn btn-danger" th:href="@{/addressUele(addressSeq=${listAddress.addressSeq})}">삭제</a>
+				                                                </div>
+				                                            </div>
+				                                        </div>
+				                                    </div>
+				                                </td>
                                                 <td th:text="${listAddress.addressTitle}"></td>
                                                 <td th:text="${listAddress.addressZipcode}"></td>
                                                 <td th:text="${listAddress.addressMain}"></td>

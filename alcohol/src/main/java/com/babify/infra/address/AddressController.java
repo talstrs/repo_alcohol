@@ -52,6 +52,15 @@ public class AddressController {
 		return "redirect:/myAccount";
 	}
 	
+	// 마이어카운트 율리트
+	@RequestMapping(value = "/addressUele")
+	public String addressUele(AddressDto dto) throws Exception{
+		
+		service.updateDelete(dto);
+		
+		return "redirect:/myAccount";
+	}
+	
 
 	
 

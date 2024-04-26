@@ -220,6 +220,15 @@ public class OrdersController {
 		return "redirect:/myAccount";
 		
 	}
+	
+	// 오더 율리트
+	@RequestMapping(value = "/ordersUele")
+	public String ordersUele(OrdersDto dto) throws Exception{
+		
+		service.updateDelete(dto);
+		
+		return "redirect:/myAccount";
+	}
 		
 
 }
