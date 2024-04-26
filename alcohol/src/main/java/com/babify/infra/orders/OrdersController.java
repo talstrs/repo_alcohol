@@ -161,14 +161,11 @@ public class OrdersController {
 	public String myAccountOrderView(OrdersDto dto, MembersDto mdto, AddressDto addto,  Model model, HttpSession httpSession) throws Exception{
 
 		mdto.setMembersSeq((String) httpSession.getAttribute("sessSeqUsr"));
-		
 		model.addAttribute("itemMembers", membersService.selectOne(mdto));
 		
 		model.addAttribute("item", service.selectOne(dto));
 		
-		addto.setAddressSeq((String) dto.getOrdersAddressSeq());
 
-		model.addAttribute("itemAddress", addressService.selectOne(addto));
 		
 		return  "usr/v1/infra/myAccountOrderView";
 	}

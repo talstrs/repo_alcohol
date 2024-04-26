@@ -48,39 +48,99 @@
                                 <table class="table ">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <td th:text="${item.ordersName}"></td>
+                                            <th>User Info</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="cart-item">
+                                            <td class="product-name">
+                                                User Name
+                                            </td>
+                                            <td class="product-total" th:text="${itemMembers.membersName}">
+                                            </td>
+                                        </tr>
+                                        <tr class="cart-item">
+                                            <td class="product-name">
+                                                User Email
+                                            </td>
+                                            <td class="product-total" th:text="${itemMembers.membersEmail}">
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <th>Email address</th>
-                                            <td th:text="${itemMembers.membersEmail}"></td>
+                                        	<td>&nbsp;</td>
                                         </tr>
+                                    </tbody>
+                                    <thead>
                                         <tr>
                                             <th>Address</th>
-                                            <!-- <td th:text="${itemAddress.addressMain}"></td> -->
+                                            <td th:text="${item.addressTitle}"></td>
                                         </tr>
-                                        <tr>
-                                            <th>
-                                                Address Details
-                                            </th>
-                                            <td>
-                                                4F, 404, Babify, 1-1
+                                    </thead>
+                                    <tbody>
+                                        <tr class="cart-item">
+                                            <td class="product-name">
+                                                Address Zipcode
+                                            </td>
+                                            <td class="product-total" th:text="${item.addressZipcode}">
+                                            </td>
+                                        </tr>
+                                        <tr class="cart-item">
+                                            <td class="product-name">
+                                                Address Main
+                                            </td>
+                                            <td class="product-total" th:text="${item.addressMain}">
+                                            </td>
+                                        </tr>
+                                        <tr class="cart-item">
+                                            <td class="product-name">
+                                                Address Detail
+                                            </td>
+                                            <td class="product-total" th:text="${item.addressDetail}">
+                                            </td>
+                                        </tr>
+                                        <tr class="cart-item">
+                                            <td class="product-name">
+                                                Address Etc
+                                            </td>
+                                            <td class="product-total" th:text="${item.addressEtc}">
                                             </td>
                                         </tr>
                                         <tr>
+                                        	<td>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                    <thead>
+                                        <tr>
                                             <th>
-                                                Phone Number
+                                                Recipient Info
                                             </th>
-                                            <td>
-                                                010-1234-1234
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="cart-item">
+                                            <td class="product-name">
+                                                Recipient Name
+                                            </td>
+                                            <td class="product-total" th:text="${item.addressName}">
                                             </td>
                                         </tr>
+                                        <tr class="cart-item">
+                                            <td class="product-name">
+                                                Recipient Phone
+                                            </td>
+                                            <td class="product-total" th:text="${item.addressPhone}">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        	<td>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                    <thead>
                                         <tr>
                                             <th>
                                                 Payment
                                             </th>
-                                            <td>
-                                                Direct bank transfer
+                                            <td th:text="${@codeService.selectOneCachedCode(item.ordersPaymentCd)}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -88,95 +148,40 @@
                                                 Product
                                             </th>
                                             <th class="product-total">
-                                                Subtotal
+                                                Price
                                             </th>
                                         </tr>
+                                        
                                     </thead>
                                     <tbody>
                                         
                                         
                                         <tr class="cart-item">
                                             <td class="product-name">
-                                                Bomber jacket&nbsp;
-                                                <strong
-                                                        >×&nbsp;1</strong>
+                                            	Name: <span th:text="${item.productName}"></span>
                                             </td>
                                             <td class="product-total">
-                                                <span> $69.99 </span>
+                                                <span th:text="'$' + ${item.ordersPrice}" ></span>
                                             </td>
                                         </tr>
                                         <tr class="cart_item">
                                             <td class="product-name">
-                                                Textured overshirt&nbsp;
-                                                <strong
-                                                        >×&nbsp;1</strong>
+                                                Quantity&nbsp;
                                             </td>
                                             <td class="product-total">
-                                                <span> $89.99 </span>
+                                                x &nbsp;<span th:text="${item.productOrdersCount}"></span>
                                             </td>
                                         </tr>
-                                        <tr class="cart_item">
-                                            <td class="product-name">
-                                                Oversize linen
-                                                blazer&nbsp;
-                                                <strong
-                                                        >×&nbsp;1</strong>
-                                            </td>
-                                            <td class="product-total">
-                                                <span> $36.99 </span>
-                                            </td>
+                                        <tr>
+                                        	<td>&nbsp;</td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
-                                        <tr class="cart-subtotal">
-                                            <th>Sale Price</th>
-                                            <td>
-                                                <span>- $20.00 </span>
-                                            </td>
-                                        </tr>
-                                        <tr class="cart-subtotal">
-                                            <th>Subtotal</th>
-                                            <td>
-                                                <span><del>$189.97</del>
-                                                <ins>$169.97</ins></span>
-                                            </td>
-                                        </tr>
-
-                                        <tr class="cart-shipping">
-                                            <th>Shipping</th>
-                                            <td data-title="Shipping">
-                                                <form action="#">
-                                                    <ul class="shipping-methods">
-                                                        <li class="single-form">
-                                                            <input type="radio" name="shippingMethod" id="flat-rate" />
-                                                            <label for="flat-rate" class="single-form__label radio-label">
-                                                                <span></span>
-                                                                Delivery Fee
-                                                                <strong
-                                                                        class="price"
-                                                                    >
-                                                                        $20.00
-                                                                    </strong>
-                                                            </label>
-                                                        </li>
-                                                        <li class="single-form">
-                                                            <input type="radio" name="shippingMethod" id="local-pickup" />
-                                                            <label for="local-pickup" class="single-form__label radio-label">
-                                                                <span></span>
-                                                                Delivery Free
-                                                            </label>
-                                                        </li>
-                                                    </ul>
-                                                </form>
-                                            </td>
-                                        </tr>
-
                                         <tr class="order-total">
                                             <th>Total</th>
                                             <td>
                                                 <strong>
-                                                        <span>
-                                                            $189.97
+                                                        <span th:text="'$ ' + ${item.ordersTotalPrice}">
                                                         </span>
                                                     </strong>
                                             </td>

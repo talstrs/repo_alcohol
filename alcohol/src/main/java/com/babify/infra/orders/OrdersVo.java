@@ -30,6 +30,12 @@ public class OrdersVo extends BaseVo {
     private String productSeq;
     private String productName;
     private String addressTitle;
+    private Integer addressZipcode;
+    private String addressMain;
+    private String addressDetail;
+    private String addressEtc;
+    private String addressName;
+    private String addressPhone;
 
 	
     // 추후 VO로 진행
@@ -40,6 +46,42 @@ public class OrdersVo extends BaseVo {
     
     
 	
+	public Integer getAddressZipcode() {
+		return addressZipcode;
+	}
+	public void setAddressZipcode(Integer addressZipcode) {
+		this.addressZipcode = addressZipcode;
+	}
+	public String getAddressMain() {
+		return addressMain;
+	}
+	public void setAddressMain(String addressMain) {
+		this.addressMain = addressMain;
+	}
+	public String getAddressDetail() {
+		return addressDetail;
+	}
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
+	}
+	public String getAddressEtc() {
+		return addressEtc;
+	}
+	public void setAddressEtc(String addressEtc) {
+		this.addressEtc = addressEtc;
+	}
+	public String getAddressName() {
+		return addressName;
+	}
+	public void setAddressName(String addressName) {
+		this.addressName = addressName;
+	}
+	public String getAddressPhone() {
+		return addressPhone;
+	}
+	public void setAddressPhone(String addressPhone) {
+		this.addressPhone = addressPhone;
+	}
 	public String getAddressTitle() {
 		return addressTitle;
 	}

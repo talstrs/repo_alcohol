@@ -41,6 +41,12 @@
 		    ,d.productName
 		    ,e.addressSeq
 		    ,e.addressTitle
+		    ,e.addressZipcode
+		    ,e.addressMain
+		    ,e.addressDetail
+		    ,e.addressEtc
+		    ,e.addressName
+		    ,e.addressPhone
 		FROM orders a
 			LEFT JOIN members b
 				on b.membersSeq = a.members_membersSeq
@@ -60,7 +66,11 @@
 	<!-- 셀렉원 만들기 -->
 	<select id="selectOne" resultMap="resultMapObj">
 		select
-			a.ordersSeq
+			b.membersSeq
+			,b.membersName
+		    ,b.membersEmail
+		    ,b.membersGradeCd
+			,a.ordersSeq
 		    ,a.ordersDelNy
 		    ,a.ordersUseNy
 		    ,a.ordersStatusCd
@@ -76,9 +86,29 @@
 		    ,a.ordersRegDate
 		    ,a.ordersModDate
 		    ,a.ordersAddressSeq
-		    ,a.members_membersSeq
-		from
-			orders a
+		    ,a.members_membersSeq as membersMembersSeqF
+			,c.orders_ordersSeq as ordersOrdersSeqF
+		    ,c.product_productSeq as productProductSeqF
+		    ,c.productOrdersCount
+		    ,d.productSeq
+		    ,d.productName
+		    ,e.addressSeq
+		    ,e.addressTitle
+		    ,e.addressZipcode
+		    ,e.addressMain
+		    ,e.addressDetail
+		    ,e.addressEtc
+		    ,e.addressName
+		    ,e.addressPhone
+		FROM orders a
+			LEFT JOIN members b
+				on b.membersSeq = a.members_membersSeq
+			LEFT JOIN productOrders c
+				on c.orders_ordersSeq = a.ordersSeq
+			LEFT JOIN product d
+				on c.product_productSeq = d.productSeq
+			LEFT JOIN address e
+				on a.ordersAddressSeq = e.addressSeq
 		where 1=1
 			and a.ordersDelNy = 0
 		    and a.ordersSeq = #{ordersSeq}
