@@ -24,6 +24,7 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 		registry.addInterceptor(new CheckLoginSessionInterceptor()) //LoginCheckInterceptor 등록
 //				.order(2)
 				.addPathPatterns("/*Xdm*")
+				.addPathPatterns("/*xdm*")
 				.excludePathPatterns(
 //						"/resources/**",
 //						"/usr/**",
