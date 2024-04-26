@@ -115,6 +115,17 @@ function checkOnlyEightNumber (objName, pattern, nullAllowedNy, message) {
     return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
 }
 
+function checkOnlyThreeNumber (objName, pattern, nullAllowedNy, message) {
+
+    var regExp = /^[0-9]{3}$/;
+    return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
+}
+
+function checkOnlyFourNumber (objName, pattern, nullAllowedNy, message) {
+
+    var regExp = /^[0-9]{4}$/;
+    return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
+}
 
 function checkOnlyNumber (objName, pattern, nullAllowedNy, minMaxCheckNy, min, max, message) {
 // checkOnlyNumber = function(obj, value, message) {
