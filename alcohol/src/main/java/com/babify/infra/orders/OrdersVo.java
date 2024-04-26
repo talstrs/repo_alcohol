@@ -15,13 +15,13 @@ public class OrdersVo extends BaseVo {
 	private	Integer ordersStatusCd;
 	private	Integer ordersPaymentCd;
 	private	Integer ordersCardCompanyCd;
-	private	Integer ordersCardNo;
+	private	String ordersCardNo;
 	private String ordersName;
 	private	Integer ordersCardDate;
 	private	Integer ordersCardCvv;	
 	private	Integer ordersFeeNy;
-	private	Integer ordersPrice;	
-	private Integer ordersTotalPrice;
+	private	Double ordersPrice;	
+	private Double ordersTotalPrice;
 	private String membersMembersSeqF;
 	private String ordersOrdersSeqF;
 	private String productProductSeqF;
@@ -81,10 +81,10 @@ public class OrdersVo extends BaseVo {
 	public void setOrdersCardCompanyCd(Integer ordersCardCompanyCd) {
 		this.ordersCardCompanyCd = ordersCardCompanyCd;
 	}
-	public Integer getOrdersCardNo() {
+	public String getOrdersCardNo() {
 		return ordersCardNo;
 	}
-	public void setOrdersCardNo(Integer ordersCardNo) {
+	public void setOrdersCardNo(String ordersCardNo) {
 		this.ordersCardNo = ordersCardNo;
 	}
 	public String getOrdersName() {
@@ -111,16 +111,16 @@ public class OrdersVo extends BaseVo {
 	public void setOrdersFeeNy(Integer ordersFeeNy) {
 		this.ordersFeeNy = ordersFeeNy;
 	}
-	public Integer getOrdersPrice() {
+	public Double getOrdersPrice() {
 		return ordersPrice;
 	}
-	public void setOrdersPrice(Integer ordersPrice) {
+	public void setOrdersPrice(Double ordersPrice) {
 		this.ordersPrice = ordersPrice;
 	}
-	public Integer getOrdersTotalPrice() {
+	public Double getOrdersTotalPrice() {
 		return ordersTotalPrice;
 	}
-	public void setOrdersTotalPrice(Integer ordersTotalPrice) {
+	public void setOrdersTotalPrice(Double ordersTotalPrice) {
 		this.ordersTotalPrice = ordersTotalPrice;
 	}
 	public String getMembersMembersSeqF() {

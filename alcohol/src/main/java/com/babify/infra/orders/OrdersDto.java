@@ -5,6 +5,8 @@ import java.util.Date;
 public class OrdersDto {
 
 	
+	private String seq;
+	
 	private String membersSeq;
 	private String membersName;
 	private String membersEmail;
@@ -16,21 +18,34 @@ public class OrdersDto {
 	private	Integer ordersStatusCd;
 	private	Integer ordersPaymentCd;
 	private	Integer ordersCardCompanyCd;
-	private	Integer ordersCardNo;
+	private	String ordersCardNo;
 	private String ordersName;
 	private	Integer ordersCardDate;
 	private	Integer ordersCardCvv;	
 	private	Integer ordersFeeNy;
-	private	Integer ordersPrice;	
-	private Integer ordersTotalPrice;
+	private	Double ordersPrice;	
+	private Double ordersTotalPrice;
 	private Date ordersRegDate;
 	private Date ordersModDate;
 	private String membersMembersSeqF;	
 	private String ordersOrdersSeqF;
 	private String productProductSeqF;
 	private String ordersAddressSeq;
+	private String addressSeq;
 	
 
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+	public String getAddressSeq() {
+		return addressSeq;
+	}
+	public void setAddressSeq(String addressSeq) {
+		this.addressSeq = addressSeq;
+	}
 	public String getMembersSeq() {
 		return membersSeq;
 	}
@@ -91,10 +106,10 @@ public class OrdersDto {
 	public void setOrdersCardCompanyCd(Integer ordersCardCompanyCd) {
 		this.ordersCardCompanyCd = ordersCardCompanyCd;
 	}
-	public Integer getOrdersCardNo() {
+	public String getOrdersCardNo() {
 		return ordersCardNo;
 	}
-	public void setOrdersCardNo(Integer ordersCardNo) {
+	public void setOrdersCardNo(String ordersCardNo) {
 		this.ordersCardNo = ordersCardNo;
 	}
 	public String getOrdersName() {
@@ -121,16 +136,16 @@ public class OrdersDto {
 	public void setOrdersFeeNy(Integer ordersFeeNy) {
 		this.ordersFeeNy = ordersFeeNy;
 	}
-	public Integer getOrdersPrice() {
+	public Double getOrdersPrice() {
 		return ordersPrice;
 	}
-	public void setOrdersPrice(Integer ordersPrice) {
+	public void setOrdersPrice(Double ordersPrice) {
 		this.ordersPrice = ordersPrice;
 	}
-	public Integer getOrdersTotalPrice() {
+	public Double getOrdersTotalPrice() {
 		return ordersTotalPrice;
 	}
-	public void setOrdersTotalPrice(Integer ordersTotalPrice) {
+	public void setOrdersTotalPrice(Double ordersTotalPrice) {
 		this.ordersTotalPrice = ordersTotalPrice;
 	}
 	public Date getOrdersRegDate() {

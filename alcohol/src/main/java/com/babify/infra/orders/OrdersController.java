@@ -18,6 +18,8 @@ import com.babify.infra.members.MembersDto;
 import com.babify.infra.members.MembersService;
 import com.babify.infra.product.ProductDto;
 import com.babify.infra.product.ProductService;
+import com.babify.infra.productorders.ProductOrdersDto;
+import com.babify.infra.productorders.ProductOrdersService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -37,6 +39,9 @@ public class OrdersController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	ProductOrdersService productOrdersService;
 	
 	// 마이페이지 페이지
 	@RequestMapping(value = "/myAccount")
@@ -189,32 +194,12 @@ public class OrdersController {
 	public Map<String, Object> addressSelectCheck(AddressDto adto, Model model, HttpSession httpSession) throws Exception {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-
-		
-		
-		// DB에서 데이터 가져오기
-		System.out.println("adto.getAddressSeq() : " + adto.getAddressSeq());
-		System.out.println("addressService.selectOne(adto).getAddressSeq();: " + addressService.selectOne(adto).getAddressSeq());
-		System.out.println("--------------------------------------");
-		System.out.println("--------------------------------------");
-		System.out.println("--------------------------------------");
 				
 		if(adto.getAddressSeq() != null) {
-			
-		       // 주소 데이터를 Map에 담아 JSON으로 전달
-	        Map<String, Object> addressMap = new HashMap<>();
-	        AddressDto addressDto = addressService.selectOne(adto);
-	        addressMap.put("addressSeq", addressDto.getAddressSeq());
-	        addressMap.put("addressZipcode", addressDto.getAddressZipcode());
-	        addressMap.put("addressMain", addressDto.getAddressMain());
-	        addressMap.put("addressDetail", addressDto.getAddressDetail());
-	        addressMap.put("addressEtc", addressDto.getAddressEtc());
-	        addressMap.put("addressName", addressDto.getAddressName());
-	        addressMap.put("addressPhone", addressDto.getAddressPhone());
-	        
+				        
 	        // returnMap에도 성공 여부와 함께 데이터를 담아 전달
 	        returnMap.put("rt", "success");
-	        returnMap.put("itemAddress", addressMap);
+	        returnMap.put("itemAddress", addressService.selectOne(adto));
 			
 		} else {
 			returnMap.put("rt", "fail");
@@ -224,11 +209,16 @@ public class OrdersController {
 	
 	// 결제 등록
 	@RequestMapping(value = "/checkOutInsert")
-	public String checkOutInsert(OrdersDto dto,  Model model, HttpSession httpSession) throws Exception{
+	public String checkOutInsert(OrdersDto dto, ProductOrdersDto podto,  Model model, HttpSession httpSession) throws Exception{
 
+		dto.setMembersMembersSeqF((String) httpSession.getAttribute("sessSeqUsr"));
 		service.insert(dto);
 		
-		return  "usr/v1/infra/myAccount";
+		podto.setOrdersSeq(dto.getSeq());
+		productOrdersService.insert(podto);
+		
+		return "redirect:/myAccount";
+		
 	}
 		
 

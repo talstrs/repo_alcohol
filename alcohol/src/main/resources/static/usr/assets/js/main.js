@@ -654,17 +654,23 @@ const productQuantity = (selector) => {
         const quantityDecrease = element.querySelector(".decrease")
         const quantityInput = element.querySelector(".quantity-input")
         const ordersPrice = parseFloat(document.getElementById("ordersPrice").value) || 0 // HTML에서 가져온 값이 문자열이므로 파싱
-
+        const productStock = parseInt(document.getElementById("productStock").value) || 0 // HTML에서 가져온 값이 문자열이므로 파싱
         let count = 1
 
         quantityIncrease.addEventListener("click", () => {
-            count++
-            count = count < 10 ? "0" + count : count
-            quantityInput.value = count
+            if(count < productStock){
+                count++;
+                count = count < 10 ? "0" + count : count;
+                quantityInput.value = count;
+            } else {
+                count = productStock;
+            }
+
 
              // 가격 증가 수정
             const ordersTotalPrice = ordersPrice * count
-            document.getElementById("ordersTotalPrice").innerText = "$ " + ordersTotalPrice.toLocaleString()
+            document.getElementById("ordersTotalPriceView").innerText = "$ " + ordersTotalPrice.toLocaleString()
+            document.getElementById("ordersTotalPrice").value = ordersTotalPrice.toLocaleString()
 
         })
         quantityDecrease.addEventListener("click", () => {
@@ -675,7 +681,8 @@ const productQuantity = (selector) => {
 
                 // 가격 감소 수정
                 const ordersTotalPrice = ordersPrice * count
-                document.getElementById("ordersTotalPrice").innerText = "$ " + ordersTotalPrice.toLocaleString()
+                document.getElementById("ordersTotalPriceView").innerText = "$ " + ordersTotalPrice.toLocaleString()
+                document.getElementById("ordersTotalPrice").value = ordersTotalPrice.toLocaleString()
             }
         })
     })

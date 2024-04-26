@@ -7,312 +7,361 @@
 
 <body>
 
-    <!-- 헤더 블록 -->
-    <div th:replace="~{/usr/v1/infra/include/usrHeadTop :: usrHeadTop}"></div>
+	<!-- 헤더 블록 -->
+	<div th:replace="~{/usr/v1/infra/include/usrHeadTop :: usrHeadTop}"></div>
 
-    <!-- 헤더 서치 블록 -->
-    <div th:replace="~{/usr/v1/infra/include/usrHeadSearch :: usrHeadSearch}"></div>
+	<!-- 헤더 서치 블록 -->
+	<div
+		th:replace="~{/usr/v1/infra/include/usrHeadSearch :: usrHeadSearch}"></div>
 
-    <!-- 헤더 오른쪽 사이드바 오프캔버스 -->
-    <div th:replace="~{/usr/v1/infra/include/usrHeadOffcanvas :: usrHeadOffcanvas}"></div>
+	<!-- 헤더 오른쪽 사이드바 오프캔버스 -->
+	<div
+		th:replace="~{/usr/v1/infra/include/usrHeadOffcanvas :: usrHeadOffcanvas}"></div>
 
-    <main>
-        <!-- Breadcrumb Start -->
-        <div class="breadcrumb-section">
-            <div class="container-fluid custom-container">
-                <div class="breadcrumb-wrapper text-center">
-                    <h2 class="breadcrumb-wrapper__title">Checkout</h2>
-                    <ul class="breadcrumb-wrapper__items justify-content-center">
-                        <li><a href="index.html">Home</a></li>
-                        <li><span>Checkout</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- Breadcrumb End -->
+	<main>
+		<!-- Breadcrumb Start -->
+		<div class="breadcrumb-section">
+			<div class="container-fluid custom-container">
+				<div class="breadcrumb-wrapper text-center">
+					<h2 class="breadcrumb-wrapper__title">Checkout</h2>
+					<ul class="breadcrumb-wrapper__items justify-content-center">
+						<li><a href="index.html">Home</a></li>
+						<li><span>Checkout</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- Breadcrumb End -->
 
-        <!-- Checkout Start -->
-        <div class="checkout-section section-padding-2">
-            <div class="container-fluid custom-container">
-                <!-- Checkout Start -->
-                <form name="formInsert" id="formInsert" method="post"  novalidate>
-                    <div class="checkout-wrapper">
+		<!-- Checkout Start -->
+		<div class="checkout-section section-padding-2">
+			<div class="container-fluid custom-container">
+				<!-- Checkout Start -->
+				<form name="formInsert" id="formInsert" method="post" novalidate>
+					<div class="checkout-wrapper">
 
-                        <div class="checkout-row">
-                            <div class="checkout-col-1">
-                                <!-- Checkout Details Start -->
-                                <div class="checkout-details">
-                                    <h3 class="checkout-details__title">
-                                        Billing details
-                                    </h3>
-                                    <div th:if="${#lists.isEmpty(listAddress)}" >
-                                        <div class="m-3">등록된 주소가 없어 결제할 수 없습니다</div>
-                                        <a class="btn btn-outline-secondary" th:href="@{/myAccountAddressAdd}">Address Add</a>
-                                    </div>
-                                    <div th:if="${!#lists.isEmpty(listAddress)}" >
-                                        <div class="single-form">
-                                            <label class="form-label" for="addressSeq1">Address Title</label>
-                                            <select class="form-select" name="addressSeq" id="addressSeq1">
-                                                <option value="" selected>주소를 선택하세요</option>
-                                                <option  th:each="address : ${listAddress}" th:value="${address.addressSeq}" th:text="${address.addressTitle}"></option>
-                                            </select>
-                                        </div>
-                                        <!-- Checkout Details Billing End -->
-                                    </div>
-<!--                                     address 아작스 추가 블럭 -->
-                                    <div id="addressInfo">
-                                    
-                                    </div>
-                                </div>
-                                <!-- Checkout Details End -->
-                            </div>
-                            <div class="checkout-col-2">
-                                <!-- Checkout Details Start -->
-                                <div class="checkout-details">
-                                    <h3 class="checkout-details__title">
-                                        Your order
-                                    </h3>
+						<div class="checkout-row">
+							<div class="checkout-col-1">
+								<!-- Checkout Details Start -->
+								<div class="checkout-details">
+									<h3 class="checkout-details__title">Billing details</h3>
+									<div th:if="${#lists.isEmpty(listAddress)}">
+										<div class="m-3">등록된 주소가 없어 결제할 수 없습니다</div>
+										<a class="btn btn-outline-secondary"
+											th:href="@{/myAccountAddressAdd}">Address Add</a>
+									</div>
+									<div th:if="${!#lists.isEmpty(listAddress)}">
+										<div class="single-form">
+											<label class="form-label" for="addressSeq">Address
+												Title</label> <select class="form-select" name="addressSeq"
+												id="addressSeq">
+												<option value="" selected>주소를 선택하세요</option>
+												<option th:each="address : ${listAddress}"
+													th:value="${address.addressSeq}"
+													th:text="${address.addressTitle}"></option>
+											</select>
+											<div class="invalid-feedback" id="addressSeqFeedback"></div>
+										</div>
+										<!-- Checkout Details Billing End -->
+									</div>
+									<!--                                     address 아작스 추가 블럭 -->
+									<div id="addressInfo"></div>
+								</div>
+								<!-- Checkout Details End -->
+							</div>
+							<div class="checkout-col-2">
+								<!-- Checkout Details Start -->
+								<div class="checkout-details">
+									<h3 class="checkout-details__title">Your order</h3>
 
-                                    <div class="checkout-details__order-review">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="product-name">
-                                                        Product
-                                                    </th>
-                                                    <th th:text="${itemProduct.productName}"></th>
-                                                </tr>
-                                                <tr th:if="${itemProduct.productSizeCd != null}" >
-                                                	<th class="product-name">
-                                                        Size
-                                                    </th>
-                                                    <th th:text="${@codeService.selectOneCachedCode(itemProduct.productSizeCd)}" id="productSizeCd" name="productSizeCd"></th>
-                                                </tr>
-                                                <tr th:if="${itemProduct.productColorCd != null}" >
-                                                	<th class="product-name">
-                                                        Color
-                                                    </th>
-                                                    <th th:text="${@codeService.selectOneCachedCode(itemProduct.productColorCd)}" id="productColorCd" name="productColorCd"></th>
-                                                </tr>
-                                                <tr >
-                                                	<th class="product-name">
-                                                	<input type="hidden" name="ordersPrice" id="ordersPrice" th:value="${itemProduct.productPrice}"/>
-                                                        Amount
-                                                    </th>
-                                                	<th class="cart-product-quantity text-md-center" data-title="Quantity">
-			                                            <div class="cart-table__quantity product-quantity">
-			                                                <button type="button" class="decrease" aria-label="delete">
-			                                                    <i
-			                                                            class="lastudioicon-i-delete-2"
-			                                                        ></i>
-			                                                </button>
-			                                                <input class="quantity-input" type="text" value="01" />
-			                                                <button type="button" class="increase" aria-label="add">
-			                                                    <i
-			                                                            class="lastudioicon-i-add-2"
-			                                                        ></i>
-			                                                </button>
-			                                            </div>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tfoot>
-                                                <tr class="order-total">
-                                                    <th>Total</th>
-                                                    <td>
-                                                    	<strong id="ordersTotalPrice" name="ordersTotalPrice"></strong>
-                                                    </td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
+									<div class="checkout-details__order-review">
+										<input type="hidden" name="productSeq" id="productSeq"
+											th:value="${itemProduct.productSeq}" />
+										<table class="table">
+											<thead>
+												<tr>
+													<th class="product-name">Product</th>
+													<th th:text="${itemProduct.productName}"></th>
+												</tr>
+												<tr th:if="${itemProduct.productSizeCd != null}">
+													<th class="product-name">Size</th>
+													<th
+														th:text="${@codeService.selectOneCachedCode(itemProduct.productSizeCd)}"
+														id="productSizeCd" name="productSizeCd"></th>
+												</tr>
+												<tr th:if="${itemProduct.productColorCd != null}">
+													<th class="product-name">Color</th>
+													<th
+														th:text="${@codeService.selectOneCachedCode(itemProduct.productColorCd)}"
+														id="productColorCd" name="productColorCd"></th>
+												</tr>
+												<tr>
+													<th class="product-name"><input type="hidden"
+														name="productStock" id="productStock"
+														th:value="${itemProduct.productStock}" /> <input
+														type="hidden" name="ordersPrice" id="ordersPrice"
+														th:value="${itemProduct.productPrice}" /> Amount</th>
+													<th class="cart-product-quantity text-md-center"
+														data-title="Quantity">
+														<div class="cart-table__quantity product-quantity">
+															<button type="button" class="decrease"
+																aria-label="delete">
+																<i class="lastudioicon-i-delete-2"></i>
+															</button>
+															<input class="quantity-input" type="text"
+																id="productOrdersCount" name="productOrdersCount"
+																value="01" />
+															<button type="button" class="increase" aria-label="add">
+																<i class="lastudioicon-i-add-2"></i>
+															</button>
+														</div>
+													</th>
+												</tr>
+											</thead>
+											<tfoot>
+												<tr class="order-total">
+													<th>Total</th>
+													<td><strong id="ordersTotalPriceView"
+														th:text="${itemProduct.productPrice}"></strong> <input
+														type="hidden" id="ordersTotalPrice"
+														name="ordersTotalPrice"
+														th:value="${itemProduct.productPrice}" /></td>
+												</tr>
+											</tfoot>
+										</table>
 
-                                        <div class="checkout-details__payment-method">
-                                            <div class="accordion" id="payment-method">
-                                                <form action="#">
-                                                    <!-- 수정, 카드 결제, 네이버페이, 카카오페이-->
-                                                    <!-- 수정, 카드-->
-                                                    <div class="accordion-item">
-                                                        <div class="single-form collapsed mt-1" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                                                            <input type="radio" name="payment-method" id="credit-card" />
-                                                            <label for="credit-card" class="single-form__label radio-label ">
-                                                                <span></span>
-                                                                Credit card
-                                                            </label>
-                                                        </div>
-                                                        <div id="collapseTwo" class="accordion-collapse collapse mt-2" data-bs-parent="#payment-method">
-                                                            <div class="payment-method-body">
-                                                                <select class="form-select p-3" aria-label="Default select example">
-                                                                    <option selected>Card Company Select</option>
-                                                                    <option value="bank1">Card Company One</option>
-                                                                    <option value="bank2">Card Company Two</option>
-                                                                    <option value="bank3">Card Company Three</option>
-                                                                </select>
+										<div class="checkout-details__payment-method">
+											<!-- 수정, 카드 결제, 네이버페이, 카카오페이-->
+											<!-- 수정, 카드-->
+											<div class="single-form collapsed mt-1"
+												data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+												<input type="radio" name="ordersPaymentCd" id="credit-card"
+													value="49" checked /> <label for="credit-card"
+													class="single-form__label radio-label "> <span></span>
+													Credit card
+												</label>
+											</div>
+											<div id="collapseTwo"
+												class=" mt-2"
+												data-bs-parent="#ordersPaymentCd">
+												<div class="payment-method-body">
+													<div>
+														<label class="form-label" for="ordersCardCompanyCd">Card
+															Company</label> 
+														<select class="form-select p-3"
+															name="ordersCardCompanyCd" id="ordersCardCompanyCd"
+															aria-label="Default select example">
+															<option selected>Card Company Select</option>
+															<option value="52">Card Company One</option>
+															<option value="53">Card Company Two</option>
+															<option value="54">Card Company Three</option>
+														</select>
+														<div class="invalid-feedback"
+														id="ordersCardCompanyCdFeedback">
+														</div>
+													</div>
 
-                                                                <div class="single-form pt-3">
-                                                                    <label class="single-form__label">Card No *</label>
-                                                                    <input class="single-form__input" type="text" />
-                                                                </div>
-                                                                <div class="single-form pt-3">
-                                                                    <label class="single-form__label">Cardholder's name *</label>
-                                                                    <input class="single-form__input" type="text" />
-                                                                </div>
-                                                                <div class="single-form pt-3">
-                                                                    <label class="single-form__label">MM/YY *</label>
-                                                                    <input class="single-form__input" type="text" />
-                                                                </div>
-                                                                <div class="single-form pt-3">
-                                                                    <label class="single-form__label">CVV / CVC *</label>
-                                                                    <input class="single-form__input" type="text" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- 수정, 카카오페이-->
-                                                    <div class="accordion-item ">
-                                                        <div class="single-form collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                                                            <input type="radio" name="payment-method" id="kakaopay" />
-                                                            <label for="kakaopay" class="single-form__label radio-label">
-                                                                <span></span>
-                                                                Kakao Pay
-                                                            </label>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    <!-- 수정, 네이버페이-->
-                                                    <div class="accordion-item ">
-                                                        <div class="single-form collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour">
-                                                            <input type="radio" name="payment-method" id="naverpay" />
-                                                            <label for="naverpay" class="single-form__label radio-label">
-                                                                <span></span>
-                                                                Naver Pay
-                                                            </label>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
+													<div class="single-form pt-3">
+														<label class="single-form__label">Card No *</label> <input
+															class="single-form__input" id="ordersCardNo"
+															name="ordersCardNo" type="text" />
+													<div class="invalid-feedback" id="ordersCardNoFeedback"></div>
+													</div>
+													<div class="single-form pt-3">
+														<label class="single-form__label">Cardholder's
+															name *</label> <input class="single-form__input" id="ordersName"
+															name="ordersName" type="text" />
+													<div class="invalid-feedback" id="ordersNameFeedback"></div>
+													</div>
+													<div class="single-form pt-3">
+														<label class="single-form__label">MM/YY *</label> <input
+															class="single-form__input" id="ordersCardDate"
+															name="ordersCardDate" type="text" />
+													<div class="invalid-feedback" id="ordersCardDateFeedback"></div>
+													</div>
+													<div class="single-form pt-3">
+														<label class="single-form__label">CVV / CVC *</label> <input
+															class="single-form__input" id="ordersCardCvv"
+															name="ordersCardCvv" type="text" />
+													<div class="invalid-feedback" id="ordersCardCvvFeedback"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- 수정, 카카오페이-->
+										<div class="accordion-item ">
+											<div class="single-form collapsed" data-bs-toggle="collapse"
+												data-bs-target="#collapseThree">
+												<input type="radio" name="ordersPaymentCd" id="kakaopay"
+													value="50" /> <label for="kakaopay"
+													class="single-form__label radio-label"> <span></span>
+													Kakao Pay
+												</label>
+											</div>
 
-                                        <div class="checkout-details__privacy-policy">
-                                            <p>
-                                                Your personal data will be used
-                                                to process your order, support
-                                                your experience throughout this
-                                                website, and for other purposes
-                                                described in our privacy policy.
-                                            </p>
-                                        </div>
+										</div>
+										<!-- 수정, 네이버페이-->
+<!-- 										<div class="accordion-item "> -->
+<!-- 											<div class="single-form collapsed" data-bs-toggle="collapse" -->
+<!-- 												data-bs-target="#collapseFour"> -->
+<!-- 												<input type="radio" name="ordersPaymentCd" id="naverpay" -->
+<!-- 													value="51" /> <label for="naverpay" -->
+<!-- 													class="single-form__label radio-label"> <span></span> -->
+<!-- 													Naver Pay -->
+<!-- 												</label> -->
+<!-- 											</div> -->
 
-                                        <div class="checkout-details__btn">
-                                            <button class="btn">
-                                                Place Order
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Checkout Details End -->
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <!-- Checkout End -->
-            </div>
-        </div>
-        <!-- Checkout End -->
+<!-- 										</div> -->
 
-    </main>
-    
-    
-<!-- 푸터 블록 -->
-<div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>
+										<div class="checkout-details__privacy-policy">
+											<p>Your personal data will be used to process your order,
+												support your experience throughout this website, and for
+												other purposes described in our privacy policy.</p>
+										</div>
 
-<script>
+										<div class="checkout-details__btn">
+											<button class="btn" id="btnSubmit" type="submit">
+												Place Order</button>
+										</div>
+									</div>
+								</div>
+								<!-- Checkout Details End -->
+							</div>
+						</div>
+					</div>
+				</form>
+				<!-- Checkout End -->
+			</div>
+		</div>
+		<!-- Checkout End -->
 
-        // 셀렉문 어드레스 데이터 뿌려주기 아작스
-        function selectTitle() {
-        
-            $.ajax({
-                async: true 
-                ,cache: false
-                ,type: "post"
-                /* ,dataType:"json" */
-                ,url: "/addressSelectCheck"
-                /* ,data : $("#formLogin").serialize() */
-                ,data : { "addressSeq" : $("#addressSeq1").val()
-                		, "addressZipcode" : $("#addressZipcode").val()
-                		, "addressMain" : $("#addressMain").val()
-                		, "addressDetail" : $("#addressDetail").val()
-                		, "addressName" : $("#addressName").val()
-                		, "addressEtc" : $("#addressEtc").val()
-                		, "addressPhone" : $("#addressPhone").val()}
-                // , "autoLogin" : $("#autoLogin").is(":checked")
-                
-                ,success: function(response) {
-                    if(response.rt == "success") {
-                        
-                        var itemAddress = response.itemAddress;
-                        $("#addressSeq").val(itemAddress.addressSeq);
-                        $("#addressZipcode").val(itemAddress.addressZipcode);
-                        $("#addressMain").val(itemAddress.addressMain);
-                        $("#addressDetail").val(itemAddress.addressDetail);
-                        $("#addressEtc").val(itemAddress.addressEtc);
-                        $("#addressName").val(itemAddress.addressName);
-                        $("#addressPhone").val(itemAddress.addressPhone);
-                        console.log(response);
-                        $("#addressInfo").html(
-                                "<div>" +
-                                "<input type='hidden' name='addressSeq' id='addressSeq' value='" + itemAddress.addressSeq + "'/>" +
-                                "<div class='single-form'>" +
-                                "<label for='addressZipcode' class='form-label'>Address Zipcode</label>" +
-                                "<input type='text' class='form-control' name='addressZipcode' id='addressZipcode' value='" + itemAddress.addressZipcode + "' required readonly/>" +
-                                "</div>" +
-                                "<div class='single-form'>" +
-                                "<label for='addressMain' class='form-label'>Address Main</label>" +
-                                "<input type='text' class='form-control' name='addressMain' id='addressMain' value='" + itemAddress.addressMain + "' required readonly/>" +
-                                "</div>" +
-                                "<div class='single-form'>" +
-                                "<label for='addressDetail' class='form-label'>Address Detail</label>" +
-                                "<input type='text' class='form-control' name='addressDetail' id='addressDetail' value='" + itemAddress.addressDetail + "' required readonly/>" +
-                                "</div>" +
-                                "<div class='single-form'>" +
-                                "<label for='addressEtc' class='form-label'>Address Etc</label>" +
-                                "<input type='text' class='form-control' name='addressEtc' id='addressEtc' value='" + itemAddress.addressEtc + "' required readonly/>" +
-                                "</div>" +
-                                "<div class='single-form row'>" +
-                                "<label class='form-label'>Orders Info</label>" +
-                                "<div class='col-6'>" +
-                                "<label for='addressName' class='form-label'>Address Name</label>" +
-                                "<input type='text' class='form-control' name='addressName' id='addressName' value='" + itemAddress.addressName + "' required readonly/>" +
-                                "</div>" +
-                                "<div class='col-6'>" +
-                                "<label for='addressPhone' class='form-label'>Address Phone</label>" +
-                                "<input type='text' class='form-control' name='addressPhone' id='addressPhone' value='" + itemAddress.addressPhone + "' required readonly/>" +
-                                "</div>" +
-                                "</div>" +
-                                "</div>"
-                            );
-                    } else {
-                        alert("주소가 일치하지 않습니다");
-                    }
-                }
-                ,error : function(jqXHR, textStatus, errorThrown){
-                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-                }
-            });
-        }        
+	</main>
 
 
-        document.getElementById("addressSeq1").onchange = function () {
-            selectTitle();
-        }
-        
-//         수량 증감 표시
+	<!-- 푸터 블록 -->
+	<div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>
 
+	<script>
+		// 인서트
+		// 폼 정의 필수
 
-</script>
+		let form = document.querySelector("form[name=formInsert]");
 
-<!--자바스크립트 주소 관련 블록-->
-<div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>
+		// 등록 버튼
+
+		let goUrlUsrInst = "/checkOutInsert";
+
+		document.getElementById("btnSubmit").onclick = function() {
+			if (validationInst() == false) {
+				return false;
+			} else {
+				const ordersTotalPrice = document
+				form.action = goUrlUsrInst;
+				form.submit();
+			}
+
+		}
+
+		function validationInst() {
+			if (validationUpdt() == false) {
+				return false;
+			}
+		}
+
+		function validationUpdt() {
+
+			if (!checkSelectNull('addressSeq', 2, "목록을 선택하세요."))
+				return false;
+			if (!checkSelectNull('ordersCardCompanyCd', 2, "목록을 선택하세요."))
+				return false;
+			if (!checkNull('ordersCardNo', 2, "데이터 값을 입력하세요"))
+				return false;
+			if (!checkNull('ordersName', 2, '데이터 값을 입력하세요'))
+				return false;
+			if (!checkNull('ordersCardDate', 2, '데이터 값을 입력하세요'))
+				return false;
+			if (!checkOnlyFourNumber('ordersCardDate', 2, 0, '숫자 4자리로 입력하세요'))
+				return false;
+
+			if (!checkNull('ordersCardCvv', 2, '데이터 값을 입력하세요'))
+				return false;
+			if (!checkOnlyThreeNumber('ordersCardCvv', 2, 0, '숫자 3자리로 입력하세요'))
+				return false;
+
+		}
+
+		// 셀렉문 어드레스 데이터 뿌려주기 아작스
+		function selectTitle() {
+
+			$
+					.ajax({
+						async : true,
+						cache : false,
+						type : "post"
+						/* ,dataType:"json" */
+						,
+						url : "/addressSelectCheck"
+						/* ,data : $("#formLogin").serialize() */
+						,
+						data : {
+							"addressSeq" : $("#addressSeq").val()
+						}
+						// , "autoLogin" : $("#autoLogin").is(":checked")
+
+						,
+						success : function(response) {
+							if (response.rt == "success") {
+
+								var itemAddress = response.itemAddress;
+
+								$("#addressInfo")
+										.html(
+												'<div>'
+														+ '	<div class="single-form">'
+														+ '		<label for="addressZipcode" class="form-label">Address Zipcode</label>'
+														+ '		<input type="text" class="form-control"  name="addressZipcode" id="addressZipcode" value="' +  itemAddress.addressZipcode+ '" required readonly/>'
+														+ '	</div>'
+														+ '	<div class="single-form">'
+														+ '		<label for="addressMain" class="form-label">Address Main</label>'
+														+ '		<input type="text" class="form-control"  name="addressMain" id="addressMain" value="' +   itemAddress.addressMain + '" required readonly/>'
+														+ '	</div>'
+														+ '	<div class="single-form">'
+														+ '		<label for="addressDetail" class="form-label">Address Detail</label>'
+														+ '		<input type="text" class="form-control"  name="addressDetail" id="addressDetail" value="' +  itemAddress.addressDetail + '" required readonly/>'
+														+ '	</div>'
+														+ '	<div class="single-form">'
+														+ '		<label for="addressEtc" class="form-label">Address Etc</label>'
+														+ '		<input type="text" class="form-control" name="addressEtc" id="addressEtc" value="' + itemAddress.addressEtc + '" required readonly/>'
+														+ '	</div>'
+														+ '	<div class="single-form row">'
+														+ '		<label class="form-label">Orders Info</label>'
+														+ '		<div class="col-6">'
+														+ '			<label for="addressName" class="form-label">Address Name</label>'
+														+ '			<input type="text" class="form-control" name="addressName" id="addressName" value="' + itemAddress.addressName + '" required readonly/>'
+														+ '		</div>'
+														+ '		<div class="col-6">'
+														+ '			<label for="addressPhone" class="form-label">Address Phone</label>'
+														+ '			<input type="text" class="form-control" name="addressPhone" id="addressPhone" value="' + itemAddress.addressPhone + '" required readonly/>'
+														+ '		</div>'
+														+ '	</div>' + '</div>');
+							} else {
+								alert("주소가 일치하지 않습니다");
+							}
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							alert("ajaxUpdate " + jqXHR.textStatus + " : "
+									+ jqXHR.errorThrown);
+						}
+					});
+		}
+
+		document.getElementById("addressSeq").onchange = function() {
+			selectTitle();
+		}
+	</script>
+
+	<!--자바스크립트 주소 관련 블록-->
+	<div th:replace="~{/usr/v1/infra/include/usrJs :: usrJs}"></div>
 </body>
 
 </html>
