@@ -48,22 +48,23 @@
                             </div>
                             <div class="single-form">
                                 <label class="single-form__label" for="addressZipcode">addressZipcode *</label>
-                                <input type="text" class="form-control" name="addressZipcode" id="addressZipcode" placeholder="우편번호를 입력하세요" required />
+                                <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                                <input type="text" class="form-control" name="addressZipcode" id="addressZipcode" placeholder="우편번호를 입력하세요" required readonly />
                                 <div class="invalid-feedback" id="addressZipcodeFeedback"></div>
                             </div>
                             <div class="single-form">
                                 <label class="single-form__label" for="addressMain">addressMain *</label>
-                                <input type="text" class="form-control" name="addressMain" id="addressMain" placeholder="주소를 입력하세요" required />
+                                <input type="text" class="form-control" name="addressMain" id="addressMain" placeholder="주소를 입력하세요" required readonly />
                                 <div class="invalid-feedback" id="addressMainFeedback"></div>
                             </div>
                             <div class="single-form">
                                 <label class="single-form__label" for="addressDetail">addressDetail *</label>
-                                <input type="text" class="form-control" name="addressDetail" id="addressDetail" placeholder="주소 상세를 입력하세요" required />
+                                <input type="text" class="form-control" name="addressDetail" id="addressDetail" placeholder="주소 상세를 입력하세요" required readonly />
                                 <div class="invalid-feedback" id="addressDetailFeedback"></div>
                             </div>
                             <div class="single-form">
                                 <label class="single-form__label" for="addressEtc">addressEtc</label>
-                                <input type="text" class="form-control" name="addressEtc" id="addressEtc" placeholder="주소 기타를 입력하세요" required />
+                                <input type="text" class="form-control" name="addressEtc" id="addressEtc" placeholder="주소 기타를 입력하세요" required  />
                                 <div class="invalid-feedback" id="Feedback"></div>
                             </div>
                             <div class="single-form">
@@ -86,16 +87,17 @@
                                 <input type="text" class="form-control" name="addressLon" id="addressLon" placeholder="addressLon 입력하세요" required />
                                 <div class="invalid-feedback" id="addressLonFeedback"></div>
                             </div>
-                            <div class="single-form">
-                                <label class="single-form__label" for="addressLocalACd">addressLocalACd *</label>
-                                <input type="text" class="form-control" name="addressLocalACd" id="addressLocalACd" placeholder="addressLocalACd 입력하세요" required />
-                                <div class="invalid-feedback" id="addressLocalACdFeedback"></div>
-                            </div>
-                            <div class="single-form">
-                                <label class="single-form__label" for="addressLocalBCd">addressLocalBCd *</label>
-                                <input type="text" class="form-control" name="addressLocalBCd" id="addressLocalBCd" placeholder="타이틀을 입력하세요" required />
-                                <div class="invalid-feedback" id="addressLocalBCdFeedback"></div>
-                            </div>
+<!--                             주소 코드/코드그룹 -->
+<!--                             <div class="single-form"> -->
+<!--                                 <label class="single-form__label" for="addressLocalACd">addressLocalACd *</label> -->
+<!--                                 <input type="text" class="form-control" name="addressLocalACd" id="addressLocalACd" placeholder="addressLocalACd 입력하세요" required /> -->
+<!--                                 <div class="invalid-feedback" id="addressLocalACdFeedback"></div> -->
+<!--                             </div> -->
+<!--                             <div class="single-form"> -->
+<!--                                 <label class="single-form__label" for="addressLocalBCd">addressLocalBCd *</label> -->
+<!--                                 <input type="text" class="form-control" name="addressLocalBCd" id="addressLocalBCd" placeholder="타이틀을 입력하세요" required /> -->
+<!--                                 <div class="invalid-feedback" id="addressLocalBCdFeedback"></div> -->
+<!--                             </div> -->
                         </div>
                         <!-- Single Form Start -->
                         <div class="single-form">
@@ -146,9 +148,7 @@
             if(!checkNull ('addressTitle', 2, '데이터 값을 입력하세요')) return false;
             if(!checkOnlyKoreanEnglishNumber('addressTitle',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
             
-            if(!checkNull ('addressEtc', 2, '데이터 값을 입력하세요')) return false;
-            if(!checkOnlyKoreanEnglishNumber('addressEtc',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
-
+            if(!checkNull ('addressZipcode', 2, '데이터 값을 입력하세요')) return false;
             
             if(!checkNull ('addressName', 2, '데이터 값을 입력하세요')) return false;
             if(!checkOnlyKoreanEnglish('addressName',2,0,'영어, 한글만 입력 가능합니다')) return false;
@@ -160,8 +160,14 @@
 
 
         }
+        
+        
 
     </script>
+    
+
+    <!-- 카카오 주소 API 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrKakaoAddress :: usrKakaoAddress}"></div>
 
     <!-- 푸터 블록 -->
     <div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>

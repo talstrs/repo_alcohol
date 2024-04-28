@@ -49,12 +49,13 @@
                             </div>
                             <div class="single-form">
                                 <label class="single-form__label" for="addressZipcode">addressZipcode *</label>
-                                <input type="text" class="form-control" name="addressZipcode" id="addressZipcode" th:value="${item.addressZipcode}" required />
+                                <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                                <input type="text" class="form-control" name="addressZipcode" id="addressZipcode" th:value="${item.addressZipcode}" required readonly />
                                 <div class="invalid-feedback" id="addressZipcodeFeedback"></div>
                             </div>
                             <div class="single-form">
                                 <label class="single-form__label" for="addressMain">addressMain *</label>
-                                <input type="text" class="form-control" name="addressMain" id="addressMain" th:value="${item.addressMain}" required />
+                                <input type="text" class="form-control" name="addressMain" id="addressMain" th:value="${item.addressMain}" required readonly />
                                 <div class="invalid-feedback" id="addressMainFeedback"></div>
                             </div>
                             <div class="single-form">
@@ -64,7 +65,7 @@
                             </div>
                             <div class="single-form">
                                 <label class="single-form__label" for="addressEtc">addressEtc</label>
-                                <input type="text" class="form-control" name="addressEtc" id="addressEtc" th:value="${item.addressEtc}" required />
+                                <input type="text" class="form-control" name="addressEtc" id="addressEtc" th:value="${item.addressEtc}" required  />
                                 <div class="invalid-feedback" id="Feedback"></div>
                             </div>
                             <div class="single-form">
@@ -87,16 +88,17 @@
                                 <input type="text" class="form-control" name="addressLon" id="addressLon" th:value="${item.addressLon}" required />
                                 <div class="invalid-feedback" id="addressLonFeedback"></div>
                             </div>
-                            <div class="single-form">
-                                <label class="single-form__label" for="addressLocalACd">addressLocalACd *</label>
-                                <input type="text" class="form-control" name="addressLocalACd" id="addressLocalACd" th:value="${item.addressLocalACd}" required />
-                                <div class="invalid-feedback" id="addressLocalACdFeedback"></div>
-                            </div>
-                            <div class="single-form">
-                                <label class="single-form__label" for="addressLocalBCd">addressLocalBCd *</label>
-                                <input type="text" class="form-control" name="addressLocalBCd" id="addressLocalBCd" th:value="${item.addressLocalBCd}" required />
-                                <div class="invalid-feedback" id="addressLocalBCdFeedback"></div>
-                            </div>
+<!--                             주소 코드/ 코드그룹화 -->
+<!--                             <div class="single-form"> -->
+<!--                                 <label class="single-form__label" for="addressLocalACd">addressLocalACd *</label> -->
+<!--                                 <input type="text" class="form-control" name="addressLocalACd" id="addressLocalACd" th:value="${item.addressLocalACd}" required /> -->
+<!--                                 <div class="invalid-feedback" id="addressLocalACdFeedback"></div> -->
+<!--                             </div> -->
+<!--                             <div class="single-form"> -->
+<!--                                 <label class="single-form__label" for="addressLocalBCd">addressLocalBCd *</label> -->
+<!--                                 <input type="text" class="form-control" name="addressLocalBCd" id="addressLocalBCd" th:value="${item.addressLocalBCd}" required /> -->
+<!--                                 <div class="invalid-feedback" id="addressLocalBCdFeedback"></div> -->
+<!--                             </div> -->
                         </div>
                         <!-- Single Form Start -->
                         <div class="single-form">
@@ -163,6 +165,9 @@
         }
 
     </script>
+    
+    <!-- 카카오 주소 API 블록 -->
+    <div th:replace="~{/usr/v1/infra/include/usrKakaoAddress :: usrKakaoAddress}"></div>
 
     <!-- 푸터 블록 -->
     <div th:replace="~{/usr/v1/infra/include/usrFooter :: usrFooter}"></div>
