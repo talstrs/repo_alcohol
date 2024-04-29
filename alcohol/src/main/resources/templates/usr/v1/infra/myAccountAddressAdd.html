@@ -3,6 +3,9 @@
 
 <!-- 헤드 부분 블록 -->
 <div th:replace="~{/usr/v1/infra/include/usrHead :: usrHead}"></div>
+<script>
+	
+</script>
 
 
 <body>
@@ -48,7 +51,7 @@
                             </div>
                             <div class="single-form">
                                 <label class="single-form__label" for="addressZipcode">addressZipcode *</label>
-                                <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                                 <input type="text" class="form-control" name="addressZipcode" id="addressZipcode" placeholder="우편번호를 입력하세요" required readonly />
                                 <div class="invalid-feedback" id="addressZipcodeFeedback"></div>
                             </div>

@@ -5,7 +5,8 @@ plugins {
 }
 
 group = 'com.babify'
-version = '0.0.1-SNAPSHOT'
+//version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 
 java {
 	sourceCompatibility = '17'
@@ -41,4 +42,10 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// plain.jar(스프링부트 없이 소스만 들어가있는 자르)를 생기지 않게 하는 옵션
+jar {
+    bootJar.enabled=true
+    jar.enabled=false
 }

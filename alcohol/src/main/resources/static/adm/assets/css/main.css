@@ -2640,6 +2640,10 @@ textarea.form-control-lg {
   position: relative;
   z-index: 2;
 }
+.input-group .btns {
+  position: relative;
+}
+
 .input-group .btn:focus {
   z-index: 5;
 }
