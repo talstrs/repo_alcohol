@@ -15,51 +15,9 @@ public class ProductVo extends BaseVo {
 	private Integer productStarAll;
 	private Integer productSizeCd;
 	private Integer productColorCd;
-	private Integer xReviewSrarAvgAll;
-	private Integer xReviewSrarAvg;
-	
-	private String[] shCheckboxStarArray  = null; // 별점
-	private String[] shCheckboxSizeArray = null; // 사이즈
-	private String[] shCheckboxColorArray = null; // 색상
-	
-	
-	
-	public Integer getxReviewSrarAvgAll() {
-		return xReviewSrarAvgAll;
-	}
-	public void setxReviewSrarAvgAll(Integer xReviewSrarAvgAll) {
-		this.xReviewSrarAvgAll = xReviewSrarAvgAll;
-	}
-	public Integer getxReviewSrarAvg() {
-		return xReviewSrarAvg;
-	}
-	public void setxReviewSrarAvg(Integer xReviewSrarAvg) {
-		this.xReviewSrarAvg = xReviewSrarAvg;
-	}
-
-	
-	
-	
-	
-	public String[] getShCheckboxSizeArray() {
-		return shCheckboxSizeArray;
-	}
-	public void setShCheckboxSizeArray(String[] shCheckboxSizeArray) {
-		this.shCheckboxSizeArray = shCheckboxSizeArray;
-	}
-	public String[] getShCheckboxColorArray() {
-		return shCheckboxColorArray;
-	}
-	public void setShCheckboxColorArray(String[] shCheckboxColorArray) {
-		this.shCheckboxColorArray = shCheckboxColorArray;
-	}
 	private Integer xReviewStarAvg;
-	public String[] getShCheckboxStarArray() {
-		return shCheckboxStarArray;
-	}
-	public void setShCheckboxStarArray(String[] shCheckboxStarArray) {
-		this.shCheckboxStarArray = shCheckboxStarArray;
-	}
+	
+
 	public String getProductSeq() {
 		return productSeq;
 	}

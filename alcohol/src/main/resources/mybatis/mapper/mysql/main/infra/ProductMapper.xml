@@ -105,12 +105,10 @@
 <!--             		#{size} -->
 <!-- 		 		</foreach> 		               -->
 <!--         </if> -->
-		<if test="shCheckboxColorArray != null and shCheckboxColorArray.length != 0">
-			AND a.productColorCd IN
-            	<foreach collection="shCheckboxColorArray" item="color" open="(" close=")" separator=",">
-            		#{color}
-		 		</foreach> 		              
-        </if>
+<!-- 		<if test="shCheckboxColorArray != null and shCheckboxColorArray.length != 0"> -->
+<!-- 			AND a.productColorCd = #{shCheckboxColorArray} -->
+<!--         </if> -->
+
 	</sql>
 	
 		<!-- 사용자 셀렉리스트 -->
