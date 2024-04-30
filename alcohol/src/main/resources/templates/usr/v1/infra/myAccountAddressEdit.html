@@ -40,16 +40,17 @@
             <div class="container-fluid custom-container">
                 <div class="my-account-orders">
                     <form class="row g-3 " name="formUpdt" id="formUpdt" method="post"  novalidate>
-                        <div class="col-6">
+                        <div class="col-3"></div>
+                        <div class="col-6 sidebar-widget-item">
                             <input type="hidden" name="addressSeq" th:value="${item.addressSeq}">
                             <div class="single-form">
                                 <label class="single-form__label" for="addressTitle">title *</label>
                                 <input type="text" class="form-control" name="addressTitle" id="addressTitle" th:value="${item.addressTitle}" required />
                                 <div class="invalid-feedback" id="addressTitleFeedback"></div>
                             </div>
-                            <div class="single-form">
+                            <div class="single-form sidebar-widget-item__filter price-range-filter">
                                 <label class="single-form__label" for="addressZipcode">addressZipcode *</label>
-                                <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                                <input type="button" class="filter-price-btn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                                 <input type="text" class="form-control" name="addressZipcode" id="addressZipcode" th:value="${item.addressZipcode}" required readonly />
                                 <div class="invalid-feedback" id="addressZipcodeFeedback"></div>
                             </div>
@@ -101,7 +102,9 @@
 <!--                             </div> -->
                         </div>
                         <!-- Single Form Start -->
-                        <div class="single-form">
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                        <div class="col-6 d-flex justify-content-between single-form">
                             <a class="btn btn-outline-secondary" th:href="@{/myAccount}">Back</a>
                             <button class="btn btn-primary btn-sm" id="btnSubmit" type="submit" >
                                 Save Change
