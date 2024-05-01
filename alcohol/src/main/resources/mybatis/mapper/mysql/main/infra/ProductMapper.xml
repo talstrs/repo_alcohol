@@ -82,6 +82,7 @@
 		
 		
 <!-- 		체크박스 vo -->
+<!-- 라디오로 변경 -->
 <!-- 		<if test="shCheckboxStarArray != null and shCheckboxStarArray.length != 0"> -->
 <!-- 			AND (SELECT AVG( -->
 <!--                         CASE bb.reviewStarCd -->
