@@ -2,7 +2,7 @@
 # start.sh
 
 PROJECT="alcohol-0.0.1"
-PROJECT_FULL_PATH_01="/home/ec2-user/service/alcohol-prdt-01"
+PROJECT_FULL_PATH_01="/home/ec2-user/service/babify-prdt-01"
 JAR_FILE="$PROJECT_FULL_PATH_01/$PROJECT.jar"
 LOG_PATH="$PROJECT_FULL_PATH_01/logs"
 
