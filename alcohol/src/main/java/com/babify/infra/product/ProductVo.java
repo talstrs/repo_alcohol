@@ -16,8 +16,8 @@ public class ProductVo extends BaseVo {
 	private Integer productSizeCd;
 	private Integer productColorCd;
 	private Integer xReviewStarAvg;
-	
 
+	
 	public String getProductSeq() {
 		return productSeq;
 	}

@@ -121,21 +121,19 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 		vo.setProductNewNy(vo.getProductNewNy() == null
 		    ? null
 		    : vo.getProductNewNy());
+		vo.setxReviewStarAvg(vo.getxReviewStarAvg() == null
+			? null
+			: vo.getxReviewStarAvg());
+		
+		System.out.println("vo.getxReviewStarAvg(): " + vo.getxReviewStarAvg());
+		System.out.println("======================");
+		System.out.println("======================");
+		System.out.println("======================");
 	
 	UtilSearch.setSearch(vo);
 	
 	vo.setParamsPaging(service.selectOneCountUsr(vo));
-	
-//    if(vo.getShCheckboxColorArray().length > 0) {
-//		for (String color : vo.getShCheckboxColorArray()) {
-//		    System.out.println(color);
-//		}
-//    } else {
-//    	System.out.println("데이터가 없습니다");    }
-//	System.out.println("---------------------------------------------");
-//	System.out.println("---------------------------------------------");
-//	System.out.println("---------------------------------------------");
-	
+		
 	if(vo.getTotalRows() > 0) {
 		
 		model.addAttribute("list", service.selectListUsr(vo));

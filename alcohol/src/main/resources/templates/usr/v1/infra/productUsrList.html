@@ -78,6 +78,8 @@
                                             <div class="single-product js-scroll ShortFadeInUp">
                                                 <div class="single-product__thumbnail">
                                                     <input th:if="${vo.productCatMainCd != null}" type="hidden" name="productCatMainCd" th:value="${vo.productCatMainCd}">
+                                                    <input th:if="${vo.productSizeCd != null}" type="hidden" name="productSizeCd" th:value="${vo.productSizeCd}">
+                                                    <input th:if="${vo.productColorCd != null}" type="hidden" name="productColorCd" th:value="${vo.productColorCd}">
                                                     <input th:if="${vo.productBestNy != null}" type="hidden" name="productBestNy" th:value="${vo.productBestNy}">
                                                     <input th:if="${vo.productNewNy != null}" type="hidden" name="productNewNy" th:value="${vo.productNewNy}">
                                                     
@@ -199,39 +201,19 @@
                                         <div class="sidebar-widget-item__filter category-filter">
                                             <ul class="sidebar-widget-item__list category">
                                                 <li>
-                                                    <input type="checkbox" value="5" id="checkboxSeq_5" name="checkboxStarSeq" />
-                                                    <label for="checkboxSeq_5">
-                                                        <span></span>
-                                                        ★★★★★
-                                                    </label>
+                                                	<a th:href="@{/productUsrList?xReviewStarAvg=5}"><span>★★★★★</span></a>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" value="4" id="checkboxSeq_4" name="checkboxStarSeq" />
-                                                    <label for="checkboxSeq_4">
-                                                        <span></span>
-                                                        ★★★★☆
-                                                    </label>
+                                                	<a th:href="@{/productUsrList?xReviewStarAvg=4}"><span>★★★★☆</span></a>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" value="3" id="checkboxSeq_3" name="checkboxStarSeq" />
-                                                    <label for="checkboxSeq_3">
-                                                        <span></span>
-                                                        ★★★☆☆
-                                                    </label>
+                                                	<a th:href="@{/productUsrList?xReviewStarAvg=3}"><span>★★★☆☆</span></a>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" value="2" id="checkboxSeq_2" name="checkboxStarSeq" />
-                                                    <label for="checkboxSeq_2">
-                                                        <span></span>
-                                                        ★★☆☆☆
-                                                    </label>
+                                                	<a th:href="@{/productUsrList?xReviewStarAvg=2}"><span>★★☆☆☆</span></a>
                                                 </li>
                                                 <li>
-                                                    <input type="checkbox" value="1" id="checkboxSeq_1" name="checkboxStarSeq" />
-                                                    <label for="checkboxSeq_1">
-                                                        <span></span>
-                                                        ★☆☆☆☆
-                                                    </label>
+                                                	<a th:href="@{/productUsrList?xReviewStarAvg=1}"><span>★☆☆☆☆</span></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -276,8 +258,7 @@
                                         <div class="sidebar-widget-item__filter">
                                             <ul class="sidebar-widget-item__list-2">
                                                 <li th:each="list : ${@codeService.selectListCachedCode(14)}">
-                                                    <input type="checkbox" th:value="${list.codeSeq}" th:id="checkboxSeq_ + ${list.codeSeq}" name="checkboxSizeSeq"  />
-                                                    <label th:for="checkboxSeq_ + ${list.codeSeq}" th:text="${list.codeName}"></label>
+                                                	<a th:href="@{/productUsrList(productSizeCd=${list.codeSeq})}"><span th:text="${list.codeName}"></span></a>
                                                 </li>
 
                                             </ul>
@@ -293,12 +274,9 @@
                                         </h4>
                                         <div class="sidebar-widget-item__filter">
                                             <ul class="sidebar-widget-item__list-2">
-                                                <div th:each="list : ${@codeService.selectListCachedCode(15)}" >
-                                                    <li>
-                                                        <input type="checkbox" th:value="${list.codeSeq}" th:id="checkboxSeq + ${list.codeSeq}" name="checkboxColorSeq" />
-                                                        <label th:for="checkboxSeq + ${list.codeSeq}" th:text="${list.codeName}" ></label>
-                                                    </li>
-                                                </div>
+                                                 <li th:each="list : ${@codeService.selectListCachedCode(15)}">
+                                                 	<a th:href="@{/productUsrList(productColorCd=${list.codeSeq})}"><span th:text="${list.codeName}"></span></a>
+                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
