@@ -103,7 +103,7 @@
 		FROM orders a
 			LEFT JOIN members b
 				on b.membersSeq = a.members_membersSeq
-			LEFT JOIN productOrders c
+			LEFT JOIN productorders c
 				on c.orders_ordersSeq = a.ordersSeq
 			LEFT JOIN product d
 				on c.product_productSeq = d.productSeq
