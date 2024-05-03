@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.babify.infra.codegroup.codeGroupDao">
+<mapper namespace="com.babify.infra.codegroup.CodeGroupDao">
 
-	<resultMap id="resultMapObj" type="com.babify.infra.codegroup.codeGroupDto"></resultMap>
+	<resultMap id="resultMapObj" type="com.babify.infra.codegroup.CodeGroupDto"></resultMap>
 	
 	<!-- select 공통 구문 SQl -->
 	<sql id ="selectCommon">
@@ -42,7 +42,7 @@
 					count(*)
 					from code aa
 				where 1=1
-					and	aa.codeGroup_codeGroupSeq = aa.codeSeq) as xcodeGourpCount
+					and	aa.codeGroup_codeGroupSeq = aa.codeSeq) as xCodeGourpCount
 				,a.codeGroupRegDate
 				,a.codeGroupModDate
 		<include refid="selectCommon" />

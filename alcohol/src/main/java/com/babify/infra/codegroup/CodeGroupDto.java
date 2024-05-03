@@ -11,9 +11,7 @@ public class CodeGroupDto {
 	private String codeGroupMemo;
 	private Date codeGroupRegDate;
 	private Date codeGroupModDate;
-	private Integer xcodeGourpCount;
-	
-	
+	private Integer xCodeGourpCount;
 	public String getCodeGroupSeq() {
 		return codeGroupSeq;
 	}
@@ -56,20 +54,14 @@ public class CodeGroupDto {
 	public void setCodeGroupModDate(Date codeGroupModDate) {
 		this.codeGroupModDate = codeGroupModDate;
 	}
-	public Integer getXcodeGourpCount() {
-		return xcodeGourpCount;
+	public Integer getxCodeGourpCount() {
+		return xCodeGourpCount;
 	}
-	public void setXcodeGourpCount(Integer xcodeGourpCount) {
-		this.xcodeGourpCount = xcodeGourpCount;
+	public void setxCodeGourpCount(Integer xCodeGourpCount) {
+		this.xCodeGourpCount = xCodeGourpCount;
 	}
 	
 	
-	
-	
-	
-
-	
-
 	
 }
 	

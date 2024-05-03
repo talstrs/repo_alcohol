@@ -4,10 +4,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- Dao 경로 -->
-<mapper namespace="com.babify.infra.productorders.productOrdersDao">
+<mapper namespace="com.babify.infra.productorders.ProductOrdersDao">
 
 	<!-- 아이디 설정하여 셀렉문에 부과 / Dto 경로 -->
-	<resultMap id="resultMapObj" type="com.babify.infra.productorders.productOrdersDto"></resultMap>
+	<resultMap id="resultMapObj" type="com.babify.infra.productorders.ProductOrdersDto"></resultMap>
 	
 	<!-- select 공통 구문 SQL -->
 	<sql id ="selectCommon">
