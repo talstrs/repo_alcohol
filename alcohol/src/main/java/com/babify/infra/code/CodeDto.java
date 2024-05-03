@@ -14,14 +14,12 @@ public class CodeDto {
 
 	private Date codeRegDate;
 	private Date codeModDate;
-	private String codegroupSeqF;
-	private String codegroupSeq;
-	private String codegroupName;
+	private String codeGroupSeqF;
+	private String codeGroupSeq;
+	private String codeGroupName;
 
 //	for cache
 	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
-
-	// for dto
 
 	public String getCodeSeq() {
 		return codeSeq;
@@ -80,27 +78,27 @@ public class CodeDto {
 	}
 
 	public String getCodeGroupSeqF() {
-		return codegroupSeqF;
+		return codeGroupSeqF;
 	}
 
 	public void setCodeGroupSeqF(String codeGroupSeqF) {
-		this.codegroupSeqF = codeGroupSeqF;
+		this.codeGroupSeqF = codeGroupSeqF;
 	}
 
 	public String getCodeGroupSeq() {
-		return codegroupSeq;
+		return codeGroupSeq;
 	}
 
 	public void setCodeGroupSeq(String codeGroupSeq) {
-		this.codegroupSeq = codeGroupSeq;
+		this.codeGroupSeq = codeGroupSeq;
 	}
 
 	public String getCodeGroupName() {
-		return codegroupName;
+		return codeGroupName;
 	}
 
 	public void setCodeGroupName(String codeGroupName) {
-		this.codegroupName = codeGroupName;
+		this.codeGroupName = codeGroupName;
 	}
 
 	public static List<CodeDto> getCachedCodeArrayList() {
@@ -111,5 +109,7 @@ public class CodeDto {
 		CodeDto.cachedCodeArrayList = cachedCodeArrayList;
 	}
 
+	// for dto
 
+	
 }

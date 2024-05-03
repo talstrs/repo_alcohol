@@ -4,10 +4,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- Dao 경로 -->
-<mapper namespace="com.babify.infra.productorders.ProductOrdersDao">
+<mapper namespace="com.babify.infra.productorders.productOrdersDao">
 
 	<!-- 아이디 설정하여 셀렉문에 부과 / Dto 경로 -->
-	<resultMap id="resultMapObj" type="com.babify.infra.productorders.ProductOrdersDto"></resultMap>
+	<resultMap id="resultMapObj" type="com.babify.infra.productorders.productOrdersDto"></resultMap>
 	
 	<!-- select 공통 구문 SQL -->
 	<sql id ="selectCommon">
@@ -22,17 +22,17 @@
 	<select id="selectList" resultMap="resultMapObj">
 	
 		select
-			a.productordersSeq
-			,a.productordersDelNy
-			,a.productordersCount
-			,a.productordersRegDate
-			,a.productordersModDate
+			a.productOrdersSeq
+			,a.productOrdersDelNy
+			,a.productOrdersCount
+			,a.productOrdersRegDate
+			,a.productOrdersModDate
 			,a.product_productSeq as productSeqF
 			,a.orders_ordersSeq as ordersSeqF
 		    ,b.productSeq 
 		    ,c.ordersSeq
 		<include refid="selectCommon"></include>
-		ORDER BY a.productordersSeq desc
+		ORDER BY a.productOrdersSeq desc
 	</select>
 	
 	
@@ -45,11 +45,11 @@
 	<!-- 셀렉원 만들기 -->
 	<select id="selectOne" resultMap="resultMapObj">
 		select
-			a.productordersSeq
-			,a.productordersDelNy
-			,a.productordersCount
-			,a.productordersRegDate
-			,a.productordersModDate
+			a.productOrdersSeq
+			,a.productOrdersDelNy
+			,a.productOrdersCount
+			,a.productOrdersRegDate
+			,a.productOrdersModDate
 			,a.product_productSeq as productSeqF
 			,a.orders_ordersSeq as ordersSeqF
 		    ,b.productSeq 
@@ -60,19 +60,19 @@
 		 left join orders c
 		 	on a.orders_ordersSeq = c.ordersSeq
 		where 1=1
-			and a.productordersDelNy = 0
-		    and a.productordersSeq = #{codeSeq}
+			and a.productOrdersDelNy = 0
+		    and a.productOrdersSeq = #{codeSeq}
 			
 			
 	</select>
 	
 	<insert id="insert">
 		insert into productorders(
-			productordersCount
+			productOrdersCount
 			,product_productSeq
 			,orders_ordersSeq
 		) values (
-			#{productordersCount}
+			#{productOrdersCount}
 			,#{productSeq}
 			,#{ordersSeq}
 		)
@@ -83,20 +83,20 @@
 	<update id="update">
 		update productorders
 		set
-			productordersCount = #{productordersCount}
+			productOrdersCount = #{productOrdersCount}
 			,product_productSeq = #{productSeq}
 			,codeModDate = now()
 			,orders_ordersSeq = #{ordersSeq}
 		where 1=1
-			and productordersSeq = #{productordersSeq}
+			and productOrdersSeq = #{productOrdersSeq}
 	</update>
 	
 	<update id="updateDelete">
    	update productorders
    	set
-   		productordersDelNy = 1
+   		productOrdersDelNy = 1
    	WHERE 1=1
-   		and productordersSeq = #{productordersSeq}
+   		and productOrdersSeq = #{productOrdersSeq}
   	
   	</update>
   	
@@ -104,7 +104,7 @@
   	delete from productorders
   	
   	where 1=1
-  		and productordersSeq = #{productordersSeq}
+  		and productOrdersSeq = #{productOrdersSeq}
   	
   	</delete>
 

@@ -13,7 +13,7 @@
 	<sql id ="selectCommon">
 		FROM code a
 		left join codegroup b 
-			on a.codegroup_codegroupSeq = b.codegroupSeq 
+			on a.codeGroup_codeGroupSeq = b.codeGroupSeq 
 				and a.codeDelNy = 0
 		where 1=1
 		<!-- 추가, 사용여부 사용시 진행 필요 건 -->
@@ -26,8 +26,8 @@
 		</choose>
 			
 		<choose> 
-            <when test="shOption == 1">AND b.codegroupSeq = #{shValue}</when>
-            <when test="shOption == 2">AND b.codegroupName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 1">AND b.codeGroupSeq = #{shValue}</when>
+            <when test="shOption == 2">AND b.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
             <when test="shOption == 3">AND a.codeSeq = #{shValue}</when>
             <when test="shOption == 4">AND a.codeName LIKE CONCAT('%',#{shValue},'%')</when>
             <when test="shOption == 5">AND a.codeMemo LIKE CONCAT('%',#{shValue},'%')</when>
@@ -48,11 +48,11 @@
 			,a.codeMemo
 			,a.codeRegDate
 			,a.codeModDate
-			,a.codegroup_codegroupSeq as codegroupSeqF
-		    ,b.codegroupSeq 
-		    ,b.codegroupName
+			,a.codeGroup_codeGroupSeq as codeGroupSeqF
+		    ,b.codeGroupSeq 
+		    ,b.codeGroupName
 		<include refid="selectCommon" />
-		ORDER BY a.codegroup_codegroupSeq desc, a.codeSeq
+		ORDER BY a.codeGroup_codeGroupSeq desc, a.codeSeq
 		limit 99999999999
 		<include refid="base.selectListLowerForMysql" />
 	</select>
@@ -74,7 +74,7 @@
 			,a.codeMemo
 			,a.codeRegDate
 			,a.codeModDate
-			,a.codegroup_codegroupSeq as codegroupSeqF
+			,a.codeGroup_codeGroupSeq as codeGroupSeqF
 		from
 			code a
 		where 1=1
@@ -88,12 +88,12 @@
 			codeName
 			,codeMemo
 			,codeDelNy
-			,codegroup_codegroupSeq
+			,codeGroup_codeGroupSeq
 		) values (
 			#{codeName}
 			,#{codeMemo}
 			,0
-			,#{codegroupSeqF}
+			,#{codeGroupSeqF}
 		)
 	</insert>
 	
@@ -105,7 +105,7 @@
 			codeName = #{codeName}
 			,codeMemo = #{codeMemo}
 			,codeModDate = now()
-			,codegroup_codegroupSeq = #{codegroupSeqF}
+			,codeGroup_codeGroupSeq = #{codeGroupSeqF}
 		where 1=1
 			and codeSeq = #{codeSeq}
 	</update>
@@ -132,7 +132,7 @@
 		SELECT 
 			codeSeq
 			, codeName
-			, codegroup_codegroupSeq as codegroupSeqF
+			, codeGroup_codeGroupSeq as codeGroupSeqF
 			
 		FROM
 			code

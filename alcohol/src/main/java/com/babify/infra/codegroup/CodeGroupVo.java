@@ -3,14 +3,14 @@ package com.babify.infra.codegroup;
 import com.babify.infra.BaseVo;
 
 public class CodeGroupVo extends BaseVo {
-	private String codegroupSeq;
+	private String codeGroupSeq;
 
 	public String getCodeGroupSeq() {
-		return codegroupSeq;
+		return codeGroupSeq;
 	}
 
 	public void setCodeGroupSeq(String codeGroupSeq) {
-		this.codegroupSeq = codeGroupSeq;
+		this.codeGroupSeq = codeGroupSeq;
 	}
 
 

@@ -4,46 +4,45 @@ import java.util.Date;
 
 public class ProductOrdersDto {
 
-	private String productordersSeq;
-	private Integer productordersDelNy;
-	private Integer productordersCount;
-	private Date productordersRegDate;
-	private Date productordersModDate;
+	private String productOrdersSeq;
+	private Integer productOrdersDelNy;
+	private Integer productOrdersCount;
+	private Date productOrdersRegDate;
+	private Date productOrdersModDate;
 	
 	private String productSeqF;
 	private String ordersSeqF;
 	private String productSeq;
 	private String ordersSeq;
-	
 	public String getProductOrdersSeq() {
-		return productordersSeq;
+		return productOrdersSeq;
 	}
 	public void setProductOrdersSeq(String productOrdersSeq) {
-		this.productordersSeq = productOrdersSeq;
+		this.productOrdersSeq = productOrdersSeq;
 	}
 	public Integer getProductOrdersDelNy() {
-		return productordersDelNy;
+		return productOrdersDelNy;
 	}
 	public void setProductOrdersDelNy(Integer productOrdersDelNy) {
-		this.productordersDelNy = productOrdersDelNy;
+		this.productOrdersDelNy = productOrdersDelNy;
 	}
 	public Integer getProductOrdersCount() {
-		return productordersCount;
+		return productOrdersCount;
 	}
 	public void setProductOrdersCount(Integer productOrdersCount) {
-		this.productordersCount = productOrdersCount;
+		this.productOrdersCount = productOrdersCount;
 	}
 	public Date getProductOrdersRegDate() {
-		return productordersRegDate;
+		return productOrdersRegDate;
 	}
 	public void setProductOrdersRegDate(Date productOrdersRegDate) {
-		this.productordersRegDate = productOrdersRegDate;
+		this.productOrdersRegDate = productOrdersRegDate;
 	}
 	public Date getProductOrdersModDate() {
-		return productordersModDate;
+		return productOrdersModDate;
 	}
 	public void setProductOrdersModDate(Date productOrdersModDate) {
-		this.productordersModDate = productOrdersModDate;
+		this.productOrdersModDate = productOrdersModDate;
 	}
 	public String getProductSeqF() {
 		return productSeqF;
@@ -69,5 +68,6 @@ public class ProductOrdersDto {
 	public void setOrdersSeq(String ordersSeq) {
 		this.ordersSeq = ordersSeq;
 	}
+	
 	
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.babify.infra.codegroup.CodeGroupDao">
+<mapper namespace="com.babify.infra.codegroup.codeGroupDao">
 
-	<resultMap id="resultMapObj" type="com.babify.infra.codegroup.CodeGroupDto"></resultMap>
+	<resultMap id="resultMapObj" type="com.babify.infra.codegroup.codeGroupDto"></resultMap>
 	
 	<!-- select 공통 구문 SQl -->
 	<sql id ="selectCommon">
@@ -12,17 +12,17 @@
 	    WHERE 1=1
 			<!-- 이후 사용여부 사용시 참고
 			<if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
-        	<if test="shDelNy != null and !shDelNy.equals('')">AND a.codegroupDelNy = #{shDelNy}</if>
+        	<if test="shDelNy != null and !shDelNy.equals('')">AND a.codeGroupDelNy = #{shDelNy}</if>
         	
         	<choose>
-        		<when test="shOptionDate == 1">AND a.codegroupRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-				<when test="shOptionDate == 2">AND a.codegroupModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+        		<when test="shOptionDate == 1">AND a.codeGroupRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.codeGroupModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
         	</choose>
         	
         	<choose>
-            	<when test="shOption == 1">AND a.codegroupSeq = #{shValue}</when>
-            	<when test="shOption == 2">AND a.codegroupName LIKE CONCAT('%',#{shValue},'%')</when>
-            	<when test="shOption == 3">AND a.codegroupMemo LIKE CONCAT('%',#{shValue},'%')</when>
+            	<when test="shOption == 1">AND a.codeGroupSeq = #{shValue}</when>
+            	<when test="shOption == 2">AND a.codeGroupName LIKE CONCAT('%',#{shValue},'%')</when>
+            	<when test="shOption == 3">AND a.codeGroupMemo LIKE CONCAT('%',#{shValue},'%')</when>
         	</choose>
 	
 	</sql>
@@ -33,20 +33,20 @@
     
     	<include refid="base.selectListUpperForMysql" />
 		select
-			a.codegroupSeq
-				,a.codegroupDelNy
-				,a.codegroupUseNy
-				,a.codegroupName
-				,a.codegroupMemo
+			a.codeGroupSeq
+				,a.codeGroupDelNy
+				,a.codeGroupUseNy
+				,a.codeGroupName
+				,a.codeGroupMemo
 				,(select 
 					count(*)
 					from code aa
 				where 1=1
-					and	aa.codegroup_codegroupSeq = aa.codeSeq) as xcodegourpCount
-				,a.codegroupRegDate
-				,a.codegroupModDate
+					and	aa.codeGroup_codeGroupSeq = aa.codeSeq) as xcodeGourpCount
+				,a.codeGroupRegDate
+				,a.codeGroupModDate
 		<include refid="selectCommon" />
-		ORDER BY a.codegroupSeq desc
+		ORDER BY a.codeGroupSeq desc
 		limit 99999999999
 		<include refid="base.selectListLowerForMysql" />
 
@@ -62,19 +62,19 @@
     <!-- 조회의 경우 가져올 데이터가 필요하기 떄문에 리졸트맵오브젝트가 있음 -->
     <select id="selectOne" resultMap="resultMapObj">
 		select
-			codegroupSeq
-			,codegroupDelNy
-			,codegroupUseNy
-		    ,codegroupName
-   			,codegroupMemo
-			,codegroupRegDate
-			,codegroupModDate
+			codeGroupSeq
+			,codeGroupDelNy
+			,codeGroupUseNy
+		    ,codeGroupName
+   			,codeGroupMemo
+			,codeGroupRegDate
+			,codeGroupModDate
 		
 		from
 			codegroup 
 			
 		where 1=1
-			and codegroupSeq = #{codegroupSeq}
+			and codeGroupSeq = #{codeGroupSeq}
 			<!-- #{변수명}으로 변수를 가져오는 것 -->
 
     </select>
@@ -82,11 +82,11 @@
     <!-- 삽입의 경우 가져올 필요가 없기 떄문에 리졸트맵오브젝트가 없음 -->
     <insert id="insert">
     	insert into codegroup (
-    		codegroupName
-    		,codegroupMemo
+    		codeGroupName
+    		,codeGroupMemo
    		) value (
-   			#{codegroupName}
-   			,#{codegroupMemo}
+   			#{codeGroupName}
+   			,#{codeGroupMemo}
    		)
 
     </insert>
@@ -95,13 +95,13 @@
     <update id="update">
    	update codegroup
    	set
-   		codegroupName = #{codegroupName}
-   		,codegroupMemo = #{codegroupMemo}
-   		,codegroupModDate = now()
+   		codeGroupName = #{codeGroupName}
+   		,codeGroupMemo = #{codeGroupMemo}
+   		,codeGroupModDate = now()
    		<!-- 수정일 방법.. -->
 <!--    		modDateTime = SYSDATE -->
    	WHERE 1=1
-   		and codegroupSeq = #{codegroupSeq}
+   		and codeGroupSeq = #{codeGroupSeq}
   	
   	</update>
   	
@@ -110,11 +110,11 @@
     <update id="updateDelete">
    	update codegroup
    	set
-   		codegroupDelNy = 1
+   		codeGroupDelNy = 1
    		<!-- 수정일 방법.. -->
 <!--    		modDateTime = SYSDATE -->
    	WHERE 1=1
-   		and codegroupSeq = #{codegroupSeq}
+   		and codeGroupSeq = #{codeGroupSeq}
   	
   	</update>
   	
@@ -122,20 +122,20 @@
   	delete from codegroup
   	
   	where 1=1
-  		and codegroupSeq = #{codegroupSeq}
+  		and codeGroupSeq = #{codeGroupSeq}
   	
   	</delete>
     
      <!-- 코드 그룹 데이터 불러오기 -->
    <select id="selectListWithoutPaging" resultMap="resultMapObj">
 		SELECT
-			a.codegroupSeq
-			, a.codegroupName
+			a.codeGroupSeq
+			, a.codeGroupName
 		FROM codegroup a
 		WHERE 1=1
-			AND a.codegroupDelNy = 0
-			And a.codegroupUseNy = 1
-		ORDER BY a.codegroupSeq DESC
+			AND a.codeGroupDelNy = 0
+			And a.codeGroupUseNy = 1
+		ORDER BY a.codeGroupSeq DESC
 	</select>
 	  
 </mapper>

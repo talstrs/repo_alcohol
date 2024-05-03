@@ -4,64 +4,65 @@ import java.util.Date;
 
 public class CodeGroupDto {
 	
-	private String codegroupSeq;
-	private Integer codegroupDelNy;
-	private Integer codegroupUseNy;
-	private String codegroupName;
-	private String codegroupMemo;
-	private Date codegroupRegDate;
-	private Date codegroupModDate;
-	private Integer xcodegourpCount;
+	private String codeGroupSeq;
+	private Integer codeGroupDelNy;
+	private Integer codeGroupUseNy;
+	private String codeGroupName;
+	private String codeGroupMemo;
+	private Date codeGroupRegDate;
+	private Date codeGroupModDate;
+	private Integer xcodeGourpCount;
+	
 	
 	public String getCodeGroupSeq() {
-		return codegroupSeq;
+		return codeGroupSeq;
 	}
 	public void setCodeGroupSeq(String codeGroupSeq) {
-		this.codegroupSeq = codeGroupSeq;
+		this.codeGroupSeq = codeGroupSeq;
 	}
 	public Integer getCodeGroupDelNy() {
-		return codegroupDelNy;
+		return codeGroupDelNy;
 	}
 	public void setCodeGroupDelNy(Integer codeGroupDelNy) {
-		this.codegroupDelNy = codeGroupDelNy;
+		this.codeGroupDelNy = codeGroupDelNy;
 	}
 	public Integer getCodeGroupUseNy() {
-		return codegroupUseNy;
+		return codeGroupUseNy;
 	}
 	public void setCodeGroupUseNy(Integer codeGroupUseNy) {
-		this.codegroupUseNy = codeGroupUseNy;
+		this.codeGroupUseNy = codeGroupUseNy;
 	}
 	public String getCodeGroupName() {
-		return codegroupName;
+		return codeGroupName;
 	}
 	public void setCodeGroupName(String codeGroupName) {
-		this.codegroupName = codeGroupName;
+		this.codeGroupName = codeGroupName;
 	}
 	public String getCodeGroupMemo() {
-		return codegroupMemo;
+		return codeGroupMemo;
 	}
 	public void setCodeGroupMemo(String codeGroupMemo) {
-		this.codegroupMemo = codeGroupMemo;
+		this.codeGroupMemo = codeGroupMemo;
 	}
 	public Date getCodeGroupRegDate() {
-		return codegroupRegDate;
+		return codeGroupRegDate;
 	}
 	public void setCodeGroupRegDate(Date codeGroupRegDate) {
-		this.codegroupRegDate = codeGroupRegDate;
+		this.codeGroupRegDate = codeGroupRegDate;
 	}
 	public Date getCodeGroupModDate() {
-		return codegroupModDate;
+		return codeGroupModDate;
 	}
 	public void setCodeGroupModDate(Date codeGroupModDate) {
-		this.codegroupModDate = codeGroupModDate;
+		this.codeGroupModDate = codeGroupModDate;
 	}
-	public Integer getxCodeGourpCount() {
-		return xcodegourpCount;
+	public Integer getXcodeGourpCount() {
+		return xcodeGourpCount;
 	}
-	public void setxCodeGourpCount(Integer xCodeGourpCount) {
-		this.xcodegourpCount = xCodeGourpCount;
+	public void setXcodeGourpCount(Integer xcodeGourpCount) {
+		this.xcodeGourpCount = xcodeGourpCount;
 	}
-
+	
 	
 	
 	
