@@ -86,16 +86,18 @@
 		<if test="xReviewStarAvg != null and !xReviewStarAvg.equals('')">
 		AND (
 	        SELECT
-	            AVG(
-	                CASE bb.reviewStarCd
-	                    WHEN 40 THEN 1
-	                    WHEN 41 THEN 2
-	                    WHEN 42 THEN 3
-	                    WHEN 43 THEN 4
-	                    WHEN 44 THEN 5
-	                    ELSE NULL
-	                END
-	            )
+	        	ROUND(
+		            AVG(
+		                CASE bb.reviewStarCd
+		                    WHEN 40 THEN 1
+		                    WHEN 41 THEN 2
+		                    WHEN 42 THEN 3
+		                    WHEN 43 THEN 4
+		                    WHEN 44 THEN 5
+		                    ELSE NULL
+		                END
+		            )
+		        )
 	        FROM
 	            review bb
 	        WHERE
@@ -125,15 +127,17 @@
 			,a.productColorCd
 			,a.productRegDate
 			,a.productModDate
-			,(select avg(
-				case bb.reviewStarCd
-					when 40 then 1
-		    		when 41 then 2
-		    		when 42 then 3
-		    		when 43 then 4
-		    		when 44 then 5
-		    		else null
-	    		end)
+			,(select round( 
+					avg(
+					case bb.reviewStarCd
+						when 40 then 1
+			    		when 41 then 2
+			    		when 42 then 3
+			    		when 43 then 4
+			    		when 44 then 5
+			    		else null
+		    		end)
+	    		)
 	    		from review bb
 	    		where 1=1
 	    			and bb.product_productSeq = a.productSeq) as xReviewStarAvg
