@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class CodeDto {
-	
+
 	private String codeSeq;
 	private Integer codeDelNy;
 	private Integer codeUseNy;
@@ -14,13 +14,13 @@ public class CodeDto {
 
 	private Date codeRegDate;
 	private Date codeModDate;
-	private String codeGroupSeqF;
-	private String codeGroupSeq;
-	private String codeGroupName;
-	
+	private String codegroupSeqF;
+	private String codegroupSeq;
+	private String codegroupName;
+
 //	for cache
 	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
-	
+
 	// for dto
 
 	public String getCodeSeq() {
@@ -80,30 +80,28 @@ public class CodeDto {
 	}
 
 	public String getCodeGroupSeqF() {
-		return codeGroupSeqF;
+		return codegroupSeqF;
 	}
 
 	public void setCodeGroupSeqF(String codeGroupSeqF) {
-		this.codeGroupSeqF = codeGroupSeqF;
+		this.codegroupSeqF = codeGroupSeqF;
 	}
 
 	public String getCodeGroupSeq() {
-		return codeGroupSeq;
+		return codegroupSeq;
 	}
 
 	public void setCodeGroupSeq(String codeGroupSeq) {
-		this.codeGroupSeq = codeGroupSeq;
+		this.codegroupSeq = codeGroupSeq;
 	}
 
 	public String getCodeGroupName() {
-		return codeGroupName;
+		return codegroupName;
 	}
 
 	public void setCodeGroupName(String codeGroupName) {
-		this.codeGroupName = codeGroupName;
+		this.codegroupName = codeGroupName;
 	}
-
-
 
 	public static List<CodeDto> getCachedCodeArrayList() {
 		return cachedCodeArrayList;
@@ -113,24 +111,5 @@ public class CodeDto {
 		CodeDto.cachedCodeArrayList = cachedCodeArrayList;
 	}
 
-	@Override
-	public String toString() {
-		return "CodeDto [codeSeq=" + codeSeq + ", codeDelNy=" + codeDelNy + ", codeUseNy=" + codeUseNy + ", codeName="
-				+ codeName + ", codeMemo=" + codeMemo + ", codeRegDate=" + codeRegDate + ", codeModDate=" + codeModDate
-				+ ", codeGroupSeqF=" + codeGroupSeqF + ", codeGroupSeq=" + codeGroupSeq + ", codeGroupName="
-				+ codeGroupName + "]";
-	}
 
-
-
-	
-	
-
-	
-	
-
-
-
-	
-	
 }

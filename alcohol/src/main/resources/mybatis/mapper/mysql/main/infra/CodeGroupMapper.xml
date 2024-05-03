@@ -42,7 +42,7 @@
 					count(*)
 					from code aa
 				where 1=1
-					and	aa.codegroup_codegroupSeq = aa.codeSeq) as xCodeGourpCount
+					and	aa.codegroup_codegroupSeq = aa.codeSeq) as xcodegourpCount
 				,a.codegroupRegDate
 				,a.codegroupModDate
 		<include refid="selectCommon" />

@@ -4,45 +4,46 @@ import java.util.Date;
 
 public class ProductOrdersVo {
 	
-	private String productOrdersSeq;
-	private Integer productOrdersDelNy;
-	private Integer productOrdersCount;
-	private Date productOrdersRegDate;
-	private Date productOrdersModDate;
+	private String productordersSeq;
+	private Integer productordersDelNy;
+	private Integer productordersCount;
+	private Date productordersRegDate;
+	private Date productordersModDate;
 	
 	private String productSeqF;
 	private String ordersSeqF;
 	private String productSeq;
 	private String ordersSeq;
+	
 	public String getProductOrdersSeq() {
-		return productOrdersSeq;
+		return productordersSeq;
 	}
 	public void setProductOrdersSeq(String productOrdersSeq) {
-		this.productOrdersSeq = productOrdersSeq;
+		this.productordersSeq = productOrdersSeq;
 	}
 	public Integer getProductOrdersDelNy() {
-		return productOrdersDelNy;
+		return productordersDelNy;
 	}
 	public void setProductOrdersDelNy(Integer productOrdersDelNy) {
-		this.productOrdersDelNy = productOrdersDelNy;
+		this.productordersDelNy = productOrdersDelNy;
 	}
 	public Integer getProductOrdersCount() {
-		return productOrdersCount;
+		return productordersCount;
 	}
 	public void setProductOrdersCount(Integer productOrdersCount) {
-		this.productOrdersCount = productOrdersCount;
+		this.productordersCount = productOrdersCount;
 	}
 	public Date getProductOrdersRegDate() {
-		return productOrdersRegDate;
+		return productordersRegDate;
 	}
 	public void setProductOrdersRegDate(Date productOrdersRegDate) {
-		this.productOrdersRegDate = productOrdersRegDate;
+		this.productordersRegDate = productOrdersRegDate;
 	}
 	public Date getProductOrdersModDate() {
-		return productOrdersModDate;
+		return productordersModDate;
 	}
 	public void setProductOrdersModDate(Date productOrdersModDate) {
-		this.productOrdersModDate = productOrdersModDate;
+		this.productordersModDate = productOrdersModDate;
 	}
 	public String getProductSeqF() {
 		return productSeqF;

@@ -7,9 +7,9 @@ public class CodeVo extends BaseVo {
 
 // 기본 칼럼
 	private String codeSeq;
-	private String codeGroupSeq;
-	private String codeGroupName;
-	private String codeGroupSeqF;
+	private String codegroupSeq;
+	private String codegroupName;
+	private String codegroupSeqF;
 	
 	
 	public String getCodeSeq() {
@@ -19,30 +19,24 @@ public class CodeVo extends BaseVo {
 		this.codeSeq = codeSeq;
 	}
 	public String getCodeGroupSeq() {
-		return codeGroupSeq;
+		return codegroupSeq;
 	}
 	public void setCodeGroupSeq(String codeGroupSeq) {
-		this.codeGroupSeq = codeGroupSeq;
+		this.codegroupSeq = codeGroupSeq;
 	}
 	public String getCodeGroupName() {
-		return codeGroupName;
+		return codegroupName;
 	}
 	public void setCodeGroupName(String codeGroupName) {
-		this.codeGroupName = codeGroupName;
+		this.codegroupName = codeGroupName;
 	}
 	public String getCodeGroupSeqF() {
-		return codeGroupSeqF;
+		return codegroupSeqF;
 	}
 	public void setCodeGroupSeqF(String codeGroupSeqF) {
-		this.codeGroupSeqF = codeGroupSeqF;
+		this.codegroupSeqF = codeGroupSeqF;
 	}
 	
-	@Override
-	public String toString() {
-		return "CodeVo [codeSeq=" + codeSeq + ", codeGroupSeq=" + codeGroupSeq + ", codeGroupName=" + codeGroupName
-				+ ", codeGroupSeqF=" + codeGroupSeqF + "]";
-	}
-
 
 
 	

@@ -22,17 +22,17 @@
 	<select id="selectList" resultMap="resultMapObj">
 	
 		select
-			a.productOrdersSeq
-			,a.productOrdersDelNy
-			,a.productOrdersCount
-			,a.productOrdersRegDate
-			,a.productOrdersModDate
+			a.productordersSeq
+			,a.productordersDelNy
+			,a.productordersCount
+			,a.productordersRegDate
+			,a.productordersModDate
 			,a.product_productSeq as productSeqF
 			,a.orders_ordersSeq as ordersSeqF
 		    ,b.productSeq 
 		    ,c.ordersSeq
 		<include refid="selectCommon"></include>
-		ORDER BY a.productOrdersSeq desc
+		ORDER BY a.productordersSeq desc
 	</select>
 	
 	
@@ -45,11 +45,11 @@
 	<!-- 셀렉원 만들기 -->
 	<select id="selectOne" resultMap="resultMapObj">
 		select
-			a.productOrdersSeq
-			,a.productOrdersDelNy
-			,a.productOrdersCount
-			,a.productOrdersRegDate
-			,a.productOrdersModDate
+			a.productordersSeq
+			,a.productordersDelNy
+			,a.productordersCount
+			,a.productordersRegDate
+			,a.productordersModDate
 			,a.product_productSeq as productSeqF
 			,a.orders_ordersSeq as ordersSeqF
 		    ,b.productSeq 
@@ -60,19 +60,19 @@
 		 left join orders c
 		 	on a.orders_ordersSeq = c.ordersSeq
 		where 1=1
-			and a.productOrdersDelNy = 0
-		    and a.productOrdersSeq = #{codeSeq}
+			and a.productordersDelNy = 0
+		    and a.productordersSeq = #{codeSeq}
 			
 			
 	</select>
 	
 	<insert id="insert">
 		insert into productorders(
-			productOrdersCount
+			productordersCount
 			,product_productSeq
 			,orders_ordersSeq
 		) values (
-			#{productOrdersCount}
+			#{productordersCount}
 			,#{productSeq}
 			,#{ordersSeq}
 		)
@@ -83,20 +83,20 @@
 	<update id="update">
 		update productorders
 		set
-			productOrdersCount = #{productOrdersCount}
+			productordersCount = #{productordersCount}
 			,product_productSeq = #{productSeq}
 			,codeModDate = now()
 			,orders_ordersSeq = #{ordersSeq}
 		where 1=1
-			and productOrdersSeq = #{productOrdersSeq}
+			and productordersSeq = #{productordersSeq}
 	</update>
 	
 	<update id="updateDelete">
    	update productorders
    	set
-   		productOrdersDelNy = 1
+   		productordersDelNy = 1
    	WHERE 1=1
-   		and productOrdersSeq = #{productOrdersSeq}
+   		and productordersSeq = #{productordersSeq}
   	
   	</update>
   	
@@ -104,7 +104,7 @@
   	delete from productorders
   	
   	where 1=1
-  		and productOrdersSeq = #{productOrdersSeq}
+  		and productordersSeq = #{productordersSeq}
   	
   	</delete>
 
