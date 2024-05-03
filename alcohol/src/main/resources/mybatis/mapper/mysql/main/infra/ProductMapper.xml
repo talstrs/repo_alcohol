@@ -103,6 +103,12 @@
 	        WHERE
 	            bb.product_productSeq = a.productSeq
 	    ) = #{xReviewStarAvg}</if>
+	    
+	    <choose>
+		    <when test="minPrice != null and maxPrice != null">
+		        AND a.productPrice BETWEEN #{minPrice} AND #{maxPrice}
+		    </when>
+		</choose>
 
 	</sql>
 	

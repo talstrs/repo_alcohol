@@ -121,14 +121,6 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 		vo.setProductNewNy(vo.getProductNewNy() == null
 		    ? null
 		    : vo.getProductNewNy());
-		vo.setxReviewStarAvg(vo.getxReviewStarAvg() == null
-			? null
-			: vo.getxReviewStarAvg());
-		
-		System.out.println("vo.getxReviewStarAvg(): " + vo.getxReviewStarAvg());
-		System.out.println("======================");
-		System.out.println("======================");
-		System.out.println("======================");
 	
 	UtilSearch.setSearch(vo);
 	

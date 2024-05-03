@@ -82,6 +82,8 @@
                                                     <input th:if="${vo.productColorCd != null}" type="hidden" name="productColorCd" th:value="${vo.productColorCd}">
                                                     <input th:if="${vo.productBestNy != null}" type="hidden" name="productBestNy" th:value="${vo.productBestNy}">
                                                     <input th:if="${vo.productNewNy != null}" type="hidden" name="productNewNy" th:value="${vo.productNewNy}">
+                                                    <input th:if="${vo.xReviewStarAvg != null}" type="hidden" name="xReviewStarAvg" th:value="${vo.xReviewStarAvg}">
+                                                    
                                                     
                                                     <div th:if="${session.sessNameUsr == null}" class="single-product__thumbnail--meta-2">
                                                         <a th:href="@{/membersUsrLogin}" data-bs-tooltip="tooltip" data-bs-placement="top" data-bs-title="Add to wishlist" data-bs-custom-class="p-meta-tooltip" aria-label="wishlist"><i
@@ -232,16 +234,22 @@
                                                     <div class="filter-progress"></div>
                                                 </div>
                                                 <div class="filter-range-input">
-                                                    <input type="range" class="range-min" min="0" max="500" value="10" step="10" />
-                                                    <input type="range" class="range-max" min="0" max="500" value="90" step="10" />
+                                                	<input th:if="${vo.minPrice != null}" type="range" name="minPrice" th:value="${vo.minPrice}" min="0" max="100" step="10" />
+                                                    <input th:if="${vo.maxPrice != null}" type="range" name="maxPrice" th:value="${vo.maxPrice}" min="0" max="100" step="10" />
+                                                	<input th:unless="${vo.minPrice != null}" type="range" name="minPrice" value="10" min="0" max="100" step="10" />
+                                                    <input th:unless="${vo.maxPrice != null}" type="range" name="maxPrice" value="100" min="0" max="100" step="10" />
                                                 </div>
                                                 <p class="filter-price-value">
                                                     Price:
-                                                    <input type="text" class="input-min" value="$10" />
+                                                    <input th:if="${vo.minPrice != null}" type="text" class="input-min" th:value="'$'+${vo.minPrice}"  />
+                                                    <input th:unless="${vo.minPrice != null}" type="text" class="input-min"  value="$10" />
+<!--                                                     <input type="text" class="input-min" value="$10" /> -->
                                                     <span>—</span>
-                                                    <input type="text" class="input-max" value="$90" />
+                                                    <input th:if="${vo.maxPrice != null}" type="text" class="input-max" th:value="'$'+${vo.maxPrice}" />
+                                                    <input th:unless="${vo.maxPrice != null}" type="text" class="input-max"   value="$100" />
+<!--                                                     <input type="text" class="input-max" value="$100" /> -->
                                                 </p>
-                                                <button type="button" class="filter-price-btn">
+                                                <button onclick="updateFilterLink()"class="btn filter-price-btn" >
                                                     Filter
                                                 </button>
                                             </div>
@@ -317,8 +325,13 @@
         }
 
             
-
-
+		// 필터 값 담기
+	    function updateFilterLink() {
+	        var minPrice = document.getElementById('minPrice').value;
+	        var maxPrice = document.getElementById('maxPrice').value;
+	        var filterLink = document.getElementById('filterLink');
+	        filterLink.href = '/productUsrList?minPrice=' + minPrice + '&maxPrice=' + maxPrice;
+	    }
         
 
 
