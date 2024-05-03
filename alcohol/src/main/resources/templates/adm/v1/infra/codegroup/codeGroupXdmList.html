@@ -2,7 +2,7 @@
 <html lang="en">
 
 	<!--헤드 블록-->
-	<div th:replace="~{/adm/v1/infra/include/xdmHead :: xdmHead}"></div>
+	<div th:replace="~{adm/v1/infra/include/xdmHead :: xdmHead}"></div>
 
 	<body>
 
@@ -13,14 +13,14 @@
 			<div class="main-container">
 
 				<!--사이드바 블록-->
-				<div th:replace="~{/adm/v1/infra/include/xdmSideBar :: xdmSideBar(20)}"></div>
+				<div th:replace="~{adm/v1/infra/include/xdmSideBar :: xdmSideBar(20)}"></div>
 
 				
 				<!-- App container starts -->
 				<div class="app-container">
 
 					<!-- 바디 헤더 블록-->
-					<div th:replace="~{/adm/v1/infra/include/xdmHeader :: xdmHeader}"></div>
+					<div th:replace="~{adm/v1/infra/include/xdmHeader :: xdmHeader}"></div>
 
 					<!-- App hero header starts -->
 					<!-- 수정, 검색 폼 시작-->
@@ -165,7 +165,7 @@
 										</div>
 
 										<!--수정, 토탈 값 및 줄 수 표시 블록-->
-										<div th:replace="~{/adm/v1/infra/include/xdmTotalRownum :: xdmTotalRownum}"></div>	
+										<div th:replace="~{adm/v1/infra/include/xdmTotalRownum :: xdmTotalRownum}"></div>	
 
 										<div class="card-body">
 											<div class="table-responsive">
@@ -215,7 +215,7 @@
 												</table>
 												
 												<!--수정, 페이지네이션 블록-->
-												<div th:replace="~{/adm/v1/infra/include/xdmPaging :: xdmPaging}"></div>
+												<div th:replace="~{adm/v1/infra/include/xdmPaging :: xdmPaging}"></div>
 
 												<div class="d-flex justify-content-between">
 													<!--수정, 테이블 아래 삭제 등록 버튼 -->
@@ -340,7 +340,7 @@
 		</script>
 
 	<!--자바스크립트 주소 관련 블록-->
-	<div th:replace="~{/adm/v1/infra/include/xdmJs :: xdmJs}"></div>
+	<div th:replace="~{adm/v1/infra/include/xdmJs :: xdmJs}"></div>
 	
 	</body>
 
