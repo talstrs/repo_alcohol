@@ -25,7 +25,7 @@
                     <div class="header__top--right">
                         <ul class="header__top--items">
                             <!-- 세션 여부로 로그인/로그아웃 표시-->
-                            <li th:if="${session.sessNameUsr == null}">
+                            <li th:if="${session.sessSeqUsr == null}">
                                 <a th:href="@{/membersUsrLogin}" > 
                                     <i class="lastudioicon-single-01-1"></i>
                                     <span>Login</span>
