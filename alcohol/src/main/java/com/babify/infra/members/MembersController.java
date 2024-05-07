@@ -240,7 +240,7 @@ public class MembersController {
 	
 	// 카카오 로그인 리다이렉트
     @RequestMapping(value="/redirectKakao")
-    public String loginKakaoRedirect( MembersDto dto, Model model, HttpSession httpSession) throws Exception {
+    public String loginKakaoRedirect(MembersDto dto, Model model, HttpSession httpSession) throws Exception {
     	System.out.println("dto.getCode()================"+dto.getCode());
 		
     	// 토큰 받기 
@@ -264,7 +264,7 @@ public class MembersController {
     	MembersDto rtLogin = service.kakaoSelectOne(dto);
     	
     	httpSession.setAttribute("sessSeqUsr", rtLogin.getMembersSeq());
-    	httpSession.setAttribute("sessKakaoNameUsr", rtLogin.getMembersName());
+    	httpSession.setAttribute("sessNameUsr", rtLogin.getMembersName());
     	
         
         model.addAttribute("info", dto);
