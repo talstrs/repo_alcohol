@@ -5,6 +5,8 @@
 <div th:replace="~{usr/v1/infra/include/usrHead :: usrHead}"></div>
 
 
+
+
 <body>
 
 
@@ -91,12 +93,10 @@
                             <ul class="login-register__social row">
 <!--                             	카카오 로그인 -->
                                 <li class="col">
-                                    <a id="kakao-login-btn" href="javascript:loginWithKakao()" >
-                                        <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
-    									alt="카카오 로그인 버튼" />
-                                    </a>
-                                    <p id="token-result"></p>
-                                    <button class="api-btn" onclick="requestUserInfo()" style="visibility:hidden">사용자 정보 가져오기</button>
+                                    <a herf="javascript:void(0)"
+											th:onclick="javascript:fnClick();" style="cursor: pointer;" class="ms-5">
+											<img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222">
+									</a>
                                 </li>
                                 <li class="col">
                                     <a class="bg-success" href="#">
@@ -193,97 +193,15 @@
 
     </script>
 
-	 <!--1. 카카오 SDK 로드-->
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script th:inline="javascript">
+	  	// REST API
+		function fnClick() {
+			location.href = [[${location}]]
+		};
+		
+	</script>
+	
 
-	<script>
-	//카카오 초기화
-		Kakao.init('인증KEY');
-        Kakao.isInitialized() // 초기화 판단여부
-        
-        function loginWithKakao() {
-            displayToken();
-            Kakao.Auth.authorize({
-              redirectUri: 'http://localhost:8081/usrIndex',
-            });
-          }
-        
-        function displayToken() {
-          var token = getCookie('authorize-access-token');
-
-          if(token) {
-            Kakao.Auth.setAccessToken(token);
-            Kakao.Auth.getStatusInfo()
-              .then(function(res) {
-                if (res.status === 'connected') {
-                  document.getElementById('token-result').innerText
-                    = 'login success, token: ' + Kakao.Auth.getAccessToken();
-                }
-              })
-              .catch(function(err) {
-                Kakao.Auth.setAccessToken(null);
-              });
-          }
-        }
-
-        function getCookie(name) {
-          var parts = document.cookie.split(name + '=');
-          if (parts.length === 2) { return parts[1].split(';')[0]; }
-        }
-//     데모 확인
-    
-//     //카카오 로그인 후 토근 값 저장.
-//         function loginWithKakao() {
-//             Kakao.Auth.login({
-//                 success: function (authObj) {
-//                     console.log(authObj); // access토큰 값
-//                     Kakao.Auth.setAccessToken(authObj.access_token); // access토큰값 저장
-
-//                     getInfo();
-//                 },
-//                 fail: function (err) {
-//                     console.log(err);
-//                 }
-//             });
-//         }
-    
-//      // 엑세스 토큰을 발급받고, 아래 함수를 호출시켜서 사용자 정보를 받아옴.
-//         function getInfo() {
-//             Kakao.API.request({
-//             	url: '/v2/user/me',
-//                 success: function (res) {
-//                     alert(res);
-//                     var profile_nickname = res.kakao_account.profile.nickname;
-
-//                     alert(profile_nickname);
-//                 },
-//                 fail: function (error) {
-//                     alert('카카오 로그인에 실패했습니다. 관리자에게 문의하세요.' + JSON.stringify(error));
-//                 }
-//             });
-//         }
-     
-//      // 로그아웃 기능 - 카카오 서버에 접속하는 엑세스 토큰을 만료, 사용자 어플리케이션의 로그아웃은 따로 진행.
-//         function kakaoLogout() {
-//             if (!Kakao.Auth.getAccessToken()) {
-//                 alert('Not logged in.');
-//                 return;
-//             }
-//             Kakao.Auth.logout(function() {
-//                 alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
-//             });
-//         }
-    
-<!-- 	</script> -->
-   
-	      
-     
-     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.1/kakao.min.js"
-		integrity="sha384-kDljxUXHaJ9xAb2AzRd59KxjrFjzHa5TAoFQ6GbYTCAG0bjM55XohjjDT7tDDC01" crossorigin="anonymous">
-     </script>
-	 <script>
-	 	Kakao.init('909fb1048f89e6dfede7e7cbc4a76c20'); // 사용하려는 앱의 JavaScript 키 입력
-	 </script>
 
 	<!--자바스크립트 주소 관련 블록-->
 	<div th:replace="~{usr/v1/infra/include/usrJs :: usrJs}"></div>

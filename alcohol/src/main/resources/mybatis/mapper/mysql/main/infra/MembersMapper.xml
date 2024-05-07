@@ -113,6 +113,42 @@
 		)
 	</insert>
 	
+		<!-- 카카오 회원 확인 셀렉원 만들기 -->
+	<select id="kakaoSelectOne" resultMap="resultMapObj">
+		select
+			a.membersSeq
+			,a.membersEmail
+			,a.membersName
+		from
+			members a
+		where 1=1
+		    and a.membersEmail = #{email}
+			
+			
+	</select>
+	
+	<!-- 	카카오 인서트 -->
+		<insert id="kakaoinsert">
+		insert into members(
+			membersEmail
+			,membersAdminNy
+			,membersName
+			,membersDelNy
+			,membersGenderCd
+			,membersGradeCd
+			,membersRegDate
+			,membersModDate
+		) values (
+			#{email}
+			,0
+			,'kakao user'
+			,0
+			,7
+			,11
+			,now()
+			,now()
+		)
+	</insert>
 
 <!-- 	관리자 정보 업데이트 -->
 	<update id="update">

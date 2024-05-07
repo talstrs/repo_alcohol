@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,19 @@ public class MembersController {
 	
 	@Autowired
 	ProductService productervice;
+	
+	@Value("${javascript_key}")
+	private String javascriptKey;
+
+	@Value("${kakao_rest_key}")
+	private String kakaoRestKey;
+	
+	@Value("${kakao_redirect_uri}")
+	private String kakaoRedirectUri;
+	
+	@Value("${kakao_location}")
+	private String location;	
+	
 
 	@RequestMapping(value = "/membersXdmList")
 	public String membersXdmList(@ModelAttribute("vo") MembersVo vo, Model model) throws Exception {
@@ -211,11 +225,52 @@ public class MembersController {
 	
 	// 사용자 로그인 페이지
 	@RequestMapping(value = "/membersUsrLogin")
-	public String membersUsrLogin() throws Exception {
+	public String membersUsrLogin(Model model) throws Exception {
+		
+    	String location = "https://kauth.kakao.com/oauth/authorize?client_id="+kakaoRestKey+"&redirect_uri="+kakaoRedirectUri+"&response_type=code&scope=account_email";
+//    	String location = "https://kauth.kakao.com/oauth/authorize?client_id="+kakaoRestKey+"&redirect_uri="+kakaoRedirectUri+"&response_type=code&scope=account_email,name,gender,phone_number";
+    	model.addAttribute("location", location);
+    	model.addAttribute("javascriptKey", javascriptKey);
+    	model.addAttribute("kakaoRestKey", kakaoRestKey);
+    	model.addAttribute("kakaoRedirectUri", kakaoRedirectUri);
 
 		return "usr/v1/infra/membersUsrLogin";
 	}
 	
+	
+	// 카카오 로그인 리다이렉트
+    @RequestMapping(value="/redirectKakao")
+    public String loginKakaoRedirect( MembersDto dto, Model model, HttpSession httpSession) throws Exception {
+    	System.out.println("dto.getCode()================"+dto.getCode());
+		
+    	// 토큰 받기 
+    	String accessToken = service.getAccessTokenFromKakao(kakaoRestKey, dto.getCode());
+		
+    	dto = service.getUserInfo(accessToken, dto);
+		  
+    	
+    	System.out.println(dto.getEmail());
+    	System.out.println("-----------------------------------");
+//    	MembersDto membersDto = service.kakaoSelectOne(dto);
+    	
+    	
+     // 회원존재확인
+    	if(service.kakaoSelectOne(dto) != null) {
+    		// by pass 
+    	} else {
+    		service.kakaoinsert(dto);
+    	}
+    	
+    	MembersDto rtLogin = service.kakaoSelectOne(dto);
+    	
+    	httpSession.setAttribute("sessSeqUsr", rtLogin.getMembersSeq());
+    	httpSession.setAttribute("sessKakaoNameUsr", rtLogin.getMembersName());
+    	
+        
+        model.addAttribute("info", dto);
+        
+        return "usr/v1/infra/usrIndex";
+    }
 
 	
 	// 사용자 로그인 체크

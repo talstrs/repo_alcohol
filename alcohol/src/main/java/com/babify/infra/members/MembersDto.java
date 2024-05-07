@@ -2,7 +2,9 @@ package com.babify.infra.members;
 
 import java.util.Date;
 
-public class MembersDto {
+import com.babify.infra.kakaologin.KakaoLoginDto;
+
+public class MembersDto extends KakaoLoginDto {
 	
 	private String membersSeq;
 	private Integer membersDelNy;

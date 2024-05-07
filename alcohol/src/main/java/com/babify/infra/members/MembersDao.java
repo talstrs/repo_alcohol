@@ -44,4 +44,13 @@ public interface MembersDao {
 	
 // 페이지네이션 관련
 	public List<MembersDto> selectListWithPaging(MembersVo vo);
+	
+	// 로그인 id 확인
+	public MembersDto selectOneLogin(MembersDto dto);
+	
+	// 회원등록
+	public int kakaoinsert(MembersDto dto);
+	
+	// 카카오 기존 회원 확인
+	public MembersDto kakaoSelectOne(MembersDto dto);
 }
