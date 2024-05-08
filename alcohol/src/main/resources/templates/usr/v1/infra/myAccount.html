@@ -94,7 +94,8 @@
                                             </div>
                                             <div class="single-form">
                                                 <label for="membersXdmListAddBirth" class="form-label">Birth</label>
-												<input type="text" class="form-control" name="membersBirth" id="membersXdmListAddBirth" th:value="${item.membersBirth.substring(0, 4) + '/' + item.membersBirth.substring(4, 6) + '/' + item.membersBirth.substring(6, 8)}" required readonly/>
+												<input th:if="${item.membersBirth != null}" type="text" class="form-control" name="membersBirth" id="membersXdmListAddBirth" th:value="${item.membersBirth.substring(0, 4) + '/' + item.membersBirth.substring(4, 6) + '/' + item.membersBirth.substring(6, 8)}" required readonly/>
+												<input th:unless="${item.membersBirth != null}" type="text" class="form-control" name="membersBirth" id="membersXdmListAddBirth" required readonly/>
                                             </div>
                                             <div class="single-form">
 												<label for="membersXdmListAddGrade" class="form-label">Grade</label>
@@ -148,7 +149,7 @@
                                         </thead>
                                         <tbody>
                                             <tr th:if="${#lists.isEmpty(list)}">
-                                                <td colspan="7">주문 및 결제 내역이 없습니다</td>
+                                                <td colspan="10">주문 및 결제 내역이 없습니다</td>
                                             </tr>
                                             <tr th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}">
                                             	<td class="product-remove">
@@ -238,7 +239,7 @@
                                         </thead>
                                         <tbody>
                                             <tr th:if="${#lists.isEmpty(listAddress)}">
-                                                <td colspan="7">주소 데이터가 없습니다</td>
+                                                <td colspan="9">주소 데이터가 없습니다</td>
                                             </tr>
                                             <tr th:if="${!#lists.isEmpty(listAddress)}" th:each="listAddress:${listAddress}">
                                             	<td class="product-remove">
