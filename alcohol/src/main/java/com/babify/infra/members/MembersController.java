@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.babify.common.constants.Constants;
 import com.babify.common.util.UtilSearch;
-import com.babify.infra.product.ProductService;
+import com.babify.infra.mail.MailService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -23,9 +23,9 @@ public class MembersController {
 
 	@Autowired
 	MembersService service;
-	
+		
 	@Autowired
-	ProductService productervice;
+	MailService mailService;
 	
 	@Value("${javascript_key}")
 	private String javascriptKey;
@@ -106,6 +106,15 @@ public class MembersController {
 		
 		
 		service.insert(dto);
+		
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				mailService.sendMailSimple(dto);
+			}
+		});
+		
+		thread.start();
 
 
 		return "redirect:/usrIndex";

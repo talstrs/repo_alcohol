@@ -226,9 +226,10 @@
 																membersSeq=${lista.membersSeq}
 															)}" th:text="${lista.membersEmail}"></a></td>
 															<td th:text="${lista.membersName}"></td>
-															<td th:text="${lista.membersBirth.substring(0, 4) + '/' + lista.membersBirth.substring(4, 6) + '/' + lista.membersBirth.substring(6, 8)}"></td>
+															<td th:if="${lista.membersBirth != null}" th:text="${lista.membersBirth.substring(0, 4) + '/' + lista.membersBirth.substring(4, 6) + '/' + lista.membersBirth.substring(6, 8)}"></td>
+															<td th:unless="${lista.membersBirth != null}" class=" align-middle"></td>
 															<td th:if="${lista.membersGenderCd != null}" th:text="${@codeService.selectOneCachedCode(lista.membersGenderCd)}" class="membersGenderCd align-middle"></td>
-															<td th:unless="${lista.membersGenderCd != null}" class="membersGenderCd align-middle"></td>
+															<td th:unless="${lista.membersGenderCd != null}" class=" align-middle"></td>
 
 															<!-- <td th:text="${lista.membersGenderCd}"></td> -->
 															<td th:if="${lista.membersGradeCd != null}" th:text="${@codeService.selectOneCachedCode(lista.membersGradeCd)}" class="membersGradeCd align-middle"></td>

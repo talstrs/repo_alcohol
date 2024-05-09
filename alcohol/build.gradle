@@ -35,6 +35,10 @@ dependencies {
 	// 그래들 파일 설정시 우클릭 > 그래들 > 후에 실행해 주어야 반영됨
 	implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
 	
+	// spring boot start mail
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.2.5'
+		
 	
 }
 
@@ -49,3 +53,5 @@ jar {
     bootJar.enabled=true
     jar.enabled=false
 }
+
+
