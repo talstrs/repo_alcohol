@@ -104,6 +104,19 @@ public String productDele(ProductDto dto) throws Exception{
 	return "redirect:/productXdmList";
 }
 
+//멀티 체크박스 삭제
+@RequestMapping(value = "/productMultiUele")
+public String productMultiUele(ProductDto dto) throws Exception{
+	String[] checkboxSeqArray = dto.getCheckboxSeqArray();
+	for(String checkboxSeq : checkboxSeqArray) {
+		dto.setProductSeq(checkboxSeq);
+		service.updateDelete(dto);
+	}
+	
+	return "redirect:/productXdmList";
+}
+
+
 //사용자 리스트 목록 화면
 
 @RequestMapping(value = "/productUsrList")
@@ -162,6 +175,8 @@ public String usrIndex(ProductVo vo, Model model) throws Exception {
     
     return "usr/v1/infra/usrIndex";
 }
+
+
 		
 
 }

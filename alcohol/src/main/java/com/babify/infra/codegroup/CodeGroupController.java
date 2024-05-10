@@ -147,6 +147,18 @@ public String codeGroupDele(CodeGroupDto dto) throws Exception{
 	return "redirect:/codeGroupXdmList";
 }
 
+// 멀티 체크박스 삭제
+@RequestMapping(value = "/codeGroupMultiUele")
+public String codeGroupMultiUele(CodeGroupDto dto) throws Exception{
+	String[] checkboxSeqArray = dto.getCheckboxSeqArray();
+	for(String checkboxSeq : checkboxSeqArray) {
+		dto.setCodeGroupSeq(checkboxSeq);
+		service.updateDelete(dto);
+	}
+	
+	return "redirect:/codeGroupXdmList";
+}
+
 
 
 

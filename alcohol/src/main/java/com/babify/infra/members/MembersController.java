@@ -148,6 +148,18 @@ public class MembersController {
 		return "redirect:/membersXdmList";
 	}
 	
+	// 멀티 체크박스 삭제
+	@RequestMapping(value = "/membersMultiUele")
+	public String membersMultiUele(MembersDto dto) throws Exception{
+		String[] checkboxSeqArray = dto.getCheckboxSeqArray();
+		for(String checkboxSeq : checkboxSeqArray) {
+			dto.setMembersSeq(checkboxSeq);
+			service.updateDelete(dto);
+		}
+		
+		return "redirect:/membersXdmList";
+	}
+	
 	// pw 암호화
 	public String encodeBcrypt(String planeText, int strength) {
 		  return new BCryptPasswordEncoder(strength).encode(planeText); 

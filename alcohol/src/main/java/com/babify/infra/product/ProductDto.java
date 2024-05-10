@@ -26,8 +26,18 @@ public class ProductDto {
 	
 	private Integer minPrice;
 	private Integer maxPrice;
+	
+	private String[] checkboxSeqArray  = null;
+	
+	
 
 	
+	public String[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
+	}
+	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
+	}
 	public Integer getMinPrice() {
 		return minPrice;
 	}

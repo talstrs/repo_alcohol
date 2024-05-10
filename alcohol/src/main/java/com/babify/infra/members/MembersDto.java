@@ -21,6 +21,16 @@ public class MembersDto extends KakaoLoginDto {
 	
 	private	String xMembersBeforePw;
 	private String xMembersNewPwCheck;
+	
+	private String[] checkboxSeqArray  = null;
+	
+	
+	public String[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
+	}
+	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
+	}
 	public String getMembersSeq() {
 		return membersSeq;
 	}

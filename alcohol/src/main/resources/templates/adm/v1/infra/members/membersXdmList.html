@@ -193,7 +193,7 @@
 												<table class="table align-middle table-hover m-0">
 													<thead>
 														<tr>
-															<th scope="col"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></th>
+															<th scope="col"><input class="form-check-input" type="checkbox" id="checkAll" /></th>
 															<th scope="col">#</th>
 															<th scope="col">Seq</th>
 															<th scope="col">AdmNy</th>
@@ -215,7 +215,7 @@
 														</tr>
 														<tr th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}">
 															<td>
-																<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+																<input class="form-check-input chk" type="checkbox" name="chk" th:value="${lista.membersSeq}" />
 															</td>
 															<td th:if="${lista.membersDelNy eq 0}">N</td>
 															<td th:unless="${lista.membersDelNy eq 0}">Y</td>
@@ -283,7 +283,7 @@
 																	</div>
 																	<div class="modal-footer">
 																		<a class="btn btn-secondary" data-bs-dismiss="modal">취소</a>
-																		<a class="btn btn-danger" th:href="@{/membersXdmList}">삭제</a>
+																		<button class="btn btn-danger" id="btnModalUelete">삭제</button>
 																	</div>
 																</div>
 															</div>
@@ -335,7 +335,6 @@
 
 			let goUrlXdmList = "/membersXdmList";								
 			let goUrlXdmForm = "/v1/infra/members/membersXdmEdit";								
-			let goUrlXdmMultiUele = "/v1/infra/members/membersUele";			
 			let goUrlXdmMultiDele = "/v1/infra/members/membersDele";			
 			let goUrlXdmView = "/v1/infra/members/membersXdmView";								
 			
@@ -370,6 +369,78 @@
 				}
 			}
 
+		</script>
+		
+		<script>
+		// 체크박스 선택 구문
+		document.querySelector('#checkAll');
+
+		checkAll.addEventListener('click', function(){
+
+		    const isChecked = checkAll.checked;
+
+		    if(isChecked){
+		        const checkboxes = document.querySelectorAll('.chk');
+
+		        for(const checkbox of checkboxes){
+		            checkbox.checked = true;
+		        }
+		    }
+
+		    else{
+		        const checkboxes = document.querySelectorAll('.chk');
+		        for(const checkbox of checkboxes){
+		            checkbox.checked = false;
+		        }
+		    }
+		})
+		////////////////////////////////////////////////////////////
+		const checkboxes = document.querySelectorAll('.chk');
+		for(const checkbox of checkboxes){
+		  checkbox.addEventListener('click',function(){
+		    
+		    const totalCnt = checkboxes.length;
+		  
+		    const checkedCnt = document.querySelectorAll('.chk:checked').length;
+		    
+		    if(totalCnt == checkedCnt){
+		      document.querySelector('#checkAll').checked = true;
+		    }
+		    else{
+		      document.querySelector('#checkAll').checked = false;
+		    }
+		    
+		  });
+		  
+		}
+		
+		//체크박스 삭제 구문
+		let goUrlXdmMultiUele = "/membersMultiUele";		
+		let checkboxSeqArray = [];
+		
+		
+		$("#btnModalUelete").on("click", function(){
+			$("input[name=chk]:checked").each(function(){ 
+				// check된것을 찾고 체크된 값만 넘김
+				checkboxSeqArray.push($(this).val());  // check 해당된 값을 담는다.
+			});				
+			
+			// checkboxSeqArray 값을 form 데이터로 추가
+		    let hiddenInput = document.createElement("input");
+		    hiddenInput.setAttribute("type", "hidden");
+		    hiddenInput.setAttribute("name", "checkboxSeqArray");
+		    hiddenInput.setAttribute("value", checkboxSeqArray.join(","));
+		    form.appendChild(hiddenInput);
+			
+			$("#modalConfirm").modal("hide");
+			
+			// 폼의 action 속성 변경
+	        form.action = goUrlXdmMultiUele;
+	        
+	        // 폼 제출
+	        form.submit();
+			
+		});
 		</script>
 
 	<!--자바스크립트 주소 관련 블록-->

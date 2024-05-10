@@ -14,7 +14,6 @@
 		from
 			members a
 		where 1=1
-			and a.membersDelNy = 0
 			<!-- 추가, 사용여부 사용시 진행 필요 건 -->
 			<!-- <if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if> -->
 			<if test="shDelNy != null and !shDelNy.equals('')">AND a.membersDelNy = #{shDelNy}</if>
