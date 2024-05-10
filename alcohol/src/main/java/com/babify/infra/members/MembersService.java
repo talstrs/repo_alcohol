@@ -97,7 +97,7 @@ public class MembersService {
 		return dao.selectOneLogin(dto);
 	};
 	
-	// 회원등록
+	// 카카오 회원등록
 	public int kakaoinsert(MembersDto dto) {
 		return dao.kakaoinsert(dto);
 	};	
@@ -202,6 +202,12 @@ public class MembersService {
 
 	        return dto;
 	    }	
+		
+		
+		// 네이버 회원등록
+		public int naverinsert(MembersDto dto) {
+			return dao.naverinsert(dto);
+		};	
 	
 	
 }

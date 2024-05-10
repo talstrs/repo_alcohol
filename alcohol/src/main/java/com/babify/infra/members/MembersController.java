@@ -39,6 +39,12 @@ public class MembersController {
 	@Value("${kakao_location}")
 	private String location;	
 	
+	@Value("${NAVER_CLIENT_ID}")
+	private String clientId;	
+	
+	@Value("${NAVER_CALLBACK_URL}")
+	private String callbackUrl;	
+	
 
 	@RequestMapping(value = "/membersXdmList")
 	public String membersXdmList(@ModelAttribute("vo") MembersVo vo, Model model) throws Exception {
@@ -248,12 +254,17 @@ public class MembersController {
 	@RequestMapping(value = "/membersUsrLogin")
 	public String membersUsrLogin(Model model) throws Exception {
 		
+		// 카카오 로케이션, 키
     	String location = "https://kauth.kakao.com/oauth/authorize?client_id="+kakaoRestKey+"&redirect_uri="+kakaoRedirectUri+"&response_type=code&scope=account_email";
 //    	String location = "https://kauth.kakao.com/oauth/authorize?client_id="+kakaoRestKey+"&redirect_uri="+kakaoRedirectUri+"&response_type=code&scope=account_email,name,gender,phone_number";
     	model.addAttribute("location", location);
     	model.addAttribute("javascriptKey", javascriptKey);
     	model.addAttribute("kakaoRestKey", kakaoRestKey);
     	model.addAttribute("kakaoRedirectUri", kakaoRedirectUri);
+    	
+    	// 네이버 로케이션, 키
+    	model.addAttribute("clientId", clientId);
+    	model.addAttribute("callbackUrl", callbackUrl);
 
 		return "usr/v1/infra/membersUsrLogin";
 	}
@@ -292,7 +303,39 @@ public class MembersController {
         
         return "usr/v1/infra/usrIndex";
     }
+    
+	// 네이버 로그인 리다이렉트
+    @RequestMapping(value="/naverLoginCallback")
+    public String naverLoginCallback() throws Exception {
+		
+        
+        return "usr/v1/infra/naverLoginCallback";
+    }
 
+    // 네이버 로그인 인서트
+    @ResponseBody
+	@RequestMapping(value = "/naverLoginInsert")
+	public Map<String, Object> naverLoginInsert(MembersDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
+		MembersDto rtId = service.kakaoSelectOne(dto);
+		
+			if(rtId != null) {
+				httpSession.setAttribute("sessSeqUsr", rtId.getMembersSeq());
+				httpSession.setAttribute("sessNameUsr", rtId.getMembersName());
+					returnMap.put("rt", "success");
+					System.out.println("111111111111111");
+			} else {
+				service.naverinsert(dto);
+				returnMap.put("rt", "fail");
+			}
+		
+			
+		return returnMap;
+			
+	}
 	
 	// 사용자 로그인 체크
 	@ResponseBody
