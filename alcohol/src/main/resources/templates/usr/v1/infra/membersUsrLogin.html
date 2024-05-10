@@ -118,6 +118,7 @@
     </main>
 
 
+
 	<script th:inline="javascript">
 	  	// REST API
 		function fnClick() {
@@ -125,6 +126,72 @@
 		};
 		
 	</script>
+	
+	    <script>
+
+        function siginIn() {
+            if(validation() == false) return false;
+        
+            $.ajax({
+                async: true 
+                ,cache: false
+                ,type: "post"
+                /* ,dataType:"json" */
+                ,url: "/signinUsrCheck"
+                /* ,data : $("#formLogin").serialize() */
+                ,data : { "membersEmail" : $("#membersEmail").val(), "membersPw" : $("#membersPw").val()}
+                // , "autoLogin" : $("#autoLogin").is(":checked")
+                
+                ,success: function(response) {
+                    if(response.rt == "success") {
+                        location.href = "/usrIndex";
+                        
+                    } else if(response.rt == "failPw"){
+                        alert("비밀번호가 일치하지 않습니다");
+                        // document.getElementById("modalAlertTitle").innerText = "확 인";
+                        // document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+                        // $("#modalAlert").modal("show");
+                    } else {
+                        alert("아이디가 일치하지 않습니다");
+                    }
+                }
+                ,error : function(jqXHR, textStatus, errorThrown){
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+        }        
+
+        document.getElementById("buttonSignIn").onclick = function () {
+            siginIn();
+        }
+
+        
+
+        function validation() {
+            if(validationCheck() == false) { return false;
+            }
+        }
+        
+        function validationCheck() {
+            if(!checkNull ('membersEmail', 2, '데이터 값을 입력하세요')) return false;
+            if(!checkEmail('membersEmail',2,0,'"abc@google.com"처럼 이메일 형식에 맞게 입력하세요')) return false;
+            if(!checkNull ('membersPw', 2, '데이터 값을 입력하세요')) return false;
+            if(!checkOnlyKoreanEnglishNumber('membersPw',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+            
+            
+        }
+
+        document.getElementById("loginEvent").addEventListener("keydown", function(event) {
+            // 엔터키를 눌렀을 때
+            if (event.key === "Enter") {
+                event.preventDefault(); // 폼 제출을 막음
+
+                siginIn();
+            }
+        });
+
+
+    </script>
 	
 			<!--네이버 스크립트-->
 		<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
