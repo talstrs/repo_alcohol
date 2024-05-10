@@ -55,7 +55,7 @@
 									
 									<div class="card-body">
 										
-										<form class="row g-3 " name="formInsert" id="formInsert" method="post"  novalidate>
+										<form class="row g-3 " name="formInsert" id="formInsert" method="post" enctype="multipart/form-data"  novalidate>
 											<div>
 												<div class="col-md-6">
 													<label class="form-label" for="productBestNy">Best</label>
@@ -120,6 +120,10 @@
 													<option th:each="list : ${@codeService.selectListCachedCode(15)}" th:value="${list.codeSeq}" th:text="${list.codeName}"></option>
 												</select>
 												<div class="invalid-feedback" id="productColorCdFeedback"></div>
+											</div>
+											<div class="mt-5 col-6">
+												<label class="form-label" for="uploadFiles">File</label>
+												<input type="file" id="uploadFiles" name="uploadFiles" class="form-control" aria-descirbedby="inputGroupFileAddon04" aria-label="Upload" multiple />
 											</div>
 											
 											

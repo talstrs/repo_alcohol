@@ -2,6 +2,8 @@ package com.babify.infra.product;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductDto {
 	
 	private String productSeq;
@@ -29,9 +31,25 @@ public class ProductDto {
 	
 	private String[] checkboxSeqArray  = null;
 	
+	private MultipartFile uploadFile;
+	private MultipartFile[] uploadFiles;
+	
+	
 	
 
 	
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	public MultipartFile[] getUploadFiles() {
+		return uploadFiles;
+	}
+	public void setUploadFiles(MultipartFile[] uploadFiles) {
+		this.uploadFiles = uploadFiles;
+	}
 	public String[] getCheckboxSeqArray() {
 		return checkboxSeqArray;
 	}
