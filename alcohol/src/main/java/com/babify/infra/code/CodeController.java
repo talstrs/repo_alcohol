@@ -115,5 +115,17 @@ public class CodeController {
 		return "redirect:/codeXdmList";
 	}
 	
+	@RequestMapping(value = "/codeMultiUele")
+	public String codeMultiUele(CodeDto dto) throws Exception{
+		String[] checkboxSeqArray = dto.getCheckboxSeqArray();
+		for(String checkboxSeq : checkboxSeqArray) {
+			dto.setCodeSeq(checkboxSeq);
+			service.updateDelete(dto);
+		}
+		
+		return "redirect:/codeXdmList";
+	}
+	
+	
 
 }

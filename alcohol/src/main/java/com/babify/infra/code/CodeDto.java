@@ -18,8 +18,18 @@ public class CodeDto {
 	private String codeGroupSeq;
 	private String codeGroupName;
 
+	private String[] checkboxSeqArray  = null;
 //	for cache
 	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
+
+	
+	public String[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
+	}
+
+	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
+	}
 
 	public String getCodeSeq() {
 		return codeSeq;
