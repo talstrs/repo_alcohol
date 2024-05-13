@@ -69,7 +69,7 @@ public class ProductService {
 //  insert 서비스
 	public int insert(ProductDto dto) throws Exception {
 		
-		
+	// 인서트 주석 관련 파일업로드 db 내용 진행 후 주석 풀기
 //		dao.insert(dto);
 		
 		for(MultipartFile multipartFile : dto.getUploadFiles()) {
