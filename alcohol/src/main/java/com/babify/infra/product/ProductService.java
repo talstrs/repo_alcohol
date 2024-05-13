@@ -3,7 +3,12 @@ package com.babify.infra.product;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 
 @Service
 public class ProductService {
@@ -22,6 +27,14 @@ public class ProductService {
 //		
 //		return list;
 //	}
+	
+	@Autowired
+	AmazonS3Client amazonS3Client;
+	
+	@Value("${cloud_aws_bucket}")
+    private String bucket;
+	
+	
 // 	서비스는 논리 로직
 //	패턴 2 리스트 호출(관리자)
 	public List<ProductDto> selectList(ProductVo vo) {
@@ -54,8 +67,30 @@ public class ProductService {
 	}
 
 //  insert 서비스
-	public int insert(ProductDto dto) {
-		return dao.insert(dto);
+	public int insert(ProductDto dto) throws Exception {
+		
+		
+//		dao.insert(dto);
+		
+		for(MultipartFile multipartFile : dto.getUploadFiles()) {
+			
+			if(!multipartFile.isEmpty()) {
+				System.out.println("multipartFile.getOriginalFilename() : " + multipartFile.getOriginalFilename());
+				
+		        ObjectMetadata metadata = new ObjectMetadata();
+		        metadata.setContentLength(multipartFile.getSize());
+		        metadata.setContentType(multipartFile.getContentType());
+		        
+		        amazonS3Client.putObject(bucket, multipartFile.getOriginalFilename(), multipartFile.getInputStream(), metadata);
+				
+		        String objectUrl = amazonS3Client.getUrl(bucket, multipartFile.getOriginalFilename()).toString();
+		        
+		        System.out.println(objectUrl);
+				
+			}
+		}
+		
+		return 0;
 	}
 	
 //  update 서비스

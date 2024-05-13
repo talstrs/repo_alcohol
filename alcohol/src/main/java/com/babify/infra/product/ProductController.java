@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.babify.common.util.UtilSearch;
 import com.babify.infra.review.ReviewDto;
@@ -73,20 +72,16 @@ public String productXdmListAdd() throws Exception{
 @RequestMapping(value = "/productInsert")
 public String productInsert(ProductDto dto) throws Exception{
 	
-	System.out.println("dto.getUploadFiles().length: " + dto.getUploadFiles().length);
-	System.out.println("--------------------------");
-	System.out.println("--------------------------");
-	System.out.println("--------------------------");
-	
-	MultipartFile[] uploadFiles = dto.getUploadFiles();
-	
-	 for (MultipartFile file : uploadFiles) {
-         
-         System.out.println("업로드된 파일 이름: " + file.getOriginalFilename());
-     }
+//	
+//	MultipartFile[] uploadFiles = dto.getUploadFiles();
+//	
+//	 for (MultipartFile file : uploadFiles) {
+//         
+//         System.out.println("업로드된 파일 이름: " + file.getOriginalFilename());
+//     }
 	
 	
-//	service.insert(dto);
+	service.insert(dto);
 	
 	return "redirect:/productXdmList";
 }
