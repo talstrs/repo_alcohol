@@ -4,7 +4,10 @@ import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class ProductDto {
+import com.babify.common.base.BaseDto;
+
+public class ProductDto extends BaseDto {
+	
 	
 	private String productSeq;
 	private	Integer productDelNy;

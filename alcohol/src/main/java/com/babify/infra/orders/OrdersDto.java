@@ -2,10 +2,11 @@ package com.babify.infra.orders;
 
 import java.util.Date;
 
-public class OrdersDto {
+import com.babify.common.base.BaseDto;
+
+public class OrdersDto  extends BaseDto {
 
 	
-	private String seq;
 	
 	private String membersSeq;
 	private String membersName;
@@ -105,12 +106,6 @@ public class OrdersDto {
 	}
 	public void setProductName(String productName) {
 		this.productName = productName;
-	}
-	public String getSeq() {
-		return seq;
-	}
-	public void setSeq(String seq) {
-		this.seq = seq;
 	}
 	public String getAddressSeq() {
 		return addressSeq;

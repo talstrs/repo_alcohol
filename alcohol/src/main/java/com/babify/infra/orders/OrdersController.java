@@ -212,6 +212,7 @@ public class OrdersController {
 		service.insert(dto);
 		
 		podto.setOrdersSeq(dto.getSeq());
+		
 		productOrdersService.insert(podto);
 		
 		return "redirect:/myAccount";
