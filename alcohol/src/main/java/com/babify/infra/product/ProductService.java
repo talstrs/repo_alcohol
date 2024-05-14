@@ -1,6 +1,7 @@
 package com.babify.infra.product;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.babify.common.util.UtilDateTime;
+import com.babify.infra.fileuploaded.FileUploadedDao;
+import com.babify.infra.fileuploaded.FileUploadedDto;
 
 @Service
 public class ProductService {
@@ -16,6 +20,18 @@ public class ProductService {
 //	dao를 쓸 수 있게 해 주는 어노테이션
 	@Autowired
 	ProductDao dao;
+	
+	@Autowired
+	AmazonS3Client amazonS3Client;
+	
+	@Autowired
+	FileUploadedDao filedao;
+	
+	@Value("${cloud_aws_bucket}")
+	private String bucket;
+	
+	
+	
 //	CodeGroupDao CodeGroupDao; 
 //	@Autowired 와 CodeGroupDao dao;의 이미는 아래와 같다
 //	CodeGroupDao dao = new CodeGroupDao();
@@ -28,11 +44,6 @@ public class ProductService {
 //		return list;
 //	}
 	
-	@Autowired
-	AmazonS3Client amazonS3Client;
-	
-	@Value("${cloud_aws_bucket}")
-    private String bucket;
 	
 	
 // 	서비스는 논리 로직
@@ -67,26 +78,103 @@ public class ProductService {
 	}
 
 //  insert 서비스
-	public int insert(ProductDto dto) throws Exception {
+	public int insert(ProductDto dto, FileUploadedDto filedto) throws Exception {
 		
-	// 인서트 주석 관련 파일업로드 db 내용 진행 후 주석 풀기
-//		dao.insert(dto);
 		
-		for(MultipartFile multipartFile : dto.getUploadFiles()) {
+		MultipartFile[] multipartFiles = dto.getUploadFiles(); 
+		
+		// 파일 유무 확인하기	
+		if(multipartFiles.length > 0) {
+		// 인서트 주석 관련 파일업로드 db 내용 진행 후 주석 풀기
+				dao.insert(dto);
 			
-			if(!multipartFile.isEmpty()) {
-				System.out.println("multipartFile.getOriginalFilename() : " + multipartFile.getOriginalFilename());
-				
-		        ObjectMetadata metadata = new ObjectMetadata();
-		        metadata.setContentLength(multipartFile.getSize());
-		        metadata.setContentType(multipartFile.getContentType());
-		        
-		        amazonS3Client.putObject(bucket, multipartFile.getOriginalFilename(), multipartFile.getInputStream(), metadata);
-				
-		        String objectUrl = amazonS3Client.getUrl(bucket, multipartFile.getOriginalFilename()).toString();
-		        
-		        System.out.println(objectUrl);
-				
+			for(int i=0; i<multipartFiles.length; i++) {
+						
+				if(!multipartFiles[i].isEmpty()) {
+					
+					// if문 돌려서 0일때 디폴트 1, 아닐때 디폴트 0
+					if(i==0) {
+					
+						// type = product file을 의미
+						int type = 1;
+						// dto 내용 변수로 받아오기
+						String fileName = multipartFiles[i].getOriginalFilename();
+						String uuid = UUID.randomUUID().toString();
+						String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+						
+						String className = dto.getClass().getSimpleName().toString().toLowerCase();
+						String pathModule = className;
+						String nowString = UtilDateTime.nowString();
+						String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10); 
+//						String path = Constants.UPLOADED_PATH_PREFIX_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
+						String path = pathModule + "/" + type + "/" + pathDate + "/";
+	//					String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
+					
+						String uuidFileName = uuid + "." + ext;
+						
+				        ObjectMetadata metadata = new ObjectMetadata();
+				        metadata.setContentLength(multipartFiles[i].getSize());
+				        metadata.setContentType(multipartFiles[i].getContentType());
+				        
+				        amazonS3Client.putObject(bucket, path + uuidFileName, multipartFiles[i].getInputStream(), metadata);
+						
+				        String objectUrl = amazonS3Client.getUrl(bucket, path + uuidFileName).toString();
+				        
+				        
+						// filedto에 변수값 내용 set 시키기
+				        filedto.setFileUploadedType(type);
+				        filedto.setFileUploadedSort(i);
+				        filedto.setFileUploadedOriginalName(fileName);
+				        filedto.setFileUploadedUuidName(uuid);
+				        filedto.setFileUploadedExt(ext);
+				        filedto.setFileUploadedSize(Integer.valueOf((int)multipartFiles[i].getSize()));
+				        filedto.setFileUploadedFseq(dto.getSeq());
+				        filedto.setFileUploadedPath(objectUrl);
+				        filedto.setFileUploadedDefaultNy(1);
+				        
+				        filedao.insert(filedto);
+			        
+					} else {
+						// type = product file을 의미
+						int type = 1;
+						// dto 내용 변수로 받아오기
+						String fileName = multipartFiles[i].getOriginalFilename();
+						String uuid = UUID.randomUUID().toString();
+						String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+						
+						String className = dto.getClass().getSimpleName().toString().toLowerCase();
+						String pathModule = className;
+						String nowString = UtilDateTime.nowString();
+						String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10); 
+//						String path = Constants.UPLOADED_PATH_PREFIX_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
+						String path = pathModule + "/" + type + "/" + pathDate + "/";
+	//					String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
+					
+						String uuidFileName = uuid + "." + ext;
+						
+				        ObjectMetadata metadata = new ObjectMetadata();
+				        metadata.setContentLength(multipartFiles[i].getSize());
+				        metadata.setContentType(multipartFiles[i].getContentType());
+				        
+				        amazonS3Client.putObject(bucket, path + uuidFileName, multipartFiles[i].getInputStream(), metadata);
+						
+				        String objectUrl = amazonS3Client.getUrl(bucket, path + uuidFileName).toString();
+				        
+				        
+						// filedto에 변수값 내용 set 시키기
+				        filedto.setFileUploadedType(type);
+				        filedto.setFileUploadedSort(i);
+				        filedto.setFileUploadedOriginalName(fileName);
+				        filedto.setFileUploadedUuidName(uuid);
+				        filedto.setFileUploadedExt(ext);
+				        filedto.setFileUploadedSize(Integer.valueOf((int)multipartFiles[i].getSize()));
+				        filedto.setFileUploadedFseq(dto.getSeq());
+				        filedto.setFileUploadedPath(objectUrl);
+				        filedto.setFileUploadedDefaultNy(0);
+				        
+				        filedao.insert(filedto);
+					}
+				}
 			}
 		}
 		

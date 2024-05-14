@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.babify.common.util.UtilSearch;
+import com.babify.infra.fileuploaded.FileUploadedDto;
 import com.babify.infra.review.ReviewDto;
 import com.babify.infra.review.ReviewService;
 import com.babify.infra.review.ReviewVo;
@@ -70,18 +71,11 @@ public String productXdmListAdd() throws Exception{
 }
 
 @RequestMapping(value = "/productInsert")
-public String productInsert(ProductDto dto) throws Exception{
-	
-//	
-//	MultipartFile[] uploadFiles = dto.getUploadFiles();
-//	
-//	 for (MultipartFile file : uploadFiles) {
-//         
-//         System.out.println("업로드된 파일 이름: " + file.getOriginalFilename());
-//     }
+public String productInsert(ProductDto dto, FileUploadedDto filedto) throws Exception{
 	
 	
-	service.insert(dto);
+	service.insert(dto, filedto);
+	
 	
 	return "redirect:/productXdmList";
 }
