@@ -5,6 +5,141 @@
 
 	<resultMap id="resultMapObj" type="com.babify.infra.fileuploaded.FileUploadedDto"></resultMap>
 	
+	<!-- select 공통 구문 SQl -->
+	<sql id ="selectCommon">
+			from
+			fileuploaded a
+	    WHERE 1=1
+			a.fileUploadedDelNy = 0
+	</sql>
 	
+
+<!-- 	셀렉 리스트 -->
+    <select id="selectList" resultMap="resultMapObj">
+    
+    	<include refid="base.selectListUpperForMysql" />
+		select
+			a.fileUploadedSeq
+			,a.fileUploadedType
+			,a.fileUploadedDefaultNy
+			,a.fileUploadedSort
+			,a.fileUploadedPath
+			,a.fileUploadedOriginalName
+			,a.fileUploadedUuidName
+			,a.fileUploadedExt
+			,a.fileUploadedSize
+			,a.fileUploadedDelNy
+			,a.fileUploadedFseq
+			,a.fileUploadedRegDateTime
+			,a.fileUploadedModDateTime
+		<include refid="selectCommon" />
+		<include refid="base.selectListLowerForMysql" />
+    </select>
+    
+<!--     셀렉 리스트 카운트 -->
+    <select id="selectOneCount" resultType="Integer">
+		select COUNT(*)
+		<include refid="selectCommon"></include>
+	</select>
+    
+<!--     셀렉 원 -->
+    <select id="selectOne" resultMap="resultMapObj">
+		select
+			fileUploadedSeq
+			fileUploadedType
+			fileUploadedDefaultNy
+			fileUploadedSort
+			fileUploadedPath
+			fileUploadedOriginalName
+			fileUploadedUuidName
+			fileUploadedExt
+			fileUploadedSize
+			fileUploadedDelNy
+			fileUploadedFseq
+			fileUploadedRegDateTime
+			fileUploadedModDateTime
+		
+		from
+			fileuploaded 
+			
+		where 1=1
+			and fileUploadedSeq = #{fileUploadedSeq}
+
+    </select>
+    
+    
+<!-- 	인서트 -->
+    <insert id="insert">
+    	insert into fileuploaded (
+    		fileUploadedType
+    		,fileUploadedDefaultNy
+    		,fileUploadedSort
+    		,fileUploadedPath
+    		,fileUploadedOriginalName
+    		,fileUploadedUuidName
+    		,fileUploadedExt
+    		,fileUploadedSize
+    		,fileUploadedDelNy
+    		,fileUploadedFseq
+    		,fileUploadedRegDateTime
+    		,fileUploadedModDateTime
+   		) value (
+   			#{fileUploadedType}
+   			,#{fileUploadedDefaultNy}
+   			,#{fileUploadedSort}
+   			,#{fileUploadedPath}
+   			,#{fileUploadedOriginalName}
+   			,#{fileUploadedUuidName}
+   			,#{fileUploadedExt}
+   			,#{fileUploadedSize}
+   			,0
+   			,#{fileUploadedFseq}
+   			,now()
+   			,now()
+   		)
+
+    </insert>
+    
+    <!-- 업데이트 / 수정 필요 -->
+    <update id="update">
+   	update fileuploaded
+   	set
+   		fileUploadedType = #{fileUploadedType}
+   		,fileUploadedPath = #{fileUploadedPath}
+   		
+   	WHERE 1=1
+   		and fileUploadedSeq = #{fileUploadedSeq}
+  	
+  	</update>
+  	
+    <update id="updateDelete">
+   	update fileuploaded
+   	set
+   		fileUploadedDelNy = 1
+   		<!-- 수정일 방법.. -->
+<!--    		modDateTime = SYSDATE -->
+   	WHERE 1=1
+   		and fileUploadedSeq = #{fileUploadedSeq}
+  	
+  	</update>
+  	
+  	<delete id="delete">
+  	delete from fileuploaded
+  	
+  	where 1=1
+  		and fileUploadedSeq = #{fileUploadedSeq}
+  	
+  	</delete>
+    
+     <!-- 데이터 불러오기 -->
+   <select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.fileUploadedSeq
+			, a.fileUploadedType
+		FROM fileuploaded a
+		WHERE 1=1
+			AND a.fileUploadedDelNy = 0
+		ORDER BY a.fileUploadedSeq DESC
+	</select>
 	  
 </mapper>
