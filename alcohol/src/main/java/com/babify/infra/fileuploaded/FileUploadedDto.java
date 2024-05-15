@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.babify.infra.kakaologin.KakaoLoginDto;
 
-public class FileUploadedDto extends KakaoLoginDto {
+public class FileUploadedDto {
 	
 	private String fileUploadedSeq;
 	private Integer fileUploadedType;
