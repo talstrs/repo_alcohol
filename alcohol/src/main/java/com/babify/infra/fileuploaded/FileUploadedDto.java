@@ -2,8 +2,6 @@ package com.babify.infra.fileuploaded;
 
 import java.util.Date;
 
-import com.babify.infra.kakaologin.KakaoLoginDto;
-
 public class FileUploadedDto {
 	
 	private String fileUploadedSeq;
