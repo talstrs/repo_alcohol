@@ -37,10 +37,25 @@ public class ProductDto extends BaseDto {
 	private MultipartFile uploadFile;
 	private MultipartFile[] uploadFiles;
 	
+	private String xFileUploadedDefault;
+	private String xFileUploadedSub;
+	
 	
 	
 
 	
+	public String getxFileUploadedDefault() {
+		return xFileUploadedDefault;
+	}
+	public void setxFileUploadedDefault(String xFileUploadedDefault) {
+		this.xFileUploadedDefault = xFileUploadedDefault;
+	}
+	public String getxFileUploadedSub() {
+		return xFileUploadedSub;
+	}
+	public void setxFileUploadedSub(String xFileUploadedSub) {
+		this.xFileUploadedSub = xFileUploadedSub;
+	}
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}

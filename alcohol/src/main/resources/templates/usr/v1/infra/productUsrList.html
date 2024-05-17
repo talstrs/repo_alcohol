@@ -101,10 +101,16 @@
                                                     <div th:unless="${lista.productStock > 0}"  class="single-product__thumbnail--badge out-of-stock">
                                                         Out of stock
                                                     </div>
-                                                    <div class="single-product__thumbnail--holder">
+                                                    <div th:if="${lista.xFileUploadedDefault == null}" class="single-product__thumbnail--holder">
                                                         <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq},productCatDetailCd=${lista.productCatDetailCd})}">
                                                             <img src="/usr/assets/images/products/product-02.jpg" alt="Product" width="344" height="370" />
                                                             <img class="product-hover" src="/usr/assets/images/products/product-12.jpg" alt="Product" width="344" height="370" />
+                                                        </a>
+                                                    </div>
+                                                    <div th:unless="${lista.xFileUploadedDefault == null}" class="single-product__thumbnail--holder">
+                                                        <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq},productCatDetailCd=${lista.productCatDetailCd})}">
+                                                            <img th:src="${lista.xFileUploadedDefault}" alt="Product"  />
+                                                            <img class="product-hover" th:src="${lista.xFileUploadedSub}" alt="Product"  />
                                                         </a>
                                                     </div>
                                                 </div>

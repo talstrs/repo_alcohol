@@ -19,9 +19,24 @@ public class ProductVo extends BaseVo {
 	
 	private Integer minPrice;
 	private Integer maxPrice;
+	
+	private String xFileUploadedDefault;
+	private String xFileUploadedSub;
 
 	
 	
+	public String getxFileUploadedDefault() {
+		return xFileUploadedDefault;
+	}
+	public void setxFileUploadedDefault(String xFileUploadedDefault) {
+		this.xFileUploadedDefault = xFileUploadedDefault;
+	}
+	public String getxFileUploadedSub() {
+		return xFileUploadedSub;
+	}
+	public void setxFileUploadedSub(String xFileUploadedSub) {
+		this.xFileUploadedSub = xFileUploadedSub;
+	}
 	public Integer getMinPrice() {
 		return minPrice;
 	}

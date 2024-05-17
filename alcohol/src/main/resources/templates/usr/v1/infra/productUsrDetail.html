@@ -42,17 +42,11 @@
                             <div class="product-single-slide navigation-arrows-style-1">
                                 <div class="swiper">
                                     <div class="swiper-wrapper">
-                                        <div class="product-single-slide-item swiper-slide">
-                                            <img src="/usr/assets/images/products/product-single-01.jpg" alt="Product single" width="694" height="728" />
+                                        <div th:if="${#lists.isEmpty(fileImg)}" th:each="lista:${fileImg}">
+                                            <div>등록된 상품이 없습니다</div>
                                         </div>
-                                        <div class="product-single-slide-item swiper-slide">
-                                            <img src="/usr/assets/images/products/product-single-02.jpg" alt="Product single" width="694" height="728" />
-                                        </div>
-                                        <div class="product-single-slide-item swiper-slide">
-                                            <img src="/usr/assets/images/products/product-single-03.jpg" alt="Product single" width="694" height="728" />
-                                        </div>
-                                        <div class="product-single-slide-item swiper-slide">
-                                            <img src="/usr/assets/images/products/product-single-04.jpg" alt="Product single" width="694" height="728" />
+                                        <div th:if="${!#lists.isEmpty(fileImg)}" th:each="lista:${fileImg}" class="product-single-slide-item swiper-slide">
+                                            <img th:src="${lista.fileUploadedPath}" alt="Product single"  />
                                         </div>
                                     </div>
                                     <div class="swiper-button-next">
@@ -67,10 +61,10 @@
                                     </div>
                                     <div class="product-single-zoom">
                                         <div class="zoom">
-                                            <a class="product-glightbox" href="/usr/assets/images/products/product-single-01.jpg" aria-label="Zoom"></a>
-                                            <a class="product-glightbox" href="/usr/assets/images/products/product-single-02.jpg" aria-label="Zoom"></a>
-                                            <a class="product-glightbox" href="/usr/assets/images/products/product-single-03.jpg" aria-label="Zoom"></a>
-                                            <a class="product-glightbox" href="/usr/assets/images/products/product-single-04.jpg" aria-label="Zoom"></a>
+	                                        <a th:if="${#lists.isEmpty(fileImg)}" th:each="lista:${fileImg}">
+	                                            <div>등록된 상품이 없습니다</div>
+	                                        </a>
+	                                        <a th:if="${!#lists.isEmpty(fileImg)}" th:each="lista:${fileImg}" class="product-glightbox" th:href="${lista.fileUploadedPath}" aria-label="Zoom"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -78,17 +72,11 @@
                             <div class="product-single-thumb">
                                 <div class="swiper">
                                     <div class="swiper-wrapper">
-                                        <div class="product-single-thumb-item swiper-slide">
-                                            <img src="/usr/assets/images/products/product-single-01.jpg" alt="Product single" width="144" height="155" />
+                                        <div th:if="${#lists.isEmpty(fileImg)}" th:each="lista:${fileImg}">
+                                            <div>등록된 상품이 없습니다</div>
                                         </div>
-                                        <div class="product-single-thumb-item swiper-slide">
-                                            <img src="/usr/assets/images/products/product-single-02.jpg" alt="Product single" width="144" height="155" />
-                                        </div>
-                                        <div class="product-single-thumb-item swiper-slide">
-                                            <img src="/usr/assets/images/products/product-single-03.jpg" alt="Product single" width="144" height="155" />
-                                        </div>
-                                        <div class="product-single-thumb-item swiper-slide">
-                                            <img src="/usr/assets/images/products/product-single-04.jpg" alt="Product single" width="144" height="155" />
+                                        <div th:if="${!#lists.isEmpty(fileImg)}" th:each="lista:${fileImg}" class="product-single-thumb-item swiper-slide">
+                                            <img th:src="${lista.fileUploadedPath}" alt="Product single"  />
                                         </div>
                                     </div>
                                 </div>
@@ -383,10 +371,16 @@
                                         <div th:unless="${lista.productStock > 0}"  class="single-product__thumbnail--badge out-of-stock">
                                             Out of stock
                                         </div>
-                                        <div class="single-product__thumbnail--holder">
+                                        <div th:if="${lista.xFileUploadedDefault == null}" class="single-product__thumbnail--holder">
                                             <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq},productCatDetailCd=${lista.productCatDetailCd})}">
                                                 <img src="/usr/assets/images/products/product-02.jpg" alt="Product" width="344" height="370" />
                                                 <img class="product-hover" src="/usr/assets/images/products/product-12.jpg" alt="Product" width="344" height="370" />
+                                            </a>
+                                        </div>
+                                        <div th:unless="${lista.xFileUploadedDefault == null}" class="single-product__thumbnail--holder">
+                                            <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq},productCatDetailCd=${lista.productCatDetailCd})}">
+                                                <img th:src="${lista.xFileUploadedDefault}" alt="Product" />
+                                                <img class="product-hover" th:src="${lista.xFileUploadedSub}" alt="Product" />
                                             </a>
                                         </div>
                                     </div>

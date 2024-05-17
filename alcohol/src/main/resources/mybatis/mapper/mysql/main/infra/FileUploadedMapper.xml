@@ -10,7 +10,8 @@
 			from
 			fileuploaded a
 	    WHERE 1=1
-			a.fileUploadedDelNy = 0
+			and a.fileUploadedDelNy = 0
+			and a.fileUploadedFseq = #{fileUploadedFseq}
 	</sql>
 	
 

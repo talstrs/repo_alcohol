@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.babify.common.util.UtilSearch;
 import com.babify.infra.fileuploaded.FileUploadedDto;
+import com.babify.infra.fileuploaded.FileUploadedService;
+import com.babify.infra.fileuploaded.FileUploadedVo;
 import com.babify.infra.review.ReviewDto;
 import com.babify.infra.review.ReviewService;
 import com.babify.infra.review.ReviewVo;
@@ -21,6 +23,11 @@ public class ProductController {
 	
 	@Autowired
 	ReviewService reviewService;
+
+	@Autowired
+	FileUploadedService fileService;
+	
+	
 
 	
 	@RequestMapping(value = "/productXdmList")
@@ -153,10 +160,12 @@ public String productUsrList(@ModelAttribute("vo") ProductVo vo, Model model) th
 
 // 상품 상세 페이지
 	@RequestMapping(value = "/productUsrDetail")
-	public String productUsrDetail(ProductDto dto, ProductVo vo, ReviewVo rvo, ReviewDto rdto, Model model) throws Exception{
+	public String productUsrDetail(ProductDto dto, ProductVo vo, FileUploadedVo filevo, ReviewVo rvo, ReviewDto rdto, Model model) throws Exception{
 		
 		model.addAttribute("item", service.selectOne(dto));
 		
+		filevo.setFileUploadedFseq(dto.getProductSeq());
+		model.addAttribute("fileImg", fileService.selectList(filevo));
 		model.addAttribute("listReview", reviewService.selectList(rvo));
 		model.addAttribute("reviewCount", reviewService.selectListCount(rvo));
 		model.addAttribute("listRelated", service.selectListRelated(vo));

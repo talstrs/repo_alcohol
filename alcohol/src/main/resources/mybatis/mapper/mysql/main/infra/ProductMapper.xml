@@ -147,8 +147,23 @@
 	    		from review bb
 	    		where 1=1
 	    			and bb.product_productSeq = a.productSeq) as xReviewStarAvg
+	    	,
+	    	(
+		        SELECT cc.fileUploadedPath
+		        FROM fileuploaded cc
+		        WHERE 1=1
+		       	  AND cc.fileUploadedFseq = a.productSeq
+		          AND cc.fileUploadedDefaultNy = 1
+		    ) AS xFileUploadedDefault
+		    ,(
+		        SELECT dd.fileUploadedPath
+		        FROM fileuploaded dd
+		        WHERE 1=1
+		          AND dd.fileUploadedFseq = a.productSeq
+		          AND dd.fileUploadedSort = 1
+		    ) AS xFileUploadedSub
 		<include refid="selectCommonUsr" />
-     	ORDER BY a.productSeq
+     	ORDER BY a.productSeq Desc
 		limit 99999999999
 		<include refid="base.selectListLowerForMysql" />
 	</select>
@@ -191,12 +206,27 @@
 	    		from review bb
 	    		where 1=1
 	    			and bb.product_productSeq = a.productSeq) as xReviewStarAvg
+  		    ,
+	    	(
+		        SELECT cc.fileUploadedPath
+		        FROM fileuploaded cc
+		        WHERE 1=1
+		       	  AND cc.fileUploadedFseq = a.productSeq
+		          AND cc.fileUploadedDefaultNy = 1
+		    ) AS xFileUploadedDefault
+		    ,(
+		        SELECT dd.fileUploadedPath
+		        FROM fileuploaded dd
+		        WHERE 1=1
+		          AND dd.fileUploadedFseq = a.productSeq
+		          AND dd.fileUploadedSort = 1
+		    ) AS xFileUploadedSub
 		from
 			product a
 		where 1=1
 			and a.productDelNy = 0
 			and a.productBestNy = 1
-     	ORDER BY a.productSeq
+     	ORDER BY a.productSeq Desc
 		limit 99999999999
 		<include refid="base.selectListLowerForMysql" />
 	</select>
@@ -233,12 +263,27 @@
 	    		from review bb
 	    		where 1=1
 	    			and bb.product_productSeq = a.productSeq) as xReviewStarAvg
+  		    ,
+	    	(
+		        SELECT cc.fileUploadedPath
+		        FROM fileuploaded cc
+		        WHERE 1=1
+		       	  AND cc.fileUploadedFseq = a.productSeq
+		          AND cc.fileUploadedDefaultNy = 1
+		    ) AS xFileUploadedDefault
+		    ,(
+		        SELECT dd.fileUploadedPath
+		        FROM fileuploaded dd
+		        WHERE 1=1
+		          AND dd.fileUploadedFseq = a.productSeq
+		          AND dd.fileUploadedSort = 1
+		    ) AS xFileUploadedSub
 		from
 			product a
 		where 1=1
 			and a.productDelNy = 0
 			and a.productNewNy = 1
-     	ORDER BY a.productSeq
+     	ORDER BY a.productSeq Desc
 		limit 99999999999
 		<include refid="base.selectListLowerForMysql" />
 	</select>
@@ -275,6 +320,21 @@
 	    		from review bb
 	    		where 1=1
 	    			and bb.product_productSeq = a.productSeq) as xReviewStarAvg
+  		    ,
+	    	(
+		        SELECT cc.fileUploadedPath
+		        FROM fileuploaded cc
+		        WHERE 1=1
+		       	  AND cc.fileUploadedFseq = a.productSeq
+		          AND cc.fileUploadedDefaultNy = 1
+		    ) AS xFileUploadedDefault
+		    ,(
+		        SELECT dd.fileUploadedPath
+		        FROM fileuploaded dd
+		        WHERE 1=1
+		          AND dd.fileUploadedFseq = a.productSeq
+		          AND dd.fileUploadedSort = 1
+		    ) AS xFileUploadedSub
 		from
 			product a
 		where 1=1
