@@ -292,7 +292,7 @@
                                 <!-- Product Comment End -->
 
                                 <!-- Product Comment Form Start -->
-                                <div th:unless="${session.sessNameUsr} == null" class="product-comment-form" >
+                                <div class="product-comment-form" >
                                     <h3 class="comment-title">
                                         Add a review
                                     </h3>
@@ -318,11 +318,17 @@
                                                 <textarea class="single-form__input" id="reviewText" name="reviewText"></textarea>
                                             </div>
                                             
-                                            <div class="single-form">
+                                            <div th:if="${session.sessNameUsr} == null" class="single-form">
+                                                <a class="single-form__btn btn" th:href="@{/membersUsrLogin}">
+                                                    Submit
+                                                </a>
+                                            </div>
+                                            <div th:unless="${session.sessNameUsr} == null" class="single-form">
                                                 <button class="single-form__btn btn" id="btnSubmit" type="submit">
                                                     Submit
                                                 </button>
                                             </div>
+                                            
                                             <!-- Single Form Start -->
                                         </div>
                                         <!-- Comment Form End -->
