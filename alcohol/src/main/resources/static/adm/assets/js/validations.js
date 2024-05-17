@@ -115,6 +115,12 @@ function checkOnlyEightNumber (objName, pattern, nullAllowedNy, message) {
     return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
 }
 
+function checkOnlyEightNumber (objName, pattern, nullAllowedNy, message) {
+
+    var regExp = /^[0-9]{11}$/;
+    return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
+}
+
 function checkOnlyThreeNumber (objName, pattern, nullAllowedNy, message) {
 
     var regExp = /^[0-9]{3}$/;

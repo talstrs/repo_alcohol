@@ -81,16 +81,16 @@
                                 <input type="text" class="form-control" name="addressPhone" id="addressPhone" placeholder="주소 수령인의 번호를 입력하세요" required />
                                 <div class="invalid-feedback" id="addressPhoneFeedback"></div>
                             </div>
-                            <div class="single-form">
-                                <label class="single-form__label" for="addressLat">addressLat *</label>
-                                <input type="text" class="form-control" name="addressLat" id="addressLat" placeholder="addressLat 입력하세요" required />
-                                <div class="invalid-feedback" id="addressLatFeedback"></div>
-                            </div>
-                            <div class="single-form">
-                                <label class="single-form__label" for="addressLon">addressLon *</label>
-                                <input type="text" class="form-control" name="addressLon" id="addressLon" placeholder="addressLon 입력하세요" required />
-                                <div class="invalid-feedback" id="addressLonFeedback"></div>
-                            </div>
+<!--                             <div class="single-form"> -->
+<!--                                 <label class="single-form__label" for="addressLat">addressLat *</label> -->
+<!--                                 <input type="text" class="form-control" name="addressLat" id="addressLat" placeholder="addressLat 입력하세요" required /> -->
+<!--                                 <div class="invalid-feedback" id="addressLatFeedback"></div> -->
+<!--                             </div> -->
+<!--                             <div class="single-form"> -->
+<!--                                 <label class="single-form__label" for="addressLon">addressLon *</label> -->
+<!--                                 <input type="text" class="form-control" name="addressLon" id="addressLon" placeholder="addressLon 입력하세요" required /> -->
+<!--                                 <div class="invalid-feedback" id="addressLonFeedback"></div> -->
+<!--                             </div> -->
 <!--                             주소 코드/코드그룹 -->
 <!--                             <div class="single-form"> -->
 <!--                                 <label class="single-form__label" for="addressLocalACd">addressLocalACd *</label> -->
@@ -161,8 +161,7 @@
 
             
             if(!checkNull ('addressPhone', 2, '데이터 값을 입력하세요')) return false;
-            // 추후 정규표현식으로 변경해 주기
-            if(!checkOnlyKoreanEnglishNumber('addressPhone',2,0,'영어, 한글, 숫자만 입력 가능합니다')) return false;
+            if(!checkOnlyEightNumber('addressPhone',2,0,'숫자 11자리만 입력 가능합니다')) return false;
 
 
         }
