@@ -17,7 +17,30 @@ public class WishlistDto {
 	private Double productPrice;
 	private Integer productStock;
 	
+	private String fileUploadedFseq;
+	private Integer fileUploadedDefaultNy;
+	private String fileUploadedPath;
 	
+	
+	
+	public String getFileUploadedFseq() {
+		return fileUploadedFseq;
+	}
+	public void setFileUploadedFseq(String fileUploadedFseq) {
+		this.fileUploadedFseq = fileUploadedFseq;
+	}
+	public Integer getFileUploadedDefaultNy() {
+		return fileUploadedDefaultNy;
+	}
+	public void setFileUploadedDefaultNy(Integer fileUploadedDefaultNy) {
+		this.fileUploadedDefaultNy = fileUploadedDefaultNy;
+	}
+	public String getFileUploadedPath() {
+		return fileUploadedPath;
+	}
+	public void setFileUploadedPath(String fileUploadedPath) {
+		this.fileUploadedPath = fileUploadedPath;
+	}
 	public String getWishListSeq() {
 		return wishListSeq;
 	}

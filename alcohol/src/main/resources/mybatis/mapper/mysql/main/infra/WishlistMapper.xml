@@ -17,6 +17,9 @@
 			wishlist a
 			left join product b
 				on a.product_productSeq = b.productSeq
+			left join fileuploaded c
+				on c.fileUploadedFseq = b.productSeq
+				and c.fileUploadedDefaultNy = 1
 		where 1=1
 			and a.wishListDelNy = 0
 			and a.members_membersSeq = #{membersSeqF}
@@ -38,6 +41,9 @@
 		,b.productName
 		,b.productPrice
 		,b.productStock
+		,c.fileUploadedPath
+		,c.fileUploadedFseq
+		,c.fileUploadedDefaultNy
 	<include refid="selectCommon" />
 	</select>
 	
