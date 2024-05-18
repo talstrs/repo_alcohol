@@ -45,8 +45,15 @@ public class OrdersDto  extends BaseDto {
     private String addressName;
     private String addressPhone;
 
+    private String orderurl;
     
 
+	public String getOrderurl() {
+		return orderurl;
+	}
+	public void setOrderurl(String orderurl) {
+		this.orderurl = orderurl;
+	}
 	public Integer getAddressZipcode() {
 		return addressZipcode;
 	}

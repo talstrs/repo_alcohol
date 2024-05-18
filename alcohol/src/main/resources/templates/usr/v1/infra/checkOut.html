@@ -192,12 +192,14 @@
 										<div class="accordion-item ">
 											<div class="single-form collapsed" data-bs-toggle="collapse"
 												data-bs-target="#collapseThree">
-												<input type="radio" name="ordersPaymentCd" id="kakaopay"
-													value="50" /> <label for="kakaopay"
-													class="single-form__label radio-label"> <span></span>
-													Kakao Pay
-												</label>
+<!-- 												<input type="radio" name="ordersPaymentCd" id="kakaopay" -->
+<!-- 													value="50" /> <label for="kakaopay" -->
+<!-- 													class="single-form__label radio-label"> <span></span> -->
+<!-- 													Kakao Pay -->
+<!-- 												</label> -->
+												<input type="button" class="filter-price-btn" id="btnKakaoPay" value="Kakao Pay">
 											</div>
+											
 
 										</div>
 										<!-- 수정, 네이버페이-->
@@ -358,6 +360,35 @@
 		document.getElementById("addressSeq").onchange = function() {
 			selectTitle();
 		}
+	</script>
+	
+	<!--kakaoPay-->
+	<script> 
+		let currentURL = window.location.href;
+		let orderurl = currentURL.split('?').pop();
+		
+	
+		document.getElementById("btnKakaoPay").onclick=function(){
+			 $.ajax({
+					async: true 
+					,cache: false
+					,type: "get"
+					,url: "/kakaopay"
+					,data : {"orderurl" : orderurl
+						,"addressSeq" : $("#addressSeq").val()
+						,"ordersPrice" : $("#ordersPrice").val()
+						,"ordersTotalPrice" : $("#ordersTotalPrice").val()
+						,"productOrdersCount" : $("#productOrdersCount").val()}
+					,success: function(response) {
+						/* alert(response.rt);
+						console.log(response.rt); */
+						location.href = response.rt;
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+		 }
 	</script>
 
 	<!--자바스크립트 주소 관련 블록-->

@@ -147,6 +147,31 @@
     	</selectKey>
 	</insert>
 	
+	
+<!-- 	카카오페이 인서트 -->
+		<insert id="kakaoinsert">
+		insert into orders(
+		    ordersPaymentCd
+		    ,ordersPrice
+		    ,ordersTotalPrice
+		    ,ordersAddressSeq
+		    ,members_membersSeq
+		) values (
+			"51"
+			,#{ordersPrice}
+			,#{ordersTotalPrice}
+			,#{addressSeq}
+			,#{membersMembersSeqF}
+		)
+		   		<!-- 값이 들어가는 순간 해당 시퀀스 값을 반환하기, 이후에 다시
+   		예를 들어 데이터를 추가한 후 해당 데이터를 추가한 페이지를 보여주기 위함 -->
+    	<selectKey resultType="String" keyProperty="seq" order="AFTER">
+    		select last_insert_id()
+    	</selectKey>
+	</insert>
+	
+	
+	
 		<update id="updateDelete">
    	update orders
    	set
