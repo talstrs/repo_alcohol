@@ -87,25 +87,25 @@
 											<div class="col-md-6">
 												<label for="productXdmListAddCatMainCd" class="form-label">CatMain</label>
 												<input th:if="${item.productCatMainCd != null}" th:value="${@codeService.selectOneCachedCode(item.productCatMainCd)}" id="productXdmListAddCatMainCd" name="productCatMainCd" class=" align-middle form-control" required readonly></input>
-												<input th:unless="${item.productCatMainCd != null}" class=" align-middle"></input>
+												<input th:unless="${item.productCatMainCd != null}" type="hidden" class=" align-middle" required readonly></input>
 												<div class="valid-feedback">Looks good!</div>
 											</div>
 											<div class="col-md-6">
 												<label for="productXdmListAddCatDetailCd" class="form-label">CatDetail</label>
 												<input th:if="${item.productCatDetailCd != null}" th:value="${@codeService.selectOneCachedCode(item.productCatDetailCd)}" id="productXdmListAddCatDetailCd" name="productCatDetailCd" class=" align-middle form-control" required readonly></input>
-												<input th:unless="${item.productCatDetailCd != null}" class=" align-middle"></input>
+												<input th:unless="${item.productCatDetailCd != null}" type="hidden" class=" align-middle" required readonly></input>
 												<div class="valid-feedback">Looks good!</div>
 											</div>
 											<div class="col-md-6">
 												<label for="productXdmListAddSizeCd" class="form-label">Size</label>
 												<input th:if="${item.productSizeCd != null}" th:value="${@codeService.selectOneCachedCode(item.productSizeCd)}" id="productXdmListAddSizeCd" name="productSizeCd" class=" align-middle form-control" required readonly></input>
-												<input th:unless="${item.productSizeCd != null}" class=" align-middle"></input>
+												<input th:unless="${item.productSizeCd != null}" type="hidden" id="productXdmListAddSizeCd"  class=" align-middle" required readonly></input>
 												<div class="valid-feedback">Looks good!</div>
 											</div>
 											<div class="col-md-6">
 												<label for="productXdmListAddColorCd" class="form-label">Color</label>
 												<input th:if="${item.productColorCd != null}" th:value="${@codeService.selectOneCachedCode(item.productColorCd)}" id="productXdmListAddColorCd" name="productColorCd" class=" align-middle form-control" required readonly></input>
-												<input th:unless="${item.productColorCd != null}" class=" align-middle"></input>
+												<input th:unless="${item.productColorCd != null}" type="hidden" id="productXdmListAddColorCd" class=" align-middle" required readonly></input>
 												<div class="valid-feedback">Looks good!</div>
 											</div>
 											

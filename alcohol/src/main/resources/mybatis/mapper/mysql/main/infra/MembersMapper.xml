@@ -52,7 +52,7 @@
 			,a.membersRegDate
 			,a.membersModDate
 		<include refid="selectCommon" />
-		ORDER BY a.membersSeq
+		ORDER BY a.membersSeq desc
 		limit 99999999999
 		<include refid="base.selectListLowerForMysql" />
 	</select>

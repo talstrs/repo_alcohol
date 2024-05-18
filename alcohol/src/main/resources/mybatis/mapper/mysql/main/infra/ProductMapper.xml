@@ -58,7 +58,7 @@
 			,a.productRegDate
 			,a.productModDate
 		<include refid="selectCommonXdm" />
-     	ORDER BY a.productSeq
+     	ORDER BY a.productSeq desc
 		limit 99999999999
 		<include refid="base.selectListLowerForMysql" />
 	</select>

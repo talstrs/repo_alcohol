@@ -103,7 +103,7 @@ function checkOnlyKorean (objName, pattern, nullAllowedNy, message) {
     return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
 }
 
-function checkOnlyNumberAll (objName, pattern, nullAllowedNy, message) {
+function checkOnlyElevenNumberAll (objName, pattern, nullAllowedNy, message) {
 
     var regExp = /^[0-9]+$/;
     return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
@@ -115,7 +115,7 @@ function checkOnlyEightNumber (objName, pattern, nullAllowedNy, message) {
     return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
 }
 
-function checkOnlyEightNumber (objName, pattern, nullAllowedNy, message) {
+function checkOnlyNumber (objName, pattern, nullAllowedNy, message) {
 
     var regExp = /^[0-9]{11}$/;
     return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
