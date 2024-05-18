@@ -211,6 +211,7 @@ public class OrdersController {
 		dto.setMembersMembersSeqF((String) httpSession.getAttribute("sessSeqUsr"));
 		service.insert(dto);
 		
+		// 셀렉트 키 가져오기
 		podto.setOrdersSeq(dto.getSeq());
 		
 		productOrdersService.insert(podto);
