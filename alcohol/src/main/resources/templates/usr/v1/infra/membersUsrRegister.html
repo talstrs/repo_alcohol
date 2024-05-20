@@ -97,57 +97,6 @@
                                 </div>
                             </form>
 
-                            <!--수정, 간편 로그인 버튼 추가 및 row, col 삽입-->
-                            <ul class="login-register__social row">
-                                <li class="col">
-                                    <a class="social-facebook" href="#">
-                                        <span class="social-icon">
-                                                <img
-                                                    src="/usr/assets/images/facebook.png"
-                                                    alt="Facebook"
-                                                />
-                                            </span>
-                                        <span class="social-text"
-                                                >Login with Facebook</span>
-                                    </a>
-                                </li>
-                                <li class="col">
-                                    <a class="social-google" href="#">
-                                        <span class="social-icon">
-                                                <img
-                                                    src="/usr/assets/images/google.svg"
-                                                    alt="Facebook"
-                                                />
-                                            </span>
-                                        <span class="social-text"
-                                                >Login with Google</span>
-                                    </a>
-                                </li>
-                                <li class="col">
-                                    <a class="bg-success" href="#">
-                                        <span class="social-icon">
-                                                <img
-                                                    src="/usr/assets/images/naver.png"
-                                                    alt="naver"
-                                                />
-                                            </span>
-                                        <span class="social-text"
-                                                >Login with naver</span>
-                                    </a>
-                                </li>
-                                <li class="col">
-                                    <a class="bg-warning" href="#">
-                                        <span class="social-icon">
-                                                <img
-                                                    src="/usr/assets/images/kakao.png"
-                                                    alt="kakao"
-                                                />
-                                            </span>
-                                        <span class="social-text"
-                                                >Login with kakao</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
                         <!-- Log In & Register Box End -->
                     </div>
@@ -178,7 +127,8 @@
         }
 
         document.getElementById("btnSubmit").onclick = function () {
-            alert("확인");
+            event.preventDefault(); // 폼 제출을 막음
+            
             registerIn();
             
             
