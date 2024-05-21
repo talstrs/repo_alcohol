@@ -274,7 +274,7 @@
                                             </a>
                                         </div>
                                         <div th:unless="${lista.xFileUploadedDefault == null}" class="single-product__thumbnail--holder">
-                                            <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq})}">
+                                            <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq},productCatDetailCd=${lista.productCatDetailCd})}">
                                                 <img th:src="${lista.xFileUploadedDefault}" alt="Product" width="344" height="370" />
                                             </a>
                                         </div>
@@ -369,7 +369,7 @@
                                                 </a>
                                             </div>
                                             <div th:unless="${lista.xFileUploadedDefault == null}" class="single-product__thumbnail--holder">
-                                                <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq})}">
+                                                <a th:href="@{/productUsrDetail(productSeq=${lista.productSeq},productCatDetailCd=${lista.productCatDetailCd})}">
                                                     <img th:src="${lista.xFileUploadedDefault}" alt="Product" width="344" height="370" />
                                                 </a>
                                             </div>
