@@ -16,6 +16,7 @@ public class WishlistDto {
 	private String productName;
 	private Double productPrice;
 	private Integer productStock;
+	private Integer productCatDetailCd;
 	
 	private String fileUploadedFseq;
 	private Integer fileUploadedDefaultNy;
@@ -23,6 +24,12 @@ public class WishlistDto {
 	
 	
 	
+	public Integer getProductCatDetailCd() {
+		return productCatDetailCd;
+	}
+	public void setProductCatDetailCd(Integer productCatDetailCd) {
+		this.productCatDetailCd = productCatDetailCd;
+	}
 	public String getFileUploadedFseq() {
 		return fileUploadedFseq;
 	}

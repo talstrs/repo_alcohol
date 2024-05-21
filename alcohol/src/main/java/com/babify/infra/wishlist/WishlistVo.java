@@ -20,12 +20,19 @@ public class WishlistVo  {
 	private String productName;
 	private Double productPrice;
 	private Integer productStock;
+	private Integer productCatDetailCd;
 	
 	private String fileUploadedFseq;
 	private Integer fileUploadedDefaultNy;
 	private String fileUploadedPath;
 	
 	
+	public Integer getProductCatDetailCd() {
+		return productCatDetailCd;
+	}
+	public void setProductCatDetailCd(Integer productCatDetailCd) {
+		this.productCatDetailCd = productCatDetailCd;
+	}
 	public String getFileUploadedFseq() {
 		return fileUploadedFseq;
 	}

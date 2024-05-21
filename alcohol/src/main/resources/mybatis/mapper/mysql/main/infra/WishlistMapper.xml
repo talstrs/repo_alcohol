@@ -41,6 +41,7 @@
 		,b.productName
 		,b.productPrice
 		,b.productStock
+		,b.productCatDetailCd
 		,c.fileUploadedPath
 		,c.fileUploadedFseq
 		,c.fileUploadedDefaultNy
