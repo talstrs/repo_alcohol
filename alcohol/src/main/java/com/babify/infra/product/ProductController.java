@@ -192,7 +192,7 @@ public String usrIndex(ProductVo vo, Model model) throws Exception {
     
     // api 관련
     
-    String apiUrl = "https://www.pettravel.kr/api/listPart.do?page=1&pageBlock=16&partCode=PC01";
+    String apiUrl = "https://www.pettravel.kr/api/listPart.do?page=1&pageBlock=12&partCode=PC01";
 	
 	URL url = new URL(apiUrl);
 	HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -228,6 +228,7 @@ public String usrIndex(ProductVo vo, Model model) throws Exception {
 		PetDto obj = objectMapper.treeToValue(node, PetDto.class);
 	    objectList.add(obj);
 	}
+	
 	
 	
 //	System.out.println("node.get(\"header\").get(\"resultList\").asText(): " + node.get("resultList").get(0).get("areaName").asText());
