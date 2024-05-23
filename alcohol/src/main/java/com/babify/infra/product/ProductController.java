@@ -208,7 +208,8 @@ public String usrIndex(ProductVo vo, Model model) throws Exception {
 	StringBuilder stringBuilder = new StringBuilder();
 	String line;
 	while ((line = bufferedReader.readLine()) != null) {
-		System.out.println("line: " + line);
+		// 내용 확인 주석
+//		System.out.println("line: " + line);
 		stringBuilder.append(line);
 	}
 
