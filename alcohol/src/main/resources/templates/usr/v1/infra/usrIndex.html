@@ -441,11 +441,41 @@
                             <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
                         </svg>
                         </span>
-
+			
                     <h2 class="section-title__title">Pet-Friendly</h2>
                 </div>
                 <!-- Section Title End -->
-
+<!--                 카카오맵 시작 -->
+				<div class="mt-4" style="display: flex; justify-content: center; align-items: center;">
+					<div id="map" class="mt-4" style="width:500px;height:400px;"></div>
+				</div>
+				<!-- 자바스크립트 -->
+				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=909fb1048f89e6dfede7e7cbc4a76c20"></script>
+				<script>
+					document.addEventListener('DOMContentLoaded', (event) => {
+			            var container = document.getElementById('map');
+			            var options = {
+			                center: new kakao.maps.LatLng(37.747381503046, 127.630154310527),
+			                level: 3
+			            };
+			            var map = new kakao.maps.Map(container, options);
+	
+			            function changeMapCenter(lat, lng) {
+			                var newCenter = new kakao.maps.LatLng(lat, lng);
+			                map.setCenter(newCenter);
+			            }
+	
+			            var locations = document.querySelectorAll('.single-product__thumbnail--meta-2');
+			            locations.forEach(location => {
+			                location.addEventListener('click', function() {
+			                    var lat = this.getAttribute('data-lat');
+			                    var lng = this.getAttribute('data-lng');
+			                    changeMapCenter(lat, lng);
+			                });
+			            });
+			        });
+				</script>
+<!-- 				카카오맵 끝	 -->
                 <!-- Product Wrapper Start -->
                 <div class="product-wrapper product-active navigation-arrows-style-1">
                     <div class="swiper">
@@ -465,8 +495,9 @@
 					                                <!-- Single product Start -->
 					                                <div class="single-product js-scroll ShortFadeInUp" >
 					                                    <div class="single-product__thumbnail">
-					                                        <div  th:text="${lista.partName}" class="single-product__thumbnail--meta-2"> 
-					                                        </div>
+					                                        <div id="petListAddress" class="single-product__thumbnail--meta-2" 
+		                                                         th:attr="data-lat=${lista.latitude}, data-lng=${lista.longitude}" >View Map
+		                                                    </div>
 					                                        <div class="mt-1 mb-2"> <span style="font-size: 13px; " th:text="${lista.areaName}"></span><span> / </span>
 					                                        	<span style="color: gray; font-size: 11px;" th:text="${lista.partName}"></span>
 					                                        </div>
