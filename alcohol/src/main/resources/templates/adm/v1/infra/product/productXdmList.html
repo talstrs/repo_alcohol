@@ -291,6 +291,7 @@
 													</div>
 
 													<div class="">
+														<a class="btn btn-success bi bi-file-earmark-excel-fill" id="btnExcel"></a>
 														<a class="btn btn-primary bi bi-plus-square" th:href="@{/productXdmListAdd}">
 														</a>
 													</div>
@@ -335,13 +336,19 @@
 			let goUrlXdmList = "/productXdmList";								
 			let goUrlXdmForm = "/v1/infra/product/productXdmEdit";								
 			let goUrlXdmMultiDele = "/v1/infra/product/productDele";			
-			let goUrlXdmView = "/v1/infra/product/productXdmView";								
+			let goUrlXdmView = "/v1/infra/product/productXdmView";
+			let goUrlXdmExcel = "/excelDownloadProduct";
 			
-			// 해당 구문 확인 필요
 			let productSeq = document.querySelector("input[productName=productSeq]");									
 			
 			document.getElementById("btnReset").onclick = function () {
 				location.href = goUrlXdmList;
+			}
+			
+			
+			// 엑셀 다운로드
+			document.getElementById("btnExcel").onclick = function () {
+				location.href = goUrlXdmExcel;
 			}
 
 

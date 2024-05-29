@@ -55,6 +55,30 @@ public class CodeGroupController {
 	return  "adm/v1/infra/codegroup/codeGroupXdmList";
 }
 	
+	// ajax List
+	@RequestMapping(value = "/codeGroupXdmAjaxList")
+	public String codeXdmAjaxList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
+		
+		UtilSearch.setSearch(vo);
+		
+		return "adm/v1/infra/codegroup/codeGroupXdmAjaxList";
+	}
+	
+	
+	// ajax List Data
+	@RequestMapping(value = "/codeGroupXdmAjaxLita")
+	public String codeXdmAjaxLita(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
+		
+		UtilSearch.setSearch(vo);
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", service.selectList(vo));
+		}
+		
+		return "adm/v1/infra/codegroup/codeGroupXdmAjaxLita";
+	}
+	
 /* 링크 주소의 html 추가/ 데이터 받기 */
 /* dto로 데이터 정상적으로 넘어오는지 확인하기: codeGroupDto dto 설정 후 sysout으로 확인 */
 @RequestMapping(value = "/codeGroupXdmView")
