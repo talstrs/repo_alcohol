@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!--헤드 블록-->
+	<div th:replace="~{adm/v1/infra/include/xdmHead :: xdmHead}"></div>
+
+	<body>
+
+		<!-- Page wrapper start -->
+		<div class="page-wrapper">
+
+			<!-- Main container start -->
+			<div class="main-container">
+
+				<!--사이드바 블록-->
+				<div th:replace="~{adm/v1/infra/include/xdmSideBar :: xdmSideBar(20)}"></div>
+
+				
+				<!-- App container starts -->
+				<div class="app-container">
+
+					<!-- 바디 헤더 블록-->
+					<div th:replace="~{adm/v1/infra/include/xdmHeader :: xdmHeader}"></div>
+
+					<!-- App hero header starts -->
+					<!-- 수정, 검색 폼 시작-->
+					<form name="formList" id="formList" method="get" autocomplete="off">
+						<div class="app-hero-header align-items-start">
+							<div>
+								<!-- Breadcrumb start -->
+								<ol class="breadcrumb d-none d-lg-flex align-items-center">
+									<li class="breadcrumb-item">
+										<i class="bi bi-house">
+
+										</i>
+										<a href="index.html">
+											Home
+										</a>
+									</li>
+									<li class="breadcrumb-item">
+										Components
+									</li>
+									<li class="breadcrumb-item" aria-current="page">
+										Invoice List
+									</li>
+								</ol>
+							</div>
+							<!-- Breadcrumb end -->
+
+							<!-- 시작, 검색조건 첫번째 줄-->
+							<div class="ms-auto d-flex flex-row">
+								<!-- search s -->
+								<div class="col-4"></div>
+								<div class="col">
+									<select id="shDelNy" name="shDelNy" class="form-select form-select">
+										<option value="" th:selected="${vo.shDelNy == null}">
+											삭제여부
+										</option>
+										<option value="1" th:selected="${vo.shDelNy == 1}">
+											Y
+										</option>
+										<option value="0" th:selected="${vo.shDelNy == 0}">
+											N
+										</option>            
+									</select>
+								</div>
+								<!-- 참고! 이후 페이지 구현시 사용여부까지 진행시 편리함
+								<div class="col">
+									<select class="form-select" name="shUseNy" id="shUseNy">
+										<option value="" th:selected="${vo.shUseNy == null}">사용여부</option>
+										<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
+										<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
+									</select>
+								</div>		
+								-->	
+								<!-- 수정, 이후 날짜 진행시 하단으로 변경-->
+								<div class="col">
+									<select id="shOptionDate" name="shOptionDate" class="form-select form-select">
+										<option value="" th:selected="${vo.shOptionDate == null}">
+											날짜
+										</option>
+										<option value="1" th:selected="${vo.shOptionDate == 1}">
+											등록일
+										</option>
+										<option value="2" th:selected="${vo.shOptionDate == 2}">
+											수정일
+										</option>
+									</select>
+								</div>
+								<!--수정 데이터피커 인풋 구문-->
+								<div class="col">
+									<input type="text" id="shDateStart" name="shDateStart" 
+										placeholder="시작일" class="form-control form-control datetimepicker" 
+										th:value="${#strings.substring(vo.shDateStart, 0, 10)}"
+										autocomplete="off" >
+								</div>
+								<div class="m-0 col-2">
+									<input type="text" id="shDateEnd" name="shDateEnd" 
+									placeholder="종료일" class="form-control form-control datetimepicker" 
+									th:value="${#strings.substring(vo.shDateEnd, 0, 10)}"
+									autocomplete="off" >
+								</div> 
+							</div>
+								<!-- 끝, 검색조건 첫번째 줄-->
+								<!-- 수정, 검색조건 두번째 줄-->
+							<div class="ms-auto d-flex flex-row justify-content-end">
+								<div class="col-6"></div>
+								<div class="col-2">
+									<select id="shOption" name="shOption" class="form-select form-select">
+										<option value="" th:selected="${vo.shOption == null}">
+											검색구분
+										</option>
+										<option value="1" th:selected="${vo.shOption == 1}">
+											code no
+										</option>
+										<option value="2" th:selected="${vo.shOption == 2}">
+											name
+										</option>
+										<option value="3" th:selected="${vo.shOption == 3}">
+											memo
+										</option>			
+									</select>
+								</div>
+								<div class="search-container d-lg-block d-none">
+									<div class="input-group ">
+										<input type="text" id="shValue" name="shValue" onkeyup="enterkey()" class="form-control" 
+										placeholder="Search" aria-label="Recipient's username" aria-describedby="btnSearch">
+										<button type="button" id="btnSearch" class="btn btn-outline-secondary" >
+											&nbsp; &nbsp; &nbsp;
+											<i class="bi bi-search">
+
+											</i>
+										</button>
+									</div>
+
+										<!-- Search container end -->
+								</div>
+									<!-- 수정, 되돌리기-->
+									<!-- 이후 롤백 필요-->
+								<div>
+									<button type="button" id="btnReset" class="btn btn-outline-secondary">
+										<i class="bi bi-arrow-repeat">
+
+										</i>
+									</button>
+								</div>
+							</div>
+
+						</div>
+					
+						<!-- App Hero header ends -->
+
+						<!-- App body starts -->
+						<div class="app-body">
+
+							<!-- Row start -->
+											<!-- vo 유지(Ajax) List & Page start -->
+										    <!--페이징 관련 기본 내용 받기-->
+										    <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+											<div id="lita" ></div>
+											<!-- vo 유지(Ajax) List & Page end -->
+
+												<div class="d-flex justify-content-between">
+													<!--수정, 테이블 아래 삭제 등록 버튼 -->
+													<div class="">
+													
+													<!-- th:data-bs-target="'#exampleModalCenter'+ ${lista['seq']}" -->
+														<a class="btn btn-danger btn-icon" 
+															data-bs-toggle="modal"
+															
+															data-bs-target="#codeGroupXdmListDele"><i class="bi bi-trash"></i>
+														</a>
+														<!-- 수정, 삭제 모달-->
+														<div class="modal fade" 
+															
+															id="codeGroupXdmListDele"
+															tabindex="-1"
+															aria-labelledby="codeGroupXdmListDele"
+															aria-hidden="true">
+
+															<div class="modal-dialog modal-dialog-centered">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="codeGroupXdmListDeleTitle">
+																			Code Group 삭제
+																		</h5>
+																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																	</div>
+																	<div class="modal-body">
+																		<p class="text-start">정말로 삭제하시겠습니까?</p>
+																	</div>
+																	<div class="modal-footer">
+																		<a class="btn btn-secondary" data-bs-dismiss="modal">취소</a>
+																		<button class="btn btn-danger" id="btnModalUelete">삭제</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														
+													</div>
+
+													<div class="">
+														<a class="btn btn-primary bi bi-plus-square" th:href="@{/codeGroupXdmListAdd}">
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Row end -->
+						</div>
+					</form>
+					<!-- 끝, 검색 폼 끝-->
+					<!-- App body ends -->
+
+					<!-- App footer start -->
+
+					<!-- App footer end -->
+
+				</div>
+				<!-- App container ends -->
+
+			</div>
+			<!-- Main container end -->
+
+		</div>
+		<!-- Page wrapper end -->
+
+		<!-- *************
+			************ JavaScript Files *************
+		************* -->
+
+		<!-- 수정, 함수 및 컨트롤러 내용 구문-->
+		<!-- 오류시 내용 재확인-->
+		<script th:inline="javascript">
+			// 데이터 피커 관련 표기법 해당 구문에 실행
+			window.addEventListener('load', function() {
+				alert("확인");
+				let a= [[${vo.thisPage}]];
+				
+				setLita(a);
+				$("#shDateStart, #shDateEnd").datetimepicker({
+					timepicker : false,
+					format : 'Y-m-d'
+					
+				});
+			});
+			let form = document.querySelector("form[name=formList]");
+
+			let goUrlXdmAjaxList = "/codeGroupXdmAjaxList";			
+			let goUrlXdmAjaxLita = "/codeGroupXdmAjaxLita";	
+			let goUrlXdmList = "/codeGroupXdmList";								
+			let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmEdit";								
+			let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupDele";			
+			let goUrlXdmView = "/v1/infra/codegroup/codeGroupXdmView";		
+			
+			
+			// ajax Lita 실행
+			function setLita(thisPage) {
+				document.querySelector("input[name=thisPage]").value = thisPage;
+				alert("확인222");
+				alert(thisPage);
+			    $.ajax({
+			        async: true
+			        ,cache: false
+			        ,type: "post"
+			        ,url: goUrlXdmAjaxLita
+			        ,data : $("#formList").serialize()
+			        ,success: function(response) {
+						$("#lita").empty();
+						$("#lita").append(response);
+			        }
+			        ,error : function(jqXHR, textStatus, errorThrown){
+			            alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			        }
+			    });
+			}
+			
+			
+			let codeGroupSeq = document.querySelector("input[codeGroupName=codeGroupSeq]");									
+			
+			document.getElementById("btnReset").onclick = function () {
+				location.href = goUrlXdmAjaxList;
+			}
+
+
+			// document.getElementById("btnForm").onclick = function () {
+			// 	goForm(0);
+			// }
+
+
+			goForm = function (keyValue) {
+				codeGroupSeq.value = keyValue;
+				form.action = goUrlXdmForm;
+				form.submit();
+			}
+
+			document.getElementById("btnSearch").onclick = function () {
+				form.action = goUrlXdmAjaxList;
+				form.submit();
+			};
+
+			function enterkey() {
+				if (window.event.keyCode == 13) {
+					form.action = goUrlXdmAjaxList;
+					form.submit();
+				}
+			}
+
+		</script>
+		
+		
+		
+		
+
+	<!--자바스크립트 주소 관련 블록-->
+	<div th:replace="~{adm/v1/infra/include/xdmJs :: xdmJs}"></div>
+	
+	</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<div class="row">
+								<div class="col-xxl-12">
+									<div class="card mb-4">
+										<div class="card-header">
+											<!-- 타이틀 -->
+											<h5 class="card-title">
+												Code Group
+											</h5>
+										</div>
+
+										<!--수정, 토탈 값 및 줄 수 표시 블록-->
+										<div th:replace="~{adm/v1/infra/include/xdmTotalRownum :: xdmTotalRownum}"></div>	
+
+										<div class="card-body">
+											<div class="table-responsive">
+												<table class="table align-middle table-hover m-0">
+													<thead>
+														<tr>
+															<th scope="col"><input class="form-check-input" type="checkbox" id="checkAll"  /></th>
+															<th scope="col">#</th>
+															<th scope="col">seq</th>
+															<th scope="col">name</th>
+															<th scope="col">memo</th>
+															<th scope="col">count</th>
+															<th scope="col">regDate</th>
+															<th scope="col">modDate</th>
+															<th scope="col">Edit</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:if="${#lists.isEmpty(list)}">
+															<td colspan="9">There is no data!!!</td>
+															
+														</tr>
+														<tr th:if="${!#lists.isEmpty(list)}" th:each="lista:${list}">
+															<td>
+																<input class="form-check-input chk" type="checkbox" name="chk" th:value="${lista.codeGroupSeq}" />
+															</td>
+															<td th:if="${lista.codeGroupDelNy eq 0}">N</td>
+															<td th:unless="${lista.codeGroupDelNy eq 0}">Y</td>
+															<td th:text="${lista.codeGroupSeq}"></td>
+															<td><a th:href="@{/codeGroupXdmView(
+																codeGroupSeq=${lista.codeGroupSeq}
+															)}" th:text="${lista.codeGroupName}"></a></td>
+															<td th:text="${lista.codeGroupMemo}"></td>
+															<td th:text="${lista.xCodeGourpCount}"></td>
+															<td th:text="${#dates.format(lista.codeGroupRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
+															<td th:text="${#dates.format(lista.codeGroupModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
+															<td>
+																<a class="btn btn-primary btn-icon btn-sm mb-1" th:href="@{/codeGroupXdmEdit(codeGroupSeq=${lista.codeGroupSeq})}">
+																	<i class="bi bi-pencil"></i>
+																</a>
+																
+															</td>
+														</tr>
+														
+														
+													</tbody>
+												</table>
+												
+												
+											    
+											    <div class="mt-3">
+											        <div class="">
+											            <nav aria-label="Page Navigation">
+											                <ul class="pagination justify-content-center"> 
+											                    <li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;"><a class="page-link" href="javascript:setLita(${vo.startPage - 1})" th:attr="onclick=|setLita('${vo.startPage - 1}')|"><i class="bi bi-arrow-left"></i></a></li>
+											                    <li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|setLita('${num}')|" th:text="${num}"><!-- ${i.index} --></a></li>
+											                    <li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|setLita('${vo.endPage + 1}')|"><i class="bi bi-arrow-right"></i></a></li>
+											                </ul>
+											            </nav>
+											        </div>
+											    </div>
+											    <!-- 끝 -->
+											    
+    	<script>
+		// 체크박스 선택 구문
+		document.querySelector('#checkAll');
+
+		checkAll.addEventListener('click', function(){
+
+		    const isChecked = checkAll.checked;
+
+		    if(isChecked){
+		        const checkboxes = document.querySelectorAll('.chk');
+
+		        for(const checkbox of checkboxes){
+		            checkbox.checked = true;
+		        }
+		    }
+
+		    else{
+		        const checkboxes = document.querySelectorAll('.chk');
+		        for(const checkbox of checkboxes){
+		            checkbox.checked = false;
+		        }
+		    }
+		})
+		////////////////////////////////////////////////////////////
+		const checkboxes = document.querySelectorAll('.chk');
+		for(const checkbox of checkboxes){
+		  checkbox.addEventListener('click',function(){
+		    
+		    const totalCnt = checkboxes.length;
+		  
+		    const checkedCnt = document.querySelectorAll('.chk:checked').length;
+		    
+		    if(totalCnt == checkedCnt){
+		      document.querySelector('#checkAll').checked = true;
+		    }
+		    else{
+		      document.querySelector('#checkAll').checked = false;
+		    }
+		    
+		  });
+		  
+		}
+		
+		//체크박스 삭제 구문
+		let goUrlXdmMultiUele = "/codeGroupMultiUele";		
+		let checkboxSeqArray = [];
+		
+		
+		$("#btnModalUelete").on("click", function(){
+			$("input[name=chk]:checked").each(function(){ 
+				// check된것을 찾고 체크된 값만 넘김
+				checkboxSeqArray.push($(this).val());  // check 해당된 값을 담는다.
+			});				
+			
+			// checkboxSeqArray 값을 form 데이터로 추가
+		    let hiddenInput = document.createElement("input");
+		    hiddenInput.setAttribute("type", "hidden");
+		    hiddenInput.setAttribute("name", "checkboxSeqArray");
+		    hiddenInput.setAttribute("value", checkboxSeqArray.join(","));
+		    form.appendChild(hiddenInput);
+			
+			$("#modalConfirm").modal("hide");
+			
+			// 폼의 action 속성 변경
+	        form.action = goUrlXdmMultiUele;
+	        
+	        // 폼 제출
+	        form.submit();
+			
+		});
+		</script>
+    
+												
+</html>
