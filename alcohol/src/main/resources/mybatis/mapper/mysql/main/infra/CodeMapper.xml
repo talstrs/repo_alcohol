@@ -60,8 +60,10 @@
 	
 	
 	<select id="selectOneCount" resultType="Integer">
+		<include refid="base.selectListUpperForMysql" />	
 		select COUNT(*)
 		<include refid="selectCommon"></include>
+		<include refid="base.selectListLowerForMysql" />
 	</select>
 	
 	<!-- 셀렉원 만들기 -->

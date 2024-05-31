@@ -348,7 +348,8 @@
 			
 			// 엑셀 다운로드
 			document.getElementById("btnExcel").onclick = function () {
-				location.href = goUrlXdmExcel;
+				form.action = goUrlXdmExcel;
+				form.submit();
 			}
 
 

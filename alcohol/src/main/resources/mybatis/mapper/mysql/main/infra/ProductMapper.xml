@@ -65,8 +65,10 @@
 	
 	<!-- 관리자 셀렉 카운트 -->
 	<select id="selectOneCount" resultType="Integer">
-		select COUNT(*)
-		<include refid="selectCommonXdm"></include>
+		<include refid="base.selectListUpperForMysql" />
+			select COUNT(*)
+			<include refid="selectCommonXdm"></include>
+		<include refid="base.selectListLowerForMysql" />
 	</select>
 	
 	<!-- 	셀렉 커먼 사용자 -->
