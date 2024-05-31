@@ -256,9 +256,6 @@ public String usrIndex(ProductVo vo, Model model) throws Exception {
 // 관리자 List 엑셀 다운로드
 @RequestMapping(value = "/excelDownloadProduct")
 public void excelDownloadProduct(@ModelAttribute("vo") ProductVo vo, HttpServletResponse httpServletResponse) throws Exception {
-	System.out.println("--------------------------------------시작");
-	System.out.println("--------------------------------------시작");
-	System.out.println("--------------------------------------시작");
 	UtilSearch.setSearch(vo);
 	vo.setParamsPaging(service.selectOneCount(vo));
 

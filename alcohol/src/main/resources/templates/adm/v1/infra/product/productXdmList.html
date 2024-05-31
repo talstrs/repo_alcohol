@@ -126,7 +126,9 @@
 								<!-- 수정, 검색 버튼 리스트-->
 								<div class="search-container d-lg-block d-none">
 									<div class="input-group ">
-										<input type="text" id="shValue" name="shValue" onkeyup="enterkey()" class="form-control" 
+										<input th:if="${vo.shValue != null}" type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" class="form-control" 
+										placeholder="Search" aria-label="Recipient's username" aria-describedby="btnSearch">
+										<input th:unless="${vo.shValue != null}" type="text" id="shValue" name="shValue" onkeyup="enterkey()" class="form-control" 
 										placeholder="Search" aria-label="Recipient's username" aria-describedby="btnSearch">
 										<button type="button" id="btnSearch" class="btn btn-outline-secondary" >
 											&nbsp; &nbsp; &nbsp;
