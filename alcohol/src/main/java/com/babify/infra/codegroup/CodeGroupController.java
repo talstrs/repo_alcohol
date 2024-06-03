@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.babify.common.util.UtilSearch;
 
@@ -82,28 +83,19 @@ public class CodeGroupController {
 /* 링크 주소의 html 추가/ 데이터 받기 */
 /* dto로 데이터 정상적으로 넘어오는지 확인하기: codeGroupDto dto 설정 후 sysout으로 확인 */
 @RequestMapping(value = "/codeGroupXdmView")
-public String codeGroupView(CodeGroupDto dto, Model model) throws Exception{
+public String codeGroupView(@ModelAttribute("vo") CodeGroupVo vo, CodeGroupDto dto, Model model) throws Exception{
 
-//	넘긴 데이터: 해당 링크 클릭시 콘솔 창에 해당 데이터 값 확인
-//	but, dto 이름과 동일하게 설정해야 함
-	System.out.println("dto.getCodeGroupSeq(): " + dto.getCodeGroupSeq());
-	System.out.println("dto.getCodeGroupName(): " + dto.getCodeGroupName());
-	
-//	넘기지 않은 데이터: 해당 링크 클릭스 콘솔 창에 null 값으로 확인
-	System.out.println("dto.getCodeGroupModDate(): " + dto.getCodeGroupModDate());
 	
 	// 모델로 내용 받았을 경우 html로 넘겨주어야 함
 	model.addAttribute("item", service.selectOne(dto));
+	
 	
 	return "adm/v1/infra/codegroup/codeGroupXdmView";
 }
 
 @RequestMapping(value = "/codeGroupXdmEdit")
-public String codeGroupEdit(CodeGroupDto dto, Model model) throws Exception{
+public String codeGroupEdit(@ModelAttribute("vo") CodeGroupVo vo, CodeGroupDto dto, Model model) throws Exception{
 
-	// 값이 실제로 넘어오는지 콘솔창으로 확인하기
-	System.out.println("dto.getCodeGroupSeq(): " + dto.getCodeGroupSeq());
-	
 	// 모델로 내용 받았을 경우 html로 넘겨주어야 함
 	// addAttribute = 함수
 	// addAttribute("변수명", 값(객체));
@@ -114,7 +106,7 @@ public String codeGroupEdit(CodeGroupDto dto, Model model) throws Exception{
 }
 
 @RequestMapping(value = "/codeGroupXdmListAdd")
-public String codeGroupXdmListAdd() throws Exception{
+public String codeGroupXdmListAdd(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
 	
 	
 	return "adm/v1/infra/codegroup/codeGroupXdmListAdd";
@@ -122,12 +114,12 @@ public String codeGroupXdmListAdd() throws Exception{
 
 @RequestMapping(value = "/codeGroupInsert")
 // 컨트롤러만 리턴 타입을 String으로 변경 가능
-public String codeGroupInsert(CodeGroupDto dto) throws Exception{
+public String codeGroupInsert(@ModelAttribute("vo") CodeGroupVo vo, CodeGroupDto dto, RedirectAttributes redirectAttributes) throws Exception{
 	
-	System.out.println("dto.getCodeGroupName(): " + dto.getCodeGroupName());
-	System.out.println("dto.getCodeGroupMemo(): " + dto.getCodeGroupMemo());
 	
 	service.insert(dto);
+	
+	redirectAttributes.addFlashAttribute("vo", vo);
 	
 //	return "codeGroupXdmListAdd";
 	// 보여지는 화면을 만들기 위하여 리턴값으로 redirect를 사용하여 노출

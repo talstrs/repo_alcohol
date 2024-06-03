@@ -25,6 +25,7 @@
 					<!-- App hero header starts -->
 					<!-- 수정, 검색 폼 시작-->
 					<form name="formList" id="formList" method="get" autocomplete="off">
+						<input type="hidden" name="codeGroupSeq"></input>
 						<div class="app-hero-header align-items-start">
 							<div>
 								<!-- Breadcrumb start -->
@@ -122,8 +123,18 @@
 									</select>
 								</div>
 								<div class="search-container d-lg-block d-none">
-									<div class="input-group ">
-										<input type="text" id="shValue" name="shValue" onkeyup="enterkey()" class="form-control" 
+									<div th:if="${vo.shValue == null}" class="input-group ">
+										<input  type="text" id="shValue" name="shValue" onkeyup="enterkey()" class="form-control" 
+										placeholder="Search" aria-label="Recipient's username" aria-describedby="btnSearch">
+										<button type="button" id="btnSearch" class="btn btn-outline-secondary" >
+											&nbsp; &nbsp; &nbsp;
+											<i class="bi bi-search">
+
+											</i>
+										</button>
+									</div>
+									<div th:unless="${vo.shValue == null}" class="input-group ">
+										<input  type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" class="form-control" 
 										placeholder="Search" aria-label="Recipient's username" aria-describedby="btnSearch">
 										<button type="button" id="btnSearch" class="btn btn-outline-secondary" >
 											&nbsp; &nbsp; &nbsp;
@@ -194,16 +205,17 @@
 															</td>
 															<td th:if="${lista.codeGroupDelNy eq 0}">N</td>
 															<td th:unless="${lista.codeGroupDelNy eq 0}">Y</td>
-															<td th:text="${lista.codeGroupSeq}"></td>
-															<td><a th:href="@{/codeGroupXdmView(
-																codeGroupSeq=${lista.codeGroupSeq}
-															)}" th:text="${lista.codeGroupName}"></a></td>
+															<td  th:text="${lista.codeGroupSeq}"></td>
+															<td><a href="javascript:void(0);"
+															th:attr="onclick=|goForm('${lista.codeGroupSeq}')|"
+															 th:text="${lista.codeGroupName}"></a></td>
 															<td th:text="${lista.codeGroupMemo}"></td>
 															<td th:text="${lista.xCodeGourpCount}"></td>
 															<td th:text="${#dates.format(lista.codeGroupRegDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 															<td th:text="${#dates.format(lista.codeGroupModDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
 															<td>
-																<a class="btn btn-primary btn-icon btn-sm mb-1" th:href="@{/codeGroupXdmEdit(codeGroupSeq=${lista.codeGroupSeq})}">
+																<a class="btn btn-primary btn-icon btn-sm mb-1" href="javascript:void(0);"
+																	th:attr="onclick=|goEdit('${lista.codeGroupSeq}')|">
 																	<i class="bi bi-pencil"></i>
 																</a>
 																
@@ -257,7 +269,7 @@
 													</div>
 
 													<div class="">
-														<a class="btn btn-primary bi bi-plus-square" th:href="@{/codeGroupXdmListAdd}">
+														<a class="btn btn-primary bi bi-plus-square" id="btnInsert"  href="javascript:void(0);">
 														</a>
 													</div>
 												</div>
@@ -299,12 +311,18 @@
 			let form = document.querySelector("form[name=formList]");
 
 			let goUrlXdmList = "/codeGroupXdmList";								
-			let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmEdit";								
+			let goUrlXdmForm = "/codeGroupXdmView";								
 			let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupDele";			
 			let goUrlXdmView = "/v1/infra/codegroup/codeGroupXdmView";								
+			let goUrlXdmInsert = "/codeGroupXdmListAdd";
+			let goUrlXdmEdit = "/codeGroupXdmEdit";	
 			
-			// 해당 구문 확인 필요
-			let codeGroupSeq = document.querySelector("input[codeGroupName=codeGroupSeq]");									
+			document.getElementById("btnInsert").onclick = function () {
+				form.action = goUrlXdmInsert;
+				form.submit();
+			}
+			
+			
 			
 			document.getElementById("btnReset").onclick = function () {
 				location.href = goUrlXdmList;
@@ -315,10 +333,17 @@
 			// 	goForm(0);
 			// }
 
+			let seq = document.querySelector("input[name=codeGroupSeq]");									
 
 			goForm = function (keyValue) {
-				codeGroupSeq.value = keyValue;
+				seq.value = keyValue;
 				form.action = goUrlXdmForm;
+				form.submit();
+			}
+			
+			goEdit = function (keyValue) {
+				seq.value = keyValue;
+				form.action = goUrlXdmEdit;
 				form.submit();
 			}
 

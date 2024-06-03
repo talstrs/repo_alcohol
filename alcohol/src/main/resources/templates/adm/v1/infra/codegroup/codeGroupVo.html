@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
+		<th:block th:fragment="codeGroupVo">
+		
+<!-- 			baseVO -->
+			<input th:unless="${vo.thisPage} == null" type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1">
+			<input th:unless="${vo.rowNumToShow} == null" type="hidden" name="rowNumToShow"  th:value="${vo.rowNumToShow}">
+			<input th:unless="${vo.pageNumToShow} == null" type="hidden" name="pageNumToShow"  th:value="${vo.pageNumToShow}">
+			
+			<input th:unless="${vo.totalRows} == null" type="hidden" name="totalRows"  th:value="${vo.totalRows}">
+			<input th:unless="${vo.totalPages} == null" type="hidden" name="totalPages"  th:value="${vo.totalPages}">
+			<input th:unless="${vo.startPage} == null" type="hidden" name="startPage"  th:value="${vo.startPage}">
+			<input th:unless="${vo.endPage} == null" type="hidden" name="endPage"  th:value="${vo.endPage}">
+			
+			<input th:unless="${vo.startRnumForOracle} == null" type="hidden" name="startRnumForOracle"  th:value="${vo.startRnumForOracle}">
+			<input th:unless="${vo.endRnumForOracle} == null" type="hidden" name="endRnumForOracle"  th:value="${vo.endRnumForOracle}">
+			<input th:unless="${vo.RNUM} == null" type="hidden" name="RNUM"  th:value="${vo.RNUM}">
+			
+			<input th:unless="${vo.startRnumForMysql} == null" type="hidden" name="startRnumForMysql"  th:value="${vo.startRnumForMysql}">
+			
+			
+			<input th:unless="${vo.shUseNy} == null" type="hidden" name="shUseNy"  th:value="${vo.shUseNy}">
+			<input th:unless="${vo.shDelNy} == null" type="hidden" name="shDelNy"  th:value="${vo.shDelNy}">
+			<input th:unless="${vo.shOptionDate} == null" type="hidden" name="shOptionDate"  th:value="${vo.shOptionDate}">
+			<input th:unless="${vo.shDateStart} == null" type="hidden" name="shDateStart"  th:value="${vo.shDateStart}">
+			<input th:unless="${vo.shDateEnd} == null" type="hidden" name="shDateEnd"  th:value="${vo.shDateEnd}">
+			<input th:unless="${vo.shOption} == null" type="hidden" name="shOption"  th:value="${vo.shOption}">
+			<input th:unless="${vo.shValue} == null" type="hidden" name="shValue"  th:value="${vo.shValue}">
+			
+			
+<!-- 			codeGroupVo -->
+			<input th:unless="${vo.codeGroupSeq} == null" type="hidden" name="codeGroupSeq"  th:value="${vo.codeGroupSeq}">
+			
+		</th:block>
+</html>
