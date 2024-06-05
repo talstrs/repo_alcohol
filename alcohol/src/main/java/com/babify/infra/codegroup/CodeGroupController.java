@@ -118,7 +118,7 @@ public String codeGroupInsert(@ModelAttribute("vo") CodeGroupVo vo, CodeGroupDto
 	
 	
 	service.insert(dto);
-	
+	// 인서트의 경우 RedirectAttributes redirectAttributes 해당 값으로 이전 vo 내용 유지 필요
 	redirectAttributes.addFlashAttribute("vo", vo);
 	
 //	return "codeGroupXdmListAdd";
