@@ -187,8 +187,6 @@
 												</div>
 											</div>
 										</div>
-										<!-- 수정, 카카오페이 세팅-->
-<!-- 										여기에 카카오페이 내용 추가하기 -->
 										<div class="checkout-details__privacy-policy">
 											<p>Your personal data will be used to process your order,
 												support your experience throughout this website, and for
@@ -199,6 +197,10 @@
 											<button class="btn" id="btnSubmit" type="submit">
 												Place Order</button>
 										</div>
+<!-- 										카카오페이 -->
+<!-- 										<div class="checkout-details__btn"> -->
+<!-- 										    <button class="btn" id="btnKakaopay" type="submit">카카오페이 결제하기</button> -->
+<!-- 										</div> -->
 									</div>
 								</div>
 								<!-- Checkout Details End -->
@@ -226,6 +228,14 @@
 		// 등록 버튼
 
 		let goUrlUsrInst = "/checkOutInsert";
+		let goUrlKakaopay = "/kakaoPay"
+		
+			document.getElementById("btnKakaopay").onclick = function() {
+			alert("확인");
+				form.action = goUrlKakaopay;
+				form.submit();
+		}
+		
 
 		document.getElementById("btnSubmit").onclick = function() {
 			if (validationInst() == false) {
