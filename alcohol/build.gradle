@@ -21,6 +21,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -51,7 +52,17 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
 	implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.5'
 	
-		
+	// 카카오페이 관련 httpclient 설정
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5
+	implementation 'org.apache.httpcomponents.client5:httpclient5:5.3.1'
+
+	// https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+	implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+	
+	// https://mvnrepository.com/artifact/org.apache.httpcomponents.core5/httpcore5
+	implementation group: 'org.apache.httpcomponents.core5', name: 'httpcore5', version: '5.2.1'
+	
+
 	
 }
 

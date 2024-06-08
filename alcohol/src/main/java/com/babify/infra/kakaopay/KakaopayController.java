@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.babify.infra.orders.OrdersDto;
+import com.babify.infra.productorders.ProductOrdersDto;
+
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class KakaopayController {
 
@@ -28,9 +33,11 @@ public class KakaopayController {
     }
 
     @RequestMapping(value = "/kakaoPay", method = RequestMethod.POST)
-    public String kakaoPay() {
+    public String kakaoPay(KakaopayDto kdto, OrdersDto dto, ProductOrdersDto podto, Model model, HttpSession httpSession) {
         logger.info("kakaoPay post.....................");
-        return "redirect:" + kakaoPay.kakaoPayReady();
+        dto.setMembersMembersSeqF((String) httpSession.getAttribute("sessSeqUsr"));
+        kdto.setMembersEmail((String) httpSession.getAttribute("sessIdUsr"));
+        return "redirect:" + kakaoPay.kakaoPayReady(dto, podto);
     }
 
     @RequestMapping(value = "/kakaoPaySuccess", method = RequestMethod.GET)

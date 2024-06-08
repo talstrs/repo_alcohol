@@ -25,6 +25,10 @@ public class KakaopayDto extends BaseDto {
 	private Date productRegDate;
 	private Date productModDate;
 	
+	private String membersEmail;
+	private String productOrdersCount;
+	private String ordersTotalPrice;
+	
 	private Integer xReviewStarAvg;
 	private Integer xReviewSrarAvgAll;
 	
@@ -138,6 +142,24 @@ public class KakaopayDto extends BaseDto {
 	public void setProductModDate(Date productModDate) {
 		this.productModDate = productModDate;
 	}
+	public String getMembersEmail() {
+		return membersEmail;
+	}
+	public void setMembersEmail(String membersEmail) {
+		this.membersEmail = membersEmail;
+	}
+	public String getProductOrdersCount() {
+		return productOrdersCount;
+	}
+	public void setProductOrdersCount(String productOrdersCount) {
+		this.productOrdersCount = productOrdersCount;
+	}
+	public String getOrdersTotalPrice() {
+		return ordersTotalPrice;
+	}
+	public void setOrdersTotalPrice(String ordersTotalPrice) {
+		this.ordersTotalPrice = ordersTotalPrice;
+	}
 	public Integer getxReviewStarAvg() {
 		return xReviewStarAvg;
 	}
@@ -213,7 +235,6 @@ public class KakaopayDto extends BaseDto {
 	
     
     
-			
 	
 }
 	
