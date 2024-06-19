@@ -237,7 +237,6 @@
 		<script th:inline="javascript">
 			// 데이터 피커 관련 표기법 해당 구문에 실행
 			window.addEventListener('load', function() {
-				alert("확인");
 				let a= [[${vo.thisPage}]];
 				
 				setLita(a);
@@ -260,8 +259,6 @@
 			// ajax Lita 실행
 			function setLita(thisPage) {
 				document.querySelector("input[name=thisPage]").value = thisPage;
-				alert("확인222");
-				alert(thisPage);
 			    $.ajax({
 			        async: true
 			        ,cache: false
